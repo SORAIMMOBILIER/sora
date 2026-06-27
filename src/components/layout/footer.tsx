@@ -1,0 +1,123 @@
+"use client"
+
+const SECTIONS = [
+  { href: "#", label: "Accueil" },
+  { href: "#projet", label: "Le Projet" },
+  { href: "#fondateur", label: "Le Fondateur" },
+  { href: "#contact", label: "Masterclass" },
+  { href: "#contact", label: "Dossier d'investissement" },
+]
+
+const CONTACT = [
+  { href: "#contact", label: "Prendre rendez-vous" },
+  { href: "https://sora-immobilier.com", label: "Webinaire LyBox × SORA" },
+  { href: "https://instagram.com/sora_immobilier", label: "Instagram" },
+  { href: "https://linkedin.com/in/gabriel-lapierre", label: "LinkedIn" },
+  { href: "mailto:contact@sora-immobilier.com", label: "contact@sora-immobilier.com" },
+]
+
+export default function Footer() {
+  const scrollTop = () => {
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  return (
+    <footer className="bg-ink min-h-screen px-8 md:px-16 pt-16 md:pt-20 pb-8 md:pb-10 flex flex-col">
+      {/* Top row : logo + CTA */}
+      <div className="flex items-center justify-between">
+        <div
+          className="w-[120px] md:w-[160px]"
+          style={{
+            aspectRatio: "1751 / 548",
+            backgroundColor: "#071C0A",
+            WebkitMaskImage: "url(/sora-logo.svg)",
+            maskImage: "url(/sora-logo.svg)",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+            WebkitMaskSize: "contain",
+            maskSize: "contain",
+            WebkitMaskPosition: "left center",
+            maskPosition: "left center",
+          }}
+          aria-label="SORA Immobilier"
+        />
+        <a
+          href="#contact"
+          className="bg-bg text-ink text-[12px] tracking-[0.22em] uppercase px-7 md:px-9 py-4 md:py-5 rounded-full hover:bg-accent transition-colors duration-500"
+        >
+          Contactez-nous
+        </a>
+      </div>
+
+      {/* Top separator */}
+      <div className="h-px bg-bg/15 mt-10 md:mt-14" />
+
+      {/* Columns */}
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 py-16 md:py-24">
+        {/* Sections */}
+        <div>
+          <p className="text-[12px] tracking-[0.25em] uppercase text-bg font-semibold mb-12">Navigation</p>
+          <ul className="space-y-7 text-bg/65">
+            {SECTIONS.map((s) => (
+              <li key={s.label}>
+                <a href={s.href} className="text-lg hover:text-bg transition-colors duration-300">{s.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <p className="text-[12px] tracking-[0.25em] uppercase text-bg font-semibold mb-12">Contact</p>
+          <ul className="space-y-7 text-bg/65">
+            {CONTACT.map((c) => (
+              <li key={c.label}>
+                <a href={c.href} className="text-lg hover:text-bg transition-colors duration-300">{c.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Localisation + dispo */}
+        <div className="md:text-right">
+          <p className="text-[12px] tracking-[0.25em] uppercase text-bg font-semibold mb-12">Localisation</p>
+          <div className="space-y-12 text-bg/65">
+            <div>
+              <p className="font-mono text-[12px] tracking-[0.18em] text-bg/55 mb-3">Bureau Bali</p>
+              <p className="text-lg leading-relaxed">
+                Canggu, Bali, Indonésie<br />
+                08°39&apos;22&quot;S 115°08&apos;00&quot;E
+              </p>
+            </div>
+            <div>
+              <p className="text-[12px] tracking-[0.25em] uppercase text-bg font-semibold mb-3">Disponibilité</p>
+              <p className="text-lg leading-relaxed">
+                Lundi – Vendredi<br />
+                9h – 19h (CET) · 7j/7 (WITA)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom separator */}
+      <div className="h-px bg-bg/15" />
+
+      {/* Bottom row */}
+      <div className="pt-8 md:pt-10 grid grid-cols-2 md:grid-cols-3 items-center gap-6">
+        <button
+          onClick={scrollTop}
+          className="text-[11px] tracking-[0.22em] uppercase font-semibold text-bg hover:text-accent transition-colors duration-300 justify-self-start"
+        >
+          ↑ Retour en haut
+        </button>
+        <p className="hidden md:block font-mono text-[11px] tracking-[0.18em] text-bg/55 text-center">
+          © 2025 SORA Immobilier · SIRET 928 136 688
+        </p>
+        <p className="font-mono text-[11px] tracking-[0.18em] text-bg/55 justify-self-end text-right">
+          Design Omen Studio
+        </p>
+      </div>
+    </footer>
+  )
+}

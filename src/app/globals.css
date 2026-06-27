@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Palette ----------------------------------------------- */
+  --color-bg: #071C0A;
+  --color-bg-soft: #0D2814;
+  --color-bg-mid: #112E19;
+  --color-accent: #039C7B;
+  --color-accent-soft: #04B690;
+  --color-ink: #EDE8DD;
+  --color-ink-muted: #8A9489;
+  --color-line: #1A3520;
+
+  /* Typography -------------------------------------------- */
+  --font-sans: var(--font-mori), system-ui, sans-serif;
+  --font-serif: var(--font-nohemi), Georgia, serif;
+  --font-mono: var(--font-mori), system-ui, sans-serif;
+
+  /* Easings ----------------------------------------------- */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Radii ------------------------------------------------- */
+  --radius-card: 2px;
+  --radius-pill: 9999px;
+  --radius-tab: 14px;
+
+  /* Container width --------------------------------------- */
+  --container-page: 1504px;
+
+  /* Animations -------------------------------------------- */
+  --animate-scroll-line: scroll-line 2s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 22s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes scroll-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@layer base {
+  html { overflow-x: hidden; }
+  body {
+    background-color: #071C0A;
+    color: #EDE8DD;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    isolation: isolate;
+    letter-spacing: 0;
   }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: 0; }
+  img { outline: 1px solid rgba(237, 232, 221, 0.05); outline-offset: -1px; }
+  ::selection { background: #039C7B; color: #071C0A; }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: #071C0A; }
+  ::-webkit-scrollbar-thumb { background: #039C7B; border-radius: 2px; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .clip-word { overflow: hidden; display: block; }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Page container */
+  .container-page { max-width: var(--container-page); margin-inline: auto; }
+
+  /* Typography patterns */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+  .coord {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+  .heading-display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  /* Buttons */
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-pill);
+    transition: background-color 500ms var(--ease-soft);
+  }
+  .cta-primary:hover { background: var(--color-accent-soft); }
+
+  .cta-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(237 232 221 / 0.4);
+    color: var(--color-ink);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-pill);
+    transition: all 500ms var(--ease-soft);
+  }
+  .cta-outline:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  /* Card badge pill */
+  .badge-pill {
+    background: rgb(237 232 221 / 0.95);
+    backdrop-filter: blur(8px);
+    color: var(--color-bg);
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Section vertical rhythm */
+  .section-pad { padding-block: 6rem; }
+  @media (min-width: 768px) { .section-pad { padding-block: 9rem; } }
+  .section-pad-lg { padding-block: 8rem; }
+  @media (min-width: 768px) { .section-pad-lg { padding-block: 11rem; } }
 }
