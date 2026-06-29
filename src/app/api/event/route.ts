@@ -92,13 +92,8 @@ export async function POST(req: NextRequest) {
       const contactId = acData.contact?.id
 
       if (contactId) {
-        // Find tag EVENT-LYBOX
-        const tagsRes = await fetch(
-          `${AC_URL}/api/3/tags?search=EVENT-LYBOX`,
-          { headers: { "Api-Token": AC_KEY } }
-        )
-        const tagsData = await tagsRes.json()
-        const tagId = tagsData.tags?.[0]?.id
+        // Tag WEBI-LYBOX-2026 (ID 58) — trigger automations rappel J-1/H-1
+        const tagId = "58"
 
         if (tagId) {
           await fetch(`${AC_URL}/api/3/contactTags`, {
