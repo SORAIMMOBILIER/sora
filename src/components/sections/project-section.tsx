@@ -3,13 +3,6 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { gsap } from "gsap"
 
-const CARDS = [
-  { label: "Seseh Sunset", img: "/villa-pool.webp", price: "25 villas", metric: "Bord d'océan" },
-  { label: "Villas privées", img: "/villa-render-exterior.webp", price: "Dès 129 000 €", metric: "300 m de la mer" },
-  { label: "Co-investissement", img: "/villa-living.webp", price: "Dès 20 000 €", metric: "Accès prioritaire" },
-  { label: "Gestion locative", img: "/villa-kitchen.webp", price: "100% déléguée", metric: "Suivi sur place" },
-]
-
 export default function ProjectSection() {
   const ref = useRef<HTMLElement>(null)
   useEffect(() => {
@@ -46,29 +39,6 @@ export default function ProjectSection() {
         </div>
       </div>
 
-      {/* Tall cards row with badge overlay */}
-      <div className="-mx-6 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-1.5">
-        {CARDS.map((c) => (
-          <div key={c.label} className="pj-item relative group cursor-pointer overflow-hidden" style={{ aspectRatio: "9/16" }}>
-            <Image
-              src={c.img}
-              alt={c.label}
-              fill
-              quality={95}
-              className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-              sizes="(max-width:768px) 50vw, 25vw"
-            />
-            <div className="absolute inset-0 bg-background/10 group-hover:bg-background/20 transition-colors duration-500 pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-              <div className="bg-primary/95 backdrop-blur-sm px-5 py-3.5 rounded-2xl whitespace-nowrap min-w-44">
-                <p className="tertiary text-background/70 mb-1.5">{c.label}</p>
-                <p className="font-serif text-background text-base font-semibold leading-tight">{c.price}</p>
-                <p className="metadata text-background/55 mt-1.5">{c.metric}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
     </section>
   )
 }

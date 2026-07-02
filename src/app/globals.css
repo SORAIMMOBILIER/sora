@@ -88,9 +88,9 @@
     -moz-osx-font-smoothing: auto;
     overflow-x: hidden;
     isolation: isolate;
-    letter-spacing: 0;
+    letter-spacing: -0.011em;
   }
-  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: 0; }
+  h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -0.025em; }
   ::selection { background: #A3968D; color: #F9F8F4; }
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: #F9F8F4; }

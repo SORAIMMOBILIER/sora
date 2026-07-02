@@ -4,7 +4,9 @@ import { Hanken_Grotesk } from "next/font/google"
 import localFont from "next/font/local"
 import Script from "next/script"
 import SmoothScroll from "@/components/smooth-scroll"
-import Navbar from "@/components/layout/navbar"
+import Navbar, { type NavRealisation } from "@/components/layout/navbar"
+import { sanityFetch } from "../../sanity/lib/fetch"
+import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import "./globals.css"
 
 const eightly = localFont({
@@ -67,7 +69,29 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const STATUS_LABEL: Record<string, NavRealisation["status"]> = {
+  "en-cours": "En cours",
+  "prochainement": "Prochainement",
+  "livre": "Livré",
+}
+
+type NavRealisationRaw = {
+  slug: string
+  status?: string
+  location?: string
+  cardTitle?: string
+  heroTitle?: string
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
+  const navRealisations: NavRealisation[] = raw.map((r) => ({
+    slug: r.slug,
+    status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
+    location: r.location || "",
+    title: r.cardTitle || r.heroTitle || "",
+  }))
+
   return (
     <html lang="fr" className={`${eightly.variable} ${hanken.variable}`}>
       <body>
@@ -84,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           fbq('track', 'PageView');
         `}</Script>
         <SmoothScroll>
-          <Navbar />
+          <Navbar realisations={navRealisations} />
           {children}
           {process.env.NODE_ENV === "development" && <Agentation />}
         </SmoothScroll>

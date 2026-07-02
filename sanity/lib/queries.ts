@@ -112,3 +112,84 @@ export const EVENT_BY_SLUG_QUERY = defineQuery(`
 export const EVENT_SLUGS_QUERY = defineQuery(`
   *[_type == "event" && defined(slug.current) && (!defined(status) || status != "draft")]{ "slug": slug.current }
 `)
+
+export const ALL_REALISATIONS_QUERY = defineQuery(`
+  *[_type == "realisation" && defined(slug.current)] | order(order asc, cardTitle asc) {
+    _id,
+    "slug": slug.current,
+    status,
+    location,
+    priceLabel,
+    cardTitle,
+    cardDescription,
+    cardImage,
+    tags
+  }
+`)
+
+export const REALISATION_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "realisation" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    status,
+    location,
+    priceLabel,
+    cardTitle,
+    cardDescription,
+    cardImage,
+    tags,
+    heroEyebrow,
+    heroTitle,
+    heroSubtitle,
+    heroImage,
+    heroCtas,
+    keyStats,
+    gammesEyebrow,
+    gammesTitle,
+    gammes,
+    inclus,
+    inclusImage,
+    projectionsEyebrow,
+    projectionsTitle,
+    projectionsDescription,
+    projections,
+    projectionStats,
+    localisationEyebrow,
+    localisationTitle,
+    distances,
+    garantiesEyebrow,
+    garantiesTitle,
+    garanties,
+    dossierEyebrow,
+    dossierTitle,
+    dossierDescription,
+    dossierBullets,
+    dossierImage,
+    seo
+  }
+`)
+
+export const REALISATION_SLUGS_QUERY = defineQuery(`
+  *[_type == "realisation" && defined(slug.current)]{ "slug": slug.current }
+`)
+
+export const NAV_REALISATIONS_QUERY = defineQuery(`
+  *[_type == "realisation" && defined(slug.current)] | order(order asc, cardTitle asc) {
+    "slug": slug.current,
+    status,
+    location,
+    cardTitle,
+    heroTitle
+  }
+`)
+
+export const TESTIMONIALS_QUERY = defineQuery(`
+  *[_type == "testimonial" && featured != false] | order(order asc, _createdAt asc) {
+    _id,
+    quote,
+    author,
+    role,
+    image
+  }
+`)

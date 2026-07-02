@@ -3,22 +3,15 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { gsap } from "gsap"
 
-const TESTIMONIALS = [
-  {
-    quote: "J'étais en Europe pendant tout le projet, et tout a été géré sur place avec beaucoup de clarté et de sérieux.",
-    image: "/villa-bedroom.webp",
-  },
-  {
-    quote: "Ce qui m'a rassuré, c'est de ne pas avoir à gérer seul la complexité du projet. Tout était structuré et suivi.",
-    image: "/villa-bathroom.webp",
-  },
-  {
-    quote: "Sora nous a permis d'investir à Bali dans un cadre simple, accompagné et beaucoup plus lisible.",
-    image: "/villa-living.webp",
-  },
-]
+export type Testimonial = {
+  quote: string
+  image: string
+  imageAlt?: string
+  author?: string
+  role?: string
+}
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
   const ref = useRef<HTMLElement>(null)
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,6 +19,8 @@ export default function TestimonialsSection() {
     }, ref)
     return () => ctx.revert()
   }, [])
+
+  if (testimonials.length === 0) return null
 
   return (
     <section ref={ref} className="bg-accent py-24 md:py-36 px-6">
@@ -40,14 +35,14 @@ export default function TestimonialsSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {TESTIMONIALS.map((t, i) => (
+          {testimonials.map((t, i) => (
             <div
               key={i}
               className="tm-item relative overflow-hidden rounded-sm min-h-[260px] md:min-h-[320px] flex items-end"
             >
               <Image
                 src={t.image}
-                alt=""
+                alt={t.imageAlt || ""}
                 fill
                 quality={95}
                 sizes="(max-width:768px) 100vw, 33vw"
@@ -59,6 +54,16 @@ export default function TestimonialsSection() {
                 <p className="font-serif italic text-background text-lg md:text-xl leading-snug">
                   {t.quote}
                 </p>
+                {(t.author || t.role) && (
+                  <div className="mt-6 space-y-1">
+                    {t.author && (
+                      <p className="metadata text-background">{t.author}</p>
+                    )}
+                    {t.role && (
+                      <p className="metadata text-background/60">{t.role}</p>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}

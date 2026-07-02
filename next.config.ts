@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: "/seseh", destination: "/realisations/seseh", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
