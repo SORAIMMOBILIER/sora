@@ -284,6 +284,15 @@
   @media (min-width: 768px) { .section-pad { padding-block: 9rem; } }
   .section-pad-lg { padding-block: 8rem; }
   @media (min-width: 768px) { .section-pad-lg { padding-block: 11rem; } }
+
+  /* Villa interactive plan */
+  .villa-plan-container svg { display: block; width: 100%; height: auto; max-height: 640px; }
+  .villa-plan-container .pzone { cursor: pointer; }
+  .villa-plan-container .pzone .pz-fill { fill: rgba(163, 150, 141, 0.08); stroke: rgba(38, 38, 38, 0.6); stroke-width: 1; transition: fill 250ms var(--ease-soft), stroke 250ms var(--ease-soft); }
+  .villa-plan-container .pzone:hover .pz-fill { fill: rgba(163, 150, 141, 0.28); }
+  .villa-plan-container .pzone[data-active="true"] .pz-fill { fill: rgba(38, 38, 38, 0.85); stroke: rgba(38, 38, 38, 1); }
+  .villa-plan-container .pzone .pz-text { font-family: var(--font-serif); font-size: 12px; fill: rgba(38, 38, 38, 0.75); pointer-events: none; letter-spacing: 0.02em; transition: fill 250ms var(--ease-soft); }
+  .villa-plan-container .pzone[data-active="true"] .pz-text { fill: rgba(249, 248, 244, 1); }
 }
 
 @theme inline {

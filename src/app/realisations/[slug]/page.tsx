@@ -32,6 +32,7 @@ type Realisation = {
   gammesTitle?: string
   gammes?: Array<{
     name: string
+    slug?: string
     price?: string
     surface?: string
     bedrooms?: string
@@ -177,12 +178,8 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {r.gammes.map((g) => {
                 const gammeImage = g.image?.asset ? urlForImage(g.image).width(1200).url() : null
-                return (
-                  <div
-                    key={g.name}
-                    className="group relative rounded-sm overflow-hidden"
-                    style={{ aspectRatio: "4/3" }}
-                  >
+                const cardBody = (
+                  <>
                     {gammeImage && (
                       <Image
                         src={gammeImage}
@@ -225,7 +222,30 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                           )}
                         </div>
                       )}
+                      {g.slug && (
+                        <div className="mt-5 pt-4 border-t border-background/20 flex items-center justify-between">
+                          <span className="metadata text-background/70 group-hover:text-accent transition-colors">
+                            Explorer la villa
+                          </span>
+                          <span className="text-background/70 group-hover:text-accent transition-colors">→</span>
+                        </div>
+                      )}
                     </div>
+                  </>
+                )
+                const cardClass = "group relative rounded-sm overflow-hidden block"
+                return g.slug ? (
+                  <Link
+                    key={g.name}
+                    href={`/realisations/${slug}/${g.slug}`}
+                    className={cardClass}
+                    style={{ aspectRatio: "4/3" }}
+                  >
+                    {cardBody}
+                  </Link>
+                ) : (
+                  <div key={g.name} className={cardClass} style={{ aspectRatio: "4/3" }}>
+                    {cardBody}
                   </div>
                 )
               })}

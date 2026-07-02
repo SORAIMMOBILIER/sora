@@ -1,0 +1,137 @@
+            <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 331">
+
+              <!-- GARDEN : grande zone autour de la propriété (NON-CLIQUABLE, vert comme Signature)
+                   Découpé pour ne PAS couvrir la zone Terrasse (x=18-171, y=29-289), afin que le fill
+                   beige de la Terrasse ressorte exactement comme sur Signature (sans tinte verte). -->
+              <g pointer-events="none">
+                <rect x="0" y="0" width="500" height="29"
+                      fill="rgba(190,205,180,0.5)" stroke="none"/>
+                <rect x="0" y="29" width="18" height="260"
+                      fill="rgba(190,205,180,0.5)" stroke="none"/>
+                <rect x="0" y="289" width="393" height="42"
+                      fill="rgba(190,205,180,0.5)" stroke="none"/>
+                <text x="200" y="316" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      letter-spacing="0.04em"
+                      fill="rgba(60,80,55,0.9)">Garden</text>
+              </g>
+
+              <!-- TERRASSE : zone intérieure à gauche, contient la piscine, CLIQUABLE -->
+              <g class="pzone terrace" data-room='terrace'>
+                <rect class="pz-fill" x="18" y="29" width="153" height="260"
+                      style="stroke:rgba(61,57,52,0.6); stroke-width:1;"/>
+                <text class="pz-text" x="86" y="125" text-anchor="middle">Terrasse</text>
+              </g>
+
+              <!-- TERRASSE deck lines (horizontales décoratives, à l'intérieur de la Terrasse uniquement) -->
+              <g pointer-events="none" fill="none" stroke="rgba(61,57,52,0.25)" stroke-width="0.5">
+                <!-- Au-dessus de la piscine -->
+                <line x1="18" y1="50" x2="171" y2="50"/>
+                <line x1="18" y1="80" x2="171" y2="80"/>
+                <line x1="18" y1="110" x2="171" y2="110"/>
+                <line x1="18" y1="140" x2="171" y2="140"/>
+                <!-- À droite de la piscine (entre piscine et maison) -->
+                <line x1="95" y1="170" x2="171" y2="170"/>
+                <line x1="95" y1="200" x2="171" y2="200"/>
+                <line x1="95" y1="230" x2="171" y2="230"/>
+                <line x1="95" y1="260" x2="171" y2="260"/>
+              </g>
+
+              <!-- PISCINE (style identique à Signature : fill 0.55 + stroke autour, vagues 0.8, texte 0.9) -->
+              <g pointer-events="none">
+                <rect x="18" y="153" width="77" height="135"
+                      fill="rgba(178,210,225,0.55)" stroke="rgba(95,135,160,0.7)" stroke-width="0.6"/>
+                <path d="M 25 185 Q 32 182 39 185 Q 46 188 53 185 Q 60 182 67 185 Q 74 188 81 185 Q 87 182 91 185"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <path d="M 25 200 Q 32 197 39 200 Q 46 203 53 200 Q 60 197 67 200 Q 74 203 81 200 Q 87 197 91 200"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <text x="56.5" y="240" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      letter-spacing="0.04em"
+                      fill="rgba(50,80,100,0.9)">Piscine</text>
+              </g>
+
+              <!-- MAISON background -->
+              <g pointer-events="none">
+                <rect x="171" y="29" width="329" height="138" fill="rgba(245,242,234,0.95)"/>
+                <rect x="171" y="167" width="222" height="122" fill="rgba(245,242,234,0.95)"/>
+              </g>
+
+              <!-- GARAGE grisé hachuré -->
+              <g pointer-events="none">
+                <rect x="393" y="167" width="107" height="164"
+                      fill="rgba(225,222,215,0.65)" stroke="none"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="393" y1="167" x2="500" y2="331"/>
+                  <line x1="500" y1="167" x2="393" y2="331"/>
+                </g>
+                <text x="446" y="252" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.55)">Garage</text>
+              </g>
+
+              <!-- TOILETTES (cliquable) -->
+              <g class="pzone toilet" data-room='toilet'>
+                <rect class="pz-fill" x="171" y="29" width="98" height="39" style="stroke:none"/>
+                <text class="pz-text" x="220" y="54" text-anchor="middle" style="font-size:11px">Toilettes</text>
+              </g>
+
+              <!-- Escalier + Storage -->
+              <g pointer-events="none">
+                <rect x="269" y="29" width="87" height="39"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <g transform="translate(306, 42)">
+                  <path d="M 0 12 L 0 8 L 4 8 L 4 4 L 8 4 L 8 0 L 12 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <rect x="315" y="253" width="78" height="36"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <text x="354" y="277" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="10"
+                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Storage</text>
+              </g>
+
+              <!-- WALLS (rendus AVANT les pzones pour que le hover-gold soit visible par-dessus) -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <!-- Périmètre extérieur global -->
+                <path d="M 0 0 L 500 0 L 500 331 L 0 331 Z"/>
+                <path d="M 171 29 L 500 29 L 500 167 L 393 167 L 393 289 L 171 289 Z"/>
+                <path d="M 393 167 L 500 167 L 500 331 L 393 331 Z"/>
+                <path d="M 269 29 L 269 68"/>
+                <path d="M 171 68 L 356 68"/>
+                <path d="M 356 29 L 356 68"/>
+                <path d="M 315 167 L 315 289"/>
+                <path d="M 315 253 L 393 253"/>
+                <path d="M 315 167 L 393 167"/>
+              </g>
+
+              <!-- ZONES CLIQUABLES -->
+              <g class="pzone kitchen" data-room='kitchen'>
+                <rect class="pz-fill" x="356" y="29" width="144" height="138" style="stroke:none"/>
+                <text class="pz-text" x="428" y="100" text-anchor="middle">Cuisine</text>
+              </g>
+
+              <g class="pzone dining" data-room='dining'>
+                <rect class="pz-fill" x="171" y="68" width="185" height="99" style="stroke:none"/>
+                <text class="pz-text" x="263" y="120" text-anchor="middle">Dining</text>
+              </g>
+
+              <g class="pzone living" data-room='living'>
+                <rect class="pz-fill" x="171" y="167" width="144" height="122" style="stroke:none"/>
+                <text class="pz-text" x="243" y="225" text-anchor="middle" style="font-size:13px">Living Room</text>
+              </g>
+
+              <g class="pzone office" data-room='office'>
+                <rect class="pz-fill" x="315" y="167" width="78" height="86" style="stroke:none"/>
+                <text class="pz-text" x="354" y="213" text-anchor="middle" style="font-size:12px">Bureau</text>
+              </g>
+
+              <!-- DASHED SEPARATORS (open-plan : Cuisine | Dining et Dining | Living Room) -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3">
+                <line x1="356" y1="68" x2="356" y2="167"/>
+                <line x1="171" y1="167" x2="315" y2="167"/>
+              </g>
+            </svg>

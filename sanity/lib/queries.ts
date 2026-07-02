@@ -147,7 +147,19 @@ export const REALISATION_BY_SLUG_QUERY = defineQuery(`
     keyStats,
     gammesEyebrow,
     gammesTitle,
-    gammes,
+    gammes[]{
+      _key,
+      name,
+      "slug": slug.current,
+      price,
+      surface,
+      bedrooms,
+      bathrooms,
+      revenue,
+      "yield": yield,
+      pool,
+      image
+    },
     inclus,
     inclusImage,
     projectionsEyebrow,
@@ -172,6 +184,42 @@ export const REALISATION_BY_SLUG_QUERY = defineQuery(`
 
 export const REALISATION_SLUGS_QUERY = defineQuery(`
   *[_type == "realisation" && defined(slug.current)]{ "slug": slug.current }
+`)
+
+export const GAMME_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "realisation" && slug.current == $realisationSlug][0] {
+    "realisationSlug": slug.current,
+    "realisationTitle": cardTitle,
+    "realisationLocation": location,
+    status,
+    "gamme": gammes[slug.current == $gammeSlug][0] {
+      name,
+      "slug": slug.current,
+      price,
+      surface,
+      bedrooms,
+      bathrooms,
+      revenue,
+      "yield": yield,
+      pool,
+      image,
+      description,
+      planKey,
+      roomsRdc,
+      roomsEtage,
+      features,
+      gallery,
+      vrUrl,
+      preReserveUrl
+    }
+  }
+`)
+
+export const GAMME_SLUGS_QUERY = defineQuery(`
+  *[_type == "realisation" && defined(slug.current)]{
+    "realisationSlug": slug.current,
+    "gammes": gammes[defined(slug.current)]{ "slug": slug.current }
+  }
 `)
 
 export const NAV_REALISATIONS_QUERY = defineQuery(`

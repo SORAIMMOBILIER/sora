@@ -1,0 +1,83 @@
+            <svg id="f1" class="plan-svg" viewBox="-1 -1 502 322" xmlns="http://www.w3.org/2000/svg">
+
+              <!-- BACKGROUND : Escalier + Balcon + Parking + Terrasse (accès RDC) -->
+              <g id="f1-shell" pointer-events="none">
+
+                <!-- TERRASSE (right + top-right strip, greyed, accès RDC) -->
+                <polygon points="415.8,158.6 415.8,223.2 138.8,223.2 138.8,320 500,320 500,158.6"
+                         fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="4 3" fill="none">
+                  <line x1="138.8" y1="223.2" x2="500" y2="320"/>
+                  <line x1="500" y1="223.2" x2="138.8" y2="320"/>
+                </g>
+                <text x="319" y="265" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="12"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.65)">Terrasse</text>
+                <text x="319" y="282" text-anchor="middle"
+                      font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="8"
+                      letter-spacing="0.06em"
+                      fill="rgba(94,89,82,0.55)">accès rez-de-chaussée</text>
+
+                <!-- PARKING (bottom-left, greyed, accès RDC) -->
+                <rect x="0.4" y="223.2" width="138.4" height="96.8"
+                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="4 3" fill="none">
+                  <line x1="0.4" y1="223.2" x2="138.8" y2="320"/>
+                  <line x1="138.8" y1="223.2" x2="0.4" y2="320"/>
+                </g>
+                <text x="69.6" y="270" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="12"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.65)">Parking</text>
+
+                <!-- BALCON (decorative non-clickable) -->
+                <rect x="0.5" y="158.6" width="415.3" height="64.5"
+                      fill="rgba(244,240,233,0.55)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <text x="208" y="195" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Balcon</text>
+
+                <!-- ESCALIER (decorative, non-clickable, with stair treads) -->
+                <polygon points="52.6,181.1 52.6,158.6 0,158.6 0,223.2 133,223.2 133,181.1"
+                         fill="rgba(225,222,215,0.7)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="20" y1="158.6" x2="20" y2="181.1"/>
+                  <line x1="40" y1="158.6" x2="40" y2="181.1"/>
+                  <line x1="20" y1="181.1" x2="20" y2="223.2"/>
+                  <line x1="40" y1="181.1" x2="40" y2="223.2"/>
+                  <line x1="60" y1="181.1" x2="60" y2="223.2"/>
+                  <line x1="80" y1="181.1" x2="80" y2="223.2"/>
+                  <line x1="100" y1="181.1" x2="100" y2="223.2"/>
+                  <line x1="120" y1="181.1" x2="120" y2="223.2"/>
+                </g>
+                <g transform="translate(57, 196)">
+                  <path d="M 0 18 L 0 12 L 6 12 L 6 6 L 12 6 L 12 0 L 18 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </g>
+
+              <!-- INTERACTIVE ZONES (4 cliquables) -->
+
+              <g class="pzone bedroom1" data-room='bedroom1'>
+                <polygon class="pz-fill" points="166,0 0,0 0,158.6 193.6,158.6 193.6,83.7 166,83.7"/>
+                <text class="pz-text" x="80" y="80" text-anchor="middle">Chambre 1</text>
+              </g>
+
+              <g class="pzone bedroom2" data-room='bedroom2'>
+                <polygon class="pz-fill" points="307,0 307,83.3 339.9,83.3 339.9,158.6 500,158.6 500,0"/>
+                <text class="pz-text" x="420" y="80" text-anchor="middle">Chambre 2</text>
+              </g>
+
+              <g class="pzone bath2" data-room='bath2'>
+                <rect class="pz-fill" x="166" y="0" width="141" height="83.7"/>
+                <text class="pz-text" x="236.5" y="40" text-anchor="middle">Salle de bain 2</text>
+              </g>
+
+              <g class="pzone bath1" data-room='bath1'>
+                <rect class="pz-fill" x="193.6" y="83.7" width="146.3" height="74.9"/>
+                <text class="pz-text" x="266.7" y="125" text-anchor="middle">Salle de bain 1</text>
+              </g>
+
+            </svg>

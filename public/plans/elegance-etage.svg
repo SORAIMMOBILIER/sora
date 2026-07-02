@@ -1,0 +1,69 @@
+            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 502 322">
+
+              <!-- BACKGROUND : non-interactive zones -->
+              <g id="f1-shell" pointer-events="none">
+
+                <!-- "Nothing here" zone (bottom-center, greyed) -->
+                <rect x="161.2" y="227" width="187.3" height="93"
+                      fill="rgba(220,217,210,0.45)" stroke="rgba(61,57,52,0.55)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="161.2" y1="227" x2="348.5" y2="320"/>
+                  <line x1="161.2" y1="320" x2="348.5" y2="227"/>
+                </g>
+
+                <!-- Terrasse (right, greyed — accessible from RDC only) -->
+                <rect x="348.5" y="0" width="151.5" height="320"
+                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.55)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="348.5" y1="0" x2="500" y2="320"/>
+                  <line x1="500" y1="0" x2="348.5" y2="320"/>
+                </g>
+                <text x="424" y="158" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="14"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.55)">Terrasse</text>
+                <text x="424" y="174" text-anchor="middle"
+                      font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="8"
+                      letter-spacing="0.06em"
+                      fill="rgba(94,89,82,0.45)">accès rez-de-chaussée</text>
+
+                <!-- Stairs treads (decorative) -->
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="0" y1="75.2" x2="55.8" y2="75.2"/>
+                  <line x1="0" y1="95.9" x2="55.8" y2="95.9"/>
+                  <line x1="0" y1="116.5" x2="55.8" y2="116.5"/>
+                  <line x1="0" y1="137.2" x2="55.8" y2="137.2"/>
+                  <line x1="77.3" y1="0" x2="77.3" y2="54.6"/>
+                  <line x1="98.8" y1="0" x2="98.8" y2="54.6"/>
+                  <line x1="120.3" y1="0" x2="120.3" y2="54.6"/>
+                </g>
+
+                <!-- Door opening: chambre → salle de bain -->
+                <line x1="107.5" y1="227" x2="147.9" y2="227"
+                      stroke="rgba(245,241,233,1)" stroke-width="2"/>
+
+              </g>
+
+              <!-- ESCALIER (visible mais NON-cliquable) -->
+              <g id="f1-stairs" pointer-events="none">
+                <polygon points="141.8,0 0,0 0,157.8 55.8,157.8 55.8,54.6 141.8,54.6"
+                         fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g transform="translate(15, 17)">
+                  <path d="M 0 18 L 0 12 L 6 12 L 6 6 L 12 6 L 12 0 L 18 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </g>
+
+              <!-- INTERACTIVE ZONES -->
+
+              <g class="pzone bedroom1" data-room='bedroom1'>
+                <polygon class="pz-fill" points="141.8,0 141.8,54.6 55.8,54.6 55.8,157.8 0,157.8 0,227 348.5,227 348.5,0"/>
+                <text class="pz-text" x="201" y="118" text-anchor="middle">Chambre</text>
+              </g>
+
+              <g class="pzone bath2" data-room='bath2'>
+                <polygon class="pz-fill" points="0,227 161.2,227 161.2,320 0,320"/>
+                <text class="pz-text" x="80" y="278" text-anchor="middle">Salle de bain</text>
+              </g>
+
+            </svg>
