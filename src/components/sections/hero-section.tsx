@@ -36,7 +36,7 @@ export default function HeroSection() {
           poster="/villa-exterior.webp"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dfpaw573r/video/upload/v1783086460/Header_site_u1i0j9.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-primary/55" />
       </div>
