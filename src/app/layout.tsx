@@ -3,8 +3,8 @@ import { Agentation } from "agentation"
 import { Hanken_Grotesk } from "next/font/google"
 import localFont from "next/font/local"
 import Script from "next/script"
-import SmoothScroll from "@/components/smooth-scroll"
-import Navbar, { type NavRealisation } from "@/components/layout/navbar"
+import { type NavRealisation } from "@/components/layout/navbar"
+import { SiteChrome, ConditionalSmoothScroll, DevAgentation } from "@/components/layout/site-chrome"
 import { sanityFetch } from "../../sanity/lib/fetch"
 import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import "./globals.css"
@@ -107,11 +107,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           fbq('init', '949873927292995');
           fbq('track', 'PageView');
         `}</Script>
-        <SmoothScroll>
-          <Navbar realisations={navRealisations} />
+        <ConditionalSmoothScroll>
+          <SiteChrome realisations={navRealisations} />
           {children}
-          {process.env.NODE_ENV === "development" && <Agentation />}
-        </SmoothScroll>
+          {process.env.NODE_ENV === "development" && (
+            <DevAgentation>
+              <Agentation />
+            </DevAgentation>
+          )}
+        </ConditionalSmoothScroll>
       </body>
     </html>
   )
