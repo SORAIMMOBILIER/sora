@@ -10,13 +10,14 @@ const SECTIONS = [
   { href: "/seseh", label: "Seseh Sunset Villas" },
   { href: "/events", label: "Évènements" },
   { href: "/#fondateur", label: "Le Fondateur", anchorId: "fondateur" },
+  { href: "/fonctionnement", label: "Fonctionnement" },
   { href: "/masterclass", label: "Masterclass" },
-  { href: "/#contact", label: "Appel offert", anchorId: "contact" },
+  { href: "/contact", label: "Appel offert" },
   { href: "/seseh#dossier", label: "Dossier d'investissement" },
 ]
 
 const CONTACT = [
-  { href: "/#contact", label: "Prendre rendez-vous", anchorId: "contact" },
+  { href: "/contact", label: "Prendre rendez-vous" },
   { href: "tel:+33633517746", label: "+33 6 33 51 77 46" },
   { href: "mailto:contact@sora-immobilier.com", label: "contact@sora-immobilier.com" },
   { href: "https://www.instagram.com/gabriel_lapierre_/", label: "Instagram" },
@@ -50,7 +51,7 @@ export default function Footer() {
           <Image src="/sora-logo.svg" alt="SORA" width={705} height={159} className="no-outline block h-16 md:h-24 w-auto" />
         </Link>
         <Button asChild variant="inverse">
-          <Link href="/#contact" onClick={goToHomeAnchor("contact")}>
+          <Link href="/contact">
             Contactez-nous
           </Link>
         </Button>
@@ -77,7 +78,7 @@ export default function Footer() {
             {CONTACT.map((c) => (
               <li key={c.label}>
                 {c.href.startsWith("/") ? (
-                  <Link href={c.href} onClick={c.anchorId ? goToHomeAnchor(c.anchorId) : undefined} className="text-lg hover:text-background transition-colors duration-300">{c.label}</Link>
+                  <Link href={c.href} className="text-lg hover:text-background transition-colors duration-300">{c.label}</Link>
                 ) : (
                   <a href={c.href} className="text-lg hover:text-background transition-colors duration-300">{c.label}</a>
                 )}
