@@ -242,3 +242,34 @@ export const TESTIMONIALS_QUERY = defineQuery(`
     image
   }
 `)
+
+export const SITEMAP_POSTS_QUERY = defineQuery(`
+  *[_type == "post" && defined(slug.current)] {
+    "slug": slug.current,
+    "updatedAt": coalesce(_updatedAt, publishedAt)
+  }
+`)
+
+export const SITEMAP_EVENTS_QUERY = defineQuery(`
+  *[_type == "event" && defined(slug.current)] {
+    "slug": slug.current,
+    "updatedAt": coalesce(_updatedAt, startsAt)
+  }
+`)
+
+export const SITEMAP_REALISATIONS_QUERY = defineQuery(`
+  *[_type == "realisation" && defined(slug.current)] {
+    "slug": slug.current,
+    "updatedAt": _updatedAt
+  }
+`)
+
+export const SITEMAP_GAMMES_QUERY = defineQuery(`
+  *[_type == "realisation" && defined(slug.current)] {
+    "realisationSlug": slug.current,
+    "updatedAt": _updatedAt,
+    "gammes": gammes[defined(slug.current)] {
+      "slug": slug.current
+    }
+  }
+`)
