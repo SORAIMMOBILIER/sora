@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { Play } from "lucide-react"
-import Image from "next/image"
 import {
   Carousel,
   CarouselContent,
@@ -46,32 +45,27 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
     const v = videoRef.current
     if (!v) return
     v.play()
-    setPlaying(true)
   }
 
   return (
     <div className={`relative rounded-sm overflow-hidden ${aspect}`}>
-      {playing ? (
-        <video
-          ref={videoRef}
-          src={src}
-          controls
-          playsInline
-          autoPlay
-          className="absolute inset-0 w-full h-full object-cover"
-          onPause={() => setPlaying(false)}
-          onEnded={() => setPlaying(false)}
-        />
-      ) : (
-        <button onClick={handlePlay} className="absolute inset-0 w-full h-full cursor-pointer group">
-          <Image
-            src={poster}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="(max-width:768px) 85vw, 33vw"
-            unoptimized
-          />
+      <video
+        ref={videoRef}
+        src={src}
+        controls={playing}
+        playsInline
+        preload="metadata"
+        poster={poster}
+        className="absolute inset-0 w-full h-full object-cover"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+      />
+      {!playing && (
+        <button
+          onClick={handlePlay}
+          className="absolute inset-0 z-10 w-full h-full cursor-pointer group"
+        >
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex flex-col items-center justify-center gap-3">
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/90 text-primary shadow-lg">
               <Play className="h-6 w-6 ml-0.5" fill="currentColor" />
