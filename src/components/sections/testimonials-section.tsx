@@ -22,16 +22,19 @@ const VIDEOS = [
     src: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4",
     poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.jpg",
     aspect: "aspect-[9/16]",
+    mobileAspect: "aspect-[9/16]",
   },
   {
     src: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4",
     poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.jpg",
     aspect: "aspect-video",
+    mobileAspect: "aspect-[3/4]",
   },
   {
     src: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4",
     poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.jpg",
     aspect: "aspect-[9/16]",
+    mobileAspect: "aspect-[9/16]",
   },
 ]
 
@@ -107,7 +110,7 @@ export default function TestimonialsSection() {
             <CarouselContent className="-ml-3" style={{ alignItems: "flex-start" }}>
               {VIDEOS.map((v, i) => (
                 <CarouselItem key={i} className="pl-3 basis-[85%]">
-                  <VideoCard src={v.src} poster={v.poster} aspect={v.aspect} />
+                  <VideoCard src={v.src} poster={v.poster} aspect={v.mobileAspect} />
                 </CarouselItem>
               ))}
             </CarouselContent>
