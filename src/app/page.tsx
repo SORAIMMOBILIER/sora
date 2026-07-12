@@ -1,5 +1,6 @@
 import HeroSection from "@/components/sections/hero-section"
 import StatsSection from "@/components/sections/stats-section"
+import BrochureCta from "@/components/sections/brochure-cta"
 import ProjectSection from "@/components/sections/project-section"
 import CarouselSection, { type Realisation } from "@/components/sections/carousel-section"
 import TestimonialsSection, { type Testimonial } from "@/components/sections/testimonials-section"
@@ -45,7 +46,10 @@ export default async function Home() {
     sanityFetch<TestimonialRaw[]>({ query: TESTIMONIALS_QUERY, tags: ["testimonial"] }),
   ])
 
-  const realisations: Realisation[] = realisationsRaw.map((r) => ({
+  const STATUS_ORDER: Record<string, number> = { "en-cours": 0, "prochainement": 1, "livre": 2 }
+  const sorted = [...realisationsRaw].sort((a, b) => (STATUS_ORDER[a.status || "en-cours"] ?? 9) - (STATUS_ORDER[b.status || "en-cours"] ?? 9))
+
+  const realisations: Realisation[] = sorted.map((r) => ({
     slug: r.slug,
     image: r.cardImage?.asset ? urlForImage(r.cardImage).width(1600).url() : "/villa-exterior.webp",
     imageAlt: r.cardImage?.alt || r.cardTitle || "",
@@ -71,6 +75,7 @@ export default async function Home() {
     <main>
       <HeroSection />
       <StatsSection />
+      <BrochureCta />
       <ProjectSection />
       <CarouselSection realisations={realisations} />
       <TestimonialsSection testimonials={testimonials} />

@@ -48,6 +48,34 @@ export default function VSLPage() {
   const [videoMuted, setVideoMuted] = useState(true)
   const [showVideoCta, setShowVideoCta] = useState(false)
   const exitShownRef = useRef(false)
+  const [dossierForm, setDossierForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
+  const [dossierStatus, setDossierStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const handleDossierSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setDossierStatus("loading")
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...dossierForm,
+          source: "dossier-vsl",
+          acTagId: "61",
+          acListId: "7",
+          freshsalesTag: "DOSSIER-SESEH",
+        }),
+      })
+      if (res.ok) {
+        setDossierStatus("success")
+        window.fbq?.("track", "Lead", { source: "dossier-vsl" })
+      } else {
+        setDossierStatus("error")
+      }
+    } catch {
+      setDossierStatus("error")
+    }
+  }
 
   const handleVideoClick = useCallback(() => {
     const v = videoRef.current
@@ -338,27 +366,41 @@ export default function VSLPage() {
 
       {/* ─── TÉMOIGNAGES ─── */}
       <section className="px-6 py-24 md:py-36 bg-card border-t border-border">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="vsl-fade eyebrow text-muted-foreground mb-6">Ils investissent avec Sora</p>
-            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
-              100+ dirigeants européens nous font confiance.
-            </h2>
-          </div>
+        <div className="max-w-5xl mx-auto">
+          <div className="vsl-fade grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-3 md:gap-4 items-stretch">
+            {/* Vertical gauche */}
+            <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
+              <video src="https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4" controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+            </div>
 
-          <div className="vsl-fade space-y-6">
-            {[
-              { quote: "J'étais en Europe pendant tout le projet, et tout a été géré sur place avec beaucoup de clarté et de sérieux.", label: "Investisseur, Europe" },
-              { quote: "Ce qui m'a rassuré, c'est de ne pas avoir à gérer seul la complexité du projet. Tout était structuré et suivi.", label: "Investisseur accompagné par Sora" },
-              { quote: "Sora nous a permis d'investir à Bali dans un cadre simple, accompagné et beaucoup plus lisible.", label: "Investisseur, couple" },
-            ].map((t, i) => (
-              <div key={i} className="bg-background border border-border rounded-sm p-8">
-                <p className="font-serif text-foreground/80 text-base md:text-lg leading-relaxed italic">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <p className="metadata text-muted-foreground mt-4">{t.label}</p>
+            {/* Colonne centrale */}
+            <div className="flex flex-col gap-3 md:gap-4">
+              <div className="text-center py-4">
+                <p className="eyebrow text-muted-foreground mb-4">Ils investissent avec Sora</p>
+                <h2 className="font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(24px,3.5vw,44px)" }}>
+                  100+ dirigeants européens nous font confiance.
+                </h2>
               </div>
-            ))}
+
+              {/* Horizontal centre */}
+              <div className="relative rounded-sm overflow-hidden aspect-video">
+                <video src="https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4" controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              </div>
+
+              <blockquote className="text-center px-4 py-4">
+                <p className="font-serif italic text-foreground/75 text-sm md:text-base leading-relaxed">
+                  &laquo;&nbsp;Il y a 3 ans, j&apos;aurais jamais pensé pouvoir faire ça. Tu vois les gens qui le font
+                  mais tu dis &apos;Ouais, ils sont exceptionnels.&apos; Enfin, en fait non, c&apos;est des personnes
+                  normales comme moi, comme n&apos;importe qui. C&apos;est jusqu&apos;à un moment donné on prend
+                  la décision de le faire.&nbsp;&raquo;
+                </p>
+              </blockquote>
+            </div>
+
+            {/* Vertical droite */}
+            <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
+              <video src="https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4" controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+            </div>
           </div>
         </div>
       </section>
@@ -494,25 +536,78 @@ export default function VSLPage() {
         </div>
       </section>
 
-      {/* ─── CTA #3 ─── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="vsl-fade font-serif font-medium text-foreground text-lg md:text-xl mb-2">
-            Recevez vos projections personnalisées.
-          </p>
-          <p className="vsl-fade text-muted-foreground mb-6">
-            Gabriel calcule le rendement exact selon votre situation fiscale et le type de villa.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://drive.google.com/file/d/1aJTLdt9WZRrYZvBw-TeZ4yqMB4rPOsOV/view?usp=sharing" target="_blank" rel="noopener noreferrer"
-              className="cta-primary font-serif font-semibold">
-              Obtenir mes projections
-            </a>
-            <a href="https://drive.google.com/file/d/1lgoQa6io7SXF0E_OYqy2rwQ-12noITB6/view?usp=sharing" target="_blank" rel="noopener noreferrer"
-              className="cta-outline font-serif font-semibold">
-              Recevoir la brochure
-            </a>
-          </div>
+      {/* ─── CTA #3 — DOSSIER OPTIN ─── */}
+      <section id="dossier-vsl" className="py-16 md:py-24 px-6 bg-card border-t border-border">
+        <div className="max-w-lg mx-auto">
+          {dossierStatus === "success" ? (
+            <div className="bg-background border border-border rounded-sm p-10 md:p-12 text-center">
+              <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h2 className="font-serif font-medium text-foreground text-2xl mb-4">Vos documents sont prêts.</h2>
+              <p className="text-foreground/65 leading-relaxed mb-8">
+                Accédez à la brochure et aux projections financières.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="https://drive.google.com/file/d/1lgoQa6io7SXF0E_OYqy2rwQ-12noITB6/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+                  className="cta-primary font-serif font-semibold">
+                  Brochure Seseh
+                </a>
+                <a href="https://drive.google.com/file/d/1aJTLdt9WZRrYZvBw-TeZ4yqMB4rPOsOV/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+                  className="cta-outline font-serif font-semibold">
+                  Projections financières
+                </a>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleDossierSubmit} className="bg-background border border-border rounded-sm p-8 md:p-12">
+              <p className="vsl-fade eyebrow text-muted-foreground mb-4">Brochure + projections financières</p>
+              <h2 className="vsl-fade font-serif font-medium text-foreground text-xl md:text-2xl mb-2">
+                Recevez le dossier complet.
+              </h2>
+              <p className="vsl-fade text-foreground/50 text-sm mb-8">
+                Brochure Seseh Sunset Villas + projections sur 5 ans, accès immédiat.
+              </p>
+              <div className="space-y-5">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="dossier-firstName" className="form-label mb-2">Prénom</label>
+                    <input id="dossier-firstName" type="text" required value={dossierForm.firstName}
+                      onChange={(e) => setDossierForm({ ...dossierForm, firstName: e.target.value })}
+                      className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                  </div>
+                  <div>
+                    <label htmlFor="dossier-lastName" className="form-label mb-2">Nom</label>
+                    <input id="dossier-lastName" type="text" required value={dossierForm.lastName}
+                      onChange={(e) => setDossierForm({ ...dossierForm, lastName: e.target.value })}
+                      className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="dossier-email" className="form-label mb-2">Email</label>
+                  <input id="dossier-email" type="email" required value={dossierForm.email}
+                    onChange={(e) => setDossierForm({ ...dossierForm, email: e.target.value })}
+                    className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                </div>
+                <div>
+                  <label htmlFor="dossier-phone" className="form-label mb-2">Téléphone</label>
+                  <input id="dossier-phone" type="tel" value={dossierForm.phone}
+                    onChange={(e) => setDossierForm({ ...dossierForm, phone: e.target.value })}
+                    className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                </div>
+              </div>
+              <button type="submit" disabled={dossierStatus === "loading"}
+                className="cta-primary font-serif font-semibold w-full mt-8">
+                {dossierStatus === "loading" ? "Envoi en cours..." : "Recevoir le dossier"}
+              </button>
+              {dossierStatus === "error" && (
+                <p className="mt-4 text-destructive text-sm text-center">Une erreur est survenue. Réessayez.</p>
+              )}
+              <p className="mt-6 metadata text-foreground/35 text-center">Sans démarchage / Désinscription en 1 clic</p>
+            </form>
+          )}
         </div>
       </section>
 

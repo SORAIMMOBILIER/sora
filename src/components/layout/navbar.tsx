@@ -199,6 +199,15 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
         <div className="bg-primary border-b border-background/10 py-8 px-10">
           <div className="container-page grid grid-cols-2 lg:grid-cols-4 gap-3">
             <Link
+              href="/seseh#dossier"
+              onClick={() => setRessourcesOpen(false)}
+              className="group flex flex-col gap-3 p-5 rounded-sm border border-background/10 hover:border-background/30 hover:bg-background/5 transition-all duration-300"
+            >
+              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">Dossier investissement</span>
+              <span className="font-serif text-background text-lg leading-[1.2]">Seseh Sunset Villas</span>
+              <span className="metadata text-background/45">Brochure + projections</span>
+            </Link>
+            <Link
               href="/ebook"
               onClick={() => setRessourcesOpen(false)}
               className="group flex flex-col gap-3 p-5 rounded-sm border border-background/10 hover:border-background/30 hover:bg-background/5 transition-all duration-300"
@@ -274,6 +283,14 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
               </button>
               {mobileRessourcesOpen && (
                 <div className="mt-6 flex flex-col gap-4 pl-4 border-l border-background/15">
+                  <Link
+                    href="/seseh#dossier"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex flex-col gap-1"
+                  >
+                    <span className="metadata text-background/55">Dossier investissement</span>
+                    <span className="font-serif text-background text-xl leading-tight">Seseh Sunset Villas</span>
+                  </Link>
                   <Link
                     href="/ebook"
                     onClick={() => setMenuOpen(false)}
