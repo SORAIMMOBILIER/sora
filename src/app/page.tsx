@@ -3,7 +3,7 @@ import StatsSection from "@/components/sections/stats-section"
 import BrochureCta from "@/components/sections/brochure-cta"
 import ProjectSection from "@/components/sections/project-section"
 import CarouselSection, { type Realisation } from "@/components/sections/carousel-section"
-import TestimonialsSection, { type Testimonial } from "@/components/sections/testimonials-section"
+import TestimonialsSection from "@/components/sections/testimonials-section"
 import EventsSection from "@/components/sections/events-section"
 import PodcastSection from "@/components/sections/podcast-section"
 import FounderSection from "@/components/sections/founder-section"
@@ -11,7 +11,7 @@ import FaqSection from "@/components/sections/faq-section"
 import CtaSection from "@/components/sections/cta-section"
 import Footer from "@/components/layout/footer"
 import { sanityFetch } from "../../sanity/lib/fetch"
-import { ALL_REALISATIONS_QUERY, TESTIMONIALS_QUERY } from "../../sanity/lib/queries"
+import { ALL_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import { urlForImage } from "../../sanity/lib/image"
 
 type RealisationRaw = {
@@ -26,14 +26,6 @@ type RealisationRaw = {
   tags?: string[]
 }
 
-type TestimonialRaw = {
-  _id: string
-  quote?: string
-  author?: string
-  role?: string
-  image?: { asset?: { _ref: string }; alt?: string }
-}
-
 const STATUS_LABEL: Record<string, Realisation["status"]> = {
   "en-cours": "En cours",
   "prochainement": "Prochainement",
@@ -41,10 +33,7 @@ const STATUS_LABEL: Record<string, Realisation["status"]> = {
 }
 
 export default async function Home() {
-  const [realisationsRaw, testimonialsRaw] = await Promise.all([
-    sanityFetch<RealisationRaw[]>({ query: ALL_REALISATIONS_QUERY, tags: ["realisation"] }),
-    sanityFetch<TestimonialRaw[]>({ query: TESTIMONIALS_QUERY, tags: ["testimonial"] }),
-  ])
+  const realisationsRaw = await sanityFetch<RealisationRaw[]>({ query: ALL_REALISATIONS_QUERY, tags: ["realisation"] })
 
   const SLUG_ORDER: Record<string, number> = { "seseh": 0, "canggu": 1, "canggu-residence-2024": 2, "uluwatu": 3 }
   const sorted = [...realisationsRaw].sort((a, b) => (SLUG_ORDER[a.slug] ?? 9) - (SLUG_ORDER[b.slug] ?? 9))
@@ -61,15 +50,6 @@ export default async function Home() {
     status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
   }))
 
-  const testimonials: Testimonial[] = testimonialsRaw
-    .filter((t) => t.quote && t.image?.asset)
-    .map((t) => ({
-      quote: t.quote!,
-      image: urlForImage(t.image!).width(1200).url(),
-      imageAlt: t.image!.alt || "",
-      author: t.author,
-      role: t.role,
-    }))
 
   return (
     <main>
@@ -78,7 +58,7 @@ export default async function Home() {
       <BrochureCta />
       <ProjectSection />
       <CarouselSection realisations={realisations} />
-      <TestimonialsSection testimonials={testimonials} />
+      <TestimonialsSection />
       <EventsSection />
       <PodcastSection />
       <FounderSection />
