@@ -284,7 +284,7 @@ export default function VSLPage() {
             {[
               { value: "60-90%", label: "Taux d'occupation", desc: "Demande locative constante, tourisme en hausse, expatriation croissante" },
               { value: "~70€", label: "Tarif moyen/nuit", desc: "Après taxe. Sur une villa 1 chambre à 149 000€ d'investissement, observé sur des biens comparables." },
-              { value: "10%+", label: "Rendement locatif cible estimé*", desc: "Un marché locatif porté par le tourisme et l'expatriation." },
+              { value: "10+", label: "Rendement locatif cible estimé*", desc: "Un marché locatif porté par le tourisme et l'expatriation." },
             ].map((item) => (
               <div key={item.label} className="p-5 bg-background border border-border rounded-sm">
                 <p className="font-serif font-medium text-accent text-2xl">{item.value}</p>
@@ -293,6 +293,9 @@ export default function VSLPage() {
               </div>
             ))}
           </div>
+          <p className="vsl-fade text-muted-foreground text-xs mt-6 leading-relaxed">
+            *Investir dans l&apos;immobilier comporte un risque de perte en capital. Les rendements indiqués sont des objectifs estimés, non garantis, établis sur la base d&apos;hypothèses détaillées dans le dossier d&apos;investissement. Les performances passées ou projetées ne préjugent pas des performances futures.
+          </p>
         </div>
       </section>
 
@@ -460,6 +463,9 @@ export default function VSLPage() {
               </div>
             ))}
           </div>
+          <p className="vsl-fade text-muted-foreground text-xs mt-6 max-w-2xl mx-auto text-center leading-relaxed">
+            *Revenus locatifs nets estimés sur la base de biens comparables, en localisation et en standing, sur le marché de Seseh. Ces estimations sont non contractuelles, non garanties, et ne préjugent pas des revenus réellement perçus, qui dépendent du taux d&apos;occupation effectif et des conditions de marché.
+          </p>
 
           {/* Urgence inline */}
           <div className="vsl-fade mt-8 bg-accent/10 border border-accent/20 rounded-sm p-5 md:p-6 flex flex-col md:flex-row items-center md:justify-between gap-4 text-center md:text-left">
@@ -497,15 +503,6 @@ export default function VSLPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ─── MENTIONS LÉGALES / DISCLAIMER RENDEMENTS ─── */}
-      <section id="mentions-legales" className="bg-card px-6 py-16 md:py-20 border-t border-border">
-        <div className="vsl-fade max-w-2xl mx-auto text-center">
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            *Investir dans l&apos;immobilier comporte un risque de perte en capital. Les rendements indiqués sont des objectifs estimés, non garantis, établis sur la base d&apos;hypothèses détaillées dans le dossier d&apos;investissement. Les performances passées ou projetées ne préjugent pas des performances futures.
-          </p>
         </div>
       </section>
 
