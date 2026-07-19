@@ -309,7 +309,7 @@ export default function VSLPage() {
             </h2>
             <p className="vsl-fade text-muted-foreground mt-6 leading-relaxed">
               Gabriel Lapierre est ingénieur, diplômé des Arts et Métiers, passé par Vinci.
-              Il a investi dans 10+ biens en France avant de se heurter aux limites du système.
+              Il a investi dans plus de 10 biens en France avant de se heurter aux limites du système.
               Il a créé Sora pour construire ce qui n&apos;existait pas : un promoteur immobilier français à Bali,
               avec des standards européens.
             </p>
