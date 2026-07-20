@@ -172,6 +172,12 @@ const html = `<!doctype html>
     .hero h1 { font-size: clamp(26px, 3.4vw, 36px); }
     .hero p { font-size: 15px; margin-top: 12px; }
   }
+  @media (min-width: 768px) {
+    .hero { padding: 112px 32px 58px; }
+    .hero h1 { font-size: clamp(32px, 3.6vw, 46px); }
+    .hero p { font-size: 16.5px; margin-top: 18px; max-width: 600px; }
+    .eyebrow { margin-bottom: 18px; padding: 0.5rem 0.9rem; font-size: 11px; }
+  }
 
   /* ---------- Sections ---------- */
   .steps {
@@ -275,12 +281,9 @@ const html = `<!doctype html>
   }
   .calendly-frame {
     width: 100%;
-    height: 760px;
+    height: 1100px;
     border: 0;
     display: block;
-  }
-  @media (min-width: 768px) {
-    .calendly-frame { height: 900px; }
   }
 
   /* ---------- Footer ---------- */
