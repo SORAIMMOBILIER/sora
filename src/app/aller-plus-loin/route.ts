@@ -115,6 +115,7 @@ const html = `<!doctype html>
     display: flex;
     align-items: center;
     padding: 78px 20px 26px;
+    min-height: 460px;
     background: #1c1a17;
   }
   .hero::before {
@@ -173,7 +174,7 @@ const html = `<!doctype html>
     .hero p { font-size: 15px; margin-top: 12px; }
   }
   @media (min-width: 768px) {
-    .hero { padding: 150px 32px 88px; min-height: 460px; }
+    .hero { padding: 150px 32px 88px; min-height: 620px; }
     .hero h1 { font-size: clamp(38px, 4.4vw, 58px); }
     .hero p { font-size: 18px; margin-top: 22px; max-width: 640px; }
     .eyebrow { margin-bottom: 22px; padding: 0.55rem 1rem; font-size: 12px; }
