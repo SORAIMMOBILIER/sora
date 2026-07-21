@@ -112,80 +112,69 @@ const html = `<!doctype html>
   /* ---------- Hero ---------- */
   .hero {
     position: relative;
-    display: flex;
-    align-items: center;
-    padding: 78px 20px 26px;
-    min-height: 460px;
-    background: #1c1a17;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("https://www.sora-immobilier.com/seseh/exception/exterior.webp");
-    background-size: cover;
-    background-position: center;
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(20,18,15,0.4) 0%, rgba(20,18,15,0.58) 55%, rgba(20,18,15,0.88) 100%);
+    padding: 78px 20px 24px;
+    background: var(--color-bg);
   }
   .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 760px;
+    max-width: 720px;
     margin-inline: auto;
     text-align: center;
   }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid rgba(249,248,244,0.28);
-    border-radius: 9999px;
-    background: rgba(249,248,244,0.08);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(249,248,244,0.9);
-    margin-bottom: 12px;
-  }
   .hero h1 {
-    color: #F9F8F4;
-    font-size: clamp(21px, 5.5vw, 34px);
-    line-height: 1.14;
+    color: var(--color-ink);
+    font-size: clamp(21px, 5.6vw, 30px);
+    line-height: 1.16;
   }
-  .hero p {
-    color: rgba(249,248,244,0.78);
-    font-size: 13.5px;
-    line-height: 1.5;
-    margin-top: 10px;
-    max-width: 520px;
+  .hero-text {
+    margin-top: 12px;
+  }
+  .hero-text p {
+    color: var(--color-ink-muted);
+    font-size: 13px;
+    line-height: 1.45;
+    max-width: 560px;
     margin-inline: auto;
   }
+  .hero-text p + p {
+    margin-top: 7px;
+  }
+  .hero-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 16px;
+    margin-inline: auto;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
   @media (min-width: 640px) {
-    .hero { padding: 96px 24px 34px; }
-    .hero h1 { font-size: clamp(26px, 3.4vw, 36px); }
-    .hero p { font-size: 15px; margin-top: 12px; }
+    .hero { padding: 92px 24px 28px; }
+    .hero h1 { font-size: clamp(26px, 3.2vw, 34px); }
+    .hero-text p { font-size: 14px; }
   }
   @media (min-width: 768px) {
-    .hero { padding: 150px 32px 88px; min-height: 620px; }
-    .hero h1 { font-size: clamp(38px, 4.4vw, 58px); }
-    .hero p { font-size: 18px; margin-top: 22px; max-width: 640px; }
-    .eyebrow { margin-bottom: 22px; padding: 0.55rem 1rem; font-size: 12px; }
+    .hero { padding: 84px 32px 16px; }
+    .hero h1 { font-size: clamp(27px, 2.7vw, 36px); }
+    .hero-text { margin-top: 14px; }
+    .hero-text p { font-size: 15px; }
+    .hero-video {
+      width: min(100%, calc(36vh * 16 / 9));
+      margin-top: 22px;
+    }
   }
 
   /* ---------- Sections ---------- */
   .steps {
-    padding: 22px 0 64px;
+    padding: 14px 0 64px;
   }
   @media (min-width: 768px) {
-    .steps { padding: 32px 0 88px; }
+    .steps { padding: 8px 0 88px; }
   }
 
   .step-card {
@@ -396,9 +385,22 @@ const html = `<!doctype html>
 
 <section class="hero">
   <div class="hero-content">
-    <span class="eyebrow">Webinaire SORA x Lybox</span>
-    <h1>Merci d&rsquo;avoir participé au webinaire SORA x Lybox.</h1>
-    <p>Vous avez découvert le projet et son potentiel — voici comment aller plus loin, à votre rythme. Que vous soyez déjà décidé ou simplement curieux d&rsquo;en savoir plus, choisissez l&rsquo;option qui vous convient ci-dessous.</p>
+    <h1>Seseh Sunset Villas &mdash; investissez à Bali, à 300&nbsp;m de la plage.</h1>
+    <div class="hero-text">
+      <p>26 villas d&rsquo;exception dans l&rsquo;une des dernières zones encore préservées de l&rsquo;île, avec des rendements locatifs parmi les plus attractifs du marché.</p>
+      <p>Un projet clé en main, entièrement géré à distance de l&rsquo;acquisition jusqu&rsquo;à la revente.</p>
+      <p>La façon la plus simple de diversifier votre patrimoine hors zone euro.</p>
+      <p>Revivez le webinaire et découvrez le projet en détail.</p>
+    </div>
+    <div class="hero-video">
+      <iframe
+        src="https://www.youtube.com/embed/02qIyCZ7_FM"
+        title="Replay du webinaire SORA x Lybox — Seseh Sunset Villas"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
   </div>
 </section>
 
