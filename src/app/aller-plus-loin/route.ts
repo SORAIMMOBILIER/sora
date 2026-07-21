@@ -155,7 +155,7 @@ const html = `<!doctype html>
     margin-top: 7px;
   }
   .hero-video {
-    width: 100%;
+    width: min(100%, calc(20vh * 16 / 9));
     aspect-ratio: 16 / 9;
     margin-top: 16px;
     margin-inline: auto;
@@ -404,13 +404,11 @@ const html = `<!doctype html>
     <h1>Seseh Sunset Villas</h1>
     <div class="hero-text">
       <p>26 villas d&rsquo;exception dans l&rsquo;une des dernières zones encore préservées de l&rsquo;île, avec des rendements locatifs parmi les plus attractifs du marché.</p>
-      <p>Un projet clé en main, entièrement géré à distance de l&rsquo;acquisition jusqu&rsquo;à la revente.</p>
-      <p>La façon la plus simple de diversifier votre patrimoine hors zone euro.</p>
-      <p>Revivez le webinaire et découvrez le projet en détail.</p>
+      <p>Un projet clé en main, entièrement géré à distance de l&rsquo;acquisition jusqu&rsquo;à la revente. La façon la plus simple de diversifier votre patrimoine hors zone euro. Revivez le webinaire et découvrez le projet en détail.</p>
     </div>
     <div class="hero-video">
       <iframe
-        src="https://www.youtube.com/embed/02qIyCZ7_FM"
+        src="https://www.youtube.com/embed/02qIyCZ7_FM?modestbranding=1&rel=0&iv_load_policy=3"
         title="Replay du webinaire SORA x Lybox — Seseh Sunset Villas"
         loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
