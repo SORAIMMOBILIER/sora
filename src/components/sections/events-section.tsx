@@ -111,7 +111,9 @@ export default async function EventsSection() {
                         {event.title}
                       </h3>
                       {event.summary && <p className="text-sm text-foreground/65 leading-relaxed mb-8">{event.summary}</p>}
-                      <p className="metadata text-accent mt-auto">Voir la session</p>
+                      <p className="metadata text-accent mt-auto">
+                        {event.status === "termine" ? "Voir le replay" : "Voir la session"}
+                      </p>
                     </CardContent>
                   </Card>
                 </Link>
