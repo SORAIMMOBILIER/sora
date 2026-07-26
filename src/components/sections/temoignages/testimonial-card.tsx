@@ -89,11 +89,11 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
             </span>
           </button>
 
-          {/* Mobile : petit bandeau en haut de la carte */}
+          {/* Mobile : petit bandeau en bas de la carte */}
           <button
             onClick={handlePlay}
             aria-label="Lire le témoignage"
-            className="absolute left-1/2 top-3 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-bg/90 px-3 py-1.5 text-ink shadow-md md:hidden"
+            className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-bg/90 px-3 py-1.5 text-ink shadow-md md:hidden"
           >
             <Play className="h-3 w-3" fill="currentColor" />
             <span className="text-[11px] font-semibold uppercase tracking-wide">Lancer le témoignage</span>
@@ -102,11 +102,21 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
       )}
 
       {!playing && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/80 via-black/25 to-transparent px-5 pb-5 pt-16">
-          {author && <p className="font-serif text-lg text-bg leading-tight">{author}</p>}
-          {role && <p className="metadata mt-1 text-bg/60">{role}</p>}
-          <p className="mt-2 text-sm leading-snug text-bg/85 line-clamp-3">{quote}</p>
-        </div>
+        <>
+          {/* Desktop : texte en bas */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden bg-gradient-to-t from-black/80 via-black/25 to-transparent px-5 pb-5 pt-16 md:block">
+            {author && <p className="font-serif text-lg text-bg leading-tight">{author}</p>}
+            {role && <p className="metadata mt-1 text-bg/60">{role}</p>}
+            <p className="mt-2 text-sm leading-snug text-bg/85 line-clamp-3">{quote}</p>
+          </div>
+
+          {/* Mobile : texte en haut */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-black/80 via-black/25 to-transparent px-5 pb-16 pt-5 md:hidden">
+            {author && <p className="font-serif text-lg text-bg leading-tight">{author}</p>}
+            {role && <p className="metadata mt-1 text-bg/60">{role}</p>}
+            <p className="mt-2 text-sm leading-snug text-bg/85 line-clamp-3">{quote}</p>
+          </div>
+        </>
       )}
     </div>
   )
