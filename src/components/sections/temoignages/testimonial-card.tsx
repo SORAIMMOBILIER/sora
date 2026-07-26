@@ -28,8 +28,14 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
   const mobilePoster = posterUrl || (mobileSrc ? deriveCloudinaryPoster(mobileSrc) : undefined)
 
   const handlePlay = () => {
-    desktopRef.current?.play()
-    mobileRef.current?.play()
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches
+    if (isDesktop) {
+      mobileRef.current?.pause()
+      desktopRef.current?.play()
+    } else {
+      desktopRef.current?.pause()
+      mobileRef.current?.play()
+    }
   }
 
   return (
