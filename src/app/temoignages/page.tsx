@@ -14,7 +14,8 @@ type Testimonial = {
   quote: string
   author?: string
   role?: string
-  videoUrl?: string
+  videoUrlDesktop?: string
+  videoUrlMobile?: string
   image?: { asset?: { _ref: string }; alt?: string }
 }
 
@@ -44,7 +45,8 @@ export default async function TemoignagesPage() {
                 quote={t.quote}
                 author={t.author}
                 role={t.role}
-                videoUrl={t.videoUrl}
+                videoUrlDesktop={t.videoUrlDesktop}
+                videoUrlMobile={t.videoUrlMobile}
                 posterUrl={t.image?.asset ? urlForImage(t.image).width(800).height(1067).url() : undefined}
               />
             ))}

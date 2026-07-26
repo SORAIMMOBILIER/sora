@@ -6,7 +6,8 @@ export type TestimonialCardProps = {
   quote: string
   author?: string
   role?: string
-  videoUrl?: string
+  videoUrlDesktop?: string
+  videoUrlMobile?: string
   posterUrl?: string
 }
 
@@ -16,45 +17,82 @@ function deriveCloudinaryPoster(videoUrl: string): string | undefined {
   return `${videoUrl.slice(0, videoUrl.indexOf("/video/upload/"))}/video/upload/so_0/${match[1]}.jpg`
 }
 
-export default function TestimonialCard({ quote, author, role, videoUrl, posterUrl }: TestimonialCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
+export default function TestimonialCard({ quote, author, role, videoUrlDesktop, videoUrlMobile, posterUrl }: TestimonialCardProps) {
+  const desktopRef = useRef<HTMLVideoElement>(null)
+  const mobileRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
-  const poster = posterUrl || (videoUrl ? deriveCloudinaryPoster(videoUrl) : undefined)
+
+  const desktopSrc = videoUrlDesktop || videoUrlMobile
+  const mobileSrc = videoUrlMobile || videoUrlDesktop
+  const desktopPoster = posterUrl || (desktopSrc ? deriveCloudinaryPoster(desktopSrc) : undefined)
+  const mobilePoster = posterUrl || (mobileSrc ? deriveCloudinaryPoster(mobileSrc) : undefined)
 
   const handlePlay = () => {
-    videoRef.current?.play()
+    desktopRef.current?.play()
+    mobileRef.current?.play()
   }
 
   return (
     <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-ink">
-      {videoUrl ? (
+      {desktopSrc ? (
         <video
-          ref={videoRef}
-          src={videoUrl}
-          poster={poster}
+          ref={desktopRef}
+          src={desktopSrc}
+          poster={desktopPoster}
           controls={playing}
           playsInline
           preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}
         />
-      ) : poster ? (
+      ) : desktopPoster ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={poster} alt={author || ""} className="absolute inset-0 h-full w-full object-cover" />
+        <img src={desktopPoster} alt={author || ""} className="absolute inset-0 hidden h-full w-full object-cover md:block" />
       ) : null}
 
-      {videoUrl && !playing && (
-        <button
-          onClick={handlePlay}
-          aria-label="Lire le témoignage"
-          className="absolute inset-0 z-20 flex h-full w-full cursor-pointer items-center justify-center bg-black/25 transition-colors group-hover:bg-black/35"
-        >
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-bg/90 text-ink shadow-lg transition-transform group-hover:scale-105">
-            <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
-          </span>
-        </button>
+      {mobileSrc ? (
+        <video
+          ref={mobileRef}
+          src={mobileSrc}
+          poster={mobilePoster}
+          controls={playing}
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 block h-full w-full object-cover md:hidden"
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onEnded={() => setPlaying(false)}
+        />
+      ) : mobilePoster ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={mobilePoster} alt={author || ""} className="absolute inset-0 block h-full w-full object-cover md:hidden" />
+      ) : null}
+
+      {(desktopSrc || mobileSrc) && !playing && (
+        <>
+          {/* Desktop : gros bouton centré */}
+          <button
+            onClick={handlePlay}
+            aria-label="Lire le témoignage"
+            className="absolute inset-0 z-20 hidden h-full w-full cursor-pointer items-center justify-center bg-black/25 transition-colors group-hover:bg-black/35 md:flex"
+          >
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-bg/90 text-ink shadow-lg transition-transform group-hover:scale-105">
+              <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
+            </span>
+          </button>
+
+          {/* Mobile : petit bandeau en haut de la carte */}
+          <button
+            onClick={handlePlay}
+            aria-label="Lire le témoignage"
+            className="absolute left-1/2 top-3 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-bg/90 px-3 py-1.5 text-ink shadow-md md:hidden"
+          >
+            <Play className="h-3 w-3" fill="currentColor" />
+            <span className="text-[11px] font-semibold uppercase tracking-wide">Lancer le témoignage</span>
+          </button>
+        </>
       )}
 
       {!playing && (

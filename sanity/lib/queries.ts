@@ -239,7 +239,8 @@ export const TESTIMONIALS_QUERY = defineQuery(`
     quote,
     author,
     role,
-    videoUrl,
+    videoUrlDesktop,
+    videoUrlMobile,
     image
   }
 `)

@@ -25,10 +25,16 @@ export const testimonial = defineType({
       description: "Optionnel. Exemple : Investisseur Seseh · Client depuis 2024",
     }),
     defineField({
-      name: "videoUrl",
-      title: "Vidéo (URL Cloudinary)",
+      name: "videoUrlDesktop",
+      title: "Vidéo horizontale (ordinateur)",
       type: "url",
-      description: "Optionnel. Lien direct vers le fichier vidéo (.mp4). Fonctionne en horizontal ou vertical.",
+      description: "Optionnel. Lien direct vers le fichier vidéo (.mp4) au format horizontal, affiché sur ordinateur.",
+    }),
+    defineField({
+      name: "videoUrlMobile",
+      title: "Vidéo verticale (téléphone)",
+      type: "url",
+      description: "Optionnel. Lien direct vers le fichier vidéo (.mp4) au format vertical, affiché sur téléphone.",
     }),
     defineField({
       name: "image",
