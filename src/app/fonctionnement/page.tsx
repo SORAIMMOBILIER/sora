@@ -41,7 +41,7 @@ const PARTNERS = [
     desc: "Juridique, notaire et comptabilité : le cadre de chaque opération est vérifié et documenté.",
   },
   {
-    name: "Julie",
+    name: "Julie Chatelain",
     role: "Architecte d'intérieur",
     desc: "Architecte d'intérieur de renommée internationale, en charge des intérieurs de nos projets.",
   },
