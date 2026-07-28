@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PhoneCall } from "lucide-react"
-import { sanityFetch } from "../../../sanity/lib/fetch"
-import { WEBINAR_RECURRING_QUERY } from "../../../sanity/lib/queries"
-import { urlForImage } from "../../../sanity/lib/image"
+import { sanityFetch } from "../../../../sanity/lib/fetch"
+import { WEBINAR_RECURRING_QUERY } from "../../../../sanity/lib/queries"
+import { urlForImage } from "../../../../sanity/lib/image"
 import { Button } from "@/components/ui/button"
 import TestimonialsGrid from "@/components/sections/temoignages/testimonials-grid"
 import {
