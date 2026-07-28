@@ -251,7 +251,8 @@ export const WEBINAR_RECURRING_QUERY = defineQuery(`
     eyebrow,
     summary,
     replayUrl,
-    mainImage
+    mainImage,
+    villasDisponibles
   }
 `)
 

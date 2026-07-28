@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useId, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 declare global {
@@ -10,7 +10,8 @@ declare global {
 
 const TYPEFORM_URL = "https://sora-immobilier.typeform.com/to/HMEoNaAB"
 
-export default function WebinarForm() {
+export default function WebinarForm({ showHeading = true }: { showHeading?: boolean }) {
+  const uid = useId()
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
@@ -56,19 +57,23 @@ export default function WebinarForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3 className="font-serif font-medium text-ink text-xl md:text-2xl mb-2">
-        Réserver ma place
-      </h3>
-      <p className="text-ink/50 text-sm mb-8">
-        Accès gratuit. Places limitées.
-      </p>
+      {showHeading && (
+        <>
+          <h3 className="font-serif font-medium text-ink text-xl md:text-2xl mb-2">
+            Je réserve ma place
+          </h3>
+          <p className="text-ink/50 text-sm mb-8">
+            Accès gratuit. Places limitées.
+          </p>
+        </>
+      )}
 
       <div className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="wb-firstName" className="form-label mb-2">Prénom</label>
+            <label htmlFor={`${uid}-firstName`} className="form-label mb-2">Prénom</label>
             <input
-              id="wb-firstName"
+              id={`${uid}-firstName`}
               type="text"
               required
               value={form.firstName}
@@ -78,9 +83,9 @@ export default function WebinarForm() {
             />
           </div>
           <div>
-            <label htmlFor="wb-lastName" className="form-label mb-2">Nom</label>
+            <label htmlFor={`${uid}-lastName`} className="form-label mb-2">Nom</label>
             <input
-              id="wb-lastName"
+              id={`${uid}-lastName`}
               type="text"
               required
               value={form.lastName}
@@ -92,9 +97,9 @@ export default function WebinarForm() {
         </div>
 
         <div>
-          <label htmlFor="wb-email" className="form-label mb-2">Email</label>
+          <label htmlFor={`${uid}-email`} className="form-label mb-2">Email</label>
           <input
-            id="wb-email"
+            id={`${uid}-email`}
             type="email"
             required
             value={form.email}
@@ -105,9 +110,9 @@ export default function WebinarForm() {
         </div>
 
         <div>
-          <label htmlFor="wb-phone" className="form-label mb-2">Téléphone</label>
+          <label htmlFor={`${uid}-phone`} className="form-label mb-2">Téléphone</label>
           <input
-            id="wb-phone"
+            id={`${uid}-phone`}
             type="tel"
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -118,7 +123,7 @@ export default function WebinarForm() {
       </div>
 
       <Button type="submit" disabled={status === "loading"} className="w-full mt-8">
-        {status === "loading" ? "Envoi en cours..." : "Réserver ma place"}
+        {status === "loading" ? "Envoi en cours..." : "Je réserve ma place"}
       </Button>
 
       {status === "error" && (
@@ -128,7 +133,7 @@ export default function WebinarForm() {
       )}
 
       <p className="mt-6 metadata text-ink/35 text-center">
-        Sans engagement. Désinscription en 1 clic.
+        Gratuit · Places limitées · Lien d&apos;accès envoyé par email
       </p>
     </form>
   )

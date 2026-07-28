@@ -30,6 +30,13 @@ export const webinarRecurring = defineType({
       description: "Utilisée sur la page d'inscription et sur la carte de la page d'accueil.",
     }),
     defineField({
+      name: "villasDisponibles",
+      title: "Villas disponibles",
+      type: "number",
+      description: "Nombre de villas encore disponibles sur les 26 (sert d'élément d'urgence, à mettre à jour manuellement).",
+      validation: (r) => r.min(0).max(26),
+    }),
+    defineField({
       name: "meetLink",
       title: "Lien Google Meet",
       type: "url",
