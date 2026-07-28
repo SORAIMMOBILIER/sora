@@ -46,7 +46,7 @@ export const webinarRecurring = defineType({
       name: "replayUrl",
       title: "URL replay",
       type: "url",
-      description: "Lien vers l'enregistrement de la dernière session, affiché sur /replay. À mettre à jour chaque semaine.",
+      description: "Lien vers l'enregistrement de la dernière session, affiché sur /SSV/allez-plus-loins. À mettre à jour chaque semaine.",
     }),
   ],
   preview: {

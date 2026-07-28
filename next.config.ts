@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/seseh", destination: "/realisations/seseh", permanent: true },
       { source: "/vsl", destination: "/villas-ssv", permanent: true },
+      { source: "/webinaire", destination: "/live-SSV", permanent: true },
+      { source: "/replay", destination: "/SSV/allez-plus-loins", permanent: true },
     ];
   },
 };

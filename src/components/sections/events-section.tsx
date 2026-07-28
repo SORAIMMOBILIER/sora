@@ -69,7 +69,7 @@ export default async function EventsSection() {
 
         <div className="scrollbar-hidden -mx-6 overflow-x-auto snap-x snap-mandatory">
           <div className="flex gap-4 md:gap-6 px-6 min-w-full">
-            <Link href="/webinaire" className="group snap-start shrink-0 w-[82vw] sm:w-[60vw] md:w-[420px]">
+            <Link href="/live-SSV" className="group snap-start shrink-0 w-[82vw] sm:w-[60vw] md:w-[420px]">
               <Card className="overflow-hidden flex flex-col h-full">
                 <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
                   {webinar?.mainImage?.asset ? (

@@ -1,4 +1,4 @@
-// Données produit partagées entre /webinaire et /replay.
+// Données produit partagées entre /live-SSV et /SSV/allez-plus-loins.
 // Chiffres confirmés depuis villas-ssv/page.tsx et le document Sanity "seseh".
 
 export const GAMMES = [
