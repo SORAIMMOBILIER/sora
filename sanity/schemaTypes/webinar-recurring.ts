@@ -22,6 +22,14 @@ export const webinarRecurring = defineType({
       validation: (r) => r.required().max(400),
     }),
     defineField({
+      name: "mainImage",
+      title: "Image principale",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", type: "string", title: "Texte alternatif" }],
+      description: "Utilisée sur la page d'inscription et sur la carte de la page d'accueil.",
+    }),
+    defineField({
       name: "meetLink",
       title: "Lien Google Meet",
       type: "url",

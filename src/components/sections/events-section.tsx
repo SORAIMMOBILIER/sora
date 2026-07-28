@@ -1,8 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { sanityFetch } from "../../../sanity/lib/fetch"
-import { FEATURED_EVENTS_QUERY } from "../../../sanity/lib/queries"
+import { FEATURED_EVENTS_QUERY, WEBINAR_RECURRING_CARD_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
+import { webinarLabel } from "../../../lib/webinar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,6 +17,11 @@ type EventItem = {
   mainImage?: { asset?: { _ref: string }; alt?: string }
   startsAt?: string
   duration?: string
+}
+
+type WebinarCard = {
+  title?: string
+  mainImage?: { asset?: { _ref: string }; alt?: string }
 }
 
 const STATUS_LABELS: Record<string, string> = {
@@ -38,7 +44,12 @@ function formatEventDate(date?: string) {
 }
 
 export default async function EventsSection() {
-  const events = await sanityFetch<EventItem[]>({ query: FEATURED_EVENTS_QUERY, tags: ["event"] })
+  const [events, webinar] = await Promise.all([
+    sanityFetch<EventItem[]>({ query: FEATURED_EVENTS_QUERY, tags: ["event"] }),
+    sanityFetch<WebinarCard | null>({ query: WEBINAR_RECURRING_CARD_QUERY, tags: ["webinarRecurring"] }),
+  ])
+
+  const hasContent = events.length > 0 || !!webinar
 
   return (
     <section className="bg-card py-24 md:py-36 px-6 overflow-hidden">
@@ -58,7 +69,7 @@ export default async function EventsSection() {
           </Button>
         </div>
 
-        {events.length === 0 ? (
+        {!hasContent ? (
           <Card className="max-w-xl">
             <CardContent className="p-8 md:p-10">
               <p className="font-serif text-2xl text-foreground mb-3">Aucune session publiée.</p>
@@ -70,6 +81,48 @@ export default async function EventsSection() {
         ) : (
           <div className="scrollbar-hidden -mx-6 overflow-x-auto snap-x snap-mandatory">
             <div className="flex gap-4 md:gap-6 px-6 min-w-full">
+              {webinar && (
+                <Link
+                  href="/webinaire"
+                  className="group snap-start shrink-0 w-[82vw] sm:w-[60vw] md:w-[420px]"
+                >
+                  <Card className="overflow-hidden flex flex-col h-full">
+                    <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
+                      {webinar.mainImage?.asset ? (
+                        <Image
+                          src={urlForImage(webinar.mainImage).width(840).height(630).url()}
+                          alt={webinar.mainImage.alt || webinar.title || "Webinaire Sora"}
+                          fill
+                          sizes="(max-width:768px) 82vw, 420px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
+                        />
+                      ) : (
+                        <Image
+                          src="/villa-render-exterior.webp"
+                          alt=""
+                          fill
+                          sizes="(max-width:768px) 82vw, 420px"
+                          className="object-cover opacity-65 group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-transparent to-transparent" />
+                      <Badge variant="outline" className="absolute top-4 left-4 bg-background/85 backdrop-blur-sm border-border">
+                        Chaque mardi
+                      </Badge>
+                    </div>
+                    <CardContent className="p-6 md:p-7 flex flex-1 flex-col">
+                      <p className="metadata text-foreground/45 mb-4 capitalize">{webinarLabel()}</p>
+                      <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug group-hover:text-accent transition-colors duration-300 mb-4">
+                        {webinar.title || "Webinaire Sora : investir à Bali"}
+                      </h3>
+                      <p className="text-sm text-foreground/65 leading-relaxed mb-8">
+                        Une session en ligne pour découvrir le projet Seseh Sunset Villas et poser vos questions en direct.
+                      </p>
+                      <p className="metadata text-accent mt-auto">S&apos;inscrire</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )}
               {events.map((event) => (
                 <Link
                   key={event._id}

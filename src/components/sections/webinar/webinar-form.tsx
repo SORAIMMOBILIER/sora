@@ -40,7 +40,7 @@ export default function WebinarForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-bg-soft border border-line rounded-sm p-10 md:p-12 text-center">
+      <div className="text-center">
         <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center mx-auto mb-6">
           <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -55,7 +55,7 @@ export default function WebinarForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-bg-soft border border-line rounded-sm p-8 md:p-10">
+    <form onSubmit={handleSubmit}>
       <h3 className="font-serif font-medium text-ink text-xl md:text-2xl mb-2">
         Réserver ma place
       </h3>

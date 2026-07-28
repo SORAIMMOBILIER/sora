@@ -250,7 +250,15 @@ export const WEBINAR_RECURRING_QUERY = defineQuery(`
     title,
     eyebrow,
     summary,
-    replayUrl
+    replayUrl,
+    mainImage
+  }
+`)
+
+export const WEBINAR_RECURRING_CARD_QUERY = defineQuery(`
+  *[_type == "webinarRecurring"][0] {
+    title,
+    mainImage
   }
 `)
 
