@@ -6,7 +6,8 @@ import { testimonial } from "./testimonial"
 import { author } from "./author"
 import { category } from "./category"
 import { blockContent } from "./blockContent"
+import { webinarRecurring } from "./webinar-recurring"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post, event, realisation, testimonial, author, category, blockContent],
+  types: [post, event, realisation, testimonial, author, category, blockContent, webinarRecurring],
 }

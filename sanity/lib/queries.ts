@@ -245,6 +245,15 @@ export const TESTIMONIALS_QUERY = defineQuery(`
   }
 `)
 
+export const WEBINAR_RECURRING_QUERY = defineQuery(`
+  *[_type == "webinarRecurring"][0] {
+    title,
+    eyebrow,
+    summary,
+    replayUrl
+  }
+`)
+
 export const SITEMAP_POSTS_QUERY = defineQuery(`
   *[_type == "post" && defined(slug.current)] {
     "slug": slug.current,
