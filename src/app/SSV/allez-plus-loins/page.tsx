@@ -44,27 +44,26 @@ export default async function ReplayPage() {
     <main className="bg-bg">
       {/* 1-2. Hero compact + vidéo */}
       <section
-        className="relative px-6 pt-24 md:pt-28 pb-8 md:pb-10 bg-cover bg-center"
+        className="relative px-6 pt-16 pb-4 md:pt-28 md:pb-10 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImageUrl})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
         <div className="relative container-page max-w-3xl mx-auto text-center">
-          <p className="eyebrow-dark mx-auto mb-4">Replay du webinaire</p>
+          <p className="eyebrow-dark mx-auto mb-2 md:mb-4">Replay du webinaire</p>
           <h1
-            className="font-serif font-medium text-bg leading-[1.05] mb-4"
-            style={{ fontSize: "clamp(24px,4.5vw,44px)" }}
+            className="font-serif font-medium text-bg leading-[1.05] mb-2 md:mb-4"
+            style={{ fontSize: "clamp(19px,4.5vw,44px)" }}
           >
             {content?.title || "Revoir le webinaire — Seseh Sunset Villas"}
           </h1>
-          <div className="text-bg/80 text-sm leading-relaxed max-w-xl mx-auto mb-5 space-y-2">
+          <div className="text-bg/80 text-sm leading-snug md:leading-relaxed max-w-xl mx-auto mb-3 md:mb-5 space-y-2">
             <p>26 villas d&apos;exception dans l&apos;une des dernières zones encore préservées de l&apos;île, avec des rendements locatifs parmi les plus attractifs du marché.</p>
-            <p>Un projet clé en main, entièrement géré à distance de l&apos;acquisition jusqu&apos;à la revente. La façon la plus simple de diversifier votre patrimoine hors zone euro.</p>
+            <p className="hidden md:block">Un projet clé en main, entièrement géré à distance de l&apos;acquisition jusqu&apos;à la revente. La façon la plus simple de diversifier votre patrimoine hors zone euro.</p>
           </div>
 
           <div
-            className="mx-auto rounded-sm overflow-hidden bg-ink shadow-2xl"
-            style={{ width: "min(100%, calc(24vh * 16 / 9))", aspectRatio: "16 / 9" }}
+            className="mx-auto rounded-sm overflow-hidden bg-ink shadow-2xl aspect-video w-[min(70vw,calc(15vh*16/9))] md:w-[min(100%,calc(24vh*16/9))]"
           >
             <iframe
               src="https://www.youtube.com/embed/02qIyCZ7_FM?modestbranding=1&rel=0&iv_load_policy=3"
@@ -78,15 +77,15 @@ export default async function ReplayPage() {
         </div>
       </section>
 
-      <article className="container-page px-6 pt-6 md:pt-8">
+      <article className="container-page px-6 pt-3 md:pt-8">
         {/* 3. Continuez maintenant — définir / échanger / whatsapp */}
-        <div className="space-y-4 md:space-y-6 mb-20 md:mb-28">
-          <div id="definir-projet" className="bg-bg-soft border border-line rounded-sm p-6 md:p-10 scroll-mt-28">
-            <div className="flex items-center gap-3 mb-3">
+        <div className="space-y-3 md:space-y-6 mb-20 md:mb-28">
+          <div id="definir-projet" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
+            <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">1</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Définissez votre projet d&apos;investissement</h3>
+              <h3 className="font-serif text-lg md:text-2xl text-ink">Définissez votre projet d&apos;investissement</h3>
             </div>
-            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-6">
+            <p className="text-ink/70 text-sm leading-snug md:leading-relaxed max-w-xl mb-3 md:mb-6">
               En quelques minutes, précisez ce que vous recherchez (villa entière ou co-investissement, budget, objectifs). Nous vous préparons une projection personnalisée adaptée à votre profil.
             </p>
             <a
@@ -99,15 +98,15 @@ export default async function ReplayPage() {
             </a>
           </div>
 
-          <div id="echanger" className="bg-bg-soft border border-line rounded-sm p-6 md:p-10 scroll-mt-28">
-            <div className="flex items-center gap-3 mb-3">
+          <div id="echanger" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
+            <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">2</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Échangeons de vive voix</h3>
+              <h3 className="font-serif text-lg md:text-2xl text-ink">Échangeons de vive voix</h3>
             </div>
-            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-6">
+            <p className="text-ink/70 text-sm leading-snug md:leading-relaxed max-w-xl mb-3 md:mb-6">
               Vous préférez poser vos questions directement ? Réservez un créneau avec l&apos;équipe SORA. On fait le point sur votre projet, le programme Seseh Sunset Villas et les modalités d&apos;investissement.
             </p>
-            <div className="bg-bg rounded-sm overflow-hidden -mx-6 md:-mx-10">
+            <div className="bg-bg rounded-sm overflow-hidden -mx-4 md:-mx-10">
               <iframe
                 src={CALENDLY_URL}
                 title="Réserver un appel avec l'équipe SORA"
@@ -117,12 +116,12 @@ export default async function ReplayPage() {
             </div>
           </div>
 
-          <div id="whatsapp" className="bg-bg-soft border border-line rounded-sm p-6 md:p-10 scroll-mt-28">
-            <div className="flex items-center gap-3 mb-3">
+          <div id="whatsapp" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
+            <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">3</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Une question rapide ?</h3>
+              <h3 className="font-serif text-lg md:text-2xl text-ink">Une question rapide ?</h3>
             </div>
-            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-6">
+            <p className="text-ink/70 text-sm leading-snug md:leading-relaxed max-w-xl mb-3 md:mb-6">
               Écrivez-nous directement sur WhatsApp, on vous répond dans la journée.
             </p>
             <Button asChild size="lg" variant="outline">
