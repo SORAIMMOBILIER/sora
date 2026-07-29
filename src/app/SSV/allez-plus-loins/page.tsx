@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { WEBINAR_RECURRING_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -47,6 +49,12 @@ export default async function ReplayPage() {
         className="relative px-6 pt-24 md:pt-28 pb-8 md:pb-10 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImageUrl})` }}
       >
+        <div className="absolute top-0 left-0 right-0 z-20 flex justify-center md:justify-start p-6 md:p-8">
+          <Link href="/" aria-label="SORA Immobilier">
+            <Image src="/sora-logo.svg" alt="SORA Immobilier" width={705} height={159} className="h-[34px] md:h-10 w-auto" />
+          </Link>
+        </div>
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
         <div className="relative container-page max-w-3xl mx-auto text-center">
@@ -55,7 +63,7 @@ export default async function ReplayPage() {
             className="font-serif font-medium text-bg leading-[1.05] mb-4"
             style={{ fontSize: "clamp(24px,4.5vw,44px)" }}
           >
-            {content?.title || "Revoir le webinaire — Seseh Sunset Villas"}
+            {content?.title || "Seseh Sunset Villas"}
           </h1>
           <div className="text-bg/80 text-sm leading-relaxed max-w-xl mx-auto mb-5 space-y-2">
             <p>26 villas d&apos;exception dans l&apos;une des dernières zones encore préservées de l&apos;île, avec des rendements locatifs parmi les plus attractifs du marché.</p>
