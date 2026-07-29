@@ -58,7 +58,7 @@ export default async function WebinairePage() {
 
   const heroImageUrl = content?.mainImage?.asset
     ? urlForImage(content.mainImage).width(1800).url()
-    : "/seseh/exception/exterior.webp"
+    : "/seseh-vue-aerienne.jpg"
 
   return (
     <main className="bg-bg pt-32 md:pt-44 pb-24 px-6">
@@ -129,10 +129,6 @@ export default async function WebinairePage() {
             26 villas au sein d&apos;une communauté privée gérée par Sora (parties communes, sécurité), à 300 m de la plage de Seseh, Bali. Construction en une seule tranche — pas de nuisances, livraison uniforme prévue en mars 2028. Mobilier et équipement inclus, gestion locative déléguée.
           </p>
 
-          <div className="inline-flex items-center gap-3 bg-primary rounded-sm px-6 py-4 mb-10">
-            <span className="text-background font-serif text-lg md:text-xl">Co-investissement possible dès 20 000 €</span>
-          </div>
-
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {GAMMES.map((g) => (
               <div key={g.name} className="bg-bg border border-line rounded-sm p-5">
@@ -166,18 +162,21 @@ export default async function WebinairePage() {
         {/* 6. Qui anime */}
         <section className="mb-20 md:mb-28">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center bg-primary rounded-sm p-8 md:p-12">
-            <div className="md:col-span-4 relative h-64 md:h-full min-h-[220px] rounded-sm overflow-hidden">
-              <Image src="/gabriel-lapierre.webp" alt="Gabriel Lapierre" fill className="object-cover" sizes="(max-width:768px) 100vw, 33vw" />
+            <div className="md:col-span-4 relative h-80 md:h-full min-h-[260px] rounded-sm overflow-hidden">
+              <Image src="/gabriel-lapierre.webp" alt="Gabriel Lapierre" fill className="object-cover object-top" sizes="(max-width:768px) 100vw, 33vw" />
             </div>
             <div className="md:col-span-8">
               <p className="tertiary text-background/60 mb-3">Qui anime</p>
               <h3 className="font-serif text-3xl text-background mb-4">Gabriel Lapierre</h3>
               <div className="space-y-3 text-background/85 leading-relaxed mb-6 max-w-xl">
                 <p>
-                  Ingénieur de formation (Arts et Métiers), fondateur de Sora, installé à Bali depuis 2023 — présent sur place pour les visites de chantier et les closings.
+                  Ingénieur de formation (Arts et Métiers), fondateur de Sora, installé à Bali depuis 2023 — présent sur place pour les visites de chantier et les closings, pas derrière un écran.
                 </p>
                 <p className="text-background/70 text-sm">
-                  Entouré d&apos;un écosystème d&apos;experts locaux (notaire, cabinet juridique, maître d&apos;œuvre, architecte d&apos;intérieur, gestionnaire) et d&apos;un réseau d&apos;investisseurs construit sur plus de 15 ans.
+                  Entouré d&apos;un écosystème d&apos;experts locaux (notaire, cabinet juridique, maître d&apos;œuvre, architecte d&apos;intérieur, gestionnaire) et d&apos;un réseau de clients construit sur plus de 15 ans.
+                </p>
+                <p className="text-background/70 text-sm">
+                  Des villas déjà livrées et en exploitation, des closings réalisés sur place : un projet qui avance concrètement, pas une promesse sur plan.
                 </p>
               </div>
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-background/70 text-sm">
