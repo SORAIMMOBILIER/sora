@@ -16,7 +16,7 @@ export const GARANTIES = [
 
 export const CONFIANCE_PARTENAIRES = [
   "Assurance Allianz (construction et exploitation)",
-  "Maître d'œuvre Vienna Lux Cooperation (équipe issue de Vinci / Bouygues)",
+  "Maître d'œuvre Vienna Lux Cooperation, fondée par un architecte-constructeur allemand fort de 30 ans d'expérience",
   "Cabinet juridique partenaire ILA Consulting (francophone à Bali)",
   "Design intérieur signé Julie Chatelain",
 ] as const

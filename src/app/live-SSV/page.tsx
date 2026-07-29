@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { MapPin, Home, Key, Scale, ShieldCheck, MessageCircle } from "lucide-react"
+import { MapPin, Home, Key, Scale, ShieldCheck, MessageCircle, Compass, Briefcase, FileCheck2, Mic } from "lucide-react"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { WEBINAR_RECURRING_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
@@ -38,10 +38,10 @@ const DECOUVERTE = [
 ]
 
 const PROFILS = [
-  "Vous découvrez l'investissement immobilier à Bali et voulez comprendre comment ça marche",
-  "Vous cherchez un actif clé en main à l'étranger sans gérer la construction ni la location",
-  "Vous voulez un cadre légal et fiscal clair avant de vous lancer",
-  "Vous préférez poser vos questions en direct plutôt que lire une brochure",
+  { icon: Compass, text: "Vous découvrez l'investissement immobilier à Bali et voulez comprendre comment ça marche" },
+  { icon: Briefcase, text: "Vous cherchez un actif clé en main à l'étranger sans gérer la construction ni la location" },
+  { icon: FileCheck2, text: "Vous voulez un cadre légal et fiscal clair avant de vous lancer" },
+  { icon: Mic, text: "Vous préférez poser vos questions en direct plutôt que lire une brochure" },
 ]
 
 const FAQ = [
@@ -73,9 +73,9 @@ export default async function WebinairePage() {
             <p className="text-lg text-ink/75 leading-relaxed max-w-2xl mb-8">
               {content?.summary || DEFAULT_SUMMARY}
             </p>
-            <div className="inline-flex flex-col gap-1 border border-line rounded-sm px-6 py-4 mb-6">
-              <span className="metadata text-ink/45">Prochaine session</span>
-              <span className="text-ink text-lg capitalize">{label} <span className="text-ink/50 text-sm">(heure de Paris)</span></span>
+            <div className="inline-flex flex-col gap-1 bg-primary rounded-sm px-6 py-4 mb-6">
+              <span className="metadata text-background/60">Prochaine session</span>
+              <span className="text-background text-lg capitalize">{label} <span className="text-background/60 text-sm">(heure de Paris)</span></span>
             </div>
             {typeof content?.villasDisponibles === "number" && (
               <p className="text-accent font-medium">
@@ -125,9 +125,13 @@ export default async function WebinairePage() {
           <h2 className="font-serif font-medium text-ink leading-[1.05] mb-6" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
             Seseh Sunset Villas.
           </h2>
-          <p className="text-ink/75 leading-relaxed max-w-2xl mb-10">
-            26 villas au sein d&apos;une communauté privée gérée par Sora (parties communes, sécurité), à 300 m de la plage de Seseh, Bali. Construction en une seule tranche — pas de nuisances, livraison uniforme prévue en mars 2028. Co-investissement possible dès 20 000 €. Mobilier et équipement inclus, gestion locative déléguée.
+          <p className="text-ink/75 leading-relaxed max-w-2xl mb-8">
+            26 villas au sein d&apos;une communauté privée gérée par Sora (parties communes, sécurité), à 300 m de la plage de Seseh, Bali. Construction en une seule tranche — pas de nuisances, livraison uniforme prévue en mars 2028. Mobilier et équipement inclus, gestion locative déléguée.
           </p>
+
+          <div className="inline-flex items-center gap-3 bg-primary rounded-sm px-6 py-4 mb-10">
+            <span className="text-background font-serif text-lg md:text-xl">Co-investissement possible dès 20 000 €</span>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {GAMMES.map((g) => (
@@ -149,10 +153,11 @@ export default async function WebinairePage() {
               À qui s&apos;adresse ce webinaire.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {PROFILS.map((p) => (
-              <div key={p} className="border-l-2 border-accent pl-6 py-1">
-                <p className="text-ink/80 leading-relaxed">{p}</p>
+              <div key={p.text} className="flex gap-4 bg-bg-soft border border-line rounded-sm p-6">
+                <p.icon className="w-6 h-6 text-accent shrink-0 mt-0.5" />
+                <p className="text-ink/80 leading-relaxed">{p.text}</p>
               </div>
             ))}
           </div>
@@ -167,9 +172,14 @@ export default async function WebinairePage() {
             <div className="md:col-span-8">
               <p className="tertiary text-background/60 mb-3">Qui anime</p>
               <h3 className="font-serif text-3xl text-background mb-4">Gabriel Lapierre</h3>
-              <p className="text-background/85 leading-relaxed mb-6 max-w-xl">
-                Fondateur de Sora, installé à Bali depuis 2023.
-              </p>
+              <div className="space-y-3 text-background/85 leading-relaxed mb-6 max-w-xl">
+                <p>
+                  Ingénieur de formation (Arts et Métiers), fondateur de Sora, installé à Bali depuis 2023 — présent sur place pour les visites de chantier et les closings.
+                </p>
+                <p className="text-background/70 text-sm">
+                  Entouré d&apos;un écosystème d&apos;experts locaux (notaire, cabinet juridique, maître d&apos;œuvre, architecte d&apos;intérieur, gestionnaire) et d&apos;un réseau d&apos;investisseurs construit sur plus de 15 ans.
+                </p>
+              </div>
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-background/70 text-sm">
                 <span>{CREDIBILITE.projets}</span>
                 <span>·</span>
@@ -237,7 +247,7 @@ export default async function WebinairePage() {
       </article>
 
       <div className="-mx-6 mt-20 md:mt-28">
-        <TestimonialsGrid eyebrow="Ils ont assisté" title="Ce que disent les participants." />
+        <TestimonialsGrid eyebrow="Ils nous ont fait confiance" title="Ce que disent nos investisseurs." />
       </div>
     </main>
   )
