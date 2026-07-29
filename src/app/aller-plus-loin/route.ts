@@ -89,10 +89,30 @@ const html = `<!doctype html>
     padding-inline: 24px;
   }
 
+  /* ---------- Header ---------- */
+  .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+  }
+  .site-header img {
+    height: 34px;
+    width: auto;
+  }
+  @media (min-width: 768px) {
+    .site-header { padding: 32px 24px; justify-content: flex-start; }
+    .site-header img { height: 40px; }
+  }
+
   /* ---------- Hero ---------- */
   .hero {
     position: relative;
-    padding: 28px 20px 24px;
+    padding: 78px 20px 24px;
     background: #1c1a17;
   }
   .hero::before {
@@ -150,12 +170,12 @@ const html = `<!doctype html>
     display: block;
   }
   @media (min-width: 640px) {
-    .hero { padding: 36px 24px 28px; }
+    .hero { padding: 92px 24px 28px; }
     .hero h1 { font-size: clamp(26px, 3.2vw, 34px); }
     .hero-text p { font-size: 14px; }
   }
   @media (min-width: 768px) {
-    .hero { padding: 40px 32px 16px; }
+    .hero { padding: 84px 32px 16px; }
     .hero h1 { font-size: clamp(27px, 2.7vw, 36px); }
     .hero-text { margin-top: 14px; }
     .hero-text p { font-size: 15px; }
@@ -372,6 +392,12 @@ const html = `<!doctype html>
 </style>
 </head>
 <body>
+
+<header class="site-header">
+  <a href="https://www.sora-immobilier.com" aria-label="SORA Immobilier">
+    <img src="https://www.sora-immobilier.com/sora-logo.svg" alt="SORA Immobilier" />
+  </a>
+</header>
 
 <section class="hero">
   <div class="hero-content">
