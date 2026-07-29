@@ -89,11 +89,14 @@ export default async function ReplayPage() {
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-6">
               En quelques minutes, précisez ce que vous recherchez (villa entière ou co-investissement, budget, objectifs). Nous vous préparons une projection personnalisée adaptée à votre profil.
             </p>
-            <Button asChild size="lg">
-              <a href="https://form.typeform.com/to/m5hp2paw" target="_blank" rel="noopener noreferrer">
-                Définir mon projet
-              </a>
-            </Button>
+            <a
+              href="https://form.typeform.com/to/m5hp2paw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-primary font-serif font-semibold"
+            >
+              Définir mon projet
+            </a>
           </div>
 
           <div id="echanger" className="bg-bg-soft border border-line rounded-sm p-6 md:p-10 scroll-mt-28">
