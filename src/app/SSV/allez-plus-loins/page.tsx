@@ -46,10 +46,10 @@ export default async function ReplayPage() {
     <main className="bg-bg">
       {/* 1-2. Hero compact + vidéo */}
       <section
-        className="relative px-6 pt-14 pb-4 md:pt-28 md:pb-10 bg-cover bg-center"
+        className="relative px-6 pt-16 pb-4 md:pt-28 md:pb-10 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImageUrl})` }}
       >
-        <div className="absolute top-0 left-0 right-0 z-20 flex justify-center md:justify-start p-6 md:p-8">
+        <div className="absolute top-0 left-0 right-0 z-20 flex justify-center p-6 md:p-8">
           <Link href="/" aria-label="SORA Immobilier">
             <Image src="/sora-logo.svg" alt="SORA Immobilier" width={705} height={159} className="h-[34px] md:h-10 w-auto" />
           </Link>
@@ -59,7 +59,7 @@ export default async function ReplayPage() {
 
         <div className="relative container-page max-w-3xl mx-auto text-center">
           <h1
-            className="font-serif font-medium text-bg leading-[1.05] mb-2 md:mb-4"
+            className="font-serif font-medium text-bg leading-[1.05] mb-3 md:mb-4"
             style={{ fontSize: "clamp(22px,4.5vw,44px)" }}
           >
             {content?.title || "Seseh Sunset Villas"}
@@ -132,7 +132,12 @@ export default async function ReplayPage() {
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
               Écrivez-nous directement sur WhatsApp, on vous répond dans la journée.
             </p>
-            <Button asChild size="lg" variant="outline">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="bg-[#25D366] text-white border-transparent hover:bg-[#1ebe5a] hover:text-white hover:border-transparent"
+            >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 Discuter sur WhatsApp
               </a>
