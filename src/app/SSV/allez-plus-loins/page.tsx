@@ -46,7 +46,7 @@ export default async function ReplayPage() {
     <main className="bg-bg">
       {/* 1-2. Hero compact + vidéo */}
       <section
-        className="relative px-6 pt-16 pb-4 md:pt-28 md:pb-10 bg-cover bg-center"
+        className="relative px-6 pt-[72px] pb-4 md:pt-28 md:pb-10 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImageUrl})` }}
       >
         <div className="absolute top-0 left-0 right-0 z-20 flex justify-center p-6 md:p-8">
@@ -59,7 +59,7 @@ export default async function ReplayPage() {
 
         <div className="relative container-page max-w-3xl mx-auto text-center">
           <h1
-            className="font-serif font-medium text-bg leading-[1.05] mb-3 md:mb-4"
+            className="font-serif font-medium text-bg leading-[1.05] mb-4"
             style={{ fontSize: "clamp(22px,4.5vw,44px)" }}
           >
             {content?.title || "Seseh Sunset Villas"}
