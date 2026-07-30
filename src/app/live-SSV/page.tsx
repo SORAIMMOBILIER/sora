@@ -253,7 +253,7 @@ export default async function WebinairePage() {
           <div className="text-center mb-10">
             <p className="text-background/60 capitalize mb-6">Prochaine session : {label}</p>
             <h2 className="font-serif font-medium text-background leading-[1.05]" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
-              Vous aussi, venez poser vos questions en direct.
+              Vous aussi, venez découvrir le projet Seseh Sunset Villas et poser vos questions en direct.
             </h2>
           </div>
           <div className="max-w-md mx-auto bg-bg-soft border border-line rounded-sm p-6 md:p-8 text-left">
