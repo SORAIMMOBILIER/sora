@@ -126,7 +126,7 @@ export default async function WebinairePage() {
             Seseh Sunset Villas.
           </h2>
           <p className="text-ink/75 leading-relaxed max-w-2xl mb-8">
-            26 villas au sein d&apos;une communauté privée gérée par Sora (parties communes, sécurité), à 300 m de la plage de Seseh, Bali. Construction en une seule tranche — pas de nuisances, livraison uniforme prévue en mars 2028. Mobilier et équipement inclus, gestion locative déléguée.
+            26 villas au sein d&apos;une communauté privée gérée par Sora (parties communes, sécurité), à 300 m de la plage de Seseh, Bali. Construction en une seule tranche, pour une livraison uniforme du projet en mars 2028 et une mise en location immédiate, sans nuisances de chantier. Mobilier et équipement inclus, gestion locative déléguée.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
