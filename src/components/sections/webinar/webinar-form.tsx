@@ -28,7 +28,12 @@ export default function WebinarForm({ showHeading = true }: { showHeading?: bool
 
       if (res.ok) {
         window.fbq?.("track", "Lead", { source: "webinaire-mardi" })
-        const params = new URLSearchParams({ email: form.email, prenom: form.firstName })
+        const params = new URLSearchParams({
+          email: form.email,
+          prenom: form.firstName,
+          nom: form.lastName,
+          tel: form.phone,
+        })
         window.location.href = `${TYPEFORM_URL}#${params.toString()}`
       } else {
         setStatus("error")
