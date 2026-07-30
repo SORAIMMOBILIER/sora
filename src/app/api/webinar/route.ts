@@ -12,9 +12,7 @@ const FS_LEAD_SOURCE_WEBINAR = 202001095894
 const FS_DATE_WEBI_FIELD = "cf_date_webi"
 const FS_TAG_WEBI_MARDI = "WEBI du mardi"
 
-// TODO: remplacer par l'ID réel une fois la liste "Webi du mardi" créée manuellement
-// dans ActiveCampaign (création bloquée par les permissions de la clé API).
-const AC_LIST_ID_WEBI_MARDI = "TODO"
+const AC_LIST_ID_WEBI_MARDI = "4" // Liste "PROSPECTS"
 const AC_TAG_ID_WEBI_MARDI = "68" // "Webi du mardi - SSV"
 const AC_FIELD_ID_DATE_WEBI = "13"
 const AC_TAG_DELAY_MS = 5000
