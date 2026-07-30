@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse, after } from "next/server"
 import { webinarDateISO } from "../../../../lib/webinar"
 
 const FS_DOMAIN = "sora-team.myfreshworks.com"
@@ -113,17 +113,20 @@ export async function POST(req: NextRequest) {
           }),
         })
 
-        await new Promise((resolve) => setTimeout(resolve, AC_TAG_DELAY_MS))
-
-        await fetch(`${AC_URL}/api/3/contactTags`, {
-          method: "POST",
-          headers: {
-            "Api-Token": AC_KEY,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contactTag: { contact: contactId, tag: AC_TAG_ID_WEBI_MARDI },
-          }),
+        // Le tag est ajouté 5s après la liste, en arrière-plan : ne bloque pas
+        // la réponse au navigateur (qui doit rediriger vite vers le Typeform).
+        after(async () => {
+          await new Promise((resolve) => setTimeout(resolve, AC_TAG_DELAY_MS))
+          await fetch(`${AC_URL}/api/3/contactTags`, {
+            method: "POST",
+            headers: {
+              "Api-Token": AC_KEY,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contactTag: { contact: contactId, tag: AC_TAG_ID_WEBI_MARDI },
+            }),
+          })
         })
       }
 
