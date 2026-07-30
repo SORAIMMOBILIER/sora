@@ -86,65 +86,6 @@ export default async function ReplayPage() {
       </section>
 
       <article className="container-page px-6 pt-2 md:pt-8">
-        {/* 3. Continuez maintenant — définir / échanger / whatsapp */}
-        <div className="space-y-3 md:space-y-6 mb-20 md:mb-28">
-          <div id="definir-projet" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
-            <div className="flex items-center gap-3 mb-2 md:mb-3">
-              <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">1</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Définissez votre projet d&apos;investissement</h3>
-            </div>
-            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              En quelques minutes, précisez ce que vous recherchez (villa entière ou co-investissement, budget, objectifs). Nous vous préparons une projection personnalisée adaptée à votre profil.
-            </p>
-            <a
-              href="https://form.typeform.com/to/m5hp2paw"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cta-primary font-serif font-semibold"
-            >
-              Définir mon projet
-            </a>
-          </div>
-
-          <div id="echanger" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
-            <div className="flex items-center gap-3 mb-2 md:mb-3">
-              <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">2</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Échangeons de vive voix</h3>
-            </div>
-            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              Vous préférez poser vos questions directement ? Réservez un créneau avec l&apos;équipe SORA. On fait le point sur votre projet, le programme Seseh Sunset Villas et les modalités d&apos;investissement.
-            </p>
-            <div className="bg-bg rounded-sm overflow-hidden -mx-4 md:-mx-10">
-              <iframe
-                src={CALENDLY_URL}
-                title="Réserver un appel avec l'équipe SORA"
-                loading="lazy"
-                className="w-full h-[660px] md:h-[720px] border-0 block"
-              />
-            </div>
-          </div>
-
-          <div id="whatsapp" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
-            <div className="flex items-center gap-3 mb-2 md:mb-3">
-              <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">3</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Une question rapide ?</h3>
-            </div>
-            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              Écrivez-nous directement sur WhatsApp, on vous répond dans la journée.
-            </p>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="bg-[#25D366] text-white border-transparent hover:bg-[#1ebe5a] hover:text-white hover:border-transparent"
-            >
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                Discuter sur WhatsApp
-              </a>
-            </Button>
-          </div>
-        </div>
-
         {/* 4. Au programme du webinaire */}
         <section className="mb-20 md:mb-28 max-w-3xl">
           <p className="eyebrow text-ink-muted mb-6">Récap</p>
@@ -168,7 +109,7 @@ export default async function ReplayPage() {
             Seseh Sunset Villas.
           </h2>
           <p className="text-ink/75 leading-relaxed max-w-2xl mb-10">
-            26 villas clé en main à 300 m de la plage de Seseh, Bali. À partir de 149 000 €, co-investissement possible dès 20 000 €. Livraison prévue en mars 2028.
+            26 villas clé en main à 300 m de la plage de Seseh, Bali. À partir de 149 000 €. Livraison prévue en mars 2028.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {GAMMES.map((g) => (
@@ -234,6 +175,65 @@ export default async function ReplayPage() {
             ))}
           </ul>
         </section>
+
+        {/* 8. Continuez maintenant — définir / échanger / whatsapp */}
+        <div className="space-y-3 md:space-y-6">
+          <div id="definir-projet" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
+            <div className="flex items-center gap-3 mb-2 md:mb-3">
+              <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">1</span>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">Définissez votre projet d&apos;investissement</h3>
+            </div>
+            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
+              En quelques minutes, précisez ce que vous recherchez (villa, budget, objectifs). Nous vous préparons une projection personnalisée adaptée à votre profil.
+            </p>
+            <a
+              href="https://form.typeform.com/to/m5hp2paw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-primary font-serif font-semibold"
+            >
+              Définir mon projet
+            </a>
+          </div>
+
+          <div id="echanger" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
+            <div className="flex items-center gap-3 mb-2 md:mb-3">
+              <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">2</span>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">Échangeons de vive voix</h3>
+            </div>
+            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
+              Vous préférez poser vos questions directement ? Réservez un créneau avec l&apos;équipe SORA. On fait le point sur votre projet, le programme Seseh Sunset Villas et les modalités d&apos;investissement.
+            </p>
+            <div className="bg-bg rounded-sm overflow-hidden -mx-4 md:-mx-10">
+              <iframe
+                src={CALENDLY_URL}
+                title="Réserver un appel avec l'équipe SORA"
+                loading="lazy"
+                className="w-full h-[660px] md:h-[720px] border-0 block"
+              />
+            </div>
+          </div>
+
+          <div id="whatsapp" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
+            <div className="flex items-center gap-3 mb-2 md:mb-3">
+              <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">3</span>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">Une question rapide ?</h3>
+            </div>
+            <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
+              Écrivez-nous directement sur WhatsApp, on vous répond dans la journée.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="bg-[#25D366] text-white border-transparent hover:bg-[#1ebe5a] hover:text-white hover:border-transparent"
+            >
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                Discuter sur WhatsApp
+              </a>
+            </Button>
+          </div>
+        </div>
       </article>
 
       <TestimonialsGrid eyebrow="Ils nous ont fait confiance" title="Ce que disent nos investisseurs." />
