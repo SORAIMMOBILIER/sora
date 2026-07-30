@@ -12,11 +12,12 @@ const FS_LEAD_SOURCE_WEBINAR = 202001095894
 const FS_DATE_WEBI_FIELD = "cf_date_webi"
 const FS_TAG_WEBI_MARDI = "WEBI du mardi"
 
-// TODO: remplacer par l'ID réel une fois la liste "Webi du Mardi" créée manuellement
+// TODO: remplacer par l'ID réel une fois la liste "Webi du mardi" créée manuellement
 // dans ActiveCampaign (création bloquée par les permissions de la clé API).
 const AC_LIST_ID_WEBI_MARDI = "TODO"
-const AC_TAG_ID_WEBI_MARDI = "67"
+const AC_TAG_ID_WEBI_MARDI = "68" // "Webi du mardi - SSV"
 const AC_FIELD_ID_DATE_WEBI = "13"
+const AC_TAG_DELAY_MS = 5000
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -113,9 +114,9 @@ export async function POST(req: NextRequest) {
             contactList: { list: AC_LIST_ID_WEBI_MARDI, contact: contactId, status: 1 },
           }),
         })
-      }
 
-      if (contactId) {
+        await new Promise((resolve) => setTimeout(resolve, AC_TAG_DELAY_MS))
+
         await fetch(`${AC_URL}/api/3/contactTags`, {
           method: "POST",
           headers: {
@@ -126,7 +127,9 @@ export async function POST(req: NextRequest) {
             contactTag: { contact: contactId, tag: AC_TAG_ID_WEBI_MARDI },
           }),
         })
+      }
 
+      if (contactId) {
         await fetch(`${AC_URL}/api/3/fieldValues`, {
           method: "POST",
           headers: {
