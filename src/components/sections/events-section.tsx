@@ -90,16 +90,16 @@ export default async function EventsSection() {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-transparent to-transparent" />
                   <Badge variant="outline" className="absolute top-4 left-4 bg-background/85 backdrop-blur-sm border-border">
-                    Chaque mardi
+                    Prochainement
                   </Badge>
                 </div>
                 <CardContent className="p-6 md:p-7 flex flex-1 flex-col">
-                  <p className="metadata text-foreground/45 mb-4 capitalize">{webinarLabel()}</p>
+                  <p className="metadata text-foreground/45 mb-4 capitalize">{webinarLabel()} / 60 min</p>
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug group-hover:text-accent transition-colors duration-300 mb-4">
                     {webinar?.title || "Webinaire Sora : investir à Bali"}
                   </h3>
                   <p className="text-sm text-foreground/65 leading-relaxed mb-8">
-                    Une session en ligne pour découvrir le projet Seseh Sunset Villas et poser vos questions en direct.
+                    Découvrez comment investir dans une villa à Bali avec un rendement projeté jusqu&apos;à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier.
                   </p>
                   <p className="metadata text-accent mt-auto">S&apos;inscrire</p>
                 </CardContent>

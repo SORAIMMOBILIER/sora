@@ -249,14 +249,16 @@ export default async function WebinairePage() {
       </div>
 
       <section className="container-page px-6 mt-20 md:mt-28">
-        <div className="bg-primary rounded-sm p-8 md:p-16 text-center">
-          <p className="text-background/60 capitalize mb-6">Prochaine session : {label}</p>
-          <h2 className="font-serif font-medium text-background leading-[1.05] mb-8" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
-            Vous aussi, venez poser vos questions en direct.
-          </h2>
-          <a href="#inscription" className="cta-primary font-serif font-semibold">
-            Je réserve ma place
-          </a>
+        <div className="bg-primary rounded-sm p-8 md:p-16">
+          <div className="text-center mb-10">
+            <p className="text-background/60 capitalize mb-6">Prochaine session : {label}</p>
+            <h2 className="font-serif font-medium text-background leading-[1.05]" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
+              Vous aussi, venez poser vos questions en direct.
+            </h2>
+          </div>
+          <div className="max-w-md mx-auto bg-bg-soft border border-line rounded-sm p-6 md:p-8 text-left">
+            <WebinarForm showHeading={false} />
+          </div>
         </div>
       </section>
     </main>
