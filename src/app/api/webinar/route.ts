@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
       const acData = await acRes.json()
       const contactId = acData.contact?.id
 
-      if (contactId && AC_LIST_ID_WEBI_MARDI !== "TODO") {
+      if (contactId) {
         await fetch(`${AC_URL}/api/3/contactLists`, {
           method: "POST",
           headers: {
