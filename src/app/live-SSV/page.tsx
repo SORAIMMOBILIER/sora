@@ -26,7 +26,7 @@ type WebinarContent = {
 
 const DEFAULT_TITLE = "Investir dans l'immobilier à Bali — le projet Seseh Sunset Villas"
 const DEFAULT_SUMMARY =
-  "Environ 50 minutes en direct avec le fondateur de SORA, questions/réponses en fin de session."
+  "Découvrez comment investir dans une villa à Bali avec un rendement net projeté jusqu'à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier."
 
 const DECOUVERTE = [
   { icon: MapPin, text: "Le marché immobilier à Bali et pourquoi la zone de Seseh" },
@@ -170,7 +170,7 @@ export default async function WebinairePage() {
               <h3 className="font-serif text-3xl text-background mb-4">Gabriel Lapierre</h3>
               <div className="space-y-3 text-background/85 leading-relaxed mb-6 max-w-xl">
                 <p>
-                  Ingénieur de formation (Arts et Métiers), fondateur de Sora, installé à Bali depuis 2023 — présent sur place pour les visites de chantier et les closings, pas derrière un écran.
+                  Ingénieur de formation (Arts et Métiers), fondateur de Sora, installé à Bali depuis 2023 — présent sur place pour les visites de chantier, pas derrière un écran.
                 </p>
                 <p className="text-background/70 text-sm">
                   Entouré d&apos;un écosystème d&apos;experts locaux (notaire, cabinet juridique, maître d&apos;œuvre, architecte d&apos;intérieur, gestionnaire) et d&apos;un réseau de clients construit sur plus de 15 ans.
@@ -186,7 +186,6 @@ export default async function WebinairePage() {
                 <span>·</span>
                 <span>{CREDIBILITE.investisseurs}</span>
               </div>
-              <p className="text-background/50 text-sm mt-3">{CREDIBILITE.roadshows}</p>
             </div>
           </div>
         </section>
@@ -248,6 +247,18 @@ export default async function WebinairePage() {
       <div className="-mx-6 mt-20 md:mt-28">
         <TestimonialsGrid eyebrow="Ils nous ont fait confiance" title="Ce que disent nos investisseurs." />
       </div>
+
+      <section className="container-page px-6 mt-20 md:mt-28">
+        <div className="bg-primary rounded-sm p-8 md:p-16 text-center">
+          <p className="text-background/60 capitalize mb-6">Prochaine session : {label}</p>
+          <h2 className="font-serif font-medium text-background leading-[1.05] mb-8" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
+            Vous aussi, venez poser vos questions en direct.
+          </h2>
+          <a href="#inscription" className="cta-primary font-serif font-semibold">
+            Je réserve ma place
+          </a>
+        </div>
+      </section>
     </main>
   )
 }
