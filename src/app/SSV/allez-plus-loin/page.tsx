@@ -234,8 +234,12 @@ export default async function ReplayPage() {
             ))}
           </ul>
         </section>
+      </article>
 
-        {/* 8. Continuez maintenant — définir / échanger / whatsapp (rappel de fin de page) */}
+      <TestimonialsGrid eyebrow="Ils nous ont fait confiance" title="Ce que disent nos investisseurs." />
+
+      {/* 8. Continuez maintenant — définir / échanger / whatsapp (rappel de fin de page) */}
+      <div className="container-page px-6 mt-20 md:mt-28 pb-20 md:pb-28">
         <div className="space-y-3 md:space-y-6">
           <div className="bg-bg-soft border border-line rounded-sm p-4 md:p-10">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
@@ -293,9 +297,7 @@ export default async function ReplayPage() {
             </Button>
           </div>
         </div>
-      </article>
-
-      <TestimonialsGrid eyebrow="Ils nous ont fait confiance" title="Ce que disent nos investisseurs." />
+      </div>
 
       {/* Bouton WhatsApp flottant */}
       <a
