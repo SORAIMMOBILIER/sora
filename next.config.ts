@@ -30,6 +30,7 @@ const nextConfig: NextConfig = {
       { source: "/webinaire", destination: "/live-SSV", permanent: true },
       { source: "/replay", destination: "/SSV/allez-plus-loin", permanent: true },
       { source: "/SSV/allez-plus-loins", destination: "/SSV/allez-plus-loin", permanent: true },
+      { source: "/lgen-contact", destination: "https://wa.me/33623676723?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20un%20projet%20d%27investissement%20%C3%A0%20Bali%2C%20j%27aimerais%20en%20savoir%20plus%20sur%20ce%20que%20vous%20avez%20%C3%A0%20proposer", permanent: true },
     ];
   },
 };
