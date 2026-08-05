@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse, after } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { webinarDateISO } from "../../../../lib/webinar"
 
 const FS_DOMAIN = "sora-team.myfreshworks.com"
@@ -12,10 +12,8 @@ const FS_LEAD_SOURCE_WEBINAR = 202001095894
 const FS_DATE_WEBI_FIELD = "cf_date_webi"
 const FS_TAG_WEBI_MARDI = "WEBI du mardi"
 
-const AC_LIST_ID_WEBI_MARDI = "4" // Liste "PROSPECTS"
 const AC_TAG_ID_WEBI_MARDI = "68" // "Webi du mardi - SSV"
 const AC_FIELD_ID_DATE_WEBI = "13"
-const AC_TAG_DELAY_MS = 5000
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
@@ -102,31 +100,18 @@ export async function POST(req: NextRequest) {
       const contactId = acData.contact?.id
 
       if (contactId) {
-        await fetch(`${AC_URL}/api/3/contactLists`, {
+        // Tag posé immédiatement, sans délai (ne bloque pas la redirection vers le Typeform).
+        // L'ajout à la liste PROSPECTS n'est plus fait ici : une automatisation côté
+        // ActiveCampaign, déclenchée par ce tag, s'en charge (avec son propre délai de 5s).
+        await fetch(`${AC_URL}/api/3/contactTags`, {
           method: "POST",
           headers: {
             "Api-Token": AC_KEY,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            contactList: { list: AC_LIST_ID_WEBI_MARDI, contact: contactId, status: 1 },
+            contactTag: { contact: contactId, tag: AC_TAG_ID_WEBI_MARDI },
           }),
-        })
-
-        // Le tag est ajouté 5s après la liste, en arrière-plan : ne bloque pas
-        // la réponse au navigateur (qui doit rediriger vite vers le Typeform).
-        after(async () => {
-          await new Promise((resolve) => setTimeout(resolve, AC_TAG_DELAY_MS))
-          await fetch(`${AC_URL}/api/3/contactTags`, {
-            method: "POST",
-            headers: {
-              "Api-Token": AC_KEY,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              contactTag: { contact: contactId, tag: AC_TAG_ID_WEBI_MARDI },
-            }),
-          })
         })
       }
 
