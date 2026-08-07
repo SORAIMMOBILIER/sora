@@ -10,6 +10,30 @@ declare global {
 
 const TYPEFORM_URL = "https://sora-immobilier.typeform.com/to/HMEoNaAB"
 
+function normalizePhone(raw: string) {
+  let digits = raw.trim().replace(/[^\d+]/g, "")
+  digits = digits.replace(/^\+/, "")
+  if (digits.startsWith("0")) {
+    digits = "33" + digits.slice(1)
+  }
+  return digits
+}
+
+function buildTypeformUrl(values: { email: string; firstName: string; lastName: string; phone: string }) {
+  const email = values.email.trim().toLowerCase()
+  const prenom = values.firstName.trim()
+  const nom = values.lastName.trim()
+  const tel = normalizePhone(values.phone)
+
+  const parts: string[] = []
+  if (email) parts.push(`email=${encodeURIComponent(email)}`)
+  if (prenom) parts.push(`prenom=${encodeURIComponent(prenom)}`)
+  if (nom) parts.push(`nom=${encodeURIComponent(nom)}`)
+  if (tel) parts.push(`tel=${encodeURIComponent(tel)}`)
+
+  return parts.length ? `${TYPEFORM_URL}?${parts.join("&")}` : TYPEFORM_URL
+}
+
 export default function WebinarForm({ showHeading = true }: { showHeading?: boolean }) {
   const uid = useId()
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
@@ -28,13 +52,7 @@ export default function WebinarForm({ showHeading = true }: { showHeading?: bool
 
       if (res.ok) {
         window.fbq?.("track", "Lead", { source: "webinaire-mardi" })
-        const params = new URLSearchParams({
-          email: form.email,
-          prenom: form.firstName,
-          nom: form.lastName,
-          tel: form.phone,
-        })
-        window.location.href = `${TYPEFORM_URL}#${params.toString()}`
+        window.location.href = buildTypeformUrl(form)
       } else {
         setStatus("error")
       }
