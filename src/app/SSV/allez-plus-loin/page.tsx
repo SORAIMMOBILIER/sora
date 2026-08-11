@@ -71,8 +71,9 @@ export default async function ReplayPage() {
           </div>
 
           <div
-            className="mx-auto rounded-sm overflow-hidden bg-ink shadow-2xl aspect-video w-[min(78vw,calc(16vh*16/9))] md:w-[min(100%,calc(24vh*16/9))]"
+            className="mx-auto rounded-sm overflow-hidden bg-ink shadow-2xl aspect-video w-[min(78vw,calc(16vh*16/9))] md:w-[min(100%,calc(24vh*16/9))] flex items-center justify-center"
           >
+            {/* Vidéo YouTube temporairement retirée — config conservée pour remise en place ultérieure :
             <iframe
               src="https://www.youtube.com/embed/02qIyCZ7_FM?modestbranding=1&rel=0&iv_load_policy=3"
               title="Replay du webinaire SORA x Lybox — Seseh Sunset Villas"
@@ -81,6 +82,10 @@ export default async function ReplayPage() {
               allowFullScreen
               className="w-full h-full border-0 block"
             />
+            */}
+            <p className="font-serif text-bg/70 text-base md:text-lg text-center px-6">
+              Replay bientôt disponible
+            </p>
           </div>
         </div>
       </section>
