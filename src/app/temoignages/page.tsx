@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 const WHATSAPP_URL =
-  "https://wa.me/33623676723?text=J%27aimerais%20en%20savoir%20plus%20sur%20vos%20projets%20d%27investissement%20%C3%A0%20Bali."
+  "https://wa.me/33778114797?text=J%27aimerais%20en%20savoir%20plus%20sur%20vos%20projets%20d%27investissement%20%C3%A0%20Bali."
 
 type Testimonial = {
   _id: string
