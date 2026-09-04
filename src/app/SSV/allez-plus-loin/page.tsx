@@ -1,15 +1,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "@/components/localized-link"
+import { getTranslations } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { WEBINAR_RECURRING_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
 import { Button } from "@/components/ui/button"
 import TestimonialsGrid from "@/components/sections/temoignages/testimonials-grid"
 import {
-  GAMMES,
-  GARANTIES,
-  CONFIANCE_PARTENAIRES,
   CALENDLY_URL,
   WHATSAPP_URL,
 } from "@/components/sections/webinar/webinar-content"
@@ -27,16 +25,18 @@ type WebinarContent = {
   villasDisponibles?: number
 }
 
-const PROGRAMME = [
-  "Le marché de Bali et la zone de Seseh",
-  "Le projet Seseh Sunset Villas",
-  "Le cadre légal et fiscal (leasehold, société locale)",
-  "Garanties et sécurisation",
-  "Questions des participants",
-]
+type Gamme = { name: string; price: string }
+type Garantie = { label: string; value: string; description: string }
 
 export default async function ReplayPage() {
+  const t = await getTranslations("AllerPlusLoin")
+  const tw = await getTranslations("Webinar")
   const content = await sanityFetch<WebinarContent | null>({ query: WEBINAR_RECURRING_QUERY, tags: ["webinarRecurring"] })
+
+  const GAMMES = tw.raw("gammes") as Gamme[]
+  const GARANTIES = tw.raw("garanties") as Garantie[]
+  const CONFIANCE_PARTENAIRES = tw.raw("confiancePartenaires") as string[]
+  const PROGRAMME = t.raw("programme") as string[]
 
   const heroImageUrl = content?.mainImage?.asset
     ? urlForImage(content.mainImage).width(2400).url()
@@ -62,12 +62,12 @@ export default async function ReplayPage() {
             className="font-serif font-medium text-bg leading-[1.05] mb-4"
             style={{ fontSize: "clamp(22px,4.5vw,44px)" }}
           >
-            {content?.title || "Seseh Sunset Villas"}
+            {content?.title || t("defaultTitle")}
           </h1>
-          <p className="eyebrow-dark mx-auto mb-3 md:mb-4">Replay du webinaire</p>
+          <p className="eyebrow-dark mx-auto mb-3 md:mb-4">{t("replayEyebrow")}</p>
           <div className="text-bg/80 text-sm leading-relaxed max-w-xl mx-auto mb-3 md:mb-5 space-y-2">
-            <p>26 villas d&apos;exception dans l&apos;une des dernières zones encore préservées de l&apos;île, avec des rendements locatifs parmi les plus attractifs du marché.</p>
-            <p>Un projet clé en main, entièrement géré à distance de l&apos;acquisition jusqu&apos;à la revente. La façon la plus simple de diversifier votre patrimoine hors zone euro.</p>
+            <p>{t("heroP1")}</p>
+            <p>{t("heroP2")}</p>
           </div>
 
           <div
@@ -91,10 +91,10 @@ export default async function ReplayPage() {
           <div id="definir-projet" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">1</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Définissez votre projet d&apos;investissement</h3>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">{t("step1Title")}</h3>
             </div>
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              En quelques minutes, précisez ce que vous recherchez (villa, budget, objectifs). Nous vous préparons une projection personnalisée adaptée à votre profil.
+              {t("step1Body")}
             </p>
             <a
               href="https://form.typeform.com/to/m5hp2paw"
@@ -102,17 +102,17 @@ export default async function ReplayPage() {
               rel="noopener noreferrer"
               className="cta-primary font-serif font-semibold"
             >
-              Définir mon projet
+              {t("step1Cta")}
             </a>
           </div>
 
           <div id="echanger" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">2</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Échangeons de vive voix</h3>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">{t("step2Title")}</h3>
             </div>
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              Vous préférez poser vos questions directement ? Réservez un créneau avec l&apos;équipe SORA. On fait le point sur votre projet, le programme Seseh Sunset Villas et les modalités d&apos;investissement.
+              {t("step2Body")}
             </p>
             <div className="bg-bg rounded-sm overflow-hidden -mx-4 md:-mx-10">
               <iframe
@@ -127,10 +127,10 @@ export default async function ReplayPage() {
           <div id="whatsapp" className="bg-bg-soft border border-line rounded-sm p-4 md:p-10 scroll-mt-28">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">3</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Une question rapide ?</h3>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">{t("step3Title")}</h3>
             </div>
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              Écrivez-nous directement sur WhatsApp, on vous répond dans la journée.
+              {t("step3Body")}
             </p>
             <Button
               asChild
@@ -139,7 +139,7 @@ export default async function ReplayPage() {
               className="bg-[#25D366] text-white border-transparent hover:bg-[#1ebe5a] hover:text-white hover:border-transparent"
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                Discuter sur WhatsApp
+                {t("step3Cta")}
               </a>
             </Button>
           </div>
@@ -147,9 +147,9 @@ export default async function ReplayPage() {
 
         {/* 4. Au programme du webinaire */}
         <section className="mb-20 md:mb-28 max-w-3xl">
-          <p className="eyebrow text-ink-muted mb-6">Récap</p>
+          <p className="eyebrow text-ink-muted mb-6">{t("programmeEyebrow")}</p>
           <h2 className="font-serif font-medium text-ink leading-[1.05] mb-10" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
-            Au programme du webinaire.
+            {t("programmeTitle")}
           </h2>
           <ul className="space-y-4">
             {PROGRAMME.map((item, i) => (
@@ -163,12 +163,12 @@ export default async function ReplayPage() {
 
         {/* 5. Le projet en bref */}
         <section className="bg-bg-soft border border-line rounded-sm p-8 md:p-12 mb-20 md:mb-28">
-          <p className="eyebrow text-ink-muted mb-6">Le projet en bref</p>
+          <p className="eyebrow text-ink-muted mb-6">{t("projectEyebrow")}</p>
           <h2 className="font-serif font-medium text-ink leading-[1.05] mb-6" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
-            Seseh Sunset Villas.
+            {t("projectTitle")}
           </h2>
           <p className="text-ink/75 leading-relaxed max-w-2xl mb-10">
-            26 villas clé en main à 300 m de la plage de Seseh, Bali. À partir de 149 000 €. Livraison prévue en mars 2028.
+            {t("projectBody")}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {GAMMES.map((g) => (
@@ -180,7 +180,7 @@ export default async function ReplayPage() {
           </div>
           {typeof content?.villasDisponibles === "number" && (
             <p className="text-accent font-medium mt-8">
-              Plus que {content.villasDisponibles} villas disponibles sur 26
+              {t("villasRemaining", { n: content.villasDisponibles })}
             </p>
           )}
         </section>
@@ -188,23 +188,23 @@ export default async function ReplayPage() {
         {/* 6. Prochaine étape */}
         <section className="mb-20 md:mb-28">
           <div className="max-w-3xl mb-10">
-            <p className="eyebrow text-ink-muted mb-6">Prochaine étape</p>
+            <p className="eyebrow text-ink-muted mb-6">{t("nextStepEyebrow")}</p>
             <h2 className="font-serif font-medium text-ink leading-[1.05]" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
-              Continuez votre projet.
+              {t("nextStepTitle")}
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <a href="#definir-projet" className="border border-line rounded-sm p-6 hover:border-accent transition-colors">
-              <p className="font-serif text-lg text-ink mb-2">Définir mon projet d&apos;investissement</p>
-              <p className="text-ink/60 text-sm">Précisez votre projet en quelques minutes</p>
+              <p className="font-serif text-lg text-ink mb-2">{t("nextStep1Title")}</p>
+              <p className="text-ink/60 text-sm">{t("nextStep1Body")}</p>
             </a>
             <a href="#echanger" className="border border-line rounded-sm p-6 hover:border-accent transition-colors">
-              <p className="font-serif text-lg text-ink mb-2">Échanger de vive voix</p>
-              <p className="text-ink/60 text-sm">Réserver un créneau avec l&apos;équipe Sora</p>
+              <p className="font-serif text-lg text-ink mb-2">{t("nextStep2Title")}</p>
+              <p className="text-ink/60 text-sm">{t("nextStep2Body")}</p>
             </a>
             <a href="#whatsapp" className="border border-line rounded-sm p-6 hover:border-accent transition-colors">
-              <p className="font-serif text-lg text-ink mb-2">Poser vos questions</p>
-              <p className="text-ink/60 text-sm">Discuter directement sur WhatsApp</p>
+              <p className="font-serif text-lg text-ink mb-2">{t("nextStep3Title")}</p>
+              <p className="text-ink/60 text-sm">{t("nextStep3Body")}</p>
             </a>
           </div>
         </section>
@@ -212,9 +212,9 @@ export default async function ReplayPage() {
         {/* 7. Bandeau confiance */}
         <section className="mb-20 md:mb-28">
           <div className="max-w-3xl mb-10">
-            <p className="eyebrow text-ink-muted mb-6">Sécurisation</p>
+            <p className="eyebrow text-ink-muted mb-6">{t("securityEyebrow")}</p>
             <h2 className="font-serif font-medium text-ink leading-[1.05]" style={{ fontSize: "clamp(28px,3.5vw,48px)" }}>
-              Un cadre sécurisé.
+              {t("securityTitle")}
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -236,7 +236,7 @@ export default async function ReplayPage() {
         </section>
       </article>
 
-      <TestimonialsGrid eyebrow="Ils nous ont fait confiance" title="Ce que disent nos investisseurs." />
+      <TestimonialsGrid eyebrow={t("testimonialsEyebrow")} title={t("testimonialsTitle")} />
 
       {/* 8. Continuez maintenant — définir / échanger / whatsapp (rappel de fin de page) */}
       <div className="container-page px-6 mt-20 md:mt-28 pb-20 md:pb-28">
@@ -244,10 +244,10 @@ export default async function ReplayPage() {
           <div className="bg-bg-soft border border-line rounded-sm p-4 md:p-10">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">1</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Définissez votre projet d&apos;investissement</h3>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">{t("step1Title")}</h3>
             </div>
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              En quelques minutes, précisez ce que vous recherchez (villa, budget, objectifs). Nous vous préparons une projection personnalisée adaptée à votre profil.
+              {t("step1Body")}
             </p>
             <a
               href="https://form.typeform.com/to/m5hp2paw"
@@ -255,17 +255,17 @@ export default async function ReplayPage() {
               rel="noopener noreferrer"
               className="cta-primary font-serif font-semibold"
             >
-              Définir mon projet
+              {t("step1Cta")}
             </a>
           </div>
 
           <div className="bg-bg-soft border border-line rounded-sm p-4 md:p-10">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">2</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Échangeons de vive voix</h3>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">{t("step2Title")}</h3>
             </div>
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              Vous préférez poser vos questions directement ? Réservez un créneau avec l&apos;équipe SORA. On fait le point sur votre projet, le programme Seseh Sunset Villas et les modalités d&apos;investissement.
+              {t("step2Body")}
             </p>
             <div className="bg-bg rounded-sm overflow-hidden -mx-4 md:-mx-10">
               <iframe
@@ -280,10 +280,10 @@ export default async function ReplayPage() {
           <div className="bg-bg-soft border border-line rounded-sm p-4 md:p-10">
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <span className="w-6 h-6 rounded-full bg-accent text-bg flex items-center justify-center text-[11px] font-bold shrink-0">3</span>
-              <h3 className="font-serif text-xl md:text-2xl text-ink">Une question rapide ?</h3>
+              <h3 className="font-serif text-xl md:text-2xl text-ink">{t("step3Title")}</h3>
             </div>
             <p className="text-ink/70 text-sm leading-relaxed max-w-xl mb-3 md:mb-6">
-              Écrivez-nous directement sur WhatsApp, on vous répond dans la journée.
+              {t("step3Body")}
             </p>
             <Button
               asChild
@@ -292,7 +292,7 @@ export default async function ReplayPage() {
               className="bg-[#25D366] text-white border-transparent hover:bg-[#1ebe5a] hover:text-white hover:border-transparent"
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                Discuter sur WhatsApp
+                {t("step3Cta")}
               </a>
             </Button>
           </div>
@@ -312,7 +312,7 @@ export default async function ReplayPage() {
           <path d="M12.004 2c-5.514 0-9.997 4.483-9.997 9.997 0 1.763.462 3.486 1.34 5.004L2 22l5.117-1.343a9.96 9.96 0 0 0 4.887 1.244h.005c5.514 0 9.997-4.483 9.997-9.997C21.998 6.483 17.518 2 12.004 2zm0 18.166h-.004a8.16 8.16 0 0 1-4.158-1.14l-.298-.177-3.036.796.81-2.96-.194-.304a8.147 8.147 0 0 1-1.253-4.384c0-4.508 3.669-8.176 8.177-8.176 2.184 0 4.238.851 5.783 2.397a8.13 8.13 0 0 1 2.394 5.785c0 4.508-3.67 8.163-8.221 8.163z" />
         </svg>
         <span className="max-w-0 group-hover:max-w-[160px] group-hover:ml-2.5 overflow-hidden whitespace-nowrap text-sm font-semibold transition-all duration-300">
-          Une question ?
+          {t("floatingLabel")}
         </span>
       </a>
     </main>
