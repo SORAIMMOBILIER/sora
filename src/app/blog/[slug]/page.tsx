@@ -6,6 +6,7 @@ import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { POST_BY_SLUG_QUERY, POST_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
+import { translateToEnglish } from "@/lib/translate"
 import type { Metadata } from "next"
 
 type Post = {
@@ -83,6 +84,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const locale = await getLocale()
   const post = await sanityFetch<Post | null>({ query: POST_BY_SLUG_QUERY, params: { slug }, tags: [`post:${slug}`] })
   if (!post) notFound()
+
+  if (locale === "en") {
+    const en = await translateToEnglish(
+      {
+        title: post.title,
+        excerpt: post.excerpt,
+        body: post.body,
+        categories: post.categories?.map((c) => c.title),
+        authorBio: post.author?.bio,
+      },
+      `post:${slug}`,
+      8192,
+    )
+    post.title = en.title
+    post.excerpt = en.excerpt
+    post.body = en.body
+    if (post.categories && en.categories) {
+      post.categories = post.categories.map((c, i) => ({ ...c, title: en.categories![i] ?? c.title }))
+    }
+    if (post.author && en.authorBio) post.author.bio = en.authorBio
+  }
 
   return (
     <main className="bg-bg pt-32 md:pt-44 pb-24 px-6">

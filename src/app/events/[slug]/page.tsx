@@ -3,6 +3,7 @@ import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { getTranslations, getLocale } from "next-intl/server"
+import { translateToEnglish } from "@/lib/translate"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { EVENT_BY_SLUG_QUERY, EVENT_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -152,6 +153,37 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
   const locale = await getLocale()
   const event = await sanityFetch<EventDetail | null>({ query: EVENT_BY_SLUG_QUERY, params: { slug }, tags: [`event:${slug}`] })
   if (!event) notFound()
+
+  if (locale === "en") {
+    const en = await translateToEnglish(
+      {
+        title: event.title,
+        eyebrow: event.eyebrow,
+        summary: event.summary,
+        body: event.body,
+        program: event.program?.map((p) => ({ title: p.title, description: p.description })),
+        speakers: event.speakers?.map((s) => ({ role: s.role, bio: s.bio })),
+        ctaLabel: event.registration?.ctaLabel,
+        finePrint: event.registration?.finePrint,
+      },
+      `event:${slug}`,
+      8192,
+    )
+    event.title = en.title
+    event.eyebrow = en.eyebrow
+    event.summary = en.summary
+    event.body = en.body
+    if (event.program && en.program) {
+      event.program = event.program.map((p, i) => ({ ...p, title: en.program![i]?.title ?? p.title, description: en.program![i]?.description ?? p.description }))
+    }
+    if (event.speakers && en.speakers) {
+      event.speakers = event.speakers.map((s, i) => ({ ...s, role: en.speakers![i]?.role ?? s.role, bio: en.speakers![i]?.bio ?? s.bio }))
+    }
+    if (event.registration) {
+      event.registration.ctaLabel = en.ctaLabel ?? event.registration.ctaLabel
+      event.registration.finePrint = en.finePrint ?? event.registration.finePrint
+    }
+  }
 
   const STATUS_LABELS: Record<string, string> = {
     "en-cours": t("statusEnCours"),

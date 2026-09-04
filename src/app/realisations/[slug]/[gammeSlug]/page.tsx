@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../../../sanity/lib/fetch"
 import { GAMME_BY_SLUG_QUERY, GAMME_SLUGS_QUERY } from "../../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../../sanity/lib/image"
@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import Footer from "@/components/layout/footer"
 import VillaExplorer, { type GalleryImage } from "@/components/villa/villa-explorer"
 import { loadVillaPlan } from "@/lib/villa-plans"
+import { translateToEnglish } from "@/lib/translate"
 
 type SanityImage = { asset?: { _ref: string }; alt?: string; room?: string }
 
@@ -79,12 +80,29 @@ export default async function GammePage({
   const { slug, gammeSlug } = await params
   const t = await getTranslations("GammeDetail")
   const tr = await getTranslations("VillaRooms")
+  const locale = await getLocale()
   const data = await sanityFetch<GammeDetail | null>({
     query: GAMME_BY_SLUG_QUERY,
     params: { realisationSlug: slug, gammeSlug },
     tags: [`realisation:${slug}`, `gamme:${gammeSlug}`],
   })
   if (!data?.gamme) notFound()
+
+  if (locale === "en") {
+    const en = await translateToEnglish(
+      {
+        realisationTitle: data.realisationTitle,
+        realisationLocation: data.realisationLocation,
+        description: data.gamme.description,
+        features: data.gamme.features,
+      },
+      `gamme:${slug}:${gammeSlug}`,
+    )
+    data.realisationTitle = en.realisationTitle
+    data.realisationLocation = en.realisationLocation
+    data.gamme.description = en.description
+    data.gamme.features = en.features
+  }
 
   const g = data.gamme
   const planKey = g.planKey || gammeSlug

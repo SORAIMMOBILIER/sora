@@ -9,6 +9,7 @@ import { urlForImage } from "../../../../sanity/lib/image"
 import { Button } from "@/components/ui/button"
 import Footer from "@/components/layout/footer"
 import DossierForm from "@/components/sections/realisation/dossier-form"
+import { translateToEnglish } from "@/lib/translate"
 
 const AC_TAG_BY_SLUG: Record<string, string> = {
   "seseh": "61",
@@ -127,6 +128,71 @@ async function applySesehEnglishOverride(r: Realisation): Promise<Realisation> {
   }
 }
 
+// Traduction générique (Claude) pour toutes les réalisations sauf "seseh",
+// qui utilise la substitution manuelle ci-dessus (contenu déjà vérifié).
+async function applyGenericEnglishOverride(r: Realisation): Promise<Realisation> {
+  const translatable = {
+    heroEyebrow: r.heroEyebrow,
+    heroTitle: r.heroTitle,
+    heroSubtitle: r.heroSubtitle,
+    heroCtas: r.heroCtas?.map((c) => ({ label: c.label })),
+    keyStats: r.keyStats,
+    gammesEyebrow: r.gammesEyebrow,
+    gammesTitle: r.gammesTitle,
+    gammes: r.gammes?.map((g) => ({ name: g.name, price: g.price, surface: g.surface, bedrooms: g.bedrooms, revenue: g.revenue, yield: g.yield, pool: g.pool })),
+    inclus: r.inclus,
+    projectionsEyebrow: r.projectionsEyebrow,
+    projectionsTitle: r.projectionsTitle,
+    projectionsDescription: r.projectionsDescription,
+    projections: r.projections,
+    projectionStats: r.projectionStats,
+    localisationEyebrow: r.localisationEyebrow,
+    localisationTitle: r.localisationTitle,
+    distances: r.distances,
+    garantiesEyebrow: r.garantiesEyebrow,
+    garantiesTitle: r.garantiesTitle,
+    garanties: r.garanties,
+    dossierEyebrow: r.dossierEyebrow,
+    dossierTitle: r.dossierTitle,
+    dossierDescription: r.dossierDescription,
+    dossierBullets: r.dossierBullets,
+  }
+
+  const en = await translateToEnglish(translatable, `realisation:${r.slug}`)
+  if (en === translatable) return r // traduction indisponible (pas de clé API, échec) : on garde le FR
+
+  return {
+    ...r,
+    heroEyebrow: en.heroEyebrow,
+    heroTitle: en.heroTitle,
+    heroSubtitle: en.heroSubtitle,
+    heroCtas: r.heroCtas?.map((c, i) => ({ ...c, label: en.heroCtas?.[i]?.label ?? c.label })),
+    keyStats: en.keyStats,
+    gammesEyebrow: en.gammesEyebrow,
+    gammesTitle: en.gammesTitle,
+    gammes: r.gammes?.map((g, i) => {
+      const eg = en.gammes?.[i]
+      return eg ? { ...g, price: eg.price, surface: eg.surface, bedrooms: eg.bedrooms, revenue: eg.revenue, yield: eg.yield, pool: eg.pool } : g
+    }),
+    inclus: en.inclus,
+    projectionsEyebrow: en.projectionsEyebrow,
+    projectionsTitle: en.projectionsTitle,
+    projectionsDescription: en.projectionsDescription,
+    projections: en.projections,
+    projectionStats: en.projectionStats,
+    localisationEyebrow: en.localisationEyebrow,
+    localisationTitle: en.localisationTitle,
+    distances: en.distances,
+    garantiesEyebrow: en.garantiesEyebrow,
+    garantiesTitle: en.garantiesTitle,
+    garanties: en.garanties,
+    dossierEyebrow: en.dossierEyebrow,
+    dossierTitle: en.dossierTitle,
+    dossierDescription: en.dossierDescription,
+    dossierBullets: en.dossierBullets,
+  }
+}
+
 export async function generateStaticParams() {
   const slugs = await sanityFetch<{ slug: string }[]>({ query: REALISATION_SLUGS_QUERY })
   return slugs.map((s) => ({ slug: s.slug }))
@@ -163,8 +229,8 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
   })
   if (!r) notFound()
 
-  if (locale === "en" && slug === "seseh") {
-    r = await applySesehEnglishOverride(r)
+  if (locale === "en") {
+    r = slug === "seseh" ? await applySesehEnglishOverride(r) : await applyGenericEnglishOverride(r)
   }
 
   const heroImageUrl = r.heroImage?.asset

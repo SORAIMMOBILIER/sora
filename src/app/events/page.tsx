@@ -4,6 +4,7 @@ import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { ALL_EVENTS_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
+import { translateToEnglish } from "@/lib/translate"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -42,6 +43,15 @@ export default async function EventsIndexPage() {
   const locale = await getLocale()
   const events = await sanityFetch<EventItem[]>({ query: ALL_EVENTS_QUERY, tags: ["event"] })
 
+  const translatedText =
+    locale === "en" && events.length > 0
+      ? await translateToEnglish(
+          events.map((e) => ({ id: e._id, title: e.title, summary: e.summary })),
+          "events-index",
+        )
+      : null
+  const textById = new Map((translatedText || []).map((e) => [e.id, e]))
+
   const STATUS_LABELS: Record<string, string> = {
     "en-cours": t("statusEnCours"),
     prochainement: t("statusProchainement"),
@@ -70,7 +80,11 @@ export default async function EventsIndexPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {events.map((event) => (
+            {events.map((event) => {
+              const en = textById.get(event._id)
+              const title = en?.title || event.title
+              const summary = en?.summary || event.summary
+              return (
               <Link
                 key={event._id}
                 href={`/events/${event.slug}`}
@@ -80,7 +94,7 @@ export default async function EventsIndexPage() {
                   {event.mainImage?.asset ? (
                     <Image
                       src={urlForImage(event.mainImage).width(900).height(675).url()}
-                      alt={event.mainImage.alt || event.title}
+                      alt={event.mainImage.alt || title}
                       fill
                       sizes="(max-width:768px) 100vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
@@ -107,15 +121,16 @@ export default async function EventsIndexPage() {
                     {event.duration ? ` / ${event.duration}` : ""}
                   </p>
                   <h2 className="font-serif text-2xl md:text-3xl text-ink group-hover:text-accent transition-colors duration-300 mb-4">
-                    {event.title}
+                    {title}
                   </h2>
-                  {event.summary && <p className="text-sm text-ink/65 leading-relaxed mb-8">{event.summary}</p>}
+                  {summary && <p className="text-sm text-ink/65 leading-relaxed mb-8">{summary}</p>}
                   <p className="mt-auto metadata text-accent">
                     {t("viewEvent")}
                   </p>
                 </div>
               </Link>
-            ))}
+              )
+            })}
           </div>
         )}
       </div>
