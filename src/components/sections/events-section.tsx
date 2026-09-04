@@ -24,6 +24,10 @@ type WebinarCard = {
   mainImage?: { asset?: { _ref: string }; alt?: string }
 }
 
+// Webinaire récurrent du mardi masqué en attendant qu'on le reprenne —
+// repasser à true pour le réafficher, tout le reste est déjà en place.
+const SHOW_TUESDAY_WEBINAR = false
+
 const STATUS_LABELS: Record<string, string> = {
   "en-cours": "En cours",
   prochainement: "Prochainement",
@@ -68,43 +72,45 @@ export default async function EventsSection() {
 
         <div className="scrollbar-hidden -mx-6 overflow-x-auto snap-x snap-mandatory">
           <div className="flex gap-4 md:gap-6 px-6 min-w-full">
-            <Link href="/live-SSV" className="group snap-start shrink-0 w-[82vw] sm:w-[60vw] md:w-[420px]">
-              <Card className="overflow-hidden flex flex-col h-full">
-                <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
-                  {webinar?.mainImage?.asset ? (
-                    <Image
-                      src={urlForImage(webinar.mainImage).width(840).height(630).url()}
-                      alt={webinar.mainImage.alt || webinar.title || "Webinaire Sora"}
-                      fill
-                      sizes="(max-width:768px) 82vw, 420px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
-                    />
-                  ) : (
-                    <Image
-                      src="/villa-render-exterior.webp"
-                      alt=""
-                      fill
-                      sizes="(max-width:768px) 82vw, 420px"
-                      className="object-cover opacity-65 group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-transparent to-transparent" />
-                  <Badge variant="outline" className="absolute top-4 left-4 bg-background/85 backdrop-blur-sm border-border">
-                    Prochainement
-                  </Badge>
-                </div>
-                <CardContent className="p-6 md:p-7 flex flex-1 flex-col">
-                  <p className="metadata text-foreground/45 mb-4 capitalize">{webinarLabel()} / 60 min</p>
-                  <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug group-hover:text-accent transition-colors duration-300 mb-4">
-                    {webinar?.title || "Webinaire Sora : investir à Bali"}
-                  </h3>
-                  <p className="text-sm text-foreground/65 leading-relaxed mb-8">
-                    Découvrez comment investir dans une villa à Bali avec un rendement projeté jusqu&apos;à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier.
-                  </p>
-                  <p className="metadata text-accent mt-auto">S&apos;inscrire</p>
-                </CardContent>
-              </Card>
-            </Link>
+            {SHOW_TUESDAY_WEBINAR && (
+              <Link href="/live-SSV" className="group snap-start shrink-0 w-[82vw] sm:w-[60vw] md:w-[420px]">
+                <Card className="overflow-hidden flex flex-col h-full">
+                  <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
+                    {webinar?.mainImage?.asset ? (
+                      <Image
+                        src={urlForImage(webinar.mainImage).width(840).height(630).url()}
+                        alt={webinar.mainImage.alt || webinar.title || "Webinaire Sora"}
+                        fill
+                        sizes="(max-width:768px) 82vw, 420px"
+                        className="object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
+                      />
+                    ) : (
+                      <Image
+                        src="/villa-render-exterior.webp"
+                        alt=""
+                        fill
+                        sizes="(max-width:768px) 82vw, 420px"
+                        className="object-cover opacity-65 group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-transparent to-transparent" />
+                    <Badge variant="outline" className="absolute top-4 left-4 bg-background/85 backdrop-blur-sm border-border">
+                      Prochainement
+                    </Badge>
+                  </div>
+                  <CardContent className="p-6 md:p-7 flex flex-1 flex-col">
+                    <p className="metadata text-foreground/45 mb-4 capitalize">{webinarLabel()} / 60 min</p>
+                    <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug group-hover:text-accent transition-colors duration-300 mb-4">
+                      {webinar?.title || "Webinaire Sora : investir à Bali"}
+                    </h3>
+                    <p className="text-sm text-foreground/65 leading-relaxed mb-8">
+                      Découvrez comment investir dans une villa à Bali avec un rendement projeté jusqu&apos;à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier.
+                    </p>
+                    <p className="metadata text-accent mt-auto">S&apos;inscrire</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            )}
             {events.map((event) => (
               <Link
                 key={event._id}

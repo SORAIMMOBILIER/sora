@@ -112,19 +112,16 @@ export default function Footer() {
       <Separator className="bg-background/15" />
 
       {/* Bottom row */}
-      <div className="pt-8 md:pt-10 grid grid-cols-2 md:grid-cols-3 items-center gap-6">
+      <div className="pt-8 md:pt-10 grid grid-cols-1 md:grid-cols-2 items-center gap-6">
         <button
           onClick={scrollTop}
           className="text-[11px] tracking-[0.22em] uppercase font-semibold text-background hover:text-accent transition-colors duration-300 justify-self-start"
         >
           ↑ Retour en haut
         </button>
-        <Link href="/mentions-legales" className="hidden md:block metadata text-background/55 text-center hover:text-background transition-colors duration-300">
+        <Link href="/mentions-legales" className="hidden md:block metadata text-background/55 justify-self-end text-right hover:text-background transition-colors duration-300">
           © 2026 SORA Immobilier — Mentions légales
         </Link>
-        <p className="metadata text-background/55 justify-self-end text-right">
-          Design Omen Studio
-        </p>
       </div>
     </footer>
   )
