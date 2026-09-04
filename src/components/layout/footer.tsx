@@ -2,31 +2,34 @@
 import Link from "next/link"
 import Image from "next/image"
 import type { MouseEvent } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
-const SECTIONS = [
-  { href: "/", label: "Accueil" },
-  { href: "/seseh", label: "Seseh Sunset Villas" },
-  { href: "/events", label: "Évènements" },
-  { href: "/#fondateur", label: "Le Fondateur", anchorId: "fondateur" },
-  { href: "/fonctionnement", label: "Fonctionnement" },
-  { href: "/masterclass", label: "Replay conférence" },
-  { href: "/contact", label: "Appel offert" },
-  { href: "/seseh#dossier", label: "Dossier d'investissement" },
-]
-
-const CONTACT = [
-  { href: "/contact", label: "Prendre rendez-vous" },
-  { href: "tel:+33633517746", label: "+33 6 33 51 77 46" },
-  { href: "mailto:contact@sora-immobilier.com", label: "contact@sora-immobilier.com" },
-  { href: "https://www.instagram.com/gabriel_lapierre_/", label: "Instagram" },
-  { href: "https://linkedin.com/in/gabriel-lapierre", label: "LinkedIn" },
-  { href: "https://www.youtube.com/@GABRIEL_LAPIERRE", label: "YouTube" },
-  { href: "https://wa.me/message/U6SAMFGVWDQDO1", label: "WhatsApp" },
-]
-
 export default function Footer() {
+  const t = useTranslations("Footer")
+
+  const SECTIONS = [
+    { href: "/", label: t("navAccueil") },
+    { href: "/seseh", label: t("navSeseh") },
+    { href: "/events", label: t("navEvenements") },
+    { href: "/#fondateur", label: t("navFondateur"), anchorId: "fondateur" },
+    { href: "/fonctionnement", label: t("navFonctionnement") },
+    { href: "/masterclass", label: t("navReplay") },
+    { href: "/contact", label: t("navAppelOffert") },
+    { href: "/seseh#dossier", label: t("navDossier") },
+  ]
+
+  const CONTACT = [
+    { href: "/contact", label: t("contactRdv") },
+    { href: "tel:+33633517746", label: "+33 6 33 51 77 46" },
+    { href: "mailto:contact@sora-immobilier.com", label: "contact@sora-immobilier.com" },
+    { href: "https://www.instagram.com/gabriel_lapierre_/", label: "Instagram" },
+    { href: "https://linkedin.com/in/gabriel-lapierre", label: "LinkedIn" },
+    { href: "https://www.youtube.com/@GABRIEL_LAPIERRE", label: "YouTube" },
+    { href: "https://wa.me/message/U6SAMFGVWDQDO1", label: "WhatsApp" },
+  ]
+
   const scrollTop = () => {
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -53,7 +56,7 @@ export default function Footer() {
         </Link>
         <Button asChild variant="inverse">
           <Link href="/contact">
-            Contactez-nous
+            {t("contactUs")}
           </Link>
         </Button>
       </div>
@@ -63,7 +66,7 @@ export default function Footer() {
       {/* Columns */}
       <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 py-16 md:py-24">
         <div>
-          <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-12">Navigation</p>
+          <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-12">{t("navigationTitle")}</p>
           <ul className="space-y-7 text-background/65">
             {SECTIONS.map((s) => (
               <li key={s.label}>
@@ -74,7 +77,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-12">Contact</p>
+          <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-12">{t("contactTitle")}</p>
           <ul className="space-y-7 text-background/65">
             {CONTACT.map((c) => (
               <li key={c.label}>
@@ -89,20 +92,20 @@ export default function Footer() {
         </div>
 
         <div className="md:text-right">
-          <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-12">Localisation</p>
+          <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-12">{t("locationTitle")}</p>
           <div className="space-y-12 text-background/65">
             <div>
-              <p className="tertiary text-background/55 mb-3">Bureau Bali</p>
+              <p className="tertiary text-background/55 mb-3">{t("officeLabel")}</p>
               <p className="text-lg leading-relaxed">
-                Canggu, Bali, Indonésie<br />
-                08°39&apos;22&quot;S 115°08&apos;00&quot;E
+                {t("address")}<br />
+                {t("coordinates")}
               </p>
             </div>
             <div>
-              <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-3">Disponibilité</p>
+              <p className="text-[12px] tracking-[0.25em] uppercase text-background font-semibold mb-3">{t("availabilityTitle")}</p>
               <p className="text-lg leading-relaxed">
-                Lundi à vendredi<br />
-                9h à 19h (CET), 7j/7 (WITA)
+                {t("availability")}<br />
+                {t("availabilityHours")}
               </p>
             </div>
           </div>
@@ -117,10 +120,10 @@ export default function Footer() {
           onClick={scrollTop}
           className="text-[11px] tracking-[0.22em] uppercase font-semibold text-background hover:text-accent transition-colors duration-300 justify-self-start"
         >
-          ↑ Retour en haut
+          {t("backToTop")}
         </button>
         <Link href="/mentions-legales" className="hidden md:block metadata text-background/55 justify-self-end text-right hover:text-background transition-colors duration-300">
-          © 2026 SORA Immobilier — Mentions légales
+          {t("legal")}
         </Link>
       </div>
     </footer>

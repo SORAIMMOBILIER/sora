@@ -1,5 +1,8 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from "next-intl/plugin";
 import type { NextConfig } from "next";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   images: {
@@ -33,11 +36,21 @@ const nextConfig: NextConfig = {
       { source: "/lgen-contact", destination: "https://wa.me/33623676723?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20un%20projet%20d%27investissement%20%C3%A0%20Bali%2C%20j%27aimerais%20en%20savoir%20plus%20sur%20ce%20que%20vous%20avez%20%C3%A0%20proposer", permanent: true },
     ];
   },
+  // Le français n'a pas de préfixe (URLs actuelles inchangées) ; /en/...
+  // sert exactement les mêmes fichiers de page, sans aucun [locale] dans
+  // l'arborescence — le middleware pose le cookie de langue avant que ça
+  // n'arrive ici.
+  async rewrites() {
+    return [
+      { source: "/en", destination: "/" },
+      { source: "/en/:path*", destination: "/:path*" },
+    ];
+  },
 };
 
 const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN;
 
-export default sentryAuthToken
+const configWithSentry = sentryAuthToken
   ? withSentryConfig(nextConfig, {
       org: "omenstudio",
       project: "sora",
@@ -46,3 +59,5 @@ export default sentryAuthToken
       widenClientFileUpload: true,
     })
   : nextConfig;
+
+export default withNextIntl(configWithSentry);

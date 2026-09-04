@@ -1,0 +1,51 @@
+{
+  "Navbar": {
+    "realisations": "Projects",
+    "fondateur": "Founder",
+    "ressources": "Resources",
+    "contact": "Contact",
+    "prendreRdv": "Book a call",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "location": "Canggu, Bali, Indonesia",
+    "dossierEyebrow": "Investment file",
+    "dossierTitle": "Seseh Sunset Villas",
+    "dossierMeta": "Brochure + projections",
+    "ebookEyebrow": "PDF guide",
+    "ebookTitle": "Diversify outside the euro zone",
+    "ebookMeta": "14 pages, free access",
+    "masterclassEyebrow": "Video replay",
+    "masterclassTitle": "Masterclass: investing in Bali",
+    "masterclassMeta": "Full conference"
+  },
+  "Footer": {
+    "contactUs": "Contact us",
+    "navigationTitle": "Navigation",
+    "contactTitle": "Contact",
+    "locationTitle": "Location",
+    "officeLabel": "Bali office",
+    "address": "Canggu, Bali, Indonesia",
+    "coordinates": "08°39'22\"S 115°08'00\"E",
+    "availabilityTitle": "Availability",
+    "availability": "Monday to Friday",
+    "availabilityHours": "9am–7pm (CET), 7 days a week (WITA)",
+    "backToTop": "↑ Back to top",
+    "legal": "© 2026 SORA Immobilier — Legal notice",
+    "navAccueil": "Home",
+    "navSeseh": "Seseh Sunset Villas",
+    "navEvenements": "Events",
+    "navFondateur": "The Founder",
+    "navFonctionnement": "How it works",
+    "navReplay": "Conference replay",
+    "navAppelOffert": "Free call",
+    "navDossier": "Investment file",
+    "contactRdv": "Book an appointment"
+  },
+  "LanguageSwitch": {
+    "fr": "FR",
+    "en": "EN",
+    "switchToEn": "Switch to English",
+    "switchToFr": "Passer en français",
+    "autoTranslateNotice": "This content is machine-translated and may contain inaccuracies, particularly around figures and legal information."
+  }
+}

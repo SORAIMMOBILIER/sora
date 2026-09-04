@@ -3,7 +3,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect, useRef, type MouseEvent } from "react"
 import { ChevronDown } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
+import LanguageSwitch from "@/components/layout/language-switch"
 
 export type NavRealisation = {
   slug: string
@@ -19,6 +21,7 @@ const STATUS_DOT: Record<NavRealisation["status"], string> = {
 }
 
 export default function Navbar({ realisations }: { realisations: NavRealisation[] }) {
+  const t = useTranslations("Navbar")
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -88,7 +91,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
         <div className="flex items-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
             className="md:hidden flex flex-col gap-1.5 p-2 -ml-2 group text-background"
           >
             <span className={`block w-6 h-px bg-current transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
@@ -112,11 +115,11 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                 aria-expanded={dropdownOpen}
                 onClick={() => setDropdownOpen((v) => !v)}
               >
-                Réalisations
+                {t("realisations")}
                 <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
             </div>
-            <Link href="/#fondateur" onClick={goToHomeAnchor("fondateur")} className="nav-link">Fondateur</Link>
+            <Link href="/#fondateur" onClick={goToHomeAnchor("fondateur")} className="nav-link">{t("fondateur")}</Link>
           </div>
           <Link href="/" aria-label="SORA Immobilier" className="block">
             <Image src="/sora-logo.svg" alt="SORA" width={705} height={159} priority className="no-outline block h-6 w-auto" />
@@ -134,11 +137,11 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                 aria-expanded={ressourcesOpen}
                 onClick={() => setRessourcesOpen((v) => !v)}
               >
-                Ressources
+                {t("ressources")}
                 <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${ressourcesOpen ? "rotate-180" : ""}`} />
               </button>
             </div>
-            <Link href="/contact" className="nav-link">Contact</Link>
+            <Link href="/contact" className="nav-link">{t("contact")}</Link>
           </div>
         </div>
 
@@ -148,9 +151,10 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
         </Link>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex justify-end">
+        <div className="hidden md:flex items-center justify-end gap-5">
+          <LanguageSwitch className="text-background" />
           <Button asChild variant="inverse" size="sm">
-            <Link href="/contact">Prendre RDV</Link>
+            <Link href="/contact">{t("prendreRdv")}</Link>
           </Button>
         </div>
       </nav>
@@ -203,27 +207,27 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
               onClick={() => setRessourcesOpen(false)}
               className="group flex flex-col gap-3 p-5 rounded-sm border border-background/10 hover:border-background/30 hover:bg-background/5 transition-all duration-300"
             >
-              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">Dossier investissement</span>
-              <span className="font-serif text-background text-lg leading-[1.2]">Seseh Sunset Villas</span>
-              <span className="metadata text-background/45">Brochure + projections</span>
+              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">{t("dossierEyebrow")}</span>
+              <span className="font-serif text-background text-lg leading-[1.2]">{t("dossierTitle")}</span>
+              <span className="metadata text-background/45">{t("dossierMeta")}</span>
             </Link>
             <Link
               href="/ebook"
               onClick={() => setRessourcesOpen(false)}
               className="group flex flex-col gap-3 p-5 rounded-sm border border-background/10 hover:border-background/30 hover:bg-background/5 transition-all duration-300"
             >
-              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">Guide PDF</span>
-              <span className="font-serif text-background text-lg leading-[1.2]">Diversifier hors zone euro</span>
-              <span className="metadata text-background/45">14 pages, accès gratuit</span>
+              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">{t("ebookEyebrow")}</span>
+              <span className="font-serif text-background text-lg leading-[1.2]">{t("ebookTitle")}</span>
+              <span className="metadata text-background/45">{t("ebookMeta")}</span>
             </Link>
             <Link
               href="/masterclass"
               onClick={() => setRessourcesOpen(false)}
               className="group flex flex-col gap-3 p-5 rounded-sm border border-background/10 hover:border-background/30 hover:bg-background/5 transition-all duration-300"
             >
-              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">Replay vidéo</span>
-              <span className="font-serif text-background text-lg leading-[1.2]">Masterclass investir à Bali</span>
-              <span className="metadata text-background/45">Conférence complète</span>
+              <span className="metadata text-background/55 group-hover:text-background/80 transition-colors">{t("masterclassEyebrow")}</span>
+              <span className="font-serif text-background text-lg leading-[1.2]">{t("masterclassTitle")}</span>
+              <span className="metadata text-background/45">{t("masterclassMeta")}</span>
             </Link>
           </div>
         </div>
@@ -243,7 +247,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                 onClick={() => setMobileRealisationsOpen((v) => !v)}
                 className="font-serif font-semibold text-3xl text-background hover:text-accent transition-colors duration-300 inline-flex items-center gap-3"
               >
-                Réalisations
+                {t("realisations")}
                 <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileRealisationsOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileRealisationsOpen && realisations.length > 0 && (
@@ -270,7 +274,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
               onClick={goToHomeAnchor("fondateur")}
               className="font-serif font-semibold text-3xl text-background hover:text-accent transition-colors duration-300"
             >
-              Fondateur
+              {t("fondateur")}
             </Link>
             <div>
               <button
@@ -278,7 +282,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                 onClick={() => setMobileRessourcesOpen((v) => !v)}
                 className="font-serif font-semibold text-3xl text-background hover:text-accent transition-colors duration-300 inline-flex items-center gap-3"
               >
-                Ressources
+                {t("ressources")}
                 <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileRessourcesOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileRessourcesOpen && (
@@ -288,24 +292,24 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                     onClick={() => setMenuOpen(false)}
                     className="flex flex-col gap-1"
                   >
-                    <span className="metadata text-background/55">Dossier investissement</span>
-                    <span className="font-serif text-background text-xl leading-tight">Seseh Sunset Villas</span>
+                    <span className="metadata text-background/55">{t("dossierEyebrow")}</span>
+                    <span className="font-serif text-background text-xl leading-tight">{t("dossierTitle")}</span>
                   </Link>
                   <Link
                     href="/ebook"
                     onClick={() => setMenuOpen(false)}
                     className="flex flex-col gap-1"
                   >
-                    <span className="metadata text-background/55">Guide PDF</span>
-                    <span className="font-serif text-background text-xl leading-tight">Diversifier hors zone euro</span>
+                    <span className="metadata text-background/55">{t("ebookEyebrow")}</span>
+                    <span className="font-serif text-background text-xl leading-tight">{t("ebookTitle")}</span>
                   </Link>
                   <Link
                     href="/masterclass"
                     onClick={() => setMenuOpen(false)}
                     className="flex flex-col gap-1"
                   >
-                    <span className="metadata text-background/55">Replay vidéo</span>
-                    <span className="font-serif text-background text-xl leading-tight">Masterclass investir à Bali</span>
+                    <span className="metadata text-background/55">{t("masterclassEyebrow")}</span>
+                    <span className="font-serif text-background text-xl leading-tight">{t("masterclassTitle")}</span>
                   </Link>
                 </div>
               )}
@@ -315,16 +319,17 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
               onClick={() => setMenuOpen(false)}
               className="font-serif font-semibold text-3xl text-background hover:text-accent transition-colors duration-300"
             >
-              Contact
+              {t("contact")}
             </Link>
           </nav>
           <div className="flex flex-col gap-6 items-center">
+            <LanguageSwitch className="text-background" />
             <Button asChild variant="inverse">
               <Link href="/contact" onClick={() => setMenuOpen(false)}>
-                Prendre RDV
+                {t("prendreRdv")}
               </Link>
             </Button>
-            <p className="metadata text-background/40 text-center">Canggu, Bali, Indonésie</p>
+            <p className="metadata text-background/40 text-center">{t("location")}</p>
           </div>
         </div>
       </div>

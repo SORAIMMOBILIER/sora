@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { Agentation } from "agentation"
 import { Hanken_Grotesk } from "next/font/google"
 import localFont from "next/font/local"
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
 import { type NavRealisation } from "@/components/layout/navbar"
 import { SiteChrome, ConditionalSmoothScroll, DevAgentation } from "@/components/layout/site-chrome"
 import CookieBanner from "@/components/layout/cookie-banner"
@@ -92,19 +94,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     title: r.cardTitle || r.heroTitle || "",
   }))
 
+  const locale = await getLocale()
+  const messages = await getMessages()
+
   return (
-    <html lang="fr" className={`${eightly.variable} ${hanken.variable}`}>
+    <html lang={locale} className={`${eightly.variable} ${hanken.variable}`}>
       <body>
-        <ConditionalSmoothScroll>
-          <SiteChrome realisations={navRealisations} />
-          {children}
-          {process.env.NODE_ENV === "development" && (
-            <DevAgentation>
-              <Agentation />
-            </DevAgentation>
-          )}
-          <CookieBanner />
-        </ConditionalSmoothScroll>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ConditionalSmoothScroll>
+            <SiteChrome realisations={navRealisations} />
+            {children}
+            {process.env.NODE_ENV === "development" && (
+              <DevAgentation>
+                <Agentation />
+              </DevAgentation>
+            )}
+            <CookieBanner />
+          </ConditionalSmoothScroll>
+        </NextIntlClientProvider>
       </body>
     </html>
   )
