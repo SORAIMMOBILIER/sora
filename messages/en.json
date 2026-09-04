@@ -155,5 +155,180 @@
       "viewReplay": "Watch the replay",
       "viewSession": "View session"
     }
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Book your free call.",
+    "body": "30 minutes with Gabriel to frame your project, answer your questions and check whether Bali fits your situation.",
+    "iframeTitle": "Book an appointment with Gabriel",
+    "altContact": "You can also reach us directly:"
+  },
+  "Merci": {
+    "title": "Your call is confirmed.",
+    "body": "Gabriel will review your situation and prepare personalized projections ahead of your call. You'll receive a confirmation email with the appointment details.",
+    "cta": "Discover the Seseh project",
+    "footer": "While you wait for your call, explore our projects."
+  },
+  "Fonctionnement": {
+    "eyebrow": "How it works",
+    "title": "Every step, handled by a single team.",
+    "body": "From land selection to rental management, Sora runs the entire project on the ground. You move forward from Europe with a clear view of every step.",
+    "steps": [
+      { "title": "Land selection", "desc": "Location analysis, use-case scenarios and rental potential before commitment." },
+      { "title": "Legal structuring", "desc": "PT PMA framework, leasehold and contracts verified with local partners." },
+      { "title": "Design & construction", "desc": "Architecture, engineering and site management with reporting and validation of key milestones on site." },
+      { "title": "Rental management", "desc": "Setup, distribution, income tracking and scenario arbitration." }
+    ],
+    "partnersEyebrow": "Our partners",
+    "partnersTitle": "A project team built on the ground.",
+    "partners": [
+      { "name": "Vienna Lux Cooperation", "role": "Project management", "desc": "Architecture and engineering for projects, from design to delivery." },
+      { "name": "ILA Global Consulting", "role": "Legal firm", "desc": "Legal, notary and accounting: the framework of every deal is verified and documented." },
+      { "name": "Julie Chatelain", "role": "Interior architect", "desc": "Internationally renowned interior architect, in charge of the interiors of our projects." }
+    ],
+    "cta": "Book a free call"
+  },
+  "MentionsLegales": {
+    "title": "Legal notice",
+    "editeurTitle": "Site publisher",
+    "editeurIntro": "The site sora-immobilier.com is published by PT FIVE BLOOM INTERNATIONAL, operating under the SORA IMMOBILIER brand.",
+    "editeurCompany": "sora-immobilier.com",
+    "labelNumero": "Company no.:",
+    "labelDenomination": "Legal name:",
+    "labelMarque": "Trade name:",
+    "labelDirecteur": "Publication director:",
+    "labelSiege": "Registered office:",
+    "labelEmail": "Email:",
+    "labelTelephone": "Phone:",
+    "hebergementTitle": "Hosting",
+    "hebergementBody": "The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
+    "hebergementCompany": "Vercel Inc.",
+    "proprieteTitle": "Intellectual property",
+    "proprieteBody": "All content on the site (text, images, videos, logos, graphic elements) is the exclusive property of PT FIVE BLOOM INTERNATIONAL or its partners. Any reproduction, representation or distribution, in whole or in part, without prior written authorization is prohibited.",
+    "donneesTitle": "Personal data",
+    "donneesBody1": "Information collected via the site's forms (name, email, phone) is used exclusively by PT FIVE BLOOM INTERNATIONAL to process your request and send information about SORA real estate projects.",
+    "donneesBody2": "In accordance with applicable personal data protection regulations, you have the right to access, rectify, erase and port your data, as well as a right to object and to restrict processing. You may exercise these rights by writing to contact@sora-immobilier.com.",
+    "donneesBody3": "You may unsubscribe from our communications at any time via the unsubscribe link included in every email.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody1": "The site uses cookies for audience measurement purposes (Meta Pixel). On your first visit, a banner lets you accept or decline these cookies. Your choice is stored for one year.",
+    "cookiesBody2": "If declined, no measurement cookie is set and no browsing data is shared with third parties.",
+    "responsabiliteTitle": "Liability",
+    "responsabiliteBody": "The information published on the site is provided for general information only and does not constitute investment advice. Mentioned returns are targets and do not guarantee results. Any real estate investment carries risk. It is recommended to consult an independent financial or legal advisor before making any investment decision."
+  },
+  "Partenaires": {
+    "heroTitle": "Bring Bali to your clients. €3,700 to €11,700 per sale.",
+    "heroBody": "Are you a wealth advisor, real estate agent, family office or influencer? Sora gives you a turnkey product that sells itself, full support, and a commission on every villa.",
+    "videoCaption": "Partner program overview",
+    "videoCta": "Become a partner",
+    "cta1Label": "Talk to Gabriel, founder",
+    "cta1Note": "20 min, no commitment. He walks you through the program.",
+    "socialProof": [
+      { "value": "100+", "label": "investors supported" },
+      { "value": "~2.5%", "label": "commission per sale" },
+      { "value": "13", "label": "villas still available" }
+    ],
+    "whyEyebrow": "The program",
+    "whyTitle": "A product that sells itself. Support that equips you.",
+    "whyItems": [
+      { "title": "€3,700 to €11,700 commission per sale", "desc": "~2.5% on villas priced €149k to €469k. Paid as soon as the reservation contract is signed." },
+      { "title": "Turnkey product, 10% return", "desc": "Your clients understand it in 5 minutes. Projected return up to 13.8% net, integrated rental management, 30+30 year leasehold." },
+      { "title": "Sora handles the closing", "desc": "You present the project and qualify interest. Gabriel takes over for the sale, legal and signing." },
+      { "title": "Full support provided", "desc": "Co-branded brochure, detailed financial projections, pitch tailored to your audience, PT PMA legal support." }
+    ],
+    "simEyebrow": "Simulation",
+    "simTitle": "How much can you earn?",
+    "simHeaderGamme": "Range",
+    "simHeaderPrix": "Villa price",
+    "simHeaderCommission": "Commission",
+    "simHeaderTrois": "3 sales",
+    "simRows": [
+      { "gamme": "Élégance", "prix": "€149,000", "comm": "€3,725", "trois": "€11,175" },
+      { "gamme": "Prestige", "prix": "€239,000", "comm": "€5,975", "trois": "€17,925" },
+      { "gamme": "Signature", "prix": "€369,000", "comm": "€9,225", "trois": "€27,675" },
+      { "gamme": "Exception", "prix": "€469,000", "comm": "€11,725", "trois": "€35,175" }
+    ],
+    "simNote": "Indicative commission ~2.5%. Exact rate discussed during the call.",
+    "cta2Text": "20 minutes to discover the program and your terms.",
+    "cta2Label": "Book a call (20 min)",
+    "gabrielEyebrow": "Your contact",
+    "gabrielTitle": "Gabriel Lapierre, engineer and developer.",
+    "gabrielP1": "An engineer trained at Arts et Métiers, formerly at Vinci. He bought 10+ properties in France then supported hundreds of investors while running a turnkey investment agency. Facing the limits of the European market, he created Sora to bring French technical rigor to Bali.",
+    "gabrielP2": "He's the one who takes over with your clients for the closing, and the one you'll have on the phone to structure the partnership.",
+    "gabrielImgAlt": "Gabriel Lapierre, Sora founder",
+    "gabrielCardRole": "Sora founder. Arts et Métiers engineer, ex-Vinci.",
+    "howTitle": "How it works.",
+    "howSteps": [
+      { "step": "01", "title": "Book a call", "desc": "20 min with Gabriel to confirm fit and your terms." },
+      { "step": "02", "title": "We equip you", "desc": "Co-branded brochure, projections, tailored pitch." },
+      { "step": "03", "title": "You refer", "desc": "Present the project. We take over the sale." },
+      { "step": "04", "title": "Commission paid", "desc": "As soon as the reservation contract is signed." }
+    ],
+    "productEyebrow": "The product you recommend",
+    "productTitle": "4 ranges, starting at €149,000.",
+    "gammes": [
+      { "name": "Élégance", "price": "€149,000", "surface": "51 m²", "chambres": "1 bedroom", "revenus": "€20,611/year", "rendement": "13.8%" },
+      { "name": "Prestige", "price": "€239,000", "surface": "80 m²", "chambres": "2 bedrooms", "revenus": "€27,972/year", "rendement": "11.7%" },
+      { "name": "Signature", "price": "€369,000", "surface": "153 m²", "chambres": "2 premium bedrooms", "revenus": "On request", "rendement": "" },
+      { "name": "Exception", "price": "€469,000", "surface": "197 m²", "chambres": "3 bedrooms", "revenus": "On request", "rendement": "" }
+    ],
+    "urgencyTitle": "13 villas already reserved out of 26.",
+    "urgencyBody": "The first partners get the advantage of remaining stock.",
+    "urgencyCta": "Join the program",
+    "clientsGetTitle": "What your clients get.",
+    "clientsGetItems": [
+      "Turnkey, furnished villa with dedicated architect",
+      "Private pool or jacuzzi depending on range",
+      "Integrated rental management, 7 days a week",
+      "10-year structural warranty, 5-year roof warranty",
+      "Secure PT PMA legal framework",
+      "30+30 year leasehold (60 years of use)",
+      "Projected gross return of up to 13.8%",
+      "300m from Seseh beach"
+    ],
+    "cta3Title": "Bring this opportunity to your network.",
+    "cta3Body": "Gabriel explains the model and your terms in 20 minutes.",
+    "cta3Label": "Discover my terms",
+    "profilesTitle": "Who we're looking for.",
+    "profiles": [
+      "Wealth management advisors",
+      "Real estate agents",
+      "Family offices",
+      "Finance / real estate influencers"
+    ],
+    "interiorsEyebrow": "High-end finishes",
+    "interiorsTitle": "A product your clients can see and understand.",
+    "interiorAlts": [
+      "Signature living room", "Exception kitchen", "Prestige bedroom", "Signature terrace",
+      "Exception bathroom", "Élégance living room", "Prestige terrace", "Signature dining room"
+    ],
+    "faqTitle": "Frequently asked questions.",
+    "faq": [
+      { "q": "What is the exact commission rate?", "a": "The rate is discussed during the first call based on your profile and potential volume. Rough order: ~2.5% of the sale price, i.e. €3,700 to €11,700 per villa." },
+      { "q": "Do I have to handle the sale myself?", "a": "No. You present the project and qualify interest. Gabriel and the Sora team take over for closing, legal and signing." },
+      { "q": "How are commissions paid?", "a": "By bank transfer, as soon as the investor signs the reservation contract." },
+      { "q": "What sales tools are provided?", "a": "Customizable brochure, detailed financial projections (5 years, flat tax included), PT PMA legal support, 3D renders and architect's plans." },
+      { "q": "Is there a geographic exclusivity?", "a": "No exclusivity is imposed. You refer to your network with no zone restriction." },
+      { "q": "Is the project legally secure?", "a": "Yes. Investment via PT PMA (Indonesian foreign-capital company), 30+30 year leasehold, 10-year structural warranty. The full framework is detailed in the partner file." }
+    ],
+    "finalTitle": "Ready to join the program?",
+    "finalBody": "Book 20 minutes with Gabriel. He'll walk you through the model, your terms, and the sales tools available to you.",
+    "finalCta": "Book my call with Gabriel",
+    "finalNote": "No commitment. Confidential conversation.",
+    "footerEmail": "contact@sora-immobilier.com",
+    "stickyCta": "Become a partner",
+    "exitTitle": "Do you have a network of executives or decision-makers?",
+    "exitBody": "Find out how much you can earn with the Sora partner program. 20 minutes with Gabriel is all it takes.",
+    "exitCta": "Discover the program",
+    "exitDecline": "No thanks"
+  },
+  "Temoignages": {
+    "eyebrow": "Testimonials",
+    "title": "What our investors say.",
+    "body": "Feedback from investors supported by Sora, on their experience, from the first conversation to rental management.",
+    "empty": "Testimonials will appear here as soon as they're published.",
+    "ctaTitle": "Want to talk it through?",
+    "ctaBody": "Message us on WhatsApp, we reply within the day.",
+    "ctaButton": "Chat on WhatsApp",
+    "floatingLabel": "Got a question?"
   }
 }

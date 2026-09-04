@@ -155,5 +155,180 @@
       "viewReplay": "Voir le replay",
       "viewSession": "Voir la session"
     }
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Réservez votre appel offert.",
+    "body": "30 minutes avec Gabriel pour cadrer votre projet, répondre à vos questions et vérifier si Bali correspond à votre situation.",
+    "iframeTitle": "Prendre rendez-vous avec Gabriel",
+    "altContact": "Vous pouvez aussi nous joindre directement :"
+  },
+  "Merci": {
+    "title": "Votre appel est confirmé.",
+    "body": "Gabriel va analyser votre situation et préparer des projections personnalisées avant votre échange. Vous recevrez un email de confirmation avec les détails du rendez-vous.",
+    "cta": "Découvrir le projet Seseh",
+    "footer": "En attendant votre appel, explorez nos réalisations."
+  },
+  "Fonctionnement": {
+    "eyebrow": "Fonctionnement",
+    "title": "Toutes les étapes, gérées par une seule équipe.",
+    "body": "De la sélection du foncier à la gestion locative, Sora pilote l'intégralité du projet sur place. Vous avancez depuis l'Europe avec une lecture claire de chaque étape.",
+    "steps": [
+      { "title": "Sélection terrain", "desc": "Analyse des emplacements, scénarios d'usage et potentiel locatif avant engagement." },
+      { "title": "Structuration juridique", "desc": "Cadre PT PMA, leasehold et contrats vérifiés avec les partenaires locaux." },
+      { "title": "Conception & travaux", "desc": "Architecture, ingénierie et pilotage du chantier avec reporting et validation des étapes clés sur place." },
+      { "title": "Gestion locative", "desc": "Mise en exploitation, distribution, suivi des revenus et arbitrage des scénarios." }
+    ],
+    "partnersEyebrow": "Nos partenaires",
+    "partnersTitle": "Une équipe projet constituée sur place.",
+    "partners": [
+      { "name": "Vienna Lux Cooperation", "role": "Maîtrise d'œuvre", "desc": "Architecture et ingénierie des projets, de la conception à la livraison." },
+      { "name": "ILA Global Consulting", "role": "Cabinet légal", "desc": "Juridique, notaire et comptabilité : le cadre de chaque opération est vérifié et documenté." },
+      { "name": "Julie Chatelain", "role": "Architecte d'intérieur", "desc": "Architecte d'intérieur de renommée internationale, en charge des intérieurs de nos projets." }
+    ],
+    "cta": "Réserver un appel offert"
+  },
+  "MentionsLegales": {
+    "title": "Mentions légales",
+    "editeurTitle": "Éditeur du site",
+    "editeurIntro": "Le site sora-immobilier.com est édité par la société PT FIVE BLOOM INTERNATIONAL, exploitant la marque SORA IMMOBILIER.",
+    "editeurCompany": "sora-immobilier.com",
+    "labelNumero": "N° société :",
+    "labelDenomination": "Dénomination :",
+    "labelMarque": "Marque commerciale :",
+    "labelDirecteur": "Directeur de la publication :",
+    "labelSiege": "Siège social :",
+    "labelEmail": "Email :",
+    "labelTelephone": "Téléphone :",
+    "hebergementTitle": "Hébergement",
+    "hebergementBody": "Le site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.",
+    "hebergementCompany": "Vercel Inc.",
+    "proprieteTitle": "Propriété intellectuelle",
+    "proprieteBody": "L'ensemble des contenus présents sur le site (textes, images, vidéos, logos, éléments graphiques) sont la propriété exclusive de PT FIVE BLOOM INTERNATIONAL ou de ses partenaires. Toute reproduction, représentation ou diffusion, en tout ou partie, sans autorisation écrite préalable est interdite.",
+    "donneesTitle": "Données personnelles",
+    "donneesBody1": "Les informations recueillies via les formulaires du site (nom, email, téléphone) sont destinées exclusivement à PT FIVE BLOOM INTERNATIONAL pour le traitement de votre demande et l'envoi d'informations relatives aux projets immobiliers SORA.",
+    "donneesBody2": "Conformément à la réglementation applicable en matière de protection des données personnelles, vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité de vos données, ainsi que d'un droit d'opposition et de limitation du traitement. Vous pouvez exercer ces droits en écrivant à contact@sora-immobilier.com.",
+    "donneesBody3": "Vous pouvez vous désinscrire de nos communications à tout moment via le lien de désinscription présent dans chaque email.",
+    "cookiesTitle": "Cookies",
+    "cookiesBody1": "Le site utilise des cookies à des fins de mesure d'audience (Meta Pixel). Lors de votre première visite, un bandeau vous permet d'accepter ou de refuser ces cookies. Votre choix est conservé pendant un an.",
+    "cookiesBody2": "En cas de refus, aucun cookie de mesure n'est déposé et aucune donnée de navigation n'est transmise à des tiers.",
+    "responsabiliteTitle": "Responsabilité",
+    "responsabiliteBody": "Les informations diffusées sur le site sont fournies à titre indicatif et ne constituent pas un conseil en investissement. Les rendements mentionnés sont des objectifs et ne constituent pas une garantie de résultat. Tout investissement immobilier comporte des risques. Il est recommandé de consulter un conseiller financier ou juridique indépendant avant toute décision d'investissement."
+  },
+  "Partenaires": {
+    "heroTitle": "Proposez Bali à vos clients. 3 700€ à 11 700€ par vente.",
+    "heroBody": "Vous êtes CGP, agent immobilier, family office ou influenceur ? Sora vous fournit un produit clé en main qui se vend, un support complet, et une commission sur chaque villa.",
+    "videoCaption": "Présentation du programme partenaires",
+    "videoCta": "Devenir partenaire",
+    "cta1Label": "Échanger avec Gabriel, fondateur",
+    "cta1Note": "20 min, sans engagement. Il vous présente le programme.",
+    "socialProof": [
+      { "value": "100+", "label": "investisseurs accompagnés" },
+      { "value": "~2,5%", "label": "commission par vente" },
+      { "value": "13", "label": "villas encore disponibles" }
+    ],
+    "whyEyebrow": "Le programme",
+    "whyTitle": "Un produit qui se vend. Un support qui vous équipe.",
+    "whyItems": [
+      { "title": "Commission de 3 700€ à 11 700€ par vente", "desc": "~2,5% sur des villas de 149k à 469k€. Versée dès la signature du contrat de réservation." },
+      { "title": "Produit clé en main, 10% de rendement", "desc": "Vos clients comprennent en 5 minutes. Rendement projeté jusqu'à 13,8% net, gestion locative intégrée, leasehold 30+30 ans." },
+      { "title": "Sora gère le closing", "desc": "Vous présentez le projet et qualifiez l'intérêt. Gabriel prend le relais pour la vente, le juridique et la signature." },
+      { "title": "Support complet fourni", "desc": "Brochure co-brandée, projections financières détaillées, argumentaire adapté à votre audience, support juridique PT PMA." }
+    ],
+    "simEyebrow": "Simulation",
+    "simTitle": "Combien pouvez-vous gagner ?",
+    "simHeaderGamme": "Gamme",
+    "simHeaderPrix": "Prix villa",
+    "simHeaderCommission": "Commission",
+    "simHeaderTrois": "3 ventes",
+    "simRows": [
+      { "gamme": "Élégance", "prix": "149 000€", "comm": "3 725€", "trois": "11 175€" },
+      { "gamme": "Prestige", "prix": "239 000€", "comm": "5 975€", "trois": "17 925€" },
+      { "gamme": "Signature", "prix": "369 000€", "comm": "9 225€", "trois": "27 675€" },
+      { "gamme": "Exception", "prix": "469 000€", "comm": "11 725€", "trois": "35 175€" }
+    ],
+    "simNote": "Commission indicative ~2,5%. Taux exact discuté lors de l'échange.",
+    "cta2Text": "20 minutes pour découvrir le programme et vos conditions.",
+    "cta2Label": "Réserver un appel (20 min)",
+    "gabrielEyebrow": "Votre interlocuteur",
+    "gabrielTitle": "Gabriel Lapierre, ingénieur et promoteur.",
+    "gabrielP1": "Ingénieur diplômé des Arts et Métiers, passé par Vinci. Il a acheté 10+ biens en France puis accompagné des centaines d'investisseurs en dirigeant une agence d'investissement clé en main. Face aux limites du marché européen, il a créé Sora pour importer la rigueur technique française à Bali.",
+    "gabrielP2": "C'est lui qui prend le relais avec vos clients pour le closing, et c'est lui que vous aurez au téléphone pour structurer le partenariat.",
+    "gabrielImgAlt": "Gabriel Lapierre, fondateur Sora",
+    "gabrielCardRole": "Fondateur Sora. Ingénieur Arts et Métiers, ex-Vinci.",
+    "howTitle": "Comment ça fonctionne.",
+    "howSteps": [
+      { "step": "01", "title": "Prenez RDV", "desc": "20 min avec Gabriel pour valider le fit et vos conditions." },
+      { "step": "02", "title": "On vous équipe", "desc": "Brochure co-brandée, projections, argumentaire adapté." },
+      { "step": "03", "title": "Vous recommandez", "desc": "Présentez le projet. On prend le relais sur la vente." },
+      { "step": "04", "title": "Commission versée", "desc": "Dès la signature du contrat de réservation." }
+    ],
+    "productEyebrow": "Le produit que vous recommandez",
+    "productTitle": "4 gammes, à partir de 149 000€.",
+    "gammes": [
+      { "name": "Élégance", "price": "149 000€", "surface": "51 m²", "chambres": "1 chambre", "revenus": "20 611€/an", "rendement": "13,8%" },
+      { "name": "Prestige", "price": "239 000€", "surface": "80 m²", "chambres": "2 chambres", "revenus": "27 972€/an", "rendement": "11,7%" },
+      { "name": "Signature", "price": "369 000€", "surface": "153 m²", "chambres": "2 chambres premium", "revenus": "Sur demande", "rendement": "" },
+      { "name": "Exception", "price": "469 000€", "surface": "197 m²", "chambres": "3 chambres", "revenus": "Sur demande", "rendement": "" }
+    ],
+    "urgencyTitle": "13 villas déjà réservées sur 26.",
+    "urgencyBody": "Les premiers partenaires ont l'avantage du stock restant.",
+    "urgencyCta": "Rejoindre le programme",
+    "clientsGetTitle": "Ce que vos clients obtiennent.",
+    "clientsGetItems": [
+      "Villa clé en main, meublée, architecte dédiée",
+      "Piscine privée ou jacuzzi selon gamme",
+      "Gestion locative intégrée 7j/7",
+      "Garantie structure 10 ans, toiture 5 ans",
+      "Cadre juridique PT PMA sécurisé",
+      "Leasehold 30+30 ans (60 ans de jouissance)",
+      "Rendement brut projeté jusqu'à 13,8%",
+      "300m de la plage de Seseh"
+    ],
+    "cta3Title": "Apportez cette opportunité à votre réseau.",
+    "cta3Body": "Gabriel vous explique le modèle et vos conditions en 20 minutes.",
+    "cta3Label": "Découvrir mes conditions",
+    "profilesTitle": "Profils recherchés.",
+    "profiles": [
+      "Conseillers en gestion de patrimoine",
+      "Agents immobiliers",
+      "Family offices",
+      "Influenceurs finance / immobilier"
+    ],
+    "interiorsEyebrow": "Finitions haut de gamme",
+    "interiorsTitle": "Un produit que vos clients voient et comprennent.",
+    "interiorAlts": [
+      "Living Signature", "Cuisine Exception", "Chambre Prestige", "Terrasse Signature",
+      "Salle de bain Exception", "Living Élégance", "Terrasse Prestige", "Dining Signature"
+    ],
+    "faqTitle": "Questions fréquentes.",
+    "faq": [
+      { "q": "Quel est le taux de commission exact ?", "a": "Le taux est discuté lors du premier échange en fonction de votre profil et volume potentiel. Ordre de grandeur : ~2,5% du prix de vente, soit 3 700€ à 11 700€ par villa." },
+      { "q": "Dois-je gérer la vente moi-même ?", "a": "Non. Vous présentez le projet et qualifiez l'intérêt. Gabriel et l'équipe Sora prennent le relais pour le closing, le juridique et la signature." },
+      { "q": "Comment sont versées les commissions ?", "a": "Par virement, dès la signature du contrat de réservation par l'investisseur." },
+      { "q": "Quels outils de vente sont fournis ?", "a": "Brochure personnalisable, projections financières détaillées (5 ans, flat tax incluse), support juridique PT PMA, rendus 3D et plans architecte." },
+      { "q": "Y a-t-il une exclusivité géographique ?", "a": "Pas d'exclusivité imposée. Vous recommandez à votre réseau sans contrainte de zone." },
+      { "q": "Le projet est-il sécurisé juridiquement ?", "a": "Oui. Investissement via PT PMA (société indonésienne à capitaux étrangers), leasehold 30+30 ans, garantie structure 10 ans. Le cadre complet est détaillé dans le dossier partenaire." }
+    ],
+    "finalTitle": "Prêt à rejoindre le programme ?",
+    "finalBody": "Réservez 20 minutes avec Gabriel. Il vous présente le modèle, vos conditions, et les outils de vente mis à votre disposition.",
+    "finalCta": "Réserver mon appel avec Gabriel",
+    "finalNote": "Sans engagement. Échange confidentiel.",
+    "footerEmail": "contact@sora-immobilier.com",
+    "stickyCta": "Devenir partenaire",
+    "exitTitle": "Vous avez un réseau de cadres ou dirigeants ?",
+    "exitBody": "Découvrez combien vous pouvez générer avec le programme partenaire Sora. 20 minutes avec Gabriel suffisent.",
+    "exitCta": "Découvrir le programme",
+    "exitDecline": "Non merci"
+  },
+  "Temoignages": {
+    "eyebrow": "Témoignages",
+    "title": "Ce que disent ceux qui ont investi.",
+    "body": "Des retours d'investisseurs accompagnés par Sora, sur leur expérience, du premier échange à la gestion locative.",
+    "empty": "Les témoignages seront affichés ici dès leur publication.",
+    "ctaTitle": "Envie d'en discuter ?",
+    "ctaBody": "Écrivez-nous sur WhatsApp, on vous répond dans la journée.",
+    "ctaButton": "Discuter sur WhatsApp",
+    "floatingLabel": "Une question ?"
   }
 }

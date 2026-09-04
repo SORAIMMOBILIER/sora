@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { TESTIMONIALS_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
@@ -25,6 +26,7 @@ type Testimonial = {
 }
 
 export default async function TemoignagesPage() {
+  const t = await getTranslations("Temoignages")
   const testimonials = await sanityFetch<Testimonial[]>({ query: TESTIMONIALS_QUERY, tags: ["testimonial"] })
 
   return (
@@ -32,17 +34,17 @@ export default async function TemoignagesPage() {
       <main className="bg-bg min-h-screen pt-32 md:pt-44 pb-24 px-6 md:px-12">
         <div className="container-page">
           <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-            <p className="eyebrow mx-auto text-ink-muted mb-6">Témoignages</p>
+            <p className="eyebrow mx-auto text-ink-muted mb-6">{t("eyebrow")}</p>
             <h1 className="font-serif font-medium text-ink leading-[1.0]" style={{ fontSize: "clamp(40px,6vw,96px)" }}>
-              Ce que disent ceux qui ont investi.
+              {t("title")}
             </h1>
             <p className="text-ink/60 mt-8 leading-relaxed text-base max-w-2xl mx-auto">
-              Des retours d&apos;investisseurs accompagnés par Sora, sur leur expérience, du premier échange à la gestion locative.
+              {t("body")}
             </p>
           </div>
 
           {testimonials.length === 0 ? (
-            <p className="text-center text-ink/50">Les témoignages seront affichés ici dès leur publication.</p>
+            <p className="text-center text-ink/50">{t("empty")}</p>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
               {testimonials.map((t) => (
@@ -61,10 +63,10 @@ export default async function TemoignagesPage() {
 
           <div className="text-center max-w-2xl mx-auto mt-20 md:mt-28">
             <h2 className="font-serif font-medium text-ink leading-[1.05]" style={{ fontSize: "clamp(28px,4vw,44px)" }}>
-              Envie d&apos;en discuter ?
+              {t("ctaTitle")}
             </h2>
             <p className="text-ink/60 mt-4 leading-relaxed text-base">
-              Écrivez-nous sur WhatsApp, on vous répond dans la journée.
+              {t("ctaBody")}
             </p>
             <Button
               asChild
@@ -73,7 +75,7 @@ export default async function TemoignagesPage() {
               className="mt-8 bg-[#25D366] text-white border-transparent hover:bg-[#1ebe5a] hover:text-white hover:border-transparent"
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                Discuter sur WhatsApp
+                {t("ctaButton")}
               </a>
             </Button>
           </div>
@@ -92,7 +94,7 @@ export default async function TemoignagesPage() {
             <path d="M12.004 2c-5.514 0-9.997 4.483-9.997 9.997 0 1.763.462 3.486 1.34 5.004L2 22l5.117-1.343a9.96 9.96 0 0 0 4.887 1.244h.005c5.514 0 9.997-4.483 9.997-9.997C21.998 6.483 17.518 2 12.004 2zm0 18.166h-.004a8.16 8.16 0 0 1-4.158-1.14l-.298-.177-3.036.796.81-2.96-.194-.304a8.147 8.147 0 0 1-1.253-4.384c0-4.508 3.669-8.176 8.177-8.176 2.184 0 4.238.851 5.783 2.397a8.13 8.13 0 0 1 2.394 5.785c0 4.508-3.67 8.163-8.221 8.163z" />
           </svg>
           <span className="max-w-0 group-hover:max-w-[160px] group-hover:ml-2.5 overflow-hidden whitespace-nowrap text-sm font-semibold transition-all duration-300">
-            Une question ?
+            {t("floatingLabel")}
           </span>
         </a>
       </main>

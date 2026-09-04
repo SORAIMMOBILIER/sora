@@ -1,6 +1,7 @@
 "use client"
 import { Suspense, useEffect, useRef } from "react"
 import { useSearchParams } from "next/navigation"
+import { useTranslations } from "next-intl"
 import Link from "@/components/localized-link"
 
 declare global {
@@ -10,6 +11,7 @@ declare global {
 }
 
 function MerciContent() {
+  const t = useTranslations("Merci")
   const fired = useRef(false)
   const searchParams = useSearchParams()
   const source = searchParams.get("utm_source") || "vsl"
@@ -27,18 +29,17 @@ function MerciContent() {
   return (
     <div className="max-w-lg text-center">
       <p className="font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,5vw,56px)" }}>
-        Votre appel est confirmé.
+        {t("title")}
       </p>
       <p className="text-muted-foreground mt-6 leading-relaxed">
-        Gabriel va analyser votre situation et préparer des projections personnalisées avant votre échange.
-        Vous recevrez un email de confirmation avec les détails du rendez-vous.
+        {t("body")}
       </p>
       <div className="mt-10 space-y-4">
         <Link href="/seseh" className="cta-primary font-serif font-semibold inline-block">
-          Découvrir le projet Seseh
+          {t("cta")}
         </Link>
         <p className="metadata text-muted-foreground/40">
-          En attendant votre appel, explorez nos réalisations.
+          {t("footer")}
         </p>
       </div>
     </div>

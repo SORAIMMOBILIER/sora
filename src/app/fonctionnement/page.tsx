@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import Link from "@/components/localized-link"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -10,59 +11,27 @@ export const metadata: Metadata = {
     "Sora gère toutes les étapes de votre investissement à Bali : sélection du foncier, structuration juridique, conception, travaux et gestion locative.",
 }
 
-const STEPS = [
-  {
-    title: "Sélection terrain",
-    desc: "Analyse des emplacements, scénarios d'usage et potentiel locatif avant engagement.",
-  },
-  {
-    title: "Structuration juridique",
-    desc: "Cadre PT PMA, leasehold et contrats vérifiés avec les partenaires locaux.",
-  },
-  {
-    title: "Conception & travaux",
-    desc: "Architecture, ingénierie et pilotage du chantier avec reporting et validation des étapes clés sur place.",
-  },
-  {
-    title: "Gestion locative",
-    desc: "Mise en exploitation, distribution, suivi des revenus et arbitrage des scénarios.",
-  },
-]
+type Step = { title: string; desc: string }
+type Partner = { name: string; role: string; desc: string }
 
-const PARTNERS = [
-  {
-    name: "Vienna Lux Cooperation",
-    role: "Maîtrise d'œuvre",
-    desc: "Architecture et ingénierie des projets, de la conception à la livraison.",
-  },
-  {
-    name: "ILA Global Consulting",
-    role: "Cabinet légal",
-    desc: "Juridique, notaire et comptabilité : le cadre de chaque opération est vérifié et documenté.",
-  },
-  {
-    name: "Julie Chatelain",
-    role: "Architecte d'intérieur",
-    desc: "Architecte d'intérieur de renommée internationale, en charge des intérieurs de nos projets.",
-  },
-]
+export default async function FonctionnementPage() {
+  const t = await getTranslations("Fonctionnement")
+  const STEPS = t.raw("steps") as Step[]
+  const PARTNERS = t.raw("partners") as Partner[]
 
-export default function FonctionnementPage() {
   return (
     <>
       <section className="bg-bg px-6 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="container-page max-w-5xl mx-auto text-center">
-          <p className="eyebrow mb-6">Fonctionnement</p>
+          <p className="eyebrow mb-6">{t("eyebrow")}</p>
           <h1
             className="font-serif font-medium text-ink leading-[0.95]"
             style={{ fontSize: "clamp(36px,5vw,72px)" }}
           >
-            Toutes les étapes, gérées par une seule équipe.
+            {t("title")}
           </h1>
           <p className="text-ink/70 mt-8 leading-relaxed text-lg max-w-2xl mx-auto">
-            De la sélection du foncier à la gestion locative, Sora pilote l&apos;intégralité du
-            projet sur place. Vous avancez depuis l&apos;Europe avec une lecture claire de chaque
-            étape.
+            {t("body")}
           </p>
         </div>
 
@@ -84,12 +53,12 @@ export default function FonctionnementPage() {
 
       <section className="bg-primary px-6 py-24 md:py-36">
         <div className="container-page max-w-5xl mx-auto text-center mb-16">
-          <p className="eyebrow-dark mb-8">Nos partenaires</p>
+          <p className="eyebrow-dark mb-8">{t("partnersEyebrow")}</p>
           <h2
             className="font-serif font-medium text-background leading-[1.0]"
             style={{ fontSize: "clamp(32px,4.5vw,64px)" }}
           >
-            Une équipe projet constituée sur place.
+            {t("partnersTitle")}
           </h2>
         </div>
         <div className="container-page max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -103,7 +72,7 @@ export default function FonctionnementPage() {
         </div>
         <div className="container-page max-w-5xl mx-auto mt-16 text-center">
           <Button asChild variant="inverse">
-            <Link href="/contact">Réserver un appel offert</Link>
+            <Link href="/contact">{t("cta")}</Link>
           </Button>
         </div>
       </section>
