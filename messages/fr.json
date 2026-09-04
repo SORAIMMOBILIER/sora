@@ -774,6 +774,67 @@
     "formSubmitting": "Envoi en cours...",
     "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement."
   },
+  "RealisationDetail": {
+    "explorerVilla": "Explorer la villa",
+    "inclusEyebrow": "Inclus dans chaque villa"
+  },
+  "DossierForm": {
+    "successTitle": "Dossier envoyé.",
+    "successBody": "Vérifiez votre boîte mail. Le dossier complet arrive dans quelques minutes.",
+    "formTitle": "Recevoir le dossier",
+    "formBody": "Accès immédiat par email. Sans engagement.",
+    "formFirstName": "Prénom",
+    "formLastName": "Nom",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubmit": "Recevoir le dossier gratuitement",
+    "formSubmitting": "Envoi en cours...",
+    "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
+    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+  },
+  "VillaRooms": {
+    "living": "Salon",
+    "kitchen": "Cuisine",
+    "terrace": "Terrasse",
+    "dining": "Salle à manger",
+    "workspace": "Espace de travail",
+    "office": "Bureau",
+    "toilet": "Toilettes",
+    "bedroom1": "Chambre 1",
+    "bedroom2": "Chambre 2",
+    "bedroom3": "Chambre 3",
+    "bath1": "Salle de bain 1",
+    "bath2": "Salle de bain 2",
+    "bath3": "Salle de bain 3"
+  },
+  "VillaPlan": {
+    "title": "Plan interactif",
+    "subtitle": "Sélectionnez une pièce pour explorer",
+    "floorRdc": "RDC",
+    "floorEtage": "Étage",
+    "notAvailable": "Plan non disponible"
+  },
+  "VillaExplorer": {
+    "apercu": "Aperçu",
+    "clickRoom": "Cliquez une pièce du plan",
+    "noPhoto": "Aucune photo disponible"
+  },
+  "GammeDetail": {
+    "backTo": "← Retour à",
+    "gammePrefix": "Gamme ·",
+    "virtualTour": "Visite virtuelle 360°",
+    "statSurface": "Surface",
+    "statBedrooms": "Chambre",
+    "statBathrooms": "Salle de bain",
+    "statPrice": "À partir de",
+    "featuresEyebrow": "Prestations incluses",
+    "nextStepEyebrow": "Étape suivante",
+    "preReserveTitle": "Pré-réservez {name} en quelques minutes.",
+    "preReserveCta": "Pré-réserver",
+    "galleryEyebrow": "Galerie",
+    "galleryTitle": "Espaces de vie.",
+    "visualsCount": "{count} visuels"
+  },
   "Temoignages": {
     "eyebrow": "Témoignages",
     "title": "Ce que disent ceux qui ont investi.",

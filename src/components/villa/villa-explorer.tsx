@@ -1,23 +1,9 @@
 "use client"
 import { useMemo, useState } from "react"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 import VillaPlan from "./villa-plan"
 import { Badge } from "@/components/ui/badge"
-
-const ROOM_LABELS: Record<string, string> = {
-  living: "Salon",
-  kitchen: "Cuisine",
-  terrace: "Terrasse",
-  dining: "Salle à manger",
-  office: "Bureau",
-  toilet: "Toilettes",
-  bedroom1: "Chambre 1",
-  bedroom2: "Chambre 2",
-  bedroom3: "Chambre 3",
-  bath1: "Salle de bain 1",
-  bath2: "Salle de bain 2",
-  bath3: "Salle de bain 3",
-}
 
 export type GalleryImage = {
   url: string
@@ -33,6 +19,8 @@ export type VillaExplorerProps = {
 }
 
 export default function VillaExplorer({ svgRdc, svgEtage, gallery, gammeName }: VillaExplorerProps) {
+  const t = useTranslations("VillaExplorer")
+  const tr = useTranslations("VillaRooms")
   const [activeRoom, setActiveRoom] = useState<string | null>(null)
 
   const featuredImage = useMemo(() => {
@@ -66,23 +54,23 @@ export default function VillaExplorer({ svgRdc, svgEtage, gallery, gammeName }: 
             <div className="absolute top-4 left-4 flex flex-col gap-2">
               <Badge className="bg-primary text-background border-transparent">
                 {activeRoom
-                  ? ROOM_LABELS[activeRoom] || activeRoom
+                  ? (tr.has(activeRoom) ? tr(activeRoom) : activeRoom)
                   : featuredImage.room
-                    ? ROOM_LABELS[featuredImage.room] || featuredImage.room
-                    : "Aperçu"}
+                    ? (tr.has(featuredImage.room) ? tr(featuredImage.room) : featuredImage.room)
+                    : t("apercu")}
               </Badge>
             </div>
             {!activeRoom && (
               <div className="absolute bottom-4 right-4">
                 <span className="metadata bg-background/90 text-foreground px-3 py-1.5 rounded-full">
-                  Cliquez une pièce du plan
+                  {t("clickRoom")}
                 </span>
               </div>
             )}
           </div>
         ) : (
           <div className="relative aspect-[4/3] flex items-center justify-center bg-card border border-dashed border-border rounded-sm">
-            <p className="metadata text-foreground/45">Aucune photo disponible</p>
+            <p className="metadata text-foreground/45">{t("noPhoto")}</p>
           </div>
         )}
       </div>

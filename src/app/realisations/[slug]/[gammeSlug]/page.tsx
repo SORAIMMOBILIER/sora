@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import { sanityFetch } from "../../../../../sanity/lib/fetch"
 import { GAMME_BY_SLUG_QUERY, GAMME_SLUGS_QUERY } from "../../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../../sanity/lib/image"
@@ -10,21 +11,6 @@ import { Badge } from "@/components/ui/badge"
 import Footer from "@/components/layout/footer"
 import VillaExplorer, { type GalleryImage } from "@/components/villa/villa-explorer"
 import { loadVillaPlan } from "@/lib/villa-plans"
-
-const ROOM_LABELS: Record<string, string> = {
-  living: "Salon",
-  kitchen: "Cuisine",
-  terrace: "Terrasse",
-  dining: "Salle à manger",
-  office: "Bureau",
-  toilet: "Toilettes",
-  bedroom1: "Chambre 1",
-  bedroom2: "Chambre 2",
-  bedroom3: "Chambre 3",
-  bath1: "Salle de bain 1",
-  bath2: "Salle de bain 2",
-  bath3: "Salle de bain 3",
-}
 
 type SanityImage = { asset?: { _ref: string }; alt?: string; room?: string }
 
@@ -91,6 +77,8 @@ export default async function GammePage({
   params: Promise<{ slug: string; gammeSlug: string }>
 }) {
   const { slug, gammeSlug } = await params
+  const t = await getTranslations("GammeDetail")
+  const tr = await getTranslations("VillaRooms")
   const data = await sanityFetch<GammeDetail | null>({
     query: GAMME_BY_SLUG_QUERY,
     params: { realisationSlug: slug, gammeSlug },
@@ -106,10 +94,10 @@ export default async function GammePage({
   ])
 
   const stats = [
-    g.surface && { icon: "square", value: g.surface, label: "Surface" },
-    g.bedrooms && { icon: "bed", value: g.bedrooms, label: "Chambre" },
-    g.bathrooms && { icon: "bath", value: g.bathrooms, label: "Salle de bain" },
-    g.price && { icon: "euro", value: g.price, label: "À partir de" },
+    g.surface && { icon: "square", value: g.surface, label: t("statSurface") },
+    g.bedrooms && { icon: "bed", value: g.bedrooms, label: t("statBedrooms") },
+    g.bathrooms && { icon: "bath", value: g.bathrooms, label: t("statBathrooms") },
+    g.price && { icon: "euro", value: g.price, label: t("statPrice") },
   ].filter(Boolean) as { icon: string; value: string; label: string }[]
 
   const galleryImages = (g.gallery || []).filter((img) => img?.asset)
@@ -128,13 +116,13 @@ export default async function GammePage({
           href={`/realisations/${slug}`}
           className="inline-flex items-center gap-2 metadata text-foreground/55 hover:text-accent transition-colors"
         >
-          ← Retour à {data.realisationTitle}
+          {t("backTo")} {data.realisationTitle}
         </Link>
 
         {/* Header + VR */}
         <div className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div className="flex flex-col gap-6">
-            <p className="eyebrow">Gamme · {data.realisationLocation}</p>
+            <p className="eyebrow">{t("gammePrefix")} {data.realisationLocation}</p>
             <h1
               className="font-serif font-medium text-foreground leading-[0.95]"
               style={{ fontSize: "clamp(44px,6vw,96px)" }}
@@ -145,7 +133,7 @@ export default async function GammePage({
           {g.vrUrl && (
             <Button asChild variant="default" size="lg">
               <a href={g.vrUrl} target="_blank" rel="noopener noreferrer">
-                Visite virtuelle 360°
+                {t("virtualTour")}
               </a>
             </Button>
           )}
@@ -180,7 +168,7 @@ export default async function GammePage({
         {/* Prestations */}
         {hasFeatures && (
           <div className="mt-24 md:mt-36 bg-card border border-border rounded-sm p-8 md:p-10 max-w-3xl">
-            <p className="eyebrow mb-6">Prestations incluses</p>
+            <p className="eyebrow mb-6">{t("featuresEyebrow")}</p>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
               {g.features!.map((f) => (
                 <li key={f} className="flex gap-3 text-foreground/75 text-sm leading-relaxed">
@@ -195,14 +183,14 @@ export default async function GammePage({
         {g.preReserveUrl && (
           <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-6 bg-secondary rounded-sm p-8 md:p-10">
             <div>
-              <p className="eyebrow mb-3">Étape suivante</p>
+              <p className="eyebrow mb-3">{t("nextStepEyebrow")}</p>
               <p className="font-serif text-foreground text-2xl md:text-3xl leading-tight">
-                Pré-réservez {g.name} en quelques minutes.
+                {t("preReserveTitle", { name: g.name || "" })}
               </p>
             </div>
             <Button asChild variant="default" size="lg">
               <a href={g.preReserveUrl} target="_blank" rel="noopener noreferrer">
-                Pré-réserver
+                {t("preReserveCta")}
               </a>
             </Button>
           </div>
@@ -213,13 +201,13 @@ export default async function GammePage({
           <section className="mt-24 md:mt-36">
             <div className="flex items-end justify-between gap-6 mb-10">
               <div className="flex flex-col gap-4">
-                <p className="eyebrow">Galerie</p>
+                <p className="eyebrow">{t("galleryEyebrow")}</p>
                 <h2 className="font-serif font-medium text-foreground text-3xl md:text-5xl leading-tight">
-                  Espaces de vie.
+                  {t("galleryTitle")}
                 </h2>
               </div>
               <Badge variant="outline" className="text-foreground border-foreground/25 hidden md:inline-flex">
-                {galleryImages.length} visuels
+                {t("visualsCount", { count: galleryImages.length })}
               </Badge>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -236,7 +224,7 @@ export default async function GammePage({
                   {img.room && (
                     <div className="absolute bottom-4 left-4">
                       <Badge className="bg-primary text-background border-transparent">
-                        {ROOM_LABELS[img.room] || img.room}
+                        {tr.has(img.room) ? tr(img.room) : img.room}
                       </Badge>
                     </div>
                   )}

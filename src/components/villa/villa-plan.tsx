@@ -1,21 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
-
-const ROOM_LABELS: Record<string, string> = {
-  living: "Salon",
-  kitchen: "Cuisine",
-  terrace: "Terrasse",
-  dining: "Salle à manger",
-  workspace: "Espace de travail",
-  office: "Bureau",
-  toilet: "Toilettes",
-  bedroom1: "Chambre 1",
-  bedroom2: "Chambre 2",
-  bedroom3: "Chambre 3",
-  bath1: "Salle de bain 1",
-  bath2: "Salle de bain 2",
-  bath3: "Salle de bain 3",
-}
+import { useTranslations } from "next-intl"
 
 export type VillaPlanProps = {
   svgRdc: string | null
@@ -25,6 +10,8 @@ export type VillaPlanProps = {
 }
 
 export default function VillaPlan({ svgRdc, svgEtage, activeRoom, onRoomChange }: VillaPlanProps) {
+  const t = useTranslations("VillaPlan")
+  const tr = useTranslations("VillaRooms")
   const [floor, setFloor] = useState<"rdc" | "etage">("rdc")
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -63,8 +50,8 @@ export default function VillaPlan({ svgRdc, svgEtage, activeRoom, onRoomChange }
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <p className="font-serif text-foreground text-xl md:text-2xl leading-tight">Plan interactif</p>
-          <p className="metadata text-foreground/45 mt-1">Sélectionnez une pièce pour explorer</p>
+          <p className="font-serif text-foreground text-xl md:text-2xl leading-tight">{t("title")}</p>
+          <p className="metadata text-foreground/45 mt-1">{t("subtitle")}</p>
         </div>
         <div className="flex gap-1 p-1 bg-secondary rounded-full">
           <button
@@ -74,7 +61,7 @@ export default function VillaPlan({ svgRdc, svgEtage, activeRoom, onRoomChange }
               floor === "rdc" ? "bg-primary text-background" : "text-foreground/60 hover:text-foreground"
             }`}
           >
-            RDC
+            {t("floorRdc")}
           </button>
           <button
             type="button"
@@ -83,7 +70,7 @@ export default function VillaPlan({ svgRdc, svgEtage, activeRoom, onRoomChange }
               floor === "etage" ? "bg-primary text-background" : "text-foreground/60 hover:text-foreground"
             }`}
           >
-            Étage
+            {t("floorEtage")}
           </button>
         </div>
       </div>
@@ -95,11 +82,11 @@ export default function VillaPlan({ svgRdc, svgEtage, activeRoom, onRoomChange }
         {activeSvg ? (
           <div dangerouslySetInnerHTML={{ __html: activeSvg }} />
         ) : (
-          <p className="text-foreground/50 text-center py-16">Plan non disponible</p>
+          <p className="text-foreground/50 text-center py-16">{t("notAvailable")}</p>
         )}
         {activeRoom && (
           <div className="absolute top-4 right-4 bg-primary text-background px-4 py-2 rounded-full metadata">
-            {ROOM_LABELS[activeRoom] || activeRoom}
+            {tr.has(activeRoom) ? tr(activeRoom) : activeRoom}
           </div>
         )}
       </div>

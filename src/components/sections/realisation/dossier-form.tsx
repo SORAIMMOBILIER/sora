@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 
 declare global {
@@ -9,6 +10,7 @@ declare global {
 }
 
 export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: { slug: string; acTagId?: string; acListId?: string; freshsalesTag?: string }) {
+  const t = useTranslations("DossierForm")
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
@@ -42,9 +44,9 @@ export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: 
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="font-serif font-medium text-foreground text-2xl mb-4">Dossier envoyé.</h2>
+        <h2 className="font-serif font-medium text-foreground text-2xl mb-4">{t("successTitle")}</h2>
         <p className="text-foreground/65 leading-relaxed">
-          Vérifiez votre boîte mail. Le dossier complet arrive dans quelques minutes.
+          {t("successBody")}
         </p>
       </div>
     )
@@ -53,16 +55,16 @@ export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: 
   return (
     <form onSubmit={handleSubmit} className="bg-card border border-border rounded-sm p-8 md:p-12">
       <h2 className="font-serif font-medium text-foreground text-xl md:text-2xl mb-2">
-        Recevoir le dossier
+        {t("formTitle")}
       </h2>
       <p className="text-foreground/50 text-sm mb-8">
-        Accès immédiat par email. Sans engagement.
+        {t("formBody")}
       </p>
 
       <div className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="form-label mb-2">Prénom</label>
+            <label htmlFor="firstName" className="form-label mb-2">{t("formFirstName")}</label>
             <input
               id="firstName"
               type="text"
@@ -74,7 +76,7 @@ export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: 
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="form-label mb-2">Nom</label>
+            <label htmlFor="lastName" className="form-label mb-2">{t("formLastName")}</label>
             <input
               id="lastName"
               type="text"
@@ -88,7 +90,7 @@ export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: 
         </div>
 
         <div>
-          <label htmlFor="email" className="form-label mb-2">Email</label>
+          <label htmlFor="email" className="form-label mb-2">{t("formEmail")}</label>
           <input
             id="email"
             type="email"
@@ -101,7 +103,7 @@ export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: 
         </div>
 
         <div>
-          <label htmlFor="phone" className="form-label mb-2">Téléphone</label>
+          <label htmlFor="phone" className="form-label mb-2">{t("formPhone")}</label>
           <input
             id="phone"
             type="tel"
@@ -114,17 +116,17 @@ export default function DossierForm({ slug, acTagId, acListId, freshsalesTag }: 
       </div>
 
       <Button type="submit" disabled={status === "loading"} className="w-full mt-8">
-        {status === "loading" ? "Envoi en cours..." : "Recevoir le dossier gratuitement"}
+        {status === "loading" ? t("formSubmitting") : t("formSubmit")}
       </Button>
 
       {status === "error" && (
         <p className="mt-4 text-destructive text-sm text-center">
-          Une erreur est survenue. Réessayez ou contactez-nous directement.
+          {t("formError")}
         </p>
       )}
 
       <p className="mt-6 metadata text-foreground/35 text-center">
-        Sans démarchage commercial / Désinscription en 1 clic
+        {t("formNote")}
       </p>
     </form>
   )

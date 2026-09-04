@@ -774,6 +774,67 @@
     "formSubmitting": "Sending...",
     "formError": "Something went wrong. Please try again or contact us directly."
   },
+  "RealisationDetail": {
+    "explorerVilla": "Explore the villa",
+    "inclusEyebrow": "Included in every villa"
+  },
+  "DossierForm": {
+    "successTitle": "File sent.",
+    "successBody": "Check your inbox. The complete file arrives within a few minutes.",
+    "formTitle": "Get the file",
+    "formBody": "Instant access by email. No commitment.",
+    "formFirstName": "First name",
+    "formLastName": "Last name",
+    "formEmail": "Email",
+    "formPhone": "Phone",
+    "formSubmit": "Get the file for free",
+    "formSubmitting": "Sending...",
+    "formError": "Something went wrong. Please try again or contact us directly.",
+    "formNote": "No cold-calling / Unsubscribe in one click"
+  },
+  "VillaRooms": {
+    "living": "Living room",
+    "kitchen": "Kitchen",
+    "terrace": "Terrace",
+    "dining": "Dining room",
+    "workspace": "Workspace",
+    "office": "Office",
+    "toilet": "Toilet",
+    "bedroom1": "Bedroom 1",
+    "bedroom2": "Bedroom 2",
+    "bedroom3": "Bedroom 3",
+    "bath1": "Bathroom 1",
+    "bath2": "Bathroom 2",
+    "bath3": "Bathroom 3"
+  },
+  "VillaPlan": {
+    "title": "Interactive floor plan",
+    "subtitle": "Select a room to explore",
+    "floorRdc": "Ground floor",
+    "floorEtage": "Upper floor",
+    "notAvailable": "Floor plan unavailable"
+  },
+  "VillaExplorer": {
+    "apercu": "Overview",
+    "clickRoom": "Click a room on the plan",
+    "noPhoto": "No photo available"
+  },
+  "GammeDetail": {
+    "backTo": "← Back to",
+    "gammePrefix": "Range ·",
+    "virtualTour": "360° virtual tour",
+    "statSurface": "Surface",
+    "statBedrooms": "Bedroom",
+    "statBathrooms": "Bathroom",
+    "statPrice": "Starting at",
+    "featuresEyebrow": "Included amenities",
+    "nextStepEyebrow": "Next step",
+    "preReserveTitle": "Pre-reserve {name} in just a few minutes.",
+    "preReserveCta": "Pre-reserve",
+    "galleryEyebrow": "Gallery",
+    "galleryTitle": "Living spaces.",
+    "visualsCount": "{count} visuals"
+  },
   "Temoignages": {
     "eyebrow": "Testimonials",
     "title": "What our investors say.",

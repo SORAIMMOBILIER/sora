@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { REALISATION_BY_SLUG_QUERY, REALISATION_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -96,6 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function RealisationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  const t = await getTranslations("RealisationDetail")
   const r = await sanityFetch<Realisation | null>({
     query: REALISATION_BY_SLUG_QUERY,
     params: { slug },
@@ -232,7 +234,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                       {g.slug && (
                         <div className="mt-5 pt-4 border-t border-background/20 flex items-center justify-between">
                           <span className="metadata text-background/70 group-hover:text-accent transition-colors">
-                            Explorer la villa
+                            {t("explorerVilla")}
                           </span>
                           <span className="text-background/70 group-hover:text-accent transition-colors">→</span>
                         </div>
@@ -261,7 +263,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
             {r.inclus && r.inclus.length > 0 && (
               <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <p className="eyebrow mb-6">Inclus dans chaque villa</p>
+                  <p className="eyebrow mb-6">{t("inclusEyebrow")}</p>
                   <ul className="space-y-4">
                     {r.inclus.map((item) => (
                       <li key={item} className="flex gap-3 text-foreground/75 text-base">
