@@ -633,6 +633,91 @@
     "testimonialsTitle": "Ce que disent nos investisseurs.",
     "floatingLabel": "Une question ?"
   },
+  "Seseh": {
+    "heroEyebrow": "Seseh, Bali / 26 villas / Livraison mars 2028",
+    "heroTitle": "Seseh Sunset Villas.",
+    "heroBody": "26 villas à 300m de la plage de Seseh. 4 gammes de 149k€ à 469k€. Rendement brut projeté jusqu'à 13,8%. Construction septembre 2026.",
+    "ctaDossier": "Recevoir le dossier complet",
+    "ctaGammes": "Voir les 4 gammes",
+    "stats": [
+      { "value": "300m", "label": "de la plage" },
+      { "value": "26", "label": "villas" },
+      { "value": "30+30", "label": "ans leasehold" },
+      { "value": "Mars 2028", "label": "livraison" }
+    ],
+    "gammesEyebrow": "4 gammes / 1 emplacement",
+    "gammesTitle": "Choisissez votre villa.",
+    "gammes": [
+      { "name": "Élégance", "price": "149 000€", "surface": "51 m²", "chambres": "1 chambre", "revenus": "20 611€/an", "rendement": "13,8%", "piscine": "Jacuzzi privé" },
+      { "name": "Prestige", "price": "239 000€", "surface": "80 m²", "chambres": "2 chambres", "revenus": "27 972€/an", "rendement": "11,7%", "piscine": "Piscine privée" },
+      { "name": "Signature", "price": "369 000€", "surface": "153 m²", "chambres": "2 chambres premium", "revenus": "Sur demande", "rendement": "Sur demande", "piscine": "Piscine privée" },
+      { "name": "Exception", "price": "469 000€", "surface": "197 m²", "chambres": "3 chambres", "revenus": "Sur demande", "rendement": "Sur demande", "piscine": "Piscine privée" }
+    ],
+    "cleEnMain": "Clé en main",
+    "inclusEyebrow": "Inclus dans chaque villa",
+    "inclus": [
+      "Clé en main, meublée, architecte dédiée",
+      "Piscine privée ou jacuzzi selon gamme",
+      "Cuisine équipée, douche extérieure",
+      "Jardin privé, prête à la location",
+      "Gestion locative intégrée 7j/7"
+    ],
+    "projectionsEyebrow": "Projection / Gamme Élégance 149 000€",
+    "projectionsTitle": "Rendement cumulé sur 5 ans.",
+    "projectionsBody": "Net après flat tax française (31,4%). Incluant loyers, plus-value et restitution du capital.",
+    "projections": [
+      { "label": "Livret A", "rendement": "7,7%", "ratio": "1x" },
+      { "label": "SCPI", "rendement": "13,6%", "ratio": "1,8x" },
+      { "label": "Immo locatif FR", "rendement": "16,7%", "ratio": "2,2x" },
+      { "label": "Seseh Sunset Villas", "rendement": "30,1%", "ratio": "3,9x", "highlight": true }
+    ],
+    "totalPercu": "214 471€",
+    "totalPercuLabel": "Total perçu sur 5 ans",
+    "occupationLabel": "Taux d'occupation",
+    "tarifMoyenLabel": "Tarif moyen après taxe",
+    "locationEyebrow": "Localisation / Seseh, Bali",
+    "locationTitle": "À 300m de la plage.",
+    "locationItems": [
+      { "value": "300m", "label": "Plage de Seseh" },
+      { "value": "3 min", "label": "Restaurants" },
+      { "value": "8 min", "label": "Canggu" },
+      { "value": "60 min", "label": "Aéroport" }
+    ],
+    "guaranteesEyebrow": "Garanties",
+    "guaranteesTitle": "Un cadre sécurisé.",
+    "guarantees": [
+      { "value": "10 ans", "label": "Garantie structure", "desc": "Fondations, murs porteurs, charpente" },
+      { "value": "5 ans", "label": "Garantie toiture", "desc": "Étanchéité et couverture complète" },
+      { "value": "1 an", "label": "Garantie intégrale", "desc": "Tout équipement, finitions, installations" }
+    ],
+    "dossierEyebrow": "Dossier complet / Gratuit",
+    "dossierTitle": "Recevez le dossier Seseh Sunset Villas.",
+    "dossierBody": "Plans architecte, projections financières détaillées, cadre juridique PT PMA, et calendrier de construction. Tout ce qu'il faut pour décider en connaissance de cause.",
+    "dossierBullets": [
+      "Plans et rendus 3D des 4 gammes",
+      "Projections financières sur 5 ans",
+      "Cadre juridique et fiscal complet",
+      "Calendrier de construction détaillé"
+    ],
+    "successTitle": "Dossier envoyé.",
+    "successBody": "Vérifiez votre boîte mail. Le dossier complet arrive dans quelques minutes.",
+    "formTitle": "Recevoir le dossier",
+    "formBody": "Accès immédiat par email. Sans engagement.",
+    "formFirstName": "Prénom",
+    "formLastName": "Nom",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubmit": "Recevoir le dossier gratuitement",
+    "formSubmitting": "Envoi en cours...",
+    "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
+    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+  },
+  "InteractivePlan": {
+    "eyebrow": "Explorez chaque villa",
+    "title": "Plan interactif.",
+    "body": "Sélectionnez une gamme puis cliquez sur une pièce pour voir l'intérieur.",
+    "selectRoom": "Sélectionnez une pièce"
+  },
   "Temoignages": {
     "eyebrow": "Témoignages",
     "title": "Ce que disent ceux qui ont investi.",

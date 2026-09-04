@@ -633,6 +633,91 @@
     "testimonialsTitle": "What our investors say.",
     "floatingLabel": "Got a question?"
   },
+  "Seseh": {
+    "heroEyebrow": "Seseh, Bali / 26 villas / Delivery March 2028",
+    "heroTitle": "Seseh Sunset Villas.",
+    "heroBody": "26 villas 300m from Seseh beach. 4 ranges from €149k to €469k. Projected gross return of up to 13.8%. Construction starts September 2026.",
+    "ctaDossier": "Get the complete file",
+    "ctaGammes": "See the 4 ranges",
+    "stats": [
+      { "value": "300m", "label": "from the beach" },
+      { "value": "26", "label": "villas" },
+      { "value": "30+30", "label": "year leasehold" },
+      { "value": "March 2028", "label": "delivery" }
+    ],
+    "gammesEyebrow": "4 ranges / 1 location",
+    "gammesTitle": "Choose your villa.",
+    "gammes": [
+      { "name": "Élégance", "price": "€149,000", "surface": "51 m²", "chambres": "1 bedroom", "revenus": "€20,611/year", "rendement": "13.8%", "piscine": "Private jacuzzi" },
+      { "name": "Prestige", "price": "€239,000", "surface": "80 m²", "chambres": "2 bedrooms", "revenus": "€27,972/year", "rendement": "11.7%", "piscine": "Private pool" },
+      { "name": "Signature", "price": "€369,000", "surface": "153 m²", "chambres": "2 premium bedrooms", "revenus": "On request", "rendement": "On request", "piscine": "Private pool" },
+      { "name": "Exception", "price": "€469,000", "surface": "197 m²", "chambres": "3 bedrooms", "revenus": "On request", "rendement": "On request", "piscine": "Private pool" }
+    ],
+    "cleEnMain": "Turnkey",
+    "inclusEyebrow": "Included in every villa",
+    "inclus": [
+      "Turnkey, furnished, dedicated architect",
+      "Private pool or jacuzzi depending on range",
+      "Equipped kitchen, outdoor shower",
+      "Private garden, ready to rent",
+      "Integrated rental management, 7 days a week"
+    ],
+    "projectionsEyebrow": "Projection / Élégance range €149,000",
+    "projectionsTitle": "Cumulative return over 5 years.",
+    "projectionsBody": "Net after French flat tax (31.4%). Including rent, capital gain and return of capital.",
+    "projections": [
+      { "label": "Livret A", "rendement": "7.7%", "ratio": "1x" },
+      { "label": "SCPI", "rendement": "13.6%", "ratio": "1.8x" },
+      { "label": "French rental property", "rendement": "16.7%", "ratio": "2.2x" },
+      { "label": "Seseh Sunset Villas", "rendement": "30.1%", "ratio": "3.9x", "highlight": true }
+    ],
+    "totalPercu": "€214,471",
+    "totalPercuLabel": "Total received over 5 years",
+    "occupationLabel": "Occupancy rate",
+    "tarifMoyenLabel": "Average nightly rate after tax",
+    "locationEyebrow": "Location / Seseh, Bali",
+    "locationTitle": "300m from the beach.",
+    "locationItems": [
+      { "value": "300m", "label": "Seseh beach" },
+      { "value": "3 min", "label": "Restaurants" },
+      { "value": "8 min", "label": "Canggu" },
+      { "value": "60 min", "label": "Airport" }
+    ],
+    "guaranteesEyebrow": "Guarantees",
+    "guaranteesTitle": "A secure framework.",
+    "guarantees": [
+      { "value": "10 years", "label": "Structural warranty", "desc": "Foundations, load-bearing walls, framing" },
+      { "value": "5 years", "label": "Roof warranty", "desc": "Waterproofing and full roof covering" },
+      { "value": "1 year", "label": "Full warranty", "desc": "All equipment, finishes, fittings" }
+    ],
+    "dossierEyebrow": "Complete file / Free",
+    "dossierTitle": "Get the Seseh Sunset Villas file.",
+    "dossierBody": "Architect's plans, detailed financial projections, PT PMA legal framework, and construction schedule. Everything you need to make an informed decision.",
+    "dossierBullets": [
+      "Plans and 3D renders of the 4 ranges",
+      "5-year financial projections",
+      "Complete legal and tax framework",
+      "Detailed construction schedule"
+    ],
+    "successTitle": "File sent.",
+    "successBody": "Check your inbox. The complete file arrives within a few minutes.",
+    "formTitle": "Get the file",
+    "formBody": "Instant access by email. No commitment.",
+    "formFirstName": "First name",
+    "formLastName": "Last name",
+    "formEmail": "Email",
+    "formPhone": "Phone",
+    "formSubmit": "Get the file for free",
+    "formSubmitting": "Sending...",
+    "formError": "Something went wrong. Please try again or contact us directly.",
+    "formNote": "No cold-calling / Unsubscribe in one click"
+  },
+  "InteractivePlan": {
+    "eyebrow": "Explore each villa",
+    "title": "Interactive floor plan.",
+    "body": "Select a range, then click a room to see the interior.",
+    "selectRoom": "Select a room"
+  },
   "Temoignages": {
     "eyebrow": "Testimonials",
     "title": "What our investors say.",

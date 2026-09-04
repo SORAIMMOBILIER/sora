@@ -1,6 +1,7 @@
 "use client"
 import { useState, useRef, useEffect, useCallback } from "react"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 type Zone = {
   id: string
@@ -281,6 +282,7 @@ function RenderStatic({ s }: { s: StaticZone }) {
 }
 
 export default function InteractivePlan() {
+  const t = useTranslations("InteractivePlan")
   const [villaIdx, setVillaIdx] = useState(0)
   const [floorIdx, setFloorIdx] = useState(0)
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null)
@@ -323,12 +325,12 @@ export default function InteractivePlan() {
     <section className="bg-bg py-24 md:py-36 px-6">
       <div className="container-page max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
-          <p className="ss-fade eyebrow mx-auto mb-6">Explorez chaque villa</p>
+          <p className="ss-fade eyebrow mx-auto mb-6">{t("eyebrow")}</p>
           <h2 className="ss-fade font-serif font-medium text-ink leading-[1.0]" style={{ fontSize: "clamp(32px,4vw,60px)" }}>
-            Plan interactif.
+            {t("title")}
           </h2>
           <p className="ss-fade text-ink/60 mt-4 max-w-lg mx-auto">
-            Sélectionnez une gamme puis cliquez sur une pièce pour voir l&apos;intérieur.
+            {t("body")}
           </p>
         </div>
 
@@ -364,7 +366,7 @@ export default function InteractivePlan() {
             <div className="flex justify-between items-end mb-4 max-w-[520px] mx-auto">
               <div>
                 <p className="metadata text-ink/90 font-semibold tracking-[0.18em]">{villa.name}</p>
-                <p className="text-ink/50 text-[11px] tracking-[0.15em] uppercase mt-1">Sélectionnez une pièce</p>
+                <p className="text-ink/50 text-[11px] tracking-[0.15em] uppercase mt-1">{t("selectRoom")}</p>
               </div>
               <div className="flex gap-1.5">
                 {villa.floors.map((f, i) => (
