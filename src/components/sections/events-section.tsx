@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { FEATURED_EVENTS_QUERY, WEBINAR_RECURRING_CARD_QUERY } from "../../../sanity/lib/queries"

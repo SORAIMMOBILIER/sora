@@ -1,9 +1,9 @@
 "use client"
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import Image from "next/image"
 import { useState, useEffect, useRef, type MouseEvent } from "react"
 import { ChevronDown } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { Button } from "@/components/ui/button"
 import LanguageSwitch from "@/components/layout/language-switch"
 
@@ -22,6 +22,7 @@ const STATUS_DOT: Record<NavRealisation["status"], string> = {
 
 export default function Navbar({ realisations }: { realisations: NavRealisation[] }) {
   const t = useTranslations("Navbar")
+  const locale = useLocale()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -50,8 +51,9 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
     event.preventDefault()
     setMenuOpen(false)
 
-    const href = `/#${id}`
-    if (window.location.pathname !== "/") {
+    const homePath = locale === "en" ? "/en" : "/"
+    const href = `${homePath}#${id}`
+    if (window.location.pathname !== homePath) {
       window.location.assign(href)
       return
     }

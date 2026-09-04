@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import Image from "next/image"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { ALL_POSTS_QUERY } from "../../../sanity/lib/queries"

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import Footer from "@/components/layout/footer"

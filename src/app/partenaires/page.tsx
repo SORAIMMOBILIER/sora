@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
+import Link from "@/components/localized-link"
 import { gsap } from "gsap"
 import {
   Accordion,
@@ -93,7 +94,7 @@ export default function PartenairesPage() {
       {/* ─── HERO : Headline + Video + CTA ─── */}
       <section className="px-6 pt-12 md:pt-20 pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto">
-          <a href="/" className="vsl-fade font-serif font-medium text-foreground/40 text-sm tracking-wide">Sora Immobilier</a>
+          <Link href="/" className="vsl-fade font-serif font-medium text-foreground/40 text-sm tracking-wide">Sora Immobilier</Link>
 
           <h1 className="vsl-fade font-serif font-medium text-foreground leading-[0.95] mt-8 md:mt-12 max-w-4xl" style={{ fontSize: "clamp(32px,5vw,68px)" }}>
             Proposez Bali à vos clients. 3 700€ à 11 700€ par vente.

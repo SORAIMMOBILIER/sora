@@ -1,6 +1,7 @@
 "use client"
 import { Suspense, useEffect, useRef } from "react"
 import { useSearchParams } from "next/navigation"
+import Link from "@/components/localized-link"
 
 declare global {
   interface Window {
@@ -33,9 +34,9 @@ function MerciContent() {
         Vous recevrez un email de confirmation avec les détails du rendez-vous.
       </p>
       <div className="mt-10 space-y-4">
-        <a href="/seseh" className="cta-primary font-serif font-semibold inline-block">
+        <Link href="/seseh" className="cta-primary font-serif font-semibold inline-block">
           Découvrir le projet Seseh
-        </a>
+        </Link>
         <p className="metadata text-muted-foreground/40">
           En attendant votre appel, explorez nos réalisations.
         </p>

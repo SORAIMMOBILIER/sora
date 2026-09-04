@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
+import Link from "@/components/localized-link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import {
@@ -159,7 +160,7 @@ export default function VSLPage() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_360px] gap-10 md:gap-16 items-center">
           {/* Colonne gauche : texte */}
           <div>
-            <a href="/" className="vsl-fade font-serif font-medium text-foreground/40 text-sm tracking-wide">Sora Immobilier</a>
+            <Link href="/" className="vsl-fade font-serif font-medium text-foreground/40 text-sm tracking-wide">Sora Immobilier</Link>
 
             <h1 className="vsl-fade font-serif font-medium text-foreground leading-[0.92] mt-8 md:mt-12" style={{ fontSize: "clamp(32px,5vw,56px)" }}>
               Investissez à Bali, dans un projet clé en main.

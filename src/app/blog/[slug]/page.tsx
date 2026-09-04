@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import { PortableText, type PortableTextComponents } from "@portabletext/react"
 import { sanityFetch } from "../../../../sanity/lib/fetch"

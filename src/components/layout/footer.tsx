@@ -1,13 +1,14 @@
 "use client"
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import Image from "next/image"
 import type { MouseEvent } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
 export default function Footer() {
   const t = useTranslations("Footer")
+  const locale = useLocale()
 
   const SECTIONS = [
     { href: "/", label: t("navAccueil") },
@@ -37,8 +38,9 @@ export default function Footer() {
   const goToHomeAnchor = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
 
-    const href = `/#${id}`
-    if (window.location.pathname !== "/") {
+    const homePath = locale === "en" ? "/en" : "/"
+    const href = `${homePath}#${id}`
+    if (window.location.pathname !== homePath) {
       window.location.assign(href)
       return
     }

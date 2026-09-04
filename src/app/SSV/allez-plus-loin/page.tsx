@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/localized-link"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { WEBINAR_RECURRING_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
