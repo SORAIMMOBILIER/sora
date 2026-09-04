@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "@/components/localized-link"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { ALL_EVENTS_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
@@ -24,16 +25,10 @@ type EventItem = {
   location?: { type?: string; platform?: string }
 }
 
-const STATUS_LABELS: Record<string, string> = {
-  "en-cours": "En cours",
-  prochainement: "Prochainement",
-  termine: "Terminé",
-}
+function formatEventDate(date: string | undefined, locale: string, fallback: string) {
+  if (!date) return fallback
 
-function formatEventDate(date?: string) {
-  if (!date) return "Date à venir"
-
-  return new Intl.DateTimeFormat("fr-FR", {
+  return new Intl.DateTimeFormat(locale === "en" ? "en-GB" : "fr-FR", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -43,26 +38,34 @@ function formatEventDate(date?: string) {
 }
 
 export default async function EventsIndexPage() {
+  const t = await getTranslations("EventsIndex")
+  const locale = await getLocale()
   const events = await sanityFetch<EventItem[]>({ query: ALL_EVENTS_QUERY, tags: ["event"] })
+
+  const STATUS_LABELS: Record<string, string> = {
+    "en-cours": t("statusEnCours"),
+    prochainement: t("statusProchainement"),
+    termine: t("statusTermine"),
+  }
 
   return (
     <main className="bg-bg min-h-screen pt-32 md:pt-44 pb-24 px-6 md:px-12">
       <div className="container-page">
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <p className="eyebrow mx-auto text-ink-muted mb-6">Évènements</p>
+          <p className="eyebrow mx-auto text-ink-muted mb-6">{t("eyebrow")}</p>
           <h1 className="font-serif font-medium text-ink leading-[1.0]" style={{ fontSize: "clamp(40px,6vw,96px)" }}>
-            Webinaires et rendez-vous terrain.
+            {t("title")}
           </h1>
           <p className="text-ink/60 mt-8 leading-relaxed text-base max-w-2xl mx-auto">
-            Sessions en ligne, masterclass et échanges autour du cadre juridique, des chiffres et des opérations suivies à Bali.
+            {t("body")}
           </p>
         </div>
 
         {events.length === 0 ? (
           <div className="max-w-xl mx-auto border border-line bg-bg-soft rounded-sm p-8 text-center">
-            <p className="font-serif text-2xl text-ink mb-3">Aucun évènement publié.</p>
+            <p className="font-serif text-2xl text-ink mb-3">{t("emptyTitle")}</p>
             <p className="text-sm text-ink/60 leading-relaxed">
-              Les prochaines sessions seront ajoutées ici dès leur publication.
+              {t("emptyBody")}
             </p>
           </div>
         ) : (
@@ -100,7 +103,7 @@ export default async function EventsIndexPage() {
                 </div>
                 <div className="flex flex-1 flex-col p-6 md:p-7">
                   <p className="metadata text-ink/45 mb-4">
-                    {formatEventDate(event.startsAt)}
+                    {formatEventDate(event.startsAt, locale, t("dateToBeAnnounced"))}
                     {event.duration ? ` / ${event.duration}` : ""}
                   </p>
                   <h2 className="font-serif text-2xl md:text-3xl text-ink group-hover:text-accent transition-colors duration-300 mb-4">
@@ -108,7 +111,7 @@ export default async function EventsIndexPage() {
                   </h2>
                   {event.summary && <p className="text-sm text-ink/65 leading-relaxed mb-8">{event.summary}</p>}
                   <p className="mt-auto metadata text-accent">
-                    Voir l&apos;évènement
+                    {t("viewEvent")}
                   </p>
                 </div>
               </Link>

@@ -718,6 +718,62 @@
     "body": "Sélectionnez une gamme puis cliquez sur une pièce pour voir l'intérieur.",
     "selectRoom": "Sélectionnez une pièce"
   },
+  "Blog": {
+    "eyebrow": "Journal",
+    "title": "Notes du terrain.",
+    "body": "Analyses chiffrées, retours d'opérations, lectures du marché balinais. Sans pitch commercial.",
+    "empty": "Aucun article publié pour l'instant. Le premier arrive bientôt."
+  },
+  "EventsIndex": {
+    "eyebrow": "Évènements",
+    "title": "Webinaires et rendez-vous terrain.",
+    "body": "Sessions en ligne, masterclass et échanges autour du cadre juridique, des chiffres et des opérations suivies à Bali.",
+    "emptyTitle": "Aucun évènement publié.",
+    "emptyBody": "Les prochaines sessions seront ajoutées ici dès leur publication.",
+    "statusEnCours": "En cours",
+    "statusProchainement": "Prochainement",
+    "statusTermine": "Terminé",
+    "dateToBeAnnounced": "Date à venir",
+    "viewEvent": "Voir l'évènement"
+  },
+  "BlogPost": {
+    "backToArticles": "← Tous les articles"
+  },
+  "EventDetail": {
+    "backToEvents": "← Tous les évènements",
+    "defaultEyebrow": "Évènement",
+    "dateLabel": "Date",
+    "timeLabel": "Heure",
+    "durationLabel": "Durée",
+    "locationLabel": "Lieu",
+    "statusLabel": "Statut",
+    "defaultCta": "Réserver ma place",
+    "statusEnCours": "En cours",
+    "statusProchainement": "Prochainement",
+    "statusTermine": "Terminé",
+    "dateToBeAnnounced": "Date à venir",
+    "parisTimeHint": "heure de Paris",
+    "timeHintPrefix": "heure de",
+    "programEyebrow": "Programme",
+    "speakersEyebrow": "Intervenants",
+    "registrationEyebrow": "Inscription",
+    "registrationBody": "Renseignez vos coordonnées, vous recevez immédiatement les détails de connexion et un rappel la veille.",
+    "durationPrefix": "Durée ·",
+    "locationPrefix": "Lieu ·"
+  },
+  "EventForm": {
+    "successTitle": "Inscription confirmée.",
+    "successBody": "Vous recevez le lien et les rappels par email dans quelques minutes.",
+    "formTitle": "Réserver ma place",
+    "formBodyPrefix": "Accès immédiat.",
+    "formFirstName": "Prénom",
+    "formLastName": "Nom",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubmit": "Réserver ma place",
+    "formSubmitting": "Envoi en cours...",
+    "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement."
+  },
   "Temoignages": {
     "eyebrow": "Témoignages",
     "title": "Ce que disent ceux qui ont investi.",

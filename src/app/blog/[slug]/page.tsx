@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import { PortableText, type PortableTextComponents } from "@portabletext/react"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { POST_BY_SLUG_QUERY, POST_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -78,6 +79,8 @@ const components: PortableTextComponents = {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  const t = await getTranslations("BlogPost")
+  const locale = await getLocale()
   const post = await sanityFetch<Post | null>({ query: POST_BY_SLUG_QUERY, params: { slug }, tags: [`post:${slug}`] })
   if (!post) notFound()
 
@@ -85,7 +88,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <main className="bg-bg pt-32 md:pt-44 pb-24 px-6">
       <article className="max-w-3xl mx-auto">
         <Link href="/blog" className="inline-block mb-12 metadata text-ink/55 hover:text-accent transition-colors">
-          ← Tous les articles
+          {t("backToArticles")}
         </Link>
 
         {post.categories && post.categories.length > 0 && (
@@ -102,7 +105,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {post.author?.name && <span>{post.author.name}</span>}
           {post.author?.name && <span className="text-ink/25">/</span>}
           <time dateTime={post.publishedAt}>
-            {new Date(post.publishedAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+            {new Date(post.publishedAt).toLocaleDateString(locale === "en" ? "en-GB" : "fr-FR", { day: "numeric", month: "long", year: "numeric" })}
           </time>
         </div>
 

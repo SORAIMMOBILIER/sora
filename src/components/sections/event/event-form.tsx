@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 
 declare global {
@@ -29,6 +30,7 @@ export default function EventForm({
   freshsalesTag,
   acTagId,
 }: Props) {
+  const t = useTranslations("EventForm")
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
@@ -71,9 +73,9 @@ export default function EventForm({
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="font-serif font-medium text-ink text-2xl mb-4">Inscription confirmée.</h3>
+        <h3 className="font-serif font-medium text-ink text-2xl mb-4">{t("successTitle")}</h3>
         <p className="text-ink/65 leading-relaxed">
-          Vous recevez le lien et les rappels par email dans quelques minutes.
+          {t("successBody")}
         </p>
       </div>
     )
@@ -82,16 +84,16 @@ export default function EventForm({
   return (
     <form onSubmit={handleSubmit} className="bg-bg-soft border border-line rounded-sm p-8 md:p-10">
       <h3 className="font-serif font-medium text-ink text-xl md:text-2xl mb-2">
-        Réserver ma place
+        {t("formTitle")}
       </h3>
       <p className="text-ink/50 text-sm mb-8">
-        Accès immédiat. {eventTitle && `— ${eventTitle}.`}
+        {t("formBodyPrefix")} {eventTitle && `— ${eventTitle}.`}
       </p>
 
       <div className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="ev-firstName" className="form-label mb-2">Prénom</label>
+            <label htmlFor="ev-firstName" className="form-label mb-2">{t("formFirstName")}</label>
             <input
               id="ev-firstName"
               type="text"
@@ -103,7 +105,7 @@ export default function EventForm({
             />
           </div>
           <div>
-            <label htmlFor="ev-lastName" className="form-label mb-2">Nom</label>
+            <label htmlFor="ev-lastName" className="form-label mb-2">{t("formLastName")}</label>
             <input
               id="ev-lastName"
               type="text"
@@ -117,7 +119,7 @@ export default function EventForm({
         </div>
 
         <div>
-          <label htmlFor="ev-email" className="form-label mb-2">Email</label>
+          <label htmlFor="ev-email" className="form-label mb-2">{t("formEmail")}</label>
           <input
             id="ev-email"
             type="email"
@@ -130,7 +132,7 @@ export default function EventForm({
         </div>
 
         <div>
-          <label htmlFor="ev-phone" className="form-label mb-2">Téléphone</label>
+          <label htmlFor="ev-phone" className="form-label mb-2">{t("formPhone")}</label>
           <input
             id="ev-phone"
             type="tel"
@@ -143,12 +145,12 @@ export default function EventForm({
       </div>
 
       <Button type="submit" disabled={status === "loading"} className="w-full mt-8">
-        {status === "loading" ? "Envoi en cours..." : ctaLabel || "Réserver ma place"}
+        {status === "loading" ? t("formSubmitting") : ctaLabel || t("formSubmit")}
       </Button>
 
       {status === "error" && (
         <p className="mt-4 text-destructive text-sm text-center">
-          Une erreur est survenue. Réessayez ou contactez-nous directement.
+          {t("formError")}
         </p>
       )}
 

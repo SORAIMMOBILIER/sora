@@ -718,6 +718,62 @@
     "body": "Select a range, then click a room to see the interior.",
     "selectRoom": "Select a room"
   },
+  "Blog": {
+    "eyebrow": "Journal",
+    "title": "Notes from the ground.",
+    "body": "Data-backed analysis, operational feedback, readings of the Bali market. No sales pitch.",
+    "empty": "No articles published yet. The first one is coming soon."
+  },
+  "EventsIndex": {
+    "eyebrow": "Events",
+    "title": "Webinars and on-the-ground sessions.",
+    "body": "Online sessions, masterclasses and conversations about the legal framework, the numbers and the operations we track in Bali.",
+    "emptyTitle": "No events published yet.",
+    "emptyBody": "Upcoming sessions will be added here as soon as they're published.",
+    "statusEnCours": "Ongoing",
+    "statusProchainement": "Coming soon",
+    "statusTermine": "Completed",
+    "dateToBeAnnounced": "Date to be announced",
+    "viewEvent": "View event"
+  },
+  "BlogPost": {
+    "backToArticles": "← All articles"
+  },
+  "EventDetail": {
+    "backToEvents": "← All events",
+    "defaultEyebrow": "Event",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "durationLabel": "Duration",
+    "locationLabel": "Location",
+    "statusLabel": "Status",
+    "defaultCta": "Reserve my spot",
+    "statusEnCours": "Ongoing",
+    "statusProchainement": "Coming soon",
+    "statusTermine": "Completed",
+    "dateToBeAnnounced": "Date to be announced",
+    "parisTimeHint": "Paris time",
+    "timeHintPrefix": "time in",
+    "programEyebrow": "Program",
+    "speakersEyebrow": "Speakers",
+    "registrationEyebrow": "Registration",
+    "registrationBody": "Enter your details and you'll immediately receive the connection details and a reminder the day before.",
+    "durationPrefix": "Duration ·",
+    "locationPrefix": "Location ·"
+  },
+  "EventForm": {
+    "successTitle": "Registration confirmed.",
+    "successBody": "You'll receive the link and reminders by email within a few minutes.",
+    "formTitle": "Reserve my spot",
+    "formBodyPrefix": "Instant access.",
+    "formFirstName": "First name",
+    "formLastName": "Last name",
+    "formEmail": "Email",
+    "formPhone": "Phone",
+    "formSubmit": "Reserve my spot",
+    "formSubmitting": "Sending...",
+    "formError": "Something went wrong. Please try again or contact us directly."
+  },
   "Temoignages": {
     "eyebrow": "Testimonials",
     "title": "What our investors say.",

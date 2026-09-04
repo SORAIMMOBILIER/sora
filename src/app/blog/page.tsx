@@ -1,5 +1,6 @@
 import Link from "@/components/localized-link"
 import Image from "next/image"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { ALL_POSTS_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
@@ -22,24 +23,26 @@ type Post = {
 }
 
 export default async function BlogIndexPage() {
+  const t = await getTranslations("Blog")
+  const locale = await getLocale()
   const posts = await sanityFetch<Post[]>({ query: ALL_POSTS_QUERY, tags: ["post"] })
 
   return (
     <main className="bg-bg min-h-screen pt-32 md:pt-44 pb-24 px-6 md:px-12">
       <div className="max-w-[1504px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <p className="eyebrow text-ink-muted mb-6">Journal</p>
+          <p className="eyebrow text-ink-muted mb-6">{t("eyebrow")}</p>
           <h1 className="font-serif font-medium text-ink leading-[1.0]" style={{ fontSize: "clamp(40px,6vw,96px)" }}>
-            Notes du terrain.
+            {t("title")}
           </h1>
           <p className="text-ink/60 mt-8 leading-relaxed text-base max-w-xl mx-auto">
-            Analyses chiffrées, retours d&apos;opérations, lectures du marché balinais. Sans pitch commercial.
+            {t("body")}
           </p>
         </div>
 
         {posts.length === 0 ? (
           <p className="text-center text-ink/55 text-sm">
-            Aucun article publié pour l&apos;instant. Le premier arrive bientôt.
+            {t("empty")}
           </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
@@ -66,7 +69,7 @@ export default async function BlogIndexPage() {
                 </h2>
                 {p.excerpt && <p className="text-ink/65 text-sm leading-relaxed mb-4">{p.excerpt}</p>}
                 <p className="mt-auto metadata text-ink/40">
-                  {new Date(p.publishedAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+                  {new Date(p.publishedAt).toLocaleDateString(locale === "en" ? "en-GB" : "fr-FR", { day: "numeric", month: "long", year: "numeric" })}
                   {p.author?.name ? ` / ${p.author.name}` : ""}
                 </p>
               </Link>
