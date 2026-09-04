@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "@/components/localized-link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { REALISATION_BY_SLUG_QUERY, REALISATION_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -70,6 +70,63 @@ type Realisation = {
   seo?: { metaTitle?: string; metaDescription?: string; ogImage?: SanityImage }
 }
 
+// Le contenu "seseh" est identique côté Sanity (FR) et côté messages/en.json
+// (namespace "Seseh", déjà traduit pour l'ancienne page /seseh). En attendant
+// une vraie stratégie de traduction du CMS, on substitue ce contenu texte
+// EN ici pour cette seule fiche, sans toucher aux images/slugs Sanity.
+async function applySesehEnglishOverride(r: Realisation): Promise<Realisation> {
+  const s = await getTranslations("Seseh")
+  const sGammes = s.raw("gammes") as Array<{
+    name: string; price: string; surface: string; chambres: string; revenus: string; rendement: string; piscine: string
+  }>
+  const sProjections = s.raw("projections") as Array<{ label: string; rendement: string; ratio: string; highlight?: boolean }>
+  const sLocationItems = s.raw("locationItems") as Array<{ value: string; label: string }>
+  const sGuarantees = s.raw("guarantees") as Array<{ value: string; label: string; desc: string }>
+  const sDossierBullets = s.raw("dossierBullets") as string[]
+  const sStats = s.raw("stats") as Array<{ value: string; label: string }>
+
+  const ctaByHref: Record<string, string> = { "#dossier": s("ctaDossier"), "#gammes": s("ctaGammes") }
+
+  return {
+    ...r,
+    heroEyebrow: s("heroEyebrow"),
+    heroTitle: s("heroTitle"),
+    heroSubtitle: s("heroBody"),
+    heroCtas: r.heroCtas?.map((cta) => ({ ...cta, label: ctaByHref[cta.href] ?? cta.label })),
+    keyStats: r.keyStats?.map((stat, i) => sStats[i] ?? stat),
+    gammesEyebrow: s("gammesEyebrow"),
+    gammesTitle: s("gammesTitle"),
+    gammes: r.gammes?.map((g) => {
+      const match = sGammes.find((sg) => sg.name === g.name)
+      if (!match) return g
+      return { ...g, price: match.price, surface: match.surface, bedrooms: match.chambres, revenue: match.revenus, yield: match.rendement, pool: match.piscine }
+    }),
+    inclus: s.raw("inclus") as string[],
+    projectionsEyebrow: s("projectionsEyebrow"),
+    projectionsTitle: s("projectionsTitle"),
+    projectionsDescription: s("projectionsBody"),
+    projections: r.projections?.map((p, i) => sProjections[i] ?? p),
+    projectionStats: [
+      { value: s("totalPercu"), label: s("totalPercuLabel") },
+      { value: "60-90%", label: s("occupationLabel") },
+      { value: "~€70/night", label: s("tarifMoyenLabel") },
+    ],
+    localisationEyebrow: s("locationEyebrow"),
+    localisationTitle: s("locationTitle"),
+    distances: r.distances?.map((d, i) => sLocationItems[i] ?? d),
+    garantiesEyebrow: s("guaranteesEyebrow"),
+    garantiesTitle: s("guaranteesTitle"),
+    garanties: r.garanties?.map((g, i) => {
+      const match = sGuarantees[i]
+      return match ? { ...g, value: match.value, label: match.label, description: match.desc } : g
+    }),
+    dossierEyebrow: s("dossierEyebrow"),
+    dossierTitle: s("dossierTitle"),
+    dossierDescription: s("dossierBody"),
+    dossierBullets: sDossierBullets,
+  }
+}
+
 export async function generateStaticParams() {
   const slugs = await sanityFetch<{ slug: string }[]>({ query: REALISATION_SLUGS_QUERY })
   return slugs.map((s) => ({ slug: s.slug }))
@@ -98,12 +155,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function RealisationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const t = await getTranslations("RealisationDetail")
-  const r = await sanityFetch<Realisation | null>({
+  const locale = await getLocale()
+  let r = await sanityFetch<Realisation | null>({
     query: REALISATION_BY_SLUG_QUERY,
     params: { slug },
     tags: [`realisation:${slug}`],
   })
   if (!r) notFound()
+
+  if (locale === "en" && slug === "seseh") {
+    r = await applySesehEnglishOverride(r)
+  }
 
   const heroImageUrl = r.heroImage?.asset
     ? urlForImage(r.heroImage).width(2400).url()
