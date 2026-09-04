@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "@/components/localized-link"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useTranslations } from "next-intl"
 import {
   Accordion,
   AccordionContent,
@@ -21,14 +22,30 @@ gsap.registerPlugin(ScrollTrigger)
 
 const CALENDLY_URL = "https://calendly.com/contact-sora-immobilier/rdv-avec-gabriel-investir-a-bali-clone?utm_source=vsl"
 
-const FAQ = [
-  { q: "Est-ce légal pour un Français d'investir à Bali ?", a: "Oui. L'investissement passe par la création d'une PT PMA (société indonésienne à capitaux étrangers), un cadre juridique reconnu et sécurisé. Nos équipes juridiques gèrent l'intégralité de la structuration." },
-  { q: "Qu'est-ce qu'un leasehold 30+30 ans ?", a: "Un bail emphytéotique de 30 ans, renouvelable 30 ans, soit 60 ans de jouissance. C'est le standard du marché immobilier premium à Bali pour les investisseurs étrangers." },
-  { q: "Comment fonctionne la gestion locative ?", a: "Notre équipe sur place gère la location 7j/7 : check-in/out, ménage, maintenance, plateformes de réservation. Vous recevez vos revenus sans rien gérer." },
-  { q: "Quelle est la différence avec une agence immobilière locale ?", a: "Sora est un promoteur immobilier. Nous construisons avec nos propres ingénieurs, maîtres d'oeuvre et structures juridiques. De l'étude de sol à la gestion locative, nous contrôlons toute la chaîne de valeur." },
-  { q: "Quels sont les risques ?", a: "Comme tout investissement immobilier : fluctuation du marché locatif, risque de change EUR/IDR, évolution réglementaire. Chaque point est détaillé lors de l'appel avec Gabriel, avec les protections mises en place." },
-  { q: "Puis-je visiter avant d'investir ?", a: "Absolument. Gabriel organise des visites sur site pour les investisseurs sérieux. Beaucoup de nos clients ont investi après avoir visité Bali et constaté le potentiel sur place." },
-  { q: "Comment se passe le paiement ?", a: "Le paiement est échelonné en plusieurs étapes liées à l'avancement de la construction. Pas de crédit bancaire nécessaire. Les modalités exactes sont présentées lors de l'appel." },
+type FaqItem = { q: string; a: string }
+type SocialProofItem = { value: string; label: string }
+type ProblemItem = { title: string; desc: string }
+type OpportunityItem = { value: string; label: string; desc: string }
+type Gamme = { name: string; price: string; surface: string; chambres: string; revenus: string; piscine: string }
+type Guarantee = { value: string; label: string; desc: string }
+type LocationItem = { value: string; label: string }
+
+const GAMME_IMG: Record<string, string> = {
+  Élégance: "/seseh/elegance/exterior.webp",
+  Prestige: "/seseh/prestige/exterior.webp",
+  Signature: "/seseh/signature/exterior.webp",
+  Exception: "/seseh/exception/exterior.webp",
+}
+
+const INTERIOR_SRCS = [
+  "/seseh/exception/living.webp",
+  "/seseh/exception/kitchen.webp",
+  "/seseh/elegance/bedroom.webp",
+  "/seseh/signature/dining.webp",
+  "/seseh/exception/bathroom.webp",
+  "/seseh/prestige/living.webp",
+  "/seseh/exception/bedroom.webp",
+  "/seseh/elegance/bedroom2.webp",
 ]
 
 function CtaButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -42,6 +59,7 @@ function CtaButton({ children, className = "" }: { children: React.ReactNode; cl
 }
 
 export default function VSLPage() {
+  const t = useTranslations("VillasSSV")
   const ref = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [showExitPopup, setShowExitPopup] = useState(false)
@@ -51,6 +69,16 @@ export default function VSLPage() {
   const exitShownRef = useRef(false)
   const [dossierForm, setDossierForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
   const [dossierStatus, setDossierStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const SOCIAL_PROOF = t.raw("socialProof") as SocialProofItem[]
+  const PROBLEM_ITEMS = t.raw("problemItems") as ProblemItem[]
+  const OPPORTUNITY_ITEMS = t.raw("opportunityItems") as OpportunityItem[]
+  const WHO_LIST = t.raw("whoList") as string[]
+  const GAMMES = t.raw("gammes") as Gamme[]
+  const INTERIOR_ALTS = t.raw("interiorAlts") as string[]
+  const GUARANTEES = t.raw("guarantees") as Guarantee[]
+  const LOCATION_ITEMS = t.raw("locationItems") as LocationItem[]
+  const FAQ = t.raw("faq") as FaqItem[]
 
   const handleDossierSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -163,15 +191,15 @@ export default function VSLPage() {
             <Link href="/" className="vsl-fade font-serif font-medium text-foreground/40 text-sm tracking-wide">Sora Immobilier</Link>
 
             <h1 className="vsl-fade font-serif font-medium text-foreground leading-[0.92] mt-8 md:mt-12" style={{ fontSize: "clamp(32px,5vw,56px)" }}>
-              Investissez à Bali, dans un projet clé en main.
+              {t("heroTitle")}
             </h1>
             <p className="vsl-fade text-foreground/60 mt-6 text-lg md:text-xl leading-relaxed">
-              Plus de 100 chefs d&apos;entreprise et cadres dirigeants européens investissent déjà avec Sora. Découvrez pourquoi en 3 minutes.
+              {t("heroBody")}
             </p>
 
             <div className="vsl-fade mt-8">
-              <CtaButton>Échanger avec Gabriel, fondateur</CtaButton>
-              <p className="metadata text-muted-foreground/50 mt-4">30 min, sans engagement. Il répond à toutes vos questions.</p>
+              <CtaButton>{t("cta1Label")}</CtaButton>
+              <p className="metadata text-muted-foreground/50 mt-4">{t("cta1Note")}</p>
             </div>
           </div>
 
@@ -194,14 +222,14 @@ export default function VSLPage() {
                 <div className="w-20 h-20 rounded-full bg-background/90 flex items-center justify-center shadow-lg">
                   <svg className="w-8 h-8 text-accent ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                 </div>
-                <p className="metadata text-background/80">Regarder la présentation (3 min)</p>
+                <p className="metadata text-background/80">{t("videoWatchLabel")}</p>
               </div>
             )}
             {videoPlaying && videoMuted && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-foreground/70 backdrop-blur-sm text-background metadata px-6 py-3 rounded-full flex items-center gap-2 shadow-lg">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                  Activer le son
+                  {t("activateSound")}
                 </div>
               </div>
             )}
@@ -211,7 +239,7 @@ export default function VSLPage() {
                   className="bg-accent text-background font-serif font-semibold text-[10px] tracking-[0.2em] uppercase px-8 py-3 rounded-full shadow-lg hover:bg-foreground transition-colors animate-in fade-in slide-in-from-bottom-4 duration-500 flex items-center gap-2"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
-                  Activer le son
+                  {t("activateSound")}
                 </button>
               </div>
             )}
@@ -222,11 +250,7 @@ export default function VSLPage() {
       {/* ─── SOCIAL PROOF BAR ─── */}
       <section className="bg-card border-y border-border py-8 px-6">
         <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 text-center">
-          {[
-            { value: "100+", label: "investisseurs européens" },
-            { value: "", label: "Rendement locatif attractif" },
-            { value: "A à Z", label: "promotion clé en main" },
-          ].map((s) => (
+          {SOCIAL_PROOF.map((s) => (
             <div key={s.label} className="flex items-center gap-3">
               {s.value && <span className="font-serif font-medium text-accent text-xl">{s.value}</span>}
               <span className="metadata text-muted-foreground">{s.label}</span>
@@ -238,7 +262,7 @@ export default function VSLPage() {
       {/* ─── PARTENAIRES ─── */}
       <section className="py-8 px-6">
         <div className="max-w-4xl mx-auto">
-          <p className="metadata text-muted-foreground/40 text-center mb-6">Nos partenaires et distributeurs</p>
+          <p className="metadata text-muted-foreground/40 text-center mb-6">{t("partnersLabel")}</p>
           <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 md:gap-x-14">
             <Image src="/partners/global-luxury-properties.webp" alt="Global Luxury Properties" width={160} height={40} className="h-10 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
             <Image src="/logos/crazyhome.png" alt="Crazy Home" width={140} height={40} className="h-8 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
@@ -252,16 +276,12 @@ export default function VSLPage() {
       {/* ─── LE PROBLÈME ─── */}
       <section className="px-6 py-24 md:py-36">
         <div className="max-w-3xl mx-auto">
-          <p className="vsl-fade eyebrow text-muted-foreground mb-6">Le constat</p>
+          <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("problemEyebrow")}</p>
           <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
-            L&apos;immobilier européen ne performe plus.
+            {t("problemTitle")}
           </h2>
           <div className="vsl-fade mt-10 space-y-6">
-            {[
-              { title: "Fiscalité lourde et instable", desc: "IFI, prélèvements sociaux, taxation des plus-values qui change tous les ans. La rentabilité nette s'effondre." },
-              { title: "Système bancaire verrouillé", desc: "Taux élevés, conditions durcies, délais à rallonge. Même avec un bon dossier, la capacité d'investissement est plafonnée." },
-              { title: "Zéro diversification géographique", desc: "100% de votre patrimoine immobilier dans un seul pays, un seul cadre fiscal, un seul marché." },
-            ].map((item) => (
+            {PROBLEM_ITEMS.map((item) => (
               <div key={item.title} className="flex gap-4 items-start">
                 <span className="text-accent/60 text-xl mt-0.5 shrink-0">+</span>
                 <div>
@@ -277,16 +297,12 @@ export default function VSLPage() {
       {/* ─── L'OPPORTUNITÉ ─── */}
       <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
         <div className="max-w-3xl mx-auto">
-          <p className="vsl-fade eyebrow text-accent mb-6">L&apos;opportunité</p>
+          <p className="vsl-fade eyebrow text-accent mb-6">{t("opportunityEyebrow")}</p>
           <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
-            Bali : une des zones à plus haute performance du marché locatif mondial.
+            {t("opportunityTitle")}
           </h2>
           <div className="vsl-fade mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { value: "60-90%", label: "Taux d'occupation", desc: "Demande locative constante, tourisme en hausse, expatriation croissante" },
-              { value: "~70€", label: "Tarif moyen/nuit", desc: "Après taxe. Sur une villa 1 chambre à 149 000€ d'investissement, observé sur des biens comparables." },
-              { value: "10+", label: "Rendement locatif cible estimé*", desc: "Un marché locatif porté par le tourisme et l'expatriation." },
-            ].map((item) => (
+            {OPPORTUNITY_ITEMS.map((item) => (
               <div key={item.label} className="p-5 bg-background border border-border rounded-sm">
                 <p className="font-serif font-medium text-accent text-2xl">{item.value}</p>
                 <p className="font-serif font-medium text-foreground text-sm mt-1">{item.label}</p>
@@ -295,7 +311,7 @@ export default function VSLPage() {
             ))}
           </div>
           <p className="vsl-fade text-muted-foreground text-xs mt-6 leading-relaxed">
-            *Investir dans l&apos;immobilier comporte un risque de perte en capital. Les rendements indiqués sont des objectifs estimés, non garantis, établis sur la base d&apos;hypothèses détaillées dans le dossier d&apos;investissement. Les performances passées ou projetées ne préjugent pas des performances futures.
+            {t("opportunityDisclaimer")}
           </p>
         </div>
       </section>
@@ -304,24 +320,15 @@ export default function VSLPage() {
       <section className="px-6 py-24 md:py-36">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="vsl-fade eyebrow text-muted-foreground mb-6">Qui est derrière Sora</p>
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("whoEyebrow")}</p>
             <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.05]" style={{ fontSize: "clamp(24px,3.5vw,44px)" }}>
-              Un promoteur qui contrôle toute la chaîne. Pas un intermédiaire.
+              {t("whoTitle")}
             </h2>
             <p className="vsl-fade text-muted-foreground mt-6 leading-relaxed">
-              Gabriel Lapierre est ingénieur, diplômé des Arts et Métiers, passé par Vinci.
-              Il a investi dans plus de 10 biens en France avant de se heurter aux limites du système.
-              Il a créé Sora pour construire ce qui n&apos;existait pas : un promoteur immobilier français à Bali,
-              avec des standards européens.
+              {t("whoBody")}
             </p>
             <ul className="vsl-fade mt-8 space-y-3">
-              {[
-                "Ingénieurs et maîtres d'oeuvre intégrés",
-                "Étude de sol, normes de construction européennes",
-                "Structure juridique PT PMA gérée par ILA, notre partenaire juridique et fiscal de confiance en Asie du Sud-Est",
-                "Gestion locative 7j/7 sans rien gérer",
-                "Un seul interlocuteur du début à la fin",
-              ].map((item) => (
+              {WHO_LIST.map((item) => (
                 <li key={item} className="flex gap-3 text-foreground/75 text-[15px]">
                   <span className="text-accent mt-0.5 shrink-0">·</span>
                   {item}
@@ -330,10 +337,10 @@ export default function VSLPage() {
             </ul>
           </div>
           <div className="vsl-fade relative aspect-[4/3] rounded-sm overflow-hidden">
-            <Image src="/gabriel-lapierre.webp" alt="Gabriel Lapierre, fondateur Sora" fill className="object-cover" sizes="(max-width:768px) 100vw, 500px" />
+            <Image src="/gabriel-lapierre.webp" alt={t("gabrielImgAlt")} fill className="object-cover" sizes="(max-width:768px) 100vw, 500px" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/70 to-transparent p-6">
               <p className="font-serif font-medium text-background text-base">Gabriel Lapierre</p>
-              <p className="metadata text-background/70 mt-1">Fondateur Sora. Ingénieur Arts et Métiers, ex-Vinci.</p>
+              <p className="metadata text-background/70 mt-1">{t("gabrielCardRole")}</p>
             </div>
           </div>
         </div>
@@ -380,9 +387,9 @@ export default function VSLPage() {
             {/* Colonne centrale */}
             <div className="flex flex-col gap-3 md:gap-4">
               <div className="text-center py-4">
-                <p className="eyebrow text-muted-foreground mb-4">Ils investissent avec Sora</p>
+                <p className="eyebrow text-muted-foreground mb-4">{t("testimonialsEyebrow")}</p>
                 <h2 className="font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(24px,3.5vw,44px)" }}>
-                  100+ dirigeants européens nous font confiance.
+                  {t("testimonialsTitle")}
                 </h2>
               </div>
 
@@ -393,10 +400,7 @@ export default function VSLPage() {
 
               <blockquote className="text-center px-4 py-4">
                 <p className="font-serif italic text-foreground/75 text-sm md:text-base leading-relaxed">
-                  &laquo;&nbsp;Il y a 3 ans, j&apos;aurais jamais pensé pouvoir faire ça. Tu vois les gens qui le font
-                  mais tu dis &apos;Ouais, ils sont exceptionnels.&apos; Enfin, en fait non, c&apos;est des personnes
-                  normales comme moi, comme n&apos;importe qui. C&apos;est jusqu&apos;à un moment donné on prend
-                  la décision de le faire.&nbsp;&raquo;
+                  {t("testimonialsQuote")}
                 </p>
               </blockquote>
             </div>
@@ -418,9 +422,9 @@ export default function VSLPage() {
         />
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <p className="vsl-fade font-serif font-medium text-background text-lg md:text-xl mb-6">
-            Échangez directement avec Gabriel pour voir si Bali correspond à votre situation.
+            {t("cta2Text")}
           </p>
-          <CtaButton>Réserver un appel (30 min)</CtaButton>
+          <CtaButton>{t("cta2Label")}</CtaButton>
         </div>
       </section>
 
@@ -428,23 +432,18 @@ export default function VSLPage() {
       <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="vsl-fade eyebrow text-muted-foreground mb-6">Seseh Sunset Villas</p>
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("gammesEyebrow")}</p>
             <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,5vw,64px)" }}>
-              4 gammes, à partir de 149 000€.
+              {t("gammesTitle")}
             </h2>
             <p className="vsl-fade text-muted-foreground mt-6 max-w-xl mx-auto">
-              26 villas à 300m de la plage de Seseh. Livrées meublées, prêtes à la location.
+              {t("gammesBody")}
             </p>
           </div>
           <div className="vsl-fade grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { name: "Élégance", price: "149 000€", surface: "51 m²", chambres: "1 chambre", revenus: "Revenus net locatifs estimés : ~20 611€/an*", piscine: "Jacuzzi privé", img: "/seseh/elegance/exterior.webp" },
-              { name: "Prestige", price: "239 000€", surface: "80 m²", chambres: "2 chambres", revenus: "Revenus net locatifs estimés : ~27 972€/an*", piscine: "Piscine privée", img: "/seseh/prestige/exterior.webp" },
-              { name: "Signature", price: "369 000€", surface: "153 m²", chambres: "2 chambres premium", revenus: "Sur demande", piscine: "Piscine privée", img: "/seseh/signature/exterior.webp" },
-              { name: "Exception", price: "469 000€", surface: "197 m²", chambres: "3 chambres", revenus: "Sur demande", piscine: "Piscine privée", img: "/seseh/exception/exterior.webp" },
-            ].map((g) => (
+            {GAMMES.map((g) => (
               <div key={g.name} className="group relative rounded-sm overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                <Image src={g.img} alt={`Villa ${g.name}`} fill quality={90} className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width:768px) 100vw, 50vw" />
+                <Image src={GAMME_IMG[g.name]} alt={`Villa ${g.name}`} fill quality={90} className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width:768px) 100vw, 50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                   <div className="flex items-end justify-between gap-3">
@@ -465,16 +464,16 @@ export default function VSLPage() {
             ))}
           </div>
           <p className="vsl-fade text-muted-foreground text-xs mt-6 max-w-2xl mx-auto text-center leading-relaxed">
-            *Revenus locatifs nets estimés sur la base de biens comparables, en localisation et en standing, sur le marché de Seseh. Ces estimations sont non contractuelles, non garanties, et ne préjugent pas des revenus réellement perçus, qui dépendent du taux d&apos;occupation effectif et des conditions de marché.
+            {t("gammesDisclaimer")}
           </p>
 
           {/* Urgence inline */}
           <div className="vsl-fade mt-8 bg-accent/10 border border-accent/20 rounded-sm p-5 md:p-6 flex flex-col md:flex-row items-center md:justify-between gap-4 text-center md:text-left">
             <div>
-              <p className="font-serif font-medium text-foreground text-base md:text-lg">13 villas déjà réservées sur 26.</p>
-              <p className="text-muted-foreground text-sm mt-1">Construction septembre 2026, livraison mars 2028.</p>
+              <p className="font-serif font-medium text-foreground text-base md:text-lg">{t("urgencyTitle")}</p>
+              <p className="text-muted-foreground text-sm mt-1">{t("urgencyBody")}</p>
             </div>
-            <CtaButton className="shrink-0">Voir les disponibilités</CtaButton>
+            <CtaButton className="shrink-0">{t("urgencyCta")}</CtaButton>
           </div>
         </div>
       </section>
@@ -483,24 +482,15 @@ export default function VSLPage() {
       <section className="bg-background py-24 md:py-36 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="vsl-fade eyebrow text-muted-foreground mb-6">Finitions haut de gamme</p>
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("interiorsEyebrow")}</p>
             <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,4.5vw,56px)" }}>
-              Standards européens, cadre balinais.
+              {t("interiorsTitle")}
             </h2>
           </div>
           <div className="vsl-fade grid grid-cols-2 md:grid-cols-4 gap-2">
-            {[
-              { src: "/seseh/exception/living.webp", alt: "Living Exception" },
-              { src: "/seseh/exception/kitchen.webp", alt: "Cuisine Exception" },
-              { src: "/seseh/elegance/bedroom.webp", alt: "Chambre Élégance" },
-              { src: "/seseh/signature/dining.webp", alt: "Cuisine Signature" },
-              { src: "/seseh/exception/bathroom.webp", alt: "Salle de bain Exception" },
-              { src: "/seseh/prestige/living.webp", alt: "Living Prestige" },
-              { src: "/seseh/exception/bedroom.webp", alt: "Chambre Exception" },
-              { src: "/seseh/elegance/bedroom2.webp", alt: "Chambre Élégance vue rizières" },
-            ].map((photo) => (
-              <div key={photo.src} className="relative aspect-square rounded-sm overflow-hidden">
-                <Image src={photo.src} alt={photo.alt} fill quality={80} className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 25vw" />
+            {INTERIOR_SRCS.map((src, i) => (
+              <div key={src} className="relative aspect-square rounded-sm overflow-hidden">
+                <Image src={src} alt={INTERIOR_ALTS[i]} fill quality={80} className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 25vw" />
               </div>
             ))}
           </div>
@@ -517,53 +507,53 @@ export default function VSLPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="font-serif font-medium text-foreground text-2xl mb-4">Vos documents sont prêts.</h2>
+              <h2 className="font-serif font-medium text-foreground text-2xl mb-4">{t("dossierSuccessTitle")}</h2>
               <p className="text-foreground/65 leading-relaxed mb-8">
-                Accédez à la brochure et aux projections financières.
+                {t("dossierSuccessBody")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a href="https://drive.google.com/file/d/1lgoQa6io7SXF0E_OYqy2rwQ-12noITB6/view?usp=sharing" target="_blank" rel="noopener noreferrer"
                   className="cta-primary font-serif font-semibold">
-                  Brochure Seseh
+                  {t("dossierBrochureLabel")}
                 </a>
                 <a href="https://drive.google.com/file/d/1aJTLdt9WZRrYZvBw-TeZ4yqMB4rPOsOV/view?usp=sharing" target="_blank" rel="noopener noreferrer"
                   className="cta-outline font-serif font-semibold">
-                  Projections financières
+                  {t("dossierProjectionsLabel")}
                 </a>
               </div>
             </div>
           ) : (
             <form onSubmit={handleDossierSubmit} className="bg-background border border-border rounded-sm p-8 md:p-12">
-              <p className="vsl-fade eyebrow text-muted-foreground mb-4">Brochure + projections financières</p>
+              <p className="vsl-fade eyebrow text-muted-foreground mb-4">{t("dossierEyebrow")}</p>
               <h2 className="vsl-fade font-serif font-medium text-foreground text-xl md:text-2xl mb-2">
-                Recevez le dossier complet.
+                {t("dossierTitle")}
               </h2>
               <p className="vsl-fade text-foreground/50 text-sm mb-8">
-                Brochure Seseh Sunset Villas + projections sur 5 ans, accès immédiat.
+                {t("dossierBody")}
               </p>
               <div className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="dossier-firstName" className="form-label mb-2">Prénom</label>
+                    <label htmlFor="dossier-firstName" className="form-label mb-2">{t("formFirstName")}</label>
                     <input id="dossier-firstName" type="text" required value={dossierForm.firstName}
                       onChange={(e) => setDossierForm({ ...dossierForm, firstName: e.target.value })}
                       className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
                   </div>
                   <div>
-                    <label htmlFor="dossier-lastName" className="form-label mb-2">Nom</label>
+                    <label htmlFor="dossier-lastName" className="form-label mb-2">{t("formLastName")}</label>
                     <input id="dossier-lastName" type="text" required value={dossierForm.lastName}
                       onChange={(e) => setDossierForm({ ...dossierForm, lastName: e.target.value })}
                       className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="dossier-email" className="form-label mb-2">Email</label>
+                  <label htmlFor="dossier-email" className="form-label mb-2">{t("formEmail")}</label>
                   <input id="dossier-email" type="email" required value={dossierForm.email}
                     onChange={(e) => setDossierForm({ ...dossierForm, email: e.target.value })}
                     className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
                 </div>
                 <div>
-                  <label htmlFor="dossier-phone" className="form-label mb-2">Téléphone</label>
+                  <label htmlFor="dossier-phone" className="form-label mb-2">{t("formPhone")}</label>
                   <input id="dossier-phone" type="tel" value={dossierForm.phone}
                     onChange={(e) => setDossierForm({ ...dossierForm, phone: e.target.value })}
                     className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
@@ -571,12 +561,12 @@ export default function VSLPage() {
               </div>
               <button type="submit" disabled={dossierStatus === "loading"}
                 className="cta-primary font-serif font-semibold w-full mt-8">
-                {dossierStatus === "loading" ? "Envoi en cours..." : "Recevoir le dossier"}
+                {dossierStatus === "loading" ? t("formSubmitting") : t("formSubmit")}
               </button>
               {dossierStatus === "error" && (
-                <p className="mt-4 text-destructive text-sm text-center">Une erreur est survenue. Réessayez.</p>
+                <p className="mt-4 text-destructive text-sm text-center">{t("formError")}</p>
               )}
-              <p className="mt-6 metadata text-foreground/35 text-center">Sans démarchage / Désinscription en 1 clic</p>
+              <p className="mt-6 metadata text-foreground/35 text-center">{t("formNote")}</p>
             </form>
           )}
         </div>
@@ -586,17 +576,13 @@ export default function VSLPage() {
       <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <p className="vsl-fade eyebrow text-muted-foreground mb-6">Sécurisation</p>
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("guaranteesEyebrow")}</p>
             <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
-              La même sérénité qu&apos;en Europe.
+              {t("guaranteesTitle")}
             </h2>
           </div>
           <div className="vsl-fade grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              { value: "10 ans", label: "Garantie structure", desc: "Fondations, murs porteurs, charpente" },
-              { value: "5 ans", label: "Garantie toiture", desc: "Étanchéité et couverture complète" },
-              { value: "1 an", label: "Garantie intégrale", desc: "Tout équipement, finitions, installations" },
-            ].map((g) => (
+            {GUARANTEES.map((g) => (
               <div key={g.label} className="bg-background border border-border rounded-sm p-6">
                 <p className="font-serif font-medium text-accent text-2xl mb-2">{g.value}</p>
                 <p className="font-serif font-medium text-foreground text-base mb-2">{g.label}</p>
@@ -615,17 +601,12 @@ export default function VSLPage() {
           style={{ backgroundImage: "url(/pattern-fabric.webp)" }}
         />
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <p className="vsl-fade eyebrow-dark mx-auto mb-6">Seseh, Bali</p>
+          <p className="vsl-fade eyebrow-dark mx-auto mb-6">{t("locationEyebrow")}</p>
           <h2 className="vsl-fade font-serif font-medium text-background leading-[1.0] mb-12" style={{ fontSize: "clamp(32px,5vw,64px)" }}>
-            À 300m de la plage.
+            {t("locationTitle")}
           </h2>
           <div className="vsl-fade grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { value: "300m", label: "Plage de Seseh" },
-              { value: "3 min", label: "Restaurants" },
-              { value: "8 min", label: "Canggu" },
-              { value: "60 min", label: "Aéroport" },
-            ].map((d) => (
+            {LOCATION_ITEMS.map((d) => (
               <div key={d.label}>
                 <p className="font-serif font-medium text-background text-2xl md:text-3xl">{d.value}</p>
                 <p className="metadata text-background/45 mt-2">{d.label}</p>
@@ -640,7 +621,7 @@ export default function VSLPage() {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,4.5vw,56px)" }}>
-              Questions fréquentes.
+              {t("faqTitle")}
             </h2>
           </div>
           <Accordion type="single" collapsible className="vsl-fade w-full">
@@ -662,11 +643,10 @@ export default function VSLPage() {
       <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,52px)" }}>
-            Prêt à diversifier votre patrimoine ?
+            {t("calendlyTitle")}
           </h2>
           <p className="vsl-fade text-muted-foreground mt-6 leading-relaxed">
-            Réservez 30 minutes avec Gabriel. Il analyse votre situation, répond à toutes vos questions
-            et vous envoie le dossier complet après l&apos;appel.
+            {t("calendlyBody")}
           </p>
           <div className="vsl-fade mt-10">
             <div
@@ -675,7 +655,7 @@ export default function VSLPage() {
               style={{ minWidth: "100%", height: 1100 }}
             />
           </div>
-          <p className="vsl-fade metadata text-muted-foreground/40 mt-6">Sans engagement. Pas de démarchage.</p>
+          <p className="vsl-fade metadata text-muted-foreground/40 mt-6">{t("calendlyNote")}</p>
         </div>
       </section>
 
@@ -683,7 +663,7 @@ export default function VSLPage() {
       <div className="bg-background border-t border-border py-8 px-6">
         <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-serif text-foreground/30 text-sm">Sora Immobilier</p>
-          <p className="metadata text-muted-foreground/30">contact@sora-immobilier.com</p>
+          <p className="metadata text-muted-foreground/30">{t("footerEmail")}</p>
         </div>
       </div>
 
@@ -691,7 +671,7 @@ export default function VSLPage() {
       <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-background/95 backdrop-blur-md border-t border-border/30 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
         <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer"
           className="cta-primary font-serif font-semibold w-full">
-          Réserver un appel avec Gabriel
+          {t("stickyCta")}
         </a>
       </div>
 
@@ -704,17 +684,16 @@ export default function VSLPage() {
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <p className="font-serif font-medium text-foreground text-xl md:text-2xl leading-tight">
-              Avant de partir, une question.
+              {t("exitTitle")}
             </p>
             <p className="text-muted-foreground mt-4 leading-relaxed">
-              Savez-vous combien rapporterait une villa à Bali dans votre situation fiscale ?
-              Gabriel vous fait le calcul en 30 minutes.
+              {t("exitBody")}
             </p>
             <div className="mt-8">
-              <CtaButton>Calculer mon rendement</CtaButton>
+              <CtaButton>{t("exitCta")}</CtaButton>
             </div>
             <button onClick={() => setShowExitPopup(false)} className="mt-4 metadata text-muted-foreground/40 hover:text-muted-foreground transition-colors">
-              Non merci
+              {t("exitDecline")}
             </button>
           </div>
         </div>
