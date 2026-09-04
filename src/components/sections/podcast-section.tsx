@@ -1,49 +1,30 @@
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 
-const PODCASTS = [
-  {
-    id: "v6SjHj_l9So",
-    title: "Investir à Bali : Mythes, Réalités et Vrais Chiffres",
-    guest: "Thomas Cornu (LyBox)",
-    label: "Podcast",
-  },
-  {
-    id: "74iWwUpNcKE",
-    title: "Biarritz VS Bali : le meilleur et le pire de l'investissement immobilier",
-    guest: "Crazy Home Pays Basque",
-    label: "Podcast",
-  },
-  {
-    id: "5k5wR73n8Zg",
-    title: "Investissement Bali : Mythes, Réalités & Vrais Chiffres",
-    guest: "Crazy Home Pays Basque",
-    label: "Podcast",
-  },
-  {
-    id: "VuB8wuBHfL4",
-    title: "Soirée d'investisseurs à Biarritz",
-    guest: "SORA x Crazy Home",
-    label: "Évènement",
-  },
-]
+const PODCAST_IDS = ["v6SjHj_l9So", "74iWwUpNcKE", "5k5wR73n8Zg", "VuB8wuBHfL4"]
+
+type PodcastItem = { title: string; guest: string; label: string }
 
 export default function PodcastSection() {
+  const t = useTranslations("Home.Podcast")
+  const items = t.raw("items") as PodcastItem[]
+  const PODCASTS = PODCAST_IDS.map((id, i) => ({ id, ...items[i] }))
+
   return (
     <section className="bg-secondary py-24 md:py-36 px-6">
       <div className="container-page">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14 md:mb-16">
           <div className="max-w-4xl">
-            <p className="eyebrow text-muted-foreground mb-6">Podcasts & vidéos</p>
+            <p className="eyebrow text-muted-foreground mb-6">{t("eyebrow")}</p>
             <h2
               className="font-serif font-medium text-foreground leading-[1.0]"
               style={{ fontSize: "clamp(36px,5vw,72px)" }}
             >
-              Sur le terrain.
+              {t("title")}
             </h2>
             <p className="text-foreground/65 max-w-2xl mt-6 leading-relaxed">
-              Gabriel partage son expérience et ses analyses dans des podcasts et évènements avec
-              d&apos;autres experts de l&apos;investissement.
+              {t("body")}
             </p>
           </div>
           <Button asChild variant="outline">
@@ -52,7 +33,7 @@ export default function PodcastSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Chaîne YouTube
+              {t("cta")}
             </Link>
           </Button>
         </div>

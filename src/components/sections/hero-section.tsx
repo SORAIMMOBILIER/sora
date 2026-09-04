@@ -2,9 +2,11 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 
 export default function HeroSection() {
+  const t = useTranslations("Home.Hero")
   const ref = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -44,22 +46,22 @@ export default function HeroSection() {
       {/* Center title */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6 z-10 text-center">
         <h1 className="font-serif font-medium text-background leading-[0.92]">
-          <span className="clip-word"><span className="hero-word block" style={{ fontSize: "clamp(40px,6vw,104px)" }}>Investir à Bali,</span></span>
-          <span className="clip-word"><span className="hero-word block" style={{ fontSize: "clamp(40px,6vw,104px)" }}>clé en main.</span></span>
+          <span className="clip-word"><span className="hero-word block" style={{ fontSize: "clamp(40px,6vw,104px)" }}>{t("titleLine1")}</span></span>
+          <span className="clip-word"><span className="hero-word block" style={{ fontSize: "clamp(40px,6vw,104px)" }}>{t("titleLine2")}</span></span>
         </h1>
         <p className="hero-fade text-background/85 mt-8 max-w-2xl text-lg md:text-xl leading-relaxed">
-          Gabriel sélectionne les projets, cadre la structure juridique et pilote l&apos;exploitation sur place. Vous avancez depuis l&apos;Europe avec une lecture claire des étapes, des risques et des scénarios de sortie.
+          {t("subtitle")}
         </p>
         <div className="hero-fade mt-12 flex flex-col sm:flex-row items-center gap-4">
           <Button asChild variant="inverse">
-            <Link href="/contact">Réserver un appel offert</Link>
+            <Link href="/contact">{t("ctaPrimary")}</Link>
           </Button>
           <Button asChild variant="outline-inverse">
-            <Link href="/seseh">Voir Seseh Sunset</Link>
+            <Link href="/seseh">{t("ctaSecondary")}</Link>
           </Button>
         </div>
         <p className="hero-fade mt-6 max-w-xl text-sm md:text-base leading-relaxed text-background/70">
-          Depuis 2023 à Bali, Gabriel suit les opérations sur place et a déjà accompagné plus de 50 investisseurs sur 28 villas construites.
+          {t("trust")}
         </p>
       </div>
 

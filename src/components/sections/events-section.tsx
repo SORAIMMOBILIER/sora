@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../sanity/lib/fetch"
 import { FEATURED_EVENTS_QUERY, WEBINAR_RECURRING_CARD_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
@@ -28,16 +29,10 @@ type WebinarCard = {
 // repasser à true pour le réafficher, tout le reste est déjà en place.
 const SHOW_TUESDAY_WEBINAR = false
 
-const STATUS_LABELS: Record<string, string> = {
-  "en-cours": "En cours",
-  prochainement: "Prochainement",
-  termine: "Terminé",
-}
+function formatEventDate(date: string | undefined, locale: string, fallback: string) {
+  if (!date) return fallback
 
-function formatEventDate(date?: string) {
-  if (!date) return "Date à venir"
-
-  return new Intl.DateTimeFormat("fr-FR", {
+  return new Intl.DateTimeFormat(locale === "en" ? "en-GB" : "fr-FR", {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -47,6 +42,13 @@ function formatEventDate(date?: string) {
 }
 
 export default async function EventsSection() {
+  const t = await getTranslations("Home.Events")
+  const locale = await getLocale()
+  const STATUS_LABELS: Record<string, string> = {
+    "en-cours": t("statusEnCours"),
+    prochainement: t("statusProchainement"),
+    termine: t("statusTermine"),
+  }
   const [events, webinar] = await Promise.all([
     sanityFetch<EventItem[]>({ query: FEATURED_EVENTS_QUERY, tags: ["event"] }),
     sanityFetch<WebinarCard | null>({ query: WEBINAR_RECURRING_CARD_QUERY, tags: ["webinarRecurring"] }),
@@ -57,16 +59,16 @@ export default async function EventsSection() {
       <div className="container-page">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14 md:mb-16">
           <div className="max-w-4xl">
-            <p className="eyebrow text-muted-foreground mb-6">Évènements</p>
+            <p className="eyebrow text-muted-foreground mb-6">{t("eyebrow")}</p>
             <h2 className="font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(36px,5vw,72px)" }}>
-              Les prochaines sessions.
+              {t("title")}
             </h2>
             <p className="text-foreground/65 max-w-2xl mt-6 leading-relaxed">
-              Webinaires, masterclass et rendez-vous en ligne pour lire le marché, poser les bonnes questions et vérifier les montages avant d&apos;investir.
+              {t("body")}
             </p>
           </div>
           <Button asChild variant="outline">
-            <Link href="/events">Voir tous les évènements</Link>
+            <Link href="/events">{t("viewAll")}</Link>
           </Button>
         </div>
 
@@ -95,18 +97,18 @@ export default async function EventsSection() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-transparent to-transparent" />
                     <Badge variant="outline" className="absolute top-4 left-4 bg-background/85 backdrop-blur-sm border-border">
-                      Prochainement
+                      {t("statusProchainement")}
                     </Badge>
                   </div>
                   <CardContent className="p-6 md:p-7 flex flex-1 flex-col">
                     <p className="metadata text-foreground/45 mb-4 capitalize">{webinarLabel()} / 60 min</p>
                     <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug group-hover:text-accent transition-colors duration-300 mb-4">
-                      {webinar?.title || "Webinaire Sora : investir à Bali"}
+                      {webinar?.title || t("webinarFallbackTitle")}
                     </h3>
                     <p className="text-sm text-foreground/65 leading-relaxed mb-8">
-                      Découvrez comment investir dans une villa à Bali avec un rendement projeté jusqu&apos;à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier.
+                      {t("webinarBody")}
                     </p>
-                    <p className="metadata text-accent mt-auto">S&apos;inscrire</p>
+                    <p className="metadata text-accent mt-auto">{t("signUp")}</p>
                   </CardContent>
                 </Card>
               </Link>
@@ -145,7 +147,7 @@ export default async function EventsSection() {
                   </div>
                   <CardContent className="p-6 md:p-7 flex flex-1 flex-col">
                     <p className="metadata text-foreground/45 mb-4">
-                      {formatEventDate(event.startsAt)}
+                      {formatEventDate(event.startsAt, locale, t("dateToBeAnnounced"))}
                       {event.duration ? ` / ${event.duration}` : ""}
                     </p>
                     <h3 className="font-serif text-2xl md:text-3xl text-foreground leading-snug group-hover:text-accent transition-colors duration-300 mb-4">
@@ -153,7 +155,7 @@ export default async function EventsSection() {
                     </h3>
                     {event.summary && <p className="text-sm text-foreground/65 leading-relaxed mb-8">{event.summary}</p>}
                     <p className="metadata text-accent mt-auto">
-                      {event.status === "termine" ? "Voir le replay" : "Voir la session"}
+                      {event.status === "termine" ? t("viewReplay") : t("viewSession")}
                     </p>
                   </CardContent>
                 </Card>

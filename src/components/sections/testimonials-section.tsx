@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { Play } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export type Testimonial = {
   quote: string
@@ -27,6 +28,7 @@ const VIDEOS = [
 ]
 
 function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspect: string }) {
+  const t = useTranslations("Home.Testimonials")
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
 
@@ -60,7 +62,7 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
               <Play className="h-6 w-6 ml-0.5" fill="currentColor" />
             </span>
             <span className="text-background text-sm font-medium tracking-wide uppercase">
-              Écouter le témoignage
+              {t("listen")}
             </span>
           </div>
         </button>
@@ -70,6 +72,7 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
 }
 
 export default function TestimonialsSection() {
+  const t = useTranslations("Home.Testimonials")
   const ref = useRef<HTMLElement>(null)
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -84,9 +87,9 @@ export default function TestimonialsSection() {
         {/* Mobile : titre + vidéo horizontale + quote */}
         <div className="md:hidden">
           <div className="text-center mb-6">
-            <p className="tm-item eyebrow-dark mb-3">Témoignages</p>
+            <p className="tm-item eyebrow-dark mb-3">{t("eyebrow")}</p>
             <h2 className="tm-item font-serif font-medium text-background leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,48px)" }}>
-              Ce que disent ceux qui ont investi.
+              {t("title")}
             </h2>
           </div>
           <div className="tm-item relative rounded-sm overflow-hidden aspect-video">
@@ -100,7 +103,7 @@ export default function TestimonialsSection() {
             />
           </div>
           <blockquote className="tm-item text-center font-serif italic text-background text-lg leading-snug px-4 py-5">
-            &laquo;&nbsp;Il y a 3 ans, j&apos;aurais jamais pensé pouvoir faire ça...&nbsp;&raquo;
+            {t("quote")}
           </blockquote>
         </div>
 
@@ -111,16 +114,16 @@ export default function TestimonialsSection() {
           </div>
           <div className="flex flex-col gap-3">
             <div className="text-center py-4">
-              <p className="tm-item eyebrow-dark mb-3">Témoignages</p>
+              <p className="tm-item eyebrow-dark mb-3">{t("eyebrow")}</p>
               <h2 className="tm-item font-serif font-medium text-background leading-[1.0]" style={{ fontSize: "clamp(28px,3.5vw,52px)" }}>
-                Ce que disent ceux qui ont investi.
+                {t("title")}
               </h2>
             </div>
             <div className="tm-item">
               <VideoCard src={VIDEOS[1].src} poster={VIDEOS[1].poster} aspect="aspect-video" />
             </div>
             <blockquote className="tm-item text-center font-serif italic text-background text-base md:text-lg leading-snug px-4 py-3">
-              &laquo;&nbsp;Il y a 3 ans, j&apos;aurais jamais pensé pouvoir faire ça...&nbsp;&raquo;
+              {t("quote")}
             </blockquote>
           </div>
           <div className="tm-item">

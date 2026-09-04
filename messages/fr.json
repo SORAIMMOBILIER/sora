@@ -47,5 +47,113 @@
     "switchToEn": "Switch to English",
     "switchToFr": "Passer en français",
     "autoTranslateNotice": "Ce contenu est traduit automatiquement et peut contenir des approximations, notamment sur les chiffres et informations légales."
+  },
+  "Home": {
+    "Hero": {
+      "titleLine1": "Investir à Bali,",
+      "titleLine2": "clé en main.",
+      "subtitle": "Gabriel sélectionne les projets, cadre la structure juridique et pilote l'exploitation sur place. Vous avancez depuis l'Europe avec une lecture claire des étapes, des risques et des scénarios de sortie.",
+      "ctaPrimary": "Réserver un appel offert",
+      "ctaSecondary": "Voir Seseh Sunset",
+      "trust": "Depuis 2023 à Bali, Gabriel suit les opérations sur place et a déjà accompagné plus de 50 investisseurs sur 28 villas construites."
+    },
+    "Stats": {
+      "eyebrow": "Lecture du marché",
+      "title": "Investir à Bali demande plus qu'un beau rendu de villa.",
+      "body": "La demande locative internationale crée une opportunité, mais la différence se joue dans la sélection du foncier, les autorisations, le suivi du chantier et l'exploitation. À ce jour, l'équipe compte 28 villas construites et plus de 50 investisseurs accompagnés.",
+      "cta": "Comprendre le fonctionnement"
+    },
+    "Brochure": {
+      "title": "Téléchargez le dossier Seseh Sunset Villas.",
+      "body": "Brochure complète + projections financières sur 5 ans. Accès gratuit.",
+      "cta": "Recevoir le dossier"
+    },
+    "Project": {
+      "eyebrow": "Seseh, projet actuellement ouvert aux investisseurs",
+      "title": "Seseh Sunset Villas se situe à 300 m de la mer.",
+      "body": "Le projet réunit 25 villas en bord d'océan, dans une zone portée par les usages touristiques et résidentiels. Le format permet d'envisager un usage personnel, une mise en location ou une détention patrimoniale."
+    },
+    "Carousel": {
+      "eyebrow": "Portefeuille",
+      "title": "Nos réalisations.",
+      "body": "Villas livrées, projets en cours et futures opérations, à Canggu, Seseh et alentour.",
+      "statusEnCours": "En cours",
+      "statusLivre": "Livré",
+      "statusProchainement": "Prochainement",
+      "viewProject": "Voir le projet"
+    },
+    "Testimonials": {
+      "eyebrow": "Témoignages",
+      "title": "Ce que disent ceux qui ont investi.",
+      "listen": "Écouter le témoignage",
+      "quote": "« Il y a 3 ans, j'aurais jamais pensé pouvoir faire ça... »"
+    },
+    "Podcast": {
+      "eyebrow": "Podcasts & vidéos",
+      "title": "Sur le terrain.",
+      "body": "Gabriel partage son expérience et ses analyses dans des podcasts et évènements avec d'autres experts de l'investissement.",
+      "cta": "Chaîne YouTube",
+      "items": [
+        { "title": "Investir à Bali : Mythes, Réalités et Vrais Chiffres", "guest": "Thomas Cornu (LyBox)", "label": "Podcast" },
+        { "title": "Biarritz VS Bali : le meilleur et le pire de l'investissement immobilier", "guest": "Crazy Home Pays Basque", "label": "Podcast" },
+        { "title": "Investissement Bali : Mythes, Réalités & Vrais Chiffres", "guest": "Crazy Home Pays Basque", "label": "Podcast" },
+        { "title": "Soirée d'investisseurs à Biarritz", "guest": "SORA x Crazy Home", "label": "Évènement" }
+      ]
+    },
+    "Founder": {
+      "eyebrow": "Méthode avec présence locale à Bali",
+      "title": "Une équipe terrain pour rendre le montage lisible.",
+      "body": "L'objectif n'est pas seulement de trouver un bien. Il s'agit de structurer un projet clair, vérifiable et piloté localement.",
+      "items": [
+        { "title": "Sélection terrain", "desc": "Analyse des emplacements, scénarios d'usage et potentiel locatif avant engagement." },
+        { "title": "Structuration juridique", "desc": "Cadre PT PMA, leasehold et contrats vérifiés avec les partenaires locaux." },
+        { "title": "Suivi terrain", "desc": "Pilotage des équipes, reporting chantier et validation des étapes clés sur place." },
+        { "title": "Gestion locative", "desc": "Mise en exploitation, distribution, suivi des revenus et arbitrage des scénarios." }
+      ],
+      "cardEyebrow": "Le fondateur",
+      "cardName": "Gabriel Lapierre",
+      "cardIntro": "Ingénieur et investisseur depuis 2019, installé à Bali depuis 2023, j'applique à Bali la même rigueur qu'en France.",
+      "cardP1": "En vivant sur place, j'ai découvert un cadre particulièrement favorable pour investir en tant qu'étranger. J'ai passé des mois à étudier les règles et rencontrer des centaines d'acteurs immobiliers, avant de constituer une équipe projet solide et fiable.",
+      "cardP2": "Je suis de ceux qui lisent les petites lignes et analysent plusieurs scénarios avant de décider. À Bali, j'ai appliqué la même exigence.",
+      "cardP3": "Très vite, mon cercle d'investisseurs a voulu participer. Nous avons lancé un premier projet de 9 villas, aujourd'hui louées. Depuis, 19 autres villas ont été construites. C'est ainsi qu'est née Sora Immobilier, avec la même rigueur à chaque étape."
+    },
+    "Faq": {
+      "eyebrow": "Questions fréquentes",
+      "title": "Ce que vous voulez savoir avant d'investir.",
+      "footerText": "Une autre question ?",
+      "footerLink": "Posez-la dans la masterclass",
+      "items": [
+        { "q": "Une présence physique à Bali est-elle nécessaire ?", "a": "Non. Sora assure le pilotage opérationnel et technique sur place, avec un suivi régulier pour les investisseurs basés en Europe." },
+        { "q": "Comment se déroule le flux de capital ?", "a": "Le processus se fait par étapes : réservation, acquisition ou construction, puis livraison. Les paiements sont liés à l'avancement réel du projet et aux validations prévues." },
+        { "q": "Comment fonctionnent fiscalité et revenus ?", "a": "Chaque montage dépend de votre situation, de la structure retenue et de vos objectifs patrimoniaux. Le sujet est analysé avant toute décision d'investissement." },
+        { "q": "Que se passe-t-il si je veux sortir de l'investissement ?", "a": "Vous restez propriétaire selon les modalités prévues dans la structure choisie. En cas d'arbitrage ou de cession, Sora peut accompagner les prochaines étapes." },
+        { "q": "Co-investissement ou villa en pleine propriété ?", "a": "Le co-investissement permet d'accéder à un projet avec un ticket plus bas. L'acquisition en pleine propriété convient à ceux qui veulent contrôler l'actif et son usage." },
+        { "q": "Comment savoir si Bali correspond à mon profil ?", "a": "Le plus simple est d'échanger sur votre situation, votre horizon de placement et vos contraintes. L'appel de 30 minutes sert précisément à clarifier ce point." }
+      ]
+    },
+    "Cta": {
+      "eyebrow": "Appel offert de 30 minutes",
+      "title": "Validez si Bali a du sens pour votre profil.",
+      "body1": "Pendant l'appel, Gabriel vérifie votre situation, le montant envisagé, votre horizon de placement et les points juridiques à clarifier avant de vous envoyer le dossier.",
+      "body2": "L'objectif n'est pas de vous vendre Bali à tout prix, mais de vérifier si le montage, le ticket d'entrée et le calendrier correspondent réellement à votre situation.",
+      "ctaPrimary": "Réserver mon appel",
+      "ctaSecondary": "Recevoir le dossier",
+      "footnote": "Appel gratuit avec réponse sous 24 h, vos informations restent confidentielles."
+    },
+    "Events": {
+      "eyebrow": "Évènements",
+      "title": "Les prochaines sessions.",
+      "body": "Webinaires, masterclass et rendez-vous en ligne pour lire le marché, poser les bonnes questions et vérifier les montages avant d'investir.",
+      "viewAll": "Voir tous les évènements",
+      "statusEnCours": "En cours",
+      "statusProchainement": "Prochainement",
+      "statusTermine": "Terminé",
+      "webinarFallbackTitle": "Webinaire Sora : investir à Bali",
+      "webinarBody": "Découvrez comment investir dans une villa à Bali avec un rendement projeté jusqu'à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier.",
+      "signUp": "S'inscrire",
+      "dateToBeAnnounced": "Date à venir",
+      "viewReplay": "Voir le replay",
+      "viewSession": "Voir la session"
+    }
   }
 }

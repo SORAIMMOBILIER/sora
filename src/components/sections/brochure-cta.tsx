@@ -2,9 +2,11 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 
 export default function BrochureCta() {
+  const t = useTranslations("Home.Brochure")
   const ref = useRef<HTMLElement>(null)
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -18,14 +20,14 @@ export default function BrochureCta() {
       <div className="bc-item max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 bg-card border border-border rounded-sm p-8 md:p-10">
         <div>
           <p className="font-serif font-medium text-foreground text-lg md:text-xl leading-tight">
-            Téléchargez le dossier Seseh Sunset Villas.
+            {t("title")}
           </p>
           <p className="text-muted-foreground text-sm mt-2">
-            Brochure complète + projections financières sur 5 ans. Accès gratuit.
+            {t("body")}
           </p>
         </div>
         <Button asChild variant="accent" className="shrink-0">
-          <Link href="/seseh#dossier">Recevoir le dossier</Link>
+          <Link href="/seseh#dossier">{t("cta")}</Link>
         </Button>
       </div>
     </section>

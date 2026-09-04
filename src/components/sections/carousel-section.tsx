@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { gsap } from "gsap"
+import { useTranslations } from "next-intl"
 import {
   Carousel,
   CarouselContent,
@@ -31,7 +32,14 @@ const STATUS_STYLES: Record<Realisation["status"], string> = {
   "Prochainement": "bg-background text-foreground border-foreground/20",
 }
 
+const STATUS_KEY: Record<Realisation["status"], "statusEnCours" | "statusLivre" | "statusProchainement"> = {
+  "En cours": "statusEnCours",
+  "Livré": "statusLivre",
+  "Prochainement": "statusProchainement",
+}
+
 export default function CarouselSection({ realisations }: { realisations: Realisation[] }) {
+  const t = useTranslations("Home.Carousel")
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -52,12 +60,12 @@ export default function CarouselSection({ realisations }: { realisations: Realis
         >
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16">
             <div className="max-w-3xl">
-              <p className="cr-item eyebrow text-foreground mb-6">Portefeuille</p>
+              <p className="cr-item eyebrow text-foreground mb-6">{t("eyebrow")}</p>
               <h2 className="cr-item font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(36px,5vw,72px)" }}>
-                Nos réalisations.
+                {t("title")}
               </h2>
               <p className="cr-item text-foreground/65 max-w-xl mt-6 leading-relaxed">
-                Villas livrées, projets en cours et futures opérations, à Canggu, Seseh et alentour.
+                {t("body")}
               </p>
             </div>
             <div className="hidden md:flex gap-3 shrink-0">
@@ -82,7 +90,7 @@ export default function CarouselSection({ realisations }: { realisations: Realis
                     sizes="(max-width:768px) 90vw, 45vw"
                   />
                   <Badge className={`absolute top-5 left-5 ${r.status === "Livré" ? "px-6 py-2.5 text-sm" : "px-5 py-2 text-xs"} ${STATUS_STYLES[r.status]}`}>
-                    {r.status}
+                    {t(STATUS_KEY[r.status])}
                   </Badge>
                 </div>
                 <div className="flex flex-1 flex-col p-6 md:p-8">
@@ -106,7 +114,7 @@ export default function CarouselSection({ realisations }: { realisations: Realis
                   {isClickable && (
                     <div className="mt-auto flex items-center justify-between">
                       <span className="metadata text-foreground/60 group-hover:text-accent transition-colors duration-300">
-                        Voir le projet
+                        {t("viewProject")}
                       </span>
                       <span className="flex h-10 w-10 items-center justify-center border border-foreground/25 rounded-full group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-all duration-300">
                         <ArrowUpRight className="h-4 w-4" />

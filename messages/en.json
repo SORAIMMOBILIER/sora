@@ -47,5 +47,113 @@
     "switchToEn": "Switch to English",
     "switchToFr": "Passer en français",
     "autoTranslateNotice": "This content is machine-translated and may contain inaccuracies, particularly around figures and legal information."
+  },
+  "Home": {
+    "Hero": {
+      "titleLine1": "Invest in Bali,",
+      "titleLine2": "turnkey.",
+      "subtitle": "Gabriel selects the projects, frames the legal structure and runs operations on the ground. You move forward from Europe with a clear view of the steps, the risks and the exit scenarios.",
+      "ctaPrimary": "Book a free call",
+      "ctaSecondary": "See Seseh Sunset",
+      "trust": "Based in Bali since 2023, Gabriel oversees operations on site and has already supported over 50 investors across 28 villas built."
+    },
+    "Stats": {
+      "eyebrow": "Reading the market",
+      "title": "Investing in Bali takes more than a nice villa rendering.",
+      "body": "International rental demand creates an opportunity, but the difference is made in land selection, permits, construction follow-up and operations. To date, the team has built 28 villas and supported over 50 investors.",
+      "cta": "Understand how it works"
+    },
+    "Brochure": {
+      "title": "Download the Seseh Sunset Villas file.",
+      "body": "Full brochure + 5-year financial projections. Free access.",
+      "cta": "Get the file"
+    },
+    "Project": {
+      "eyebrow": "Seseh, currently open to investors",
+      "title": "Seseh Sunset Villas sits 300 m from the sea.",
+      "body": "The project brings together 25 oceanfront villas, in an area driven by both tourism and residential demand. The format works for personal use, rental, or long-term holding."
+    },
+    "Carousel": {
+      "eyebrow": "Portfolio",
+      "title": "Our projects.",
+      "body": "Delivered villas, projects underway and upcoming developments, in Canggu, Seseh and nearby.",
+      "statusEnCours": "Ongoing",
+      "statusLivre": "Delivered",
+      "statusProchainement": "Coming soon",
+      "viewProject": "View project"
+    },
+    "Testimonials": {
+      "eyebrow": "Testimonials",
+      "title": "What our investors say.",
+      "listen": "Watch the testimonial",
+      "quote": "\"Three years ago, I never thought I'd be able to do this...\""
+    },
+    "Podcast": {
+      "eyebrow": "Podcasts & videos",
+      "title": "On the ground.",
+      "body": "Gabriel shares his experience and analysis in podcasts and events with other investment experts.",
+      "cta": "YouTube channel",
+      "items": [
+        { "title": "Investing in Bali: Myths, Realities and Real Numbers", "guest": "Thomas Cornu (LyBox)", "label": "Podcast" },
+        { "title": "Biarritz VS Bali: the best and worst of real estate investing", "guest": "Crazy Home Pays Basque", "label": "Podcast" },
+        { "title": "Investing in Bali: Myths, Realities & Real Numbers", "guest": "Crazy Home Pays Basque", "label": "Podcast" },
+        { "title": "Investor evening in Biarritz", "guest": "SORA x Crazy Home", "label": "Event" }
+      ]
+    },
+    "Founder": {
+      "eyebrow": "A method backed by a local presence in Bali",
+      "title": "A ground team to make the whole process clear.",
+      "body": "The goal isn't just to find a property. It's about structuring a project that's clear, verifiable and locally managed.",
+      "items": [
+        { "title": "Land selection", "desc": "Location analysis, use-case scenarios and rental potential before commitment." },
+        { "title": "Legal structuring", "desc": "PT PMA framework, leasehold and contracts verified with local partners." },
+        { "title": "On-site follow-up", "desc": "Team management, construction reporting and validation of key milestones on site." },
+        { "title": "Rental management", "desc": "Setup, distribution, income tracking and scenario arbitration." }
+      ],
+      "cardEyebrow": "The founder",
+      "cardName": "Gabriel Lapierre",
+      "cardIntro": "Engineer and investor since 2019, based in Bali since 2023, I apply the same rigor in Bali as I would in France.",
+      "cardP1": "Living on site, I discovered a particularly favorable framework for investing as a foreigner. I spent months studying the rules and meeting hundreds of real estate professionals, before building a solid and reliable project team.",
+      "cardP2": "I'm the kind of person who reads the fine print and weighs several scenarios before deciding. In Bali, I applied the same standard.",
+      "cardP3": "Very quickly, my circle of investors wanted in. We launched a first project of 9 villas, now rented out. Since then, 19 more villas have been built. That's how Sora Immobilier was born, with the same rigor at every step."
+    },
+    "Faq": {
+      "eyebrow": "Frequently asked questions",
+      "title": "What you want to know before investing.",
+      "footerText": "Another question?",
+      "footerLink": "Ask it during the masterclass",
+      "items": [
+        { "q": "Do I need to be physically present in Bali?", "a": "No. Sora handles operational and technical oversight on site, with regular updates for investors based in Europe." },
+        { "q": "How does the flow of capital work?", "a": "The process happens in stages: reservation, acquisition or construction, then delivery. Payments are tied to actual project progress and planned milestones." },
+        { "q": "How do taxation and income work?", "a": "Each setup depends on your situation, the structure chosen and your wealth goals. This is reviewed before any investment decision." },
+        { "q": "What happens if I want to exit the investment?", "a": "You remain the owner under the terms of the structure chosen. In case of arbitration or sale, Sora can support the next steps." },
+        { "q": "Co-investment or full ownership villa?", "a": "Co-investment gives access to a project with a lower entry ticket. Full ownership suits those who want to control the asset and its use." },
+        { "q": "How do I know if Bali fits my profile?", "a": "The simplest way is to talk through your situation, investment horizon and constraints. The 30-minute call exists precisely to clarify this." }
+      ]
+    },
+    "Cta": {
+      "eyebrow": "Free 30-minute call",
+      "title": "Check whether Bali makes sense for your profile.",
+      "body1": "During the call, Gabriel reviews your situation, the amount you're considering, your investment horizon and the legal points to clarify before sending you the file.",
+      "body2": "The goal isn't to sell you Bali at all costs, but to check whether the setup, entry ticket and timeline genuinely match your situation.",
+      "ctaPrimary": "Book my call",
+      "ctaSecondary": "Get the file",
+      "footnote": "Free call with a response within 24h, your information stays confidential."
+    },
+    "Events": {
+      "eyebrow": "Events",
+      "title": "Upcoming sessions.",
+      "body": "Webinars, masterclasses and online sessions to read the market, ask the right questions and check the numbers before investing.",
+      "viewAll": "See all events",
+      "statusEnCours": "Ongoing",
+      "statusProchainement": "Coming soon",
+      "statusTermine": "Completed",
+      "webinarFallbackTitle": "Sora Webinar: investing in Bali",
+      "webinarBody": "Find out how to invest in a villa in Bali with a projected return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, founder of Sora Immobilier.",
+      "signUp": "Sign up",
+      "dateToBeAnnounced": "Date to be announced",
+      "viewReplay": "Watch the replay",
+      "viewSession": "View session"
+    }
   }
 }
