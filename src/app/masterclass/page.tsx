@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { gsap } from "gsap"
+import { useTranslations } from "next-intl"
 
 declare global {
   interface Window {
@@ -10,6 +11,8 @@ declare global {
 }
 
 export default function MasterclassPage() {
+  const t = useTranslations("Masterclass")
+  const BULLETS = t.raw("bullets") as string[]
   const ref = useRef<HTMLElement>(null)
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -55,43 +58,32 @@ export default function MasterclassPage() {
       <div className="container-page max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
         {/* Left: content */}
         <div>
-          <p className="mc-fade eyebrow mb-6">Replay / 1h30 / Gratuit</p>
+          <p className="mc-fade eyebrow mb-6">{t("eyebrow")}</p>
           <h1
             className="mc-fade font-serif font-medium text-ink leading-[0.95]"
             style={{ fontSize: "clamp(36px,5vw,72px)" }}
           >
-            Investir à Bali : Mythes, Réalités et Vrais Chiffres.
+            {t("title")}
           </h1>
           <p className="mc-fade text-ink/75 mt-8 leading-relaxed text-lg">
-            Le replay de la conférence avec Gabriel Lapierre (SORA) et Thomas Cornu (LyBox).
-            Données de marché, cadre juridique et retours d&apos;opérations réelles.
+            {t("body")}
           </p>
           <ul className="mc-fade mt-8 space-y-3 text-ink/70 text-[15px]">
-            <li className="flex gap-3">
-              <span className="text-accent mt-0.5">·</span>
-              Le marché immobilier de Bali et ses opportunités 2026
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent mt-0.5">·</span>
-              Devenir propriétaire à Bali : leasehold, PT PMA
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent mt-0.5">·</span>
-              Investir en société vs en nom propre : le bon arbitrage
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent mt-0.5">·</span>
-              Fiscalité française et indonésienne sur vos revenus locatifs
-            </li>
+            {BULLETS.map((b) => (
+              <li key={b} className="flex gap-3">
+                <span className="text-accent mt-0.5">·</span>
+                {b}
+              </li>
+            ))}
             <li className="flex gap-3">
               <span className="text-accent font-semibold mt-0.5">+</span>
               <span>
-                <span className="text-accent font-semibold">Bonus</span> : analyse personnalisée de votre profil et de votre trésorerie
+                <span className="text-accent font-semibold">{t("bonusLabel")}</span>{t("bonusText")}
               </span>
             </li>
           </ul>
           <p className="mc-fade mt-8 metadata text-ink/40">
-            40 investisseurs accompagnés / 3 projets livrés / Depuis 2020
+            {t("trust")}
           </p>
 
           {/* Image visible only on desktop */}
@@ -117,11 +109,10 @@ export default function MasterclassPage() {
                 </svg>
               </div>
               <h2 className="font-serif font-medium text-ink text-2xl mb-4">
-                Replay envoyé.
+                {t("successTitle")}
               </h2>
               <p className="text-ink/65 leading-relaxed">
-                Vérifiez votre boîte mail. Le lien du replay arrive dans quelques minutes.
-                Si vous ne le trouvez pas, regardez vos spams.
+                {t("successBody")}
               </p>
             </div>
           ) : (
@@ -130,17 +121,17 @@ export default function MasterclassPage() {
               className="bg-bg-soft border border-line rounded-sm p-8 md:p-12"
             >
               <h2 className="font-serif font-medium text-ink text-xl md:text-2xl mb-2">
-                Recevoir le replay
+                {t("formTitle")}
               </h2>
               <p className="text-ink/50 text-sm mb-8">
-                Accès immédiat par email. Sans engagement.
+                {t("formBody")}
               </p>
 
               <div className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="form-label mb-2">
-                      Prénom
+                      {t("formFirstName")}
                     </label>
                     <input
                       id="firstName"
@@ -154,7 +145,7 @@ export default function MasterclassPage() {
                   </div>
                   <div>
                     <label htmlFor="lastName" className="form-label mb-2">
-                      Nom
+                      {t("formLastName")}
                     </label>
                     <input
                       id="lastName"
@@ -170,7 +161,7 @@ export default function MasterclassPage() {
 
                 <div>
                   <label htmlFor="email" className="form-label mb-2">
-                    Email
+                    {t("formEmail")}
                   </label>
                   <input
                     id="email"
@@ -185,7 +176,7 @@ export default function MasterclassPage() {
 
                 <div>
                   <label htmlFor="phone" className="form-label mb-2">
-                    Téléphone
+                    {t("formPhone")}
                   </label>
                   <input
                     id="phone"
@@ -203,17 +194,17 @@ export default function MasterclassPage() {
                 disabled={status === "loading"}
                 className="w-full mt-8 bg-accent text-bg font-serif font-semibold text-[11px] tracking-[0.22em] uppercase px-8 py-4 rounded-full hover:bg-bg hover:text-ink transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {status === "loading" ? "Envoi en cours..." : "Recevoir le replay gratuitement"}
+                {status === "loading" ? t("formSubmitting") : t("formSubmit")}
               </button>
 
               {status === "error" && (
                 <p className="mt-4 text-red-400 text-sm text-center">
-                  Une erreur est survenue. Réessayez ou contactez-nous directement.
+                  {t("formError")}
                 </p>
               )}
 
               <p className="mt-6 metadata text-ink/35 text-center">
-                Sans démarchage commercial / Désinscription en 1 clic
+                {t("formNote")}
               </p>
             </form>
           )}

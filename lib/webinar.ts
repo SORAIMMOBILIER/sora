@@ -13,7 +13,9 @@ export function nextWebinar(now: DateTime = DateTime.now()): DateTime {
   return target
 }
 
-export const webinarLabel = (d: DateTime = nextWebinar()): string =>
-  d.setLocale("fr").toFormat("cccc d LLLL 'à' HH'h'") // "mardi 4 août à 18h"
+export const webinarLabel = (d: DateTime = nextWebinar(), locale: "fr" | "en" = "fr"): string =>
+  locale === "en"
+    ? d.setLocale("en").toFormat("cccc d LLLL 'at' HH:mm") // "Tuesday 4 August at 18:00"
+    : d.setLocale("fr").toFormat("cccc d LLLL 'à' HH'h'") // "mardi 4 août à 18h"
 
 export const webinarDateISO = (d: DateTime = nextWebinar()): string | null => d.toISODate() // "2026-08-04"

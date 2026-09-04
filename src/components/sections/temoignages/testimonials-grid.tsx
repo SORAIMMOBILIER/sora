@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { TESTIMONIALS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -14,12 +15,15 @@ type Testimonial = {
 }
 
 export default async function TestimonialsGrid({
-  eyebrow = "Témoignages",
-  title = "Ce que disent ceux qui ont investi.",
+  eyebrow,
+  title,
 }: {
   eyebrow?: string
   title?: string
 }) {
+  const t = await getTranslations("Temoignages")
+  const resolvedEyebrow = eyebrow ?? t("eyebrow")
+  const resolvedTitle = title ?? t("title")
   const testimonials = await sanityFetch<Testimonial[]>({ query: TESTIMONIALS_QUERY, tags: ["testimonial"] })
 
   if (testimonials.length === 0) return null
@@ -28,9 +32,9 @@ export default async function TestimonialsGrid({
     <section className="bg-bg py-16 md:py-24 px-6 md:px-12">
       <div className="container-page">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <p className="eyebrow mx-auto text-ink-muted mb-6">{eyebrow}</p>
+          <p className="eyebrow mx-auto text-ink-muted mb-6">{resolvedEyebrow}</p>
           <h2 className="font-serif font-medium text-ink leading-[1.0]" style={{ fontSize: "clamp(28px,4.5vw,56px)" }}>
-            {title}
+            {resolvedTitle}
           </h2>
         </div>
 

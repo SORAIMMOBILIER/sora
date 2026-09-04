@@ -435,6 +435,164 @@
     "exitCta": "Calculer mon rendement",
     "exitDecline": "Non merci"
   },
+  "Ebook": {
+    "eyebrow": "Guide gratuit / 14 pages",
+    "title": "Diversifier hors zone euro, sécuriser, performer.",
+    "body": "Le guide d'ingénierie immobilière par Gabriel Lapierre. 9 chapitres pour comprendre pourquoi Bali surperforme l'Europe et comment structurer votre investissement.",
+    "stats": [
+      { "value": "8-12%", "label": "rendement net visé" },
+      { "value": "+5%", "label": "croissance PIB/an" },
+      { "value": "280M", "label": "4e population mondiale" }
+    ],
+    "coverBrand": "SORA IMMOBILIER",
+    "coverEdition": "Édition 2026",
+    "coverKicker": "LE GUIDE D'INGÉNIERIE IMMOBILIÈRE",
+    "coverTitle": "Diversifier hors zone euro, sécuriser, performer.",
+    "coverByline": "Par Gabriel Lapierre",
+    "coverRole": "Fondateur, SORA Immobilier",
+    "chaptersEyebrow": "Ce que vous allez lire",
+    "chapters": [
+      { "n": "01", "title": "Le constat", "desc": "L'Europe n'est plus le terrain de jeu de la performance" },
+      { "n": "02", "title": "Macro-économie", "desc": "L'Indonésie : la croissance que l'Europe n'a plus" },
+      { "n": "03", "title": "Micro-marché", "desc": "Pourquoi Bali, pourquoi Seseh" },
+      { "n": "04", "title": "Cadre juridique", "desc": "Le Leasehold : posséder et sécuriser à 12 000 km" },
+      { "n": "05", "title": "Le match financier", "desc": "Europe vs Bali : ce que vous gardez vraiment" },
+      { "n": "06", "title": "Le produit", "desc": "Seseh Sunset Villas" },
+      { "n": "07", "title": "La méthode", "desc": "Zéro gestion de votre côté" },
+      { "n": "08", "title": "Preuve sociale", "desc": "Des résultats, des investisseurs, des villas livrées" },
+      { "n": "09", "title": "Prochaine étape", "desc": "Votre arbitrage commence maintenant" }
+    ],
+    "points": [
+      { "title": "Macro : pourquoi l'Indonésie", "desc": "280M d'habitants, +5% de PIB/an, pays neutre, 14 000 nouveaux millionnaires par an. La demande immobilière premium est structurelle." },
+      { "title": "Juridique : le Leasehold 30+30", "desc": "Bail enregistré devant notaire, garantie d'extension, structure PT PMA. 0 frais de succession, 0 taxe d'habitation." },
+      { "title": "Financier : Europe vs Bali", "desc": "Rendement net 3-4% en Europe vs 8-12% visé à Bali. Charges opérationnelles incluses, gestion locative intégrée." }
+    ],
+    "successTitle": "Votre guide est prêt.",
+    "successBody": "Cliquez ci-dessous pour télécharger votre exemplaire.",
+    "downloadCta": "Télécharger le guide (PDF)",
+    "formTitle": "Télécharger le guide gratuitement",
+    "formBody": "14 pages. Accès immédiat après inscription.",
+    "formFirstName": "Prénom",
+    "formLastName": "Nom",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubmit": "Recevoir le guide",
+    "formSubmitting": "Envoi en cours...",
+    "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
+    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+  },
+  "Masterclass": {
+    "eyebrow": "Replay / 1h30 / Gratuit",
+    "title": "Investir à Bali : Mythes, Réalités et Vrais Chiffres.",
+    "body": "Le replay de la conférence avec Gabriel Lapierre (SORA) et Thomas Cornu (LyBox). Données de marché, cadre juridique et retours d'opérations réelles.",
+    "bullets": [
+      "Le marché immobilier de Bali et ses opportunités 2026",
+      "Devenir propriétaire à Bali : leasehold, PT PMA",
+      "Investir en société vs en nom propre : le bon arbitrage",
+      "Fiscalité française et indonésienne sur vos revenus locatifs"
+    ],
+    "bonusLabel": "Bonus",
+    "bonusText": ": analyse personnalisée de votre profil et de votre trésorerie",
+    "trust": "40 investisseurs accompagnés / 3 projets livrés / Depuis 2020",
+    "successTitle": "Replay envoyé.",
+    "successBody": "Vérifiez votre boîte mail. Le lien du replay arrive dans quelques minutes. Si vous ne le trouvez pas, regardez vos spams.",
+    "formTitle": "Recevoir le replay",
+    "formBody": "Accès immédiat par email. Sans engagement.",
+    "formFirstName": "Prénom",
+    "formLastName": "Nom",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubmit": "Recevoir le replay gratuitement",
+    "formSubmitting": "Envoi en cours...",
+    "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
+    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+  },
+  "Webinar": {
+    "formHeadingTitle": "Je réserve ma place",
+    "formHeadingBody": "Accès gratuit. Places limitées.",
+    "formFirstName": "Prénom",
+    "formLastName": "Nom",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubmit": "Je réserve ma place",
+    "formSubmitting": "Envoi en cours...",
+    "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
+    "formNote": "Gratuit · Places limitées · Lien d'accès envoyé par email",
+    "successTitle": "Inscription confirmée.",
+    "successBody": "Vous recevez le lien de connexion et un rappel par email avant la session.",
+    "gammes": [
+      { "name": "Élégance", "price": "149 000 €", "surface": "51 m²", "chambres": "1 chambre", "equipement": "Jacuzzi privé" },
+      { "name": "Prestige", "price": "239 000 €", "surface": "80 m²", "chambres": "2 chambres", "equipement": "Piscine privée" },
+      { "name": "Signature", "price": "369 000 €", "surface": "153 m²", "chambres": "2 chambres premium", "equipement": "Piscine privée" },
+      { "name": "Exception", "price": "469 000 €", "surface": "197 m²", "chambres": "3 chambres", "equipement": "Piscine privée" }
+    ],
+    "garanties": [
+      { "label": "Garantie structure", "value": "10 ans", "description": "Fondations, murs porteurs, charpente" },
+      { "label": "Garantie toiture", "value": "5 ans", "description": "Étanchéité et couverture complète" },
+      { "label": "Garantie intégrale", "value": "1 an", "description": "Tout équipement, finitions, installations" }
+    ],
+    "confiancePartenaires": [
+      "Assurance Allianz (construction et exploitation)",
+      "Maître d'œuvre Vienna Lux Cooperation, fondée par un architecte-constructeur allemand fort de 30 ans d'expérience",
+      "Cabinet juridique partenaire ILA Consulting (francophone à Bali)",
+      "Design intérieur signé Julie Chatelain"
+    ],
+    "credibilite": {
+      "projets": "4 projets",
+      "villas": "28 villas livrées + 26 en construction",
+      "investisseurs": "100+ investisseurs accompagnés",
+      "roadshows": "Roadshows Paris, Biarritz, Bruxelles, Genève"
+    }
+  },
+  "LiveSSV": {
+    "defaultEyebrow": "Webinaire live gratuit",
+    "defaultTitle": "Investir dans l'immobilier à Bali — le projet Seseh Sunset Villas",
+    "defaultSummary": "Découvrez comment investir dans une villa à Bali avec un rendement net projeté jusqu'à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, fondateur de Sora Immobilier.",
+    "nextSession": "Prochaine session",
+    "parisTime": "(heure de Paris)",
+    "villasRemaining": "Plus que {n} villas disponibles sur 26",
+    "programEyebrow": "Programme",
+    "programTitle": "Ce que vous allez découvrir.",
+    "decouverte": [
+      "Le marché immobilier à Bali et pourquoi la zone de Seseh",
+      "Le projet Seseh Sunset Villas : 26 villas clé en main à 300 m de la plage",
+      "Le fonctionnement clé en main : construction, mobilier, gestion locative déléguée",
+      "Le cadre légal et fiscal d'un achat à Bali (leasehold 30+30 ans, société locale type PT PMA)",
+      "Les garanties et la sécurisation du projet",
+      "Session questions/réponses en direct"
+    ],
+    "projectEyebrow": "Le projet",
+    "projectTitle": "Seseh Sunset Villas.",
+    "projectBody": "26 villas au sein d'une communauté privée gérée par Sora (parties communes, sécurité), à 300 m de la plage de Seseh, Bali. Construction en une seule tranche, pour une livraison uniforme du projet en mars 2028 et une mise en location immédiate, sans nuisances de chantier. Mobilier et équipement inclus, gestion locative déléguée.",
+    "forWhoEyebrow": "Pour qui",
+    "forWhoTitle": "À qui s'adresse ce webinaire.",
+    "profils": [
+      "Vous découvrez l'investissement immobilier à Bali et voulez comprendre comment ça marche",
+      "Vous cherchez un actif clé en main à l'étranger sans gérer la construction ni la location",
+      "Vous voulez un cadre légal et fiscal clair avant de vous lancer",
+      "Vous préférez poser vos questions en direct plutôt que lire une brochure"
+    ],
+    "hostEyebrow": "Qui anime",
+    "hostP1": "Ingénieur de formation (Arts et Métiers), fondateur de Sora, installé à Bali depuis 2023 — présent sur place pour les visites de chantier, pas derrière un écran.",
+    "hostP2": "Entouré d'un écosystème d'experts locaux (notaire, cabinet juridique, maître d'œuvre, architecte d'intérieur, gestionnaire) et d'un réseau de clients construit sur plus de 15 ans.",
+    "hostP3": "Des villas déjà livrées et en exploitation, des closings réalisés sur place : un projet qui avance concrètement, pas une promesse sur plan.",
+    "securityEyebrow": "Sécurisation",
+    "securityTitle": "Un cadre sécurisé.",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Questions fréquentes.",
+    "faq": [
+      { "q": "C'est vraiment gratuit ?", "a": "Oui, l'inscription et la participation au webinaire sont entièrement gratuites." },
+      { "q": "Combien de temps dure le webinaire ?", "a": "Environ 50 minutes, suivies d'une session de questions/réponses." },
+      { "q": "Je reçois un replay si je ne peux pas être présent ?", "a": "Oui, le replay est envoyé automatiquement à toutes les personnes inscrites." },
+      { "q": "Faut-il déjà avoir un budget défini ?", "a": "Non, ce webinaire est aussi fait pour comprendre le fonctionnement avant de se projeter." },
+      { "q": "Ça se passe où ?", "a": "En ligne, le lien de connexion est envoyé par email après l'inscription." }
+    ],
+    "finalSession": "Prochaine session : {label}",
+    "finalTitle": "Je réserve ma place.",
+    "testimonialsEyebrow": "Ils nous ont fait confiance",
+    "testimonialsTitle": "Ce que disent nos investisseurs.",
+    "bottomCtaTitle": "Vous aussi, venez découvrir le projet Seseh Sunset Villas et poser vos questions en direct."
+  },
   "Temoignages": {
     "eyebrow": "Témoignages",
     "title": "Ce que disent ceux qui ont investi.",
