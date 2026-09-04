@@ -39,6 +39,11 @@ const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sora-five-s
 const ogImageUrl = new URL("/og-image.jpg", siteUrl)
 const faviconUrl = new URL("/favicon.ico", siteUrl)
 
+// Filet de sécurité : la langue dépend d'un cookie relu à chaque requête
+// (voir src/i18n/request.ts) — on interdit explicitement toute mise en
+// cache statique du layout pour ne jamais servir la mauvaise langue.
+export const dynamic = "force-dynamic"
+
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title,
