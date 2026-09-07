@@ -83,6 +83,23 @@ function isInternalHref(href: string) {
   return href.startsWith("/")
 }
 
+// Certaines URLs Sanity (registrationUrl, redirectUrl) sont des liens absolus
+// vers le site lui-même (ex: https://www.sora-immobilier.com/aller-plus-loin).
+// Comme ce ne sont pas des chemins relatifs, LocalizedLink ne les préfixe pas
+// automatiquement — on les réécrit ici pour rester en /en/... en anglais.
+function localizeSameSiteUrl(url: string | undefined, locale: string): string | undefined {
+  if (!url || locale !== "en") return url
+  try {
+    const u = new URL(url)
+    if (u.hostname !== "www.sora-immobilier.com" && u.hostname !== "sora-immobilier.com") return url
+    if (u.pathname === "/en" || u.pathname.startsWith("/en/")) return url
+    u.pathname = `/en${u.pathname}`
+    return u.toString()
+  } catch {
+    return url
+  }
+}
+
 export async function generateStaticParams() {
   const slugs = await sanityFetch<{ slug: string }[]>({ query: EVENT_SLUGS_QUERY })
   return slugs.map((s) => ({ slug: s.slug }))
@@ -191,7 +208,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
     termine: t("statusTermine"),
   }
 
-  const externalRegistration = event.registration?.registrationUrl
+  const externalRegistration = localizeSameSiteUrl(event.registration?.registrationUrl, locale)
   const registrationHref = externalRegistration || "#inscription"
   const registrationLabel = event.registration?.ctaLabel || t("defaultCta")
   const showEmbeddedForm = !externalRegistration
@@ -370,7 +387,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
               eventTitle={event.title}
               ctaLabel={event.registration?.ctaLabel}
               finePrint={event.registration?.finePrint}
-              redirectUrl={event.registration?.redirectUrl}
+              redirectUrl={localizeSameSiteUrl(event.registration?.redirectUrl, locale)}
               crmSource={event.crm?.source}
               freshsalesTag={event.crm?.freshsalesTag}
               acTagId={event.crm?.acTagId}

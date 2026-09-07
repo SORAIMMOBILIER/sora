@@ -1,5 +1,6 @@
 import { createHash } from "crypto"
 import { unstable_cache } from "next/cache"
+import { STATIC_EN_OVERRIDES } from "./en-overrides"
 
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
 const MODEL = "claude-haiku-4-5-20251001"
@@ -58,11 +59,15 @@ async function translateJsonUncached<T>(value: T, maxTokens: number): Promise<T>
 }
 
 /**
- * Translates a JSON-serializable CMS value (French -> English) via Claude,
- * cached for an hour and keyed by a content hash — so an edit in Sanity
- * produces a fresh translation automatically, without needing a webhook.
- * Falls back to the original French value on any failure (missing API key,
- * request error, malformed response) — this must never break the page.
+ * Translates a JSON-serializable CMS value (French -> English), cached and
+ * keyed by cacheKey. Resolution order:
+ *  1. A hand-written entry in STATIC_EN_OVERRIDES for this cacheKey (free,
+ *     instant, no API key needed — this covers all current content).
+ *  2. Claude (Anthropic Messages API), if ANTHROPIC_TRANSLATE_API_KEY is
+ *     set — for new content added later that has no static override yet.
+ *     Cached for an hour, keyed by a content hash, so an edit in Sanity
+ *     produces a fresh translation automatically without needing a webhook.
+ *  3. The original French value, unchanged — this must never break the page.
  */
 export async function translateToEnglish<T>(
   value: T,
@@ -70,6 +75,7 @@ export async function translateToEnglish<T>(
   maxTokens = 4096,
 ): Promise<T> {
   if (value == null) return value
+  if (cacheKey in STATIC_EN_OVERRIDES) return STATIC_EN_OVERRIDES[cacheKey] as T
   if (!process.env.ANTHROPIC_TRANSLATE_API_KEY) return value
 
   const hash = createHash("sha256").update(JSON.stringify(value)).digest("hex").slice(0, 16)
