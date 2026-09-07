@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { cloudinaryVideoUrl, cloudinaryPosterUrl } from "@/lib/cloudinary"
 
 export type Testimonial = {
   quote: string
@@ -12,18 +13,21 @@ export type Testimonial = {
   role?: string
 }
 
+// Posters dimensionnés pour ~1024px de conteneur (max-w-5xl) : VIDEOS[1] sert
+// en pleine largeur sur mobile et en colonne centrale sur desktop (le contexte
+// le plus large), VIDEOS[0]/[2] ne servent qu'en colonnes latérales étroites.
 const VIDEOS = [
   {
-    src: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4",
-    poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.jpg",
+    src: cloudinaryVideoUrl("https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4"),
+    poster: cloudinaryPosterUrl("https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.jpg", 600),
   },
   {
-    src: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4",
-    poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.jpg",
+    src: cloudinaryVideoUrl("https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4"),
+    poster: cloudinaryPosterUrl("https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.jpg", 1000),
   },
   {
-    src: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4",
-    poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.jpg",
+    src: cloudinaryVideoUrl("https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4"),
+    poster: cloudinaryPosterUrl("https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.jpg", 600),
   },
 ]
 
