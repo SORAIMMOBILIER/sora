@@ -16,7 +16,10 @@
     "ebookMeta": "14 pages, free access",
     "masterclassEyebrow": "Video replay",
     "masterclassTitle": "Masterclass: investing in Bali",
-    "masterclassMeta": "Full conference"
+    "masterclassMeta": "Full conference",
+    "statusEnCours": "Ongoing",
+    "statusLivre": "Delivered",
+    "statusProchainement": "Coming soon"
   },
   "Footer": {
     "contactUs": "Contact us",

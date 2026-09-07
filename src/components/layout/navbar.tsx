@@ -20,6 +20,12 @@ const STATUS_DOT: Record<NavRealisation["status"], string> = {
   "Livré": "bg-background/40",
 }
 
+const STATUS_KEY: Record<NavRealisation["status"], "statusEnCours" | "statusLivre" | "statusProchainement"> = {
+  "En cours": "statusEnCours",
+  "Prochainement": "statusProchainement",
+  "Livré": "statusLivre",
+}
+
 export default function Navbar({ realisations }: { realisations: NavRealisation[] }) {
   const t = useTranslations("Navbar")
   const locale = useLocale()
@@ -181,7 +187,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                 >
                   <span className="inline-flex items-center gap-2 metadata text-background/55 group-hover:text-background/80 transition-colors">
                     <span className={`h-1.5 w-1.5 rounded-full ${STATUS_DOT[r.status]}`} />
-                    {r.status}
+                    {t(STATUS_KEY[r.status])}
                   </span>
                   <span className="font-serif text-background text-lg leading-[1.2]">{r.title}</span>
                   {r.location && (
@@ -263,7 +269,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                     >
                       <span className="inline-flex items-center gap-2 metadata text-background/55">
                         <span className={`h-1.5 w-1.5 rounded-full ${STATUS_DOT[r.status]}`} />
-                        {r.status}
+                        {t(STATUS_KEY[r.status])}
                       </span>
                       <span className="font-serif text-background text-xl leading-tight">{r.title}</span>
                     </Link>

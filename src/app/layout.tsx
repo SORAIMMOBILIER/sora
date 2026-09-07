@@ -9,6 +9,7 @@ import { SiteChrome, ConditionalSmoothScroll, DevAgentation } from "@/components
 import CookieBanner from "@/components/layout/cookie-banner"
 import { sanityFetch } from "../../sanity/lib/fetch"
 import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
+import { translateToEnglish } from "@/lib/translate"
 import "./globals.css"
 
 const eightly = localFont({
@@ -91,15 +92,28 @@ type NavRealisationRaw = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
-  const navRealisations: NavRealisation[] = raw.map((r) => ({
-    slug: r.slug,
-    status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
-    location: r.location || "",
-    title: r.cardTitle || r.heroTitle || "",
-  }))
-
   const locale = await getLocale()
+  const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
+
+  const translatedText =
+    locale === "en"
+      ? await translateToEnglish(
+          raw.map((r) => ({ slug: r.slug, location: r.location || "", title: r.cardTitle || r.heroTitle || "" })),
+          "home-carousel-realisations",
+        )
+      : null
+  const navTextBySlug = new Map((translatedText || []).map((r) => [r.slug, r]))
+
+  const navRealisations: NavRealisation[] = raw.map((r) => {
+    const en = navTextBySlug.get(r.slug)
+    return {
+      slug: r.slug,
+      status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
+      location: en?.location || r.location || "",
+      title: en?.title || r.cardTitle || r.heroTitle || "",
+    }
+  })
+
   const messages = await getMessages()
 
   return (
