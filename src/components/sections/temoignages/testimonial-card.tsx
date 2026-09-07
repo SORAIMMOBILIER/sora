@@ -2,6 +2,7 @@
 import { useRef, useState } from "react"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { cloudinaryOptimizedTestimonialVideoUrl, cloudinaryPosterUrl } from "@/lib/cloudinary"
 
 export type TestimonialCardProps = {
   quote: string
@@ -12,10 +13,15 @@ export type TestimonialCardProps = {
   posterUrl?: string
 }
 
+// Carte affichée dans une grille jusqu'à 4 colonnes sur un conteneur de
+// 1504px (container-page) : ~360px par carte, ~720px en 2x retina.
+const POSTER_WIDTH = 720
+
 function deriveCloudinaryPoster(videoUrl: string): string | undefined {
   const match = videoUrl.match(/\/video\/upload\/(.*)\.[a-zA-Z0-9]+$/)
   if (!match) return undefined
-  return `${videoUrl.slice(0, videoUrl.indexOf("/video/upload/"))}/video/upload/so_0/${match[1]}.jpg`
+  const posterUrl = `${videoUrl.slice(0, videoUrl.indexOf("/video/upload/"))}/video/upload/so_0/${match[1]}.jpg`
+  return cloudinaryPosterUrl(posterUrl, POSTER_WIDTH)
 }
 
 export default function TestimonialCard({ quote, author, role, videoUrlDesktop, videoUrlMobile, posterUrl }: TestimonialCardProps) {
@@ -24,10 +30,14 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
   const mobileRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
 
-  const desktopSrc = videoUrlDesktop || videoUrlMobile
-  const mobileSrc = videoUrlMobile || videoUrlDesktop
-  const desktopPoster = posterUrl || (desktopSrc ? deriveCloudinaryPoster(desktopSrc) : undefined)
-  const mobilePoster = posterUrl || (mobileSrc ? deriveCloudinaryPoster(mobileSrc) : undefined)
+  const rawDesktopSrc = videoUrlDesktop || videoUrlMobile
+  const rawMobileSrc = videoUrlMobile || videoUrlDesktop
+  const desktopSrc = rawDesktopSrc ? cloudinaryOptimizedTestimonialVideoUrl(rawDesktopSrc) : undefined
+  const mobileSrc = rawMobileSrc ? cloudinaryOptimizedTestimonialVideoUrl(rawMobileSrc) : undefined
+  // Le poster se dérive de l'URL vidéo d'origine (pas de la version déjà
+  // transformée) : deriveCloudinaryPoster attend un chemin brut.
+  const desktopPoster = posterUrl || (rawDesktopSrc ? deriveCloudinaryPoster(rawDesktopSrc) : undefined)
+  const mobilePoster = posterUrl || (rawMobileSrc ? deriveCloudinaryPoster(rawMobileSrc) : undefined)
 
   const handlePlay = () => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches
@@ -57,7 +67,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
         />
       ) : desktopPoster ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={desktopPoster} alt={author || ""} className="absolute inset-0 hidden h-full w-full object-cover md:block" />
+        <img src={desktopPoster} alt={author || ""} loading="lazy" className="absolute inset-0 hidden h-full w-full object-cover md:block" />
       ) : null}
 
       {mobileSrc ? (
@@ -75,7 +85,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
         />
       ) : mobilePoster ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={mobilePoster} alt={author || ""} className="absolute inset-0 block h-full w-full object-cover md:hidden" />
+        <img src={mobilePoster} alt={author || ""} loading="lazy" className="absolute inset-0 block h-full w-full object-cover md:hidden" />
       ) : null}
 
       {(desktopSrc || mobileSrc) && !playing && (
