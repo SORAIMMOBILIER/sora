@@ -835,6 +835,10 @@
     "galleryTitle": "Living spaces.",
     "visualsCount": "{count} visuals"
   },
+  "TestimonialCard": {
+    "watchLabel": "Watch the testimonial",
+    "playLabel": "Play testimonial"
+  },
   "Temoignages": {
     "eyebrow": "Testimonials",
     "title": "What our investors say.",

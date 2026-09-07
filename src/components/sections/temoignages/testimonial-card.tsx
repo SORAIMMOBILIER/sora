@@ -1,6 +1,7 @@
 "use client"
 import { useRef, useState } from "react"
 import { Play } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export type TestimonialCardProps = {
   quote: string
@@ -18,6 +19,7 @@ function deriveCloudinaryPoster(videoUrl: string): string | undefined {
 }
 
 export default function TestimonialCard({ quote, author, role, videoUrlDesktop, videoUrlMobile, posterUrl }: TestimonialCardProps) {
+  const t = useTranslations("TestimonialCard")
   const desktopRef = useRef<HTMLVideoElement>(null)
   const mobileRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
@@ -81,7 +83,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
           {/* Desktop : gros bouton centré */}
           <button
             onClick={handlePlay}
-            aria-label="Lire le témoignage"
+            aria-label={t("watchLabel")}
             className="absolute inset-0 z-20 hidden h-full w-full cursor-pointer items-center justify-center bg-black/25 transition-colors group-hover:bg-black/35 md:flex"
           >
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-bg/90 text-ink shadow-lg transition-transform group-hover:scale-105">
@@ -92,11 +94,11 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
           {/* Mobile : petit bandeau en bas de la carte */}
           <button
             onClick={handlePlay}
-            aria-label="Lire le témoignage"
+            aria-label={t("watchLabel")}
             className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-bg/90 px-3 py-1.5 text-ink shadow-md md:hidden"
           >
             <Play className="h-3 w-3" fill="currentColor" />
-            <span className="text-[11px] font-semibold uppercase tracking-wide">Lancer le témoignage</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wide">{t("playLabel")}</span>
           </button>
         </>
       )}

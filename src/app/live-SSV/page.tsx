@@ -8,6 +8,7 @@ import { urlForImage } from "../../../sanity/lib/image"
 import { webinarLabel } from "../../../lib/webinar"
 import WebinarForm from "@/components/sections/webinar/webinar-form"
 import TestimonialsGrid from "@/components/sections/temoignages/testimonials-grid"
+import { translateToEnglish } from "@/lib/translate"
 
 export const dynamic = "force-dynamic"
 
@@ -37,6 +38,15 @@ export default async function WebinairePage() {
   const locale = await getLocale()
   const content = await sanityFetch<WebinarContent | null>({ query: WEBINAR_RECURRING_QUERY, tags: ["webinarRecurring"] })
   const label = webinarLabel(undefined, locale === "en" ? "en" : "fr")
+
+  if (locale === "en" && content) {
+    const en = await translateToEnglish(
+      { eyebrow: content.eyebrow, summary: content.summary },
+      "webinar-recurring-content",
+    )
+    content.eyebrow = en.eyebrow
+    content.summary = en.summary
+  }
 
   const GAMMES = tw.raw("gammes") as Gamme[]
   const GARANTIES = tw.raw("garanties") as Garantie[]

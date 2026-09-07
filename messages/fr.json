@@ -835,6 +835,10 @@
     "galleryTitle": "Espaces de vie.",
     "visualsCount": "{count} visuels"
   },
+  "TestimonialCard": {
+    "watchLabel": "Lire le témoignage",
+    "playLabel": "Lancer le témoignage"
+  },
   "Temoignages": {
     "eyebrow": "Témoignages",
     "title": "Ce que disent ceux qui ont investi.",

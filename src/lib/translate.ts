@@ -86,3 +86,9 @@ export async function translateToEnglish<T>(
   )
   return cached()
 }
+
+/** Looks up a single hand-translated testimonial quote by its Sanity _id. */
+export function getStaticTranslatedQuote(id: string): string | undefined {
+  const map = STATIC_EN_OVERRIDES["testimonials-quotes"] as Record<string, string> | undefined
+  return map?.[id]
+}

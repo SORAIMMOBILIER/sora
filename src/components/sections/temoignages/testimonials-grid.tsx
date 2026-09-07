@@ -1,7 +1,8 @@
-import { getTranslations } from "next-intl/server"
+import { getTranslations, getLocale } from "next-intl/server"
 import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { TESTIMONIALS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
+import { getStaticTranslatedQuote } from "@/lib/translate"
 import TestimonialCard from "./testimonial-card"
 
 type Testimonial = {
@@ -22,6 +23,7 @@ export default async function TestimonialsGrid({
   title?: string
 }) {
   const t = await getTranslations("Temoignages")
+  const locale = await getLocale()
   const resolvedEyebrow = eyebrow ?? t("eyebrow")
   const resolvedTitle = title ?? t("title")
   const testimonials = await sanityFetch<Testimonial[]>({ query: TESTIMONIALS_QUERY, tags: ["testimonial"] })
@@ -39,15 +41,15 @@ export default async function TestimonialsGrid({
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
-          {testimonials.map((t) => (
+          {testimonials.map((item) => (
             <TestimonialCard
-              key={t._id}
-              quote={t.quote}
-              author={t.author}
-              role={t.role}
-              videoUrlDesktop={t.videoUrlDesktop}
-              videoUrlMobile={t.videoUrlMobile}
-              posterUrl={t.image?.asset ? urlForImage(t.image).width(800).height(1067).url() : undefined}
+              key={item._id}
+              quote={(locale === "en" && getStaticTranslatedQuote(item._id)) || item.quote}
+              author={item.author}
+              role={item.role}
+              videoUrlDesktop={item.videoUrlDesktop}
+              videoUrlMobile={item.videoUrlMobile}
+              posterUrl={item.image?.asset ? urlForImage(item.image).width(800).height(1067).url() : undefined}
             />
           ))}
         </div>

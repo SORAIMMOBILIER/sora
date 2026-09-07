@@ -158,6 +158,26 @@ export const STATIC_EN_OVERRIDES: Record<string, unknown> = {
     features: null,
   },
 
+  "webinar-recurring-content": {
+    eyebrow: "Free live webinar",
+    summary:
+      "Find out how to invest in a villa in Bali with a projected return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, founder of Sora Immobilier.",
+  },
+
+  "testimonials-quotes": {
+    "097cd833-3bd0-4d80-ac88-93e4242580cd": "Even those who weren't interested found themselves thinking...",
+    "1097c5bd-28d1-4505-b9b8-dbbec53a80ca": "If you don't draw on the experience of experts, you miss out on opportunities...",
+    "1bf163f4-dec9-4329-8fc9-c2cda32bc95e": "Either you think about the opportunity, or you seize it...",
+    "21884643-1415-4bfc-ae68-12ebd5497a11": "Three years ago, I never thought I'd be able to do this...",
+    "4f2d53a7-b4d6-46b7-bda0-7ee692302d62": "Here, it's not a real estate project, it's a trust project...",
+    "6d847b17-fe25-44e6-a1ea-324b13215cae": "He was very clear on the tax, legal and economic topics...",
+    "8e944e47-d6bd-4cc4-aae9-f822c8150ed2": "I'm currently thinking about investing again...",
+    "9aa3846a-8ca0-4b7c-82a4-d40deeb42c0e": "It's simple: you sign the contract, you transfer the money, and you get your money back...",
+    "cfa60d6a-d5db-425e-b452-25acdf12fe51": "It's your transparency that made me prefer investing 12,000 km away rather than next door...",
+    "ee7c67ce-450f-400e-808e-814dfe5110b7": "There are real business opportunities for people here...",
+    "f6685c78-acad-4979-922e-954ddf24f3b4": "Investing in real estate without support is a mistake...",
+  },
+
   "event:webinaire-lybox-sora-investir-a-bali-juillet-2026": {
     title: "Lybox x Sora Webinar — Investing in Bali",
     eyebrow: "REPLAY / Lybox x Sora / 60 min",
