@@ -247,7 +247,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
           <div className="absolute inset-0">
             <Image
               src={heroImageUrl}
-              alt={r.heroImage?.alt || r.title}
+              alt={(locale === "en" && r.heroTitle) || r.heroImage?.alt || r.title}
               fill
               quality={95}
               priority
@@ -567,7 +567,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                 <div className="hidden md:block mt-12 relative aspect-[4/3] rounded-sm overflow-hidden">
                   <Image
                     src={urlForImage(r.dossierImage).width(1200).url()}
-                    alt={r.dossierImage.alt || r.title}
+                    alt={(locale === "en" && r.heroTitle) || r.dossierImage.alt || r.title}
                     fill
                     quality={95}
                     className="object-cover"

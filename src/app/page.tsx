@@ -61,7 +61,7 @@ export default async function Home() {
     return {
       slug: r.slug,
       image: r.cardImage?.asset ? urlForImage(r.cardImage).width(1600).url() : "/villa-exterior.webp",
-      imageAlt: r.cardImage?.alt || r.cardTitle || "",
+      imageAlt: en?.title || r.cardImage?.alt || r.cardTitle || "",
       location: en?.location || r.location || "",
       price: r.priceLabel || "",
       title: en?.title || r.cardTitle || "",
