@@ -93,26 +93,37 @@ type NavRealisationRaw = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
-  const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
 
-  const translatedText =
-    locale === "en"
-      ? await translateToEnglish(
-          raw.map((r) => ({ slug: r.slug, location: r.location || "", title: r.cardTitle || r.heroTitle || "" })),
-          "home-carousel-realisations",
-        )
-      : null
-  const navTextBySlug = new Map((translatedText || []).map((r) => [r.slug, r]))
+  // Le layout racine wrappe aussi /studio (Sanity Studio, page "force-static").
+  // Ce fetch + cette traduction ne servent qu'au menu Réalisations de la
+  // navbar (masquée sur /studio) — jamais essentiels au rendu de la page.
+  // Protégés par un try/catch pour ne jamais faire planter une route qui
+  // n'a même pas besoin de cette donnée.
+  let navRealisations: NavRealisation[] = []
+  try {
+    const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
 
-  const navRealisations: NavRealisation[] = raw.map((r) => {
-    const en = navTextBySlug.get(r.slug)
-    return {
-      slug: r.slug,
-      status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
-      location: en?.location || r.location || "",
-      title: en?.title || r.cardTitle || r.heroTitle || "",
-    }
-  })
+    const translatedText =
+      locale === "en"
+        ? await translateToEnglish(
+            raw.map((r) => ({ slug: r.slug, location: r.location || "", title: r.cardTitle || r.heroTitle || "" })),
+            "home-carousel-realisations",
+          )
+        : null
+    const navTextBySlug = new Map((translatedText || []).map((r) => [r.slug, r]))
+
+    navRealisations = raw.map((r) => {
+      const en = navTextBySlug.get(r.slug)
+      return {
+        slug: r.slug,
+        status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
+        location: en?.location || r.location || "",
+        title: en?.title || r.cardTitle || r.heroTitle || "",
+      }
+    })
+  } catch {
+    navRealisations = []
+  }
 
   const messages = await getMessages()
 
