@@ -449,27 +449,31 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                     {r.espacesTitle}
                   </p>
                 )}
-                {r.espacesSubtitle && (
-                  <div className="bg-primary rounded-sm py-8 md:py-10 px-6 text-center mb-12 md:mb-16">
-                    <p className="font-serif font-medium text-background text-xl md:text-2xl">{r.espacesSubtitle}</p>
-                  </div>
-                )}
-                {r.espacesCategories && r.espacesCategories.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
-                    {r.espacesCategories.map((cat) => (
-                      <div key={cat.title}>
-                        <p className="metadata text-foreground/50 mb-4">{cat.title}</p>
-                        {cat.items && cat.items.length > 0 && (
-                          <ul className="space-y-2.5">
-                            {cat.items.map((item) => (
-                              <li key={item} className="text-foreground/55 text-sm leading-relaxed">
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                {(r.espacesSubtitle || (r.espacesCategories && r.espacesCategories.length > 0)) && (
+                  <div className="bg-primary rounded-sm py-10 md:py-14 px-6 md:px-10">
+                    {r.espacesSubtitle && (
+                      <p className="font-serif font-medium text-background text-xl md:text-2xl text-center mb-12 md:mb-16">
+                        {r.espacesSubtitle}
+                      </p>
+                    )}
+                    {r.espacesCategories && r.espacesCategories.length > 0 && (
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+                        {r.espacesCategories.map((cat) => (
+                          <div key={cat.title}>
+                            <p className="metadata text-background/50 mb-4">{cat.title}</p>
+                            {cat.items && cat.items.length > 0 && (
+                              <ul className="space-y-2.5">
+                                {cat.items.map((item) => (
+                                  <li key={item} className="text-background/70 text-sm leading-relaxed">
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    )}
                   </div>
                 )}
               </div>
