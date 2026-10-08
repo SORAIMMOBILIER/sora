@@ -402,7 +402,7 @@
     "formSubmit": "Get the file",
     "formSubmitting": "Sending...",
     "formError": "Something went wrong. Please try again.",
-    "formNote": "No cold-calling / Unsubscribe in one click",
+    "formNote": "A SORA advisor will contact you within 24h · Unsubscribe anytime",
     "guaranteesEyebrow": "Protection",
     "guaranteesTitle": "The same peace of mind as in Europe.",
     "guarantees": [
@@ -430,7 +430,7 @@
     ],
     "calendlyTitle": "Ready to diversify your wealth?",
     "calendlyBody": "Book 30 minutes with Gabriel. He reviews your situation, answers all your questions and sends you the complete file after the call.",
-    "calendlyNote": "No commitment. No cold-calling.",
+    "calendlyNote": "No commitment. A SORA advisor will contact you within 24h.",
     "footerEmail": "contact@sora-immobilier.com",
     "stickyCta": "Book a call with Gabriel",
     "exitTitle": "Before you go, one question.",
@@ -482,7 +482,7 @@
     "formSubmit": "Get the guide",
     "formSubmitting": "Sending...",
     "formError": "Something went wrong. Please try again or contact us directly.",
-    "formNote": "No cold-calling / Unsubscribe in one click"
+    "formNote": "A SORA advisor will contact you within 24h · Unsubscribe anytime"
   },
   "Masterclass": {
     "eyebrow": "Replay / 1h30 / Free",
@@ -508,7 +508,7 @@
     "formSubmit": "Get the replay for free",
     "formSubmitting": "Sending...",
     "formError": "Something went wrong. Please try again or contact us directly.",
-    "formNote": "No cold-calling / Unsubscribe in one click"
+    "formNote": "A SORA advisor will contact you within 24h · Unsubscribe anytime"
   },
   "Webinar": {
     "formHeadingTitle": "Reserve my spot",
@@ -713,7 +713,63 @@
     "formSubmit": "Get the file for free",
     "formSubmitting": "Sending...",
     "formError": "Something went wrong. Please try again or contact us directly.",
-    "formNote": "No cold-calling / Unsubscribe in one click"
+    "formNote": "A SORA advisor will contact you within 24h · Unsubscribe anytime"
+  },
+  "Serangan": {
+    "heroEyebrow": "Serangan, South Lombok / 6 villas / Delivered in 18 months",
+    "heroTitle": "Serangan Palm Villas.",
+    "heroBody": "A secure, private 6,490 sqm estate, 50 metres from the sea, in South Lombok. Six bespoke Signature villas, designed with our architectural team. From €1,050,000 delivered turnkey.",
+    "ctaDossier": "Receive the full brochure",
+    "ctaGammes": "Discover the Signature Villa",
+    "stats": [
+      { "value": "6 to 8", "label": "independent suites" },
+      { "value": "400-600 m²", "label": "of living space" },
+      { "value": "+1,000 m²", "label": "of land" },
+      { "value": "50 m", "label": "from the sea" }
+    ],
+    "marketStatsEyebrow": "Lombok / An island on the rise",
+    "marketStatsTitle": "The south coast of Lombok is on the rise.",
+    "marketStats": [
+      { "value": "2.3 M", "label": "visitors to the province in 2025", "source": "NTB Tourism Office" },
+      { "value": "+69%", "label": "increase in visitors to Mandalika since 2023", "source": "ITDC" },
+      { "value": "+25%", "label": "increase in international visitors in one year", "source": "NTB Tourism Office" },
+      { "value": "43", "label": "daily flights to Lombok in 2026", "source": "Scoot" }
+    ],
+    "gammesEyebrow": "Signature Villa / Limited to 6 villas",
+    "gammesTitle": "One villa, uniquely yours.",
+    "gammes": [
+      { "name": "Villa Signature", "price": "From €1,050,000", "surface": "400 to 600 m²", "chambres": "6 to 8 suites", "piscine": "Infinity pool" }
+    ],
+    "inclusEyebrow": "The land",
+    "inclus": [
+      "Secure, private estate, staffed 24/7",
+      "6,490 m² of naturally flat land",
+      "50 metres from the beach",
+      "Access via an existing road, within an already-established estate"
+    ],
+    "locationEyebrow": "Location / Serangan, South Lombok",
+    "locationTitle": "50 metres from the sea.",
+    "locationItems": [
+      { "value": "45 min", "label": "From Bali" },
+      { "value": "35 min", "label": "From Lombok International Airport" },
+      { "value": "40 km", "label": "Of white-sand beaches" }
+    ],
+    "guaranteesEyebrow": "SORA support",
+    "guaranteesTitle": "A seamless experience.",
+    "guarantees": [
+      { "value": "01", "label": "Design", "desc": "From land selection to the finest architectural details, we design your villa." },
+      { "value": "02", "label": "Construction", "desc": "We oversee every stage of construction with a trusted network of partners." },
+      { "value": "03", "label": "Property management", "desc": "Should you wish, we can also manage your villa and its rental throughout the year." }
+    ],
+    "dossierEyebrow": "Full brochure / Free",
+    "dossierTitle": "Receive the Serangan Palm Villas brochure.",
+    "dossierBody": "Detailed presentation of the Signature Villas, freehold / PT PMA legal structure, delivery timeline. A full presentation is available by appointment.",
+    "dossierBullets": [
+      "Detailed presentation of the Signature Villas by appointment",
+      "Freehold / PT PMA legal structure in detail",
+      "Delivery timeline (18 months)",
+      "Rental yield projection available on request"
+    ]
   },
   "InteractivePlan": {
     "eyebrow": "Explore each villa",
@@ -793,7 +849,7 @@
     "formSubmit": "Get the file for free",
     "formSubmitting": "Sending...",
     "formError": "Something went wrong. Please try again or contact us directly.",
-    "formNote": "No cold-calling / Unsubscribe in one click"
+    "formNote": "A SORA advisor will contact you within 24h · Unsubscribe anytime"
   },
   "VillaRooms": {
     "living": "Living room",
