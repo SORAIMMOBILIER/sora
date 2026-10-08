@@ -417,7 +417,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
 
             {/* Plans par étage */}
             {r.floorPlans && r.floorPlans.length > 0 && (
-              <div className={`grid grid-cols-1 ${r.floorPlans.length === 2 ? "md:grid-cols-2" : r.floorPlans.length >= 3 ? "md:grid-cols-3" : ""} gap-6 md:gap-8 mb-20 md:mb-28`}>
+              <div className={`grid grid-cols-1 ${r.floorPlans.length === 2 ? "md:grid-cols-2" : r.floorPlans.length >= 3 ? "md:grid-cols-3" : ""} gap-6 md:gap-8 ${r.espacesTitle ? "mb-10 md:mb-12" : "mb-20 md:mb-28"}`}>
                 {r.floorPlans.map((p) => {
                   const planUrl = p.image?.asset ? urlForImage(p.image).width(1200).url() : null
                   return (
@@ -441,43 +441,45 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
               </div>
             )}
 
-            {/* Espaces sur mesure */}
-            {(r.espacesTitle || r.espacesSubtitle || (r.espacesCategories && r.espacesCategories.length > 0)) && (
-              <div className="mb-20 md:mb-28">
-                {r.espacesTitle && (
-                  <p className="text-foreground/65 leading-relaxed text-lg text-center max-w-2xl mx-auto mb-10 md:mb-12">
-                    {r.espacesTitle}
+            {r.espacesTitle && (
+              <p className="text-foreground/65 leading-relaxed text-lg text-center max-w-2xl mx-auto mb-20 md:mb-28">
+                {r.espacesTitle}
+              </p>
+            )}
+          </div>
+
+          {/* Espaces sur mesure : bandeau plein largeur, comme la bande de stats */}
+          {(r.espacesSubtitle || (r.espacesCategories && r.espacesCategories.length > 0)) && (
+            <div className="bg-primary -mx-6 py-14 md:py-20 mt-4">
+              <div className="container-page px-6">
+                {r.espacesSubtitle && (
+                  <p className="font-serif font-medium text-background text-xl md:text-2xl text-center mb-12 md:mb-16">
+                    {r.espacesSubtitle}
                   </p>
                 )}
-                {(r.espacesSubtitle || (r.espacesCategories && r.espacesCategories.length > 0)) && (
-                  <div className="bg-primary rounded-sm py-10 md:py-14 px-6 md:px-10">
-                    {r.espacesSubtitle && (
-                      <p className="font-serif font-medium text-background text-xl md:text-2xl text-center mb-12 md:mb-16">
-                        {r.espacesSubtitle}
-                      </p>
-                    )}
-                    {r.espacesCategories && r.espacesCategories.length > 0 && (
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
-                        {r.espacesCategories.map((cat) => (
-                          <div key={cat.title}>
-                            <p className="metadata text-background/50 mb-4">{cat.title}</p>
-                            {cat.items && cat.items.length > 0 && (
-                              <ul className="space-y-2.5">
-                                {cat.items.map((item) => (
-                                  <li key={item} className="text-background/70 text-sm leading-relaxed">
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                        ))}
+                {r.espacesCategories && r.espacesCategories.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+                    {r.espacesCategories.map((cat) => (
+                      <div key={cat.title}>
+                        <p className="text-background/60 text-sm font-medium tracking-wide uppercase mb-4">{cat.title}</p>
+                        {cat.items && cat.items.length > 0 && (
+                          <ul className="space-y-2.5">
+                            {cat.items.map((item) => (
+                              <li key={item} className="text-background/70 text-sm leading-relaxed">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
-                    )}
+                    ))}
                   </div>
                 )}
               </div>
-            )}
+            </div>
+          )}
+
+          <div className="container-page px-6">
 
             <div className={r.gammes && r.gammes.length === 1 ? "grid grid-cols-1 gap-4 md:gap-6 max-w-xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"}>
               {(r.gammes || []).map((g) => {
