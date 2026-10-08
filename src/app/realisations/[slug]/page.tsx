@@ -396,7 +396,12 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
 
       {/* Gammes */}
       {(r.gammes?.length || r.gammesIntro || r.floorPlans?.length || r.espacesCategories?.length) ? (
-        <section id="gammes" className="bg-card py-24 md:py-36 px-6">
+        <section
+          id="gammes"
+          className={`bg-card pt-24 md:pt-36 px-6 ${
+            (r.gammes && r.gammes.length > 0) || (r.inclus && r.inclus.length > 0) ? "pb-24 md:pb-36" : "pb-6 md:pb-10"
+          }`}
+        >
           <div className="container-page">
             <div className="text-center mb-16 md:mb-24">
               {r.gammesEyebrow && <p className="eyebrow mx-auto mb-6">{r.gammesEyebrow}</p>}
@@ -453,9 +458,12 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
             <div className="bg-primary -mx-6 py-14 md:py-20 mt-4">
               <div className="container-page px-6">
                 {r.espacesSubtitle && (
-                  <p className="font-serif font-medium text-background text-xl md:text-2xl text-center mb-12 md:mb-16">
+                  <h2
+                    className="font-serif font-medium text-background leading-[1.0] text-center mb-12 md:mb-16"
+                    style={{ fontSize: "clamp(36px,5vw,72px)" }}
+                  >
                     {r.espacesSubtitle}
-                  </p>
+                  </h2>
                 )}
                 {r.espacesCategories && r.espacesCategories.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
