@@ -402,7 +402,7 @@
     "formSubmit": "Recevoir le dossier",
     "formSubmitting": "Envoi en cours...",
     "formError": "Une erreur est survenue. Réessayez.",
-    "formNote": "Sans démarchage / Désinscription en 1 clic",
+    "formNote": "Un conseiller SORA vous recontacte sous 24h · Désinscription en 1 clic",
     "guaranteesEyebrow": "Sécurisation",
     "guaranteesTitle": "La même sérénité qu'en Europe.",
     "guarantees": [
@@ -430,7 +430,7 @@
     ],
     "calendlyTitle": "Prêt à diversifier votre patrimoine ?",
     "calendlyBody": "Réservez 30 minutes avec Gabriel. Il analyse votre situation, répond à toutes vos questions et vous envoie le dossier complet après l'appel.",
-    "calendlyNote": "Sans engagement. Pas de démarchage.",
+    "calendlyNote": "Sans engagement. Un conseiller SORA vous recontacte sous 24h.",
     "footerEmail": "contact@sora-immobilier.com",
     "stickyCta": "Réserver un appel avec Gabriel",
     "exitTitle": "Avant de partir, une question.",
@@ -482,7 +482,7 @@
     "formSubmit": "Recevoir le guide",
     "formSubmitting": "Envoi en cours...",
     "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
-    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+    "formNote": "Un conseiller SORA vous recontacte sous 24h · Désinscription en 1 clic"
   },
   "Masterclass": {
     "eyebrow": "Replay / 1h30 / Gratuit",
@@ -508,7 +508,7 @@
     "formSubmit": "Recevoir le replay gratuitement",
     "formSubmitting": "Envoi en cours...",
     "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
-    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+    "formNote": "Un conseiller SORA vous recontacte sous 24h · Désinscription en 1 clic"
   },
   "Webinar": {
     "formHeadingTitle": "Je réserve ma place",
@@ -713,7 +713,7 @@
     "formSubmit": "Recevoir le dossier gratuitement",
     "formSubmitting": "Envoi en cours...",
     "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
-    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+    "formNote": "Un conseiller SORA vous recontacte sous 24h · Désinscription en 1 clic"
   },
   "InteractivePlan": {
     "eyebrow": "Explorez chaque villa",
@@ -793,7 +793,7 @@
     "formSubmit": "Recevoir le dossier gratuitement",
     "formSubmitting": "Envoi en cours...",
     "formError": "Une erreur est survenue. Réessayez ou contactez-nous directement.",
-    "formNote": "Sans démarchage commercial / Désinscription en 1 clic"
+    "formNote": "Un conseiller SORA vous recontacte sous 24h · Désinscription en 1 clic"
   },
   "VillaRooms": {
     "living": "Salon",

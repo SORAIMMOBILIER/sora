@@ -16,6 +16,7 @@ const AC_TAG_BY_SLUG: Record<string, string> = {
   "canggu": "62",
   "canggu-residence-2024": "63",
   "uluwatu": "64",
+  "serangan": "81",
 }
 
 type SanityImage = { asset?: { _ref: string }; alt?: string }
@@ -37,6 +38,9 @@ type Realisation = {
   heroImage?: SanityImage
   heroCtas?: Array<{ label: string; href: string; variant?: "default" | "inverse" | "outline" | "outline-inverse" }>
   keyStats?: Array<{ value: string; label: string }>
+  marketStatsEyebrow?: string
+  marketStatsTitle?: string
+  marketStats?: Array<{ value: string; label: string; source?: string }>
   gammesEyebrow?: string
   gammesTitle?: string
   gammes?: Array<{
@@ -128,8 +132,57 @@ async function applySesehEnglishOverride(r: Realisation): Promise<Realisation> {
   }
 }
 
-// Traduction générique (Claude) pour toutes les réalisations sauf "seseh",
-// qui utilise la substitution manuelle ci-dessus (contenu déjà vérifié).
+// Même logique que applySesehEnglishOverride ci-dessus, pour la fiche "serangan"
+// (namespace "Serangan" dans messages/en.json, contenu issu de la brochure EN).
+async function applySeranganEnglishOverride(r: Realisation): Promise<Realisation> {
+  const s = await getTranslations("Serangan")
+  const sGammes = s.raw("gammes") as Array<{
+    name: string; price: string; surface: string; chambres: string; piscine: string
+  }>
+  const sLocationItems = s.raw("locationItems") as Array<{ value: string; label: string }>
+  const sGuarantees = s.raw("guarantees") as Array<{ value: string; label: string; desc: string }>
+  const sDossierBullets = s.raw("dossierBullets") as string[]
+  const sStats = s.raw("stats") as Array<{ value: string; label: string }>
+  const sMarketStats = s.raw("marketStats") as Array<{ value: string; label: string; source?: string }>
+
+  const ctaByHref: Record<string, string> = { "#dossier": s("ctaDossier"), "#gammes": s("ctaGammes") }
+
+  return {
+    ...r,
+    heroEyebrow: s("heroEyebrow"),
+    heroTitle: s("heroTitle"),
+    heroSubtitle: s("heroBody"),
+    heroCtas: r.heroCtas?.map((cta) => ({ ...cta, label: ctaByHref[cta.href] ?? cta.label })),
+    keyStats: r.keyStats?.map((stat, i) => sStats[i] ?? stat),
+    marketStatsEyebrow: s("marketStatsEyebrow"),
+    marketStatsTitle: s("marketStatsTitle"),
+    marketStats: r.marketStats?.map((stat, i) => sMarketStats[i] ?? stat),
+    gammesEyebrow: s("gammesEyebrow"),
+    gammesTitle: s("gammesTitle"),
+    gammes: r.gammes?.map((g) => {
+      const match = sGammes.find((sg) => sg.name === g.name)
+      if (!match) return g
+      return { ...g, price: match.price, surface: match.surface, bedrooms: match.chambres, pool: match.piscine }
+    }),
+    inclus: s.raw("inclus") as string[],
+    localisationEyebrow: s("locationEyebrow"),
+    localisationTitle: s("locationTitle"),
+    distances: r.distances?.map((d, i) => sLocationItems[i] ?? d),
+    garantiesEyebrow: s("guaranteesEyebrow"),
+    garantiesTitle: s("guaranteesTitle"),
+    garanties: r.garanties?.map((g, i) => {
+      const match = sGuarantees[i]
+      return match ? { ...g, value: match.value, label: match.label, description: match.desc } : g
+    }),
+    dossierEyebrow: s("dossierEyebrow"),
+    dossierTitle: s("dossierTitle"),
+    dossierDescription: s("dossierBody"),
+    dossierBullets: sDossierBullets,
+  }
+}
+
+// Traduction générique (Claude) pour toutes les réalisations sauf "seseh" et
+// "serangan", qui utilisent la substitution manuelle ci-dessus (contenu déjà vérifié).
 async function applyGenericEnglishOverride(r: Realisation): Promise<Realisation> {
   const translatable = {
     heroEyebrow: r.heroEyebrow,
@@ -230,7 +283,11 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
   if (!r) notFound()
 
   if (locale === "en") {
-    r = slug === "seseh" ? await applySesehEnglishOverride(r) : await applyGenericEnglishOverride(r)
+    r = slug === "seseh"
+      ? await applySesehEnglishOverride(r)
+      : slug === "serangan"
+        ? await applySeranganEnglishOverride(r)
+        : await applyGenericEnglishOverride(r)
   }
 
   const heroImageUrl = r.heroImage?.asset
@@ -282,6 +339,32 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
+      {/* Stats marché (optionnel) */}
+      {r.marketStats && r.marketStats.length > 0 && (
+        <section className="bg-background py-24 md:py-36 px-6">
+          <div className="container-page max-w-5xl mx-auto text-center">
+            {r.marketStatsEyebrow && <p className="eyebrow mx-auto mb-6">{r.marketStatsEyebrow}</p>}
+            {r.marketStatsTitle && (
+              <h2
+                className="font-serif font-medium text-foreground leading-[1.0]"
+                style={{ fontSize: "clamp(32px,4vw,60px)" }}
+              >
+                {r.marketStatsTitle}
+              </h2>
+            )}
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {r.marketStats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-serif font-medium text-foreground text-3xl md:text-5xl">{s.value}</p>
+                  <p className="metadata text-foreground/55 mt-3">{s.label}</p>
+                  {s.source && <p className="text-foreground/35 text-xs mt-2">{s.source}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Stats clés */}
       {r.keyStats && r.keyStats.length > 0 && (
         <section className="bg-primary py-24 md:py-36 px-6">
@@ -312,7 +395,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
               )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className={r.gammes.length === 1 ? "grid grid-cols-1 gap-4 md:gap-6 max-w-xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"}>
               {r.gammes.map((g) => {
                 const gammeImage = g.image?.asset ? urlForImage(g.image).width(1200).url() : null
                 const cardBody = (
@@ -577,7 +660,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
               )}
             </div>
 
-            <DossierForm slug={r.slug} acTagId={AC_TAG_BY_SLUG[r.slug]} acListId="7" freshsalesTag={`DOSSIER-${r.slug.toUpperCase()}`} />
+            <DossierForm slug={r.slug} acTagId={AC_TAG_BY_SLUG[r.slug]} acListId="7" freshsalesTag={`DOSSIER-${r.slug.toUpperCase()}`} projectName={r.cardTitle || r.title} />
           </div>
         </section>
       )}

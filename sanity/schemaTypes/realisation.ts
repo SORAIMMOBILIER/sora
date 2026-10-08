@@ -176,6 +176,36 @@ export const realisation = defineType({
       ],
       group: "stats",
     }),
+    defineField({
+      name: "marketStatsEyebrow",
+      title: "Eyebrow stats marché",
+      type: "string",
+      description: "Optionnel : section secondaire affichée après le hero (ex : chiffres clés de la destination)",
+      group: "stats",
+    }),
+    defineField({
+      name: "marketStatsTitle",
+      title: "Titre stats marché",
+      type: "string",
+      group: "stats",
+    }),
+    defineField({
+      name: "marketStats",
+      title: "Stats marché (avec source)",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({ name: "value", title: "Valeur", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "label", title: "Label", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "source", title: "Source", type: "string", description: "Ex : NTB Tourism Office" }),
+          ],
+          preview: { select: { title: "value", subtitle: "label" } },
+        }),
+      ],
+      group: "stats",
+    }),
 
     // Gammes
     defineField({

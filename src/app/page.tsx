@@ -38,7 +38,7 @@ export default async function Home() {
   const locale = await getLocale()
   const realisationsRaw = await sanityFetch<RealisationRaw[]>({ query: ALL_REALISATIONS_QUERY, tags: ["realisation"] })
 
-  const SLUG_ORDER: Record<string, number> = { "seseh": 0, "canggu": 1, "canggu-residence-2024": 2, "uluwatu": 3 }
+  const SLUG_ORDER: Record<string, number> = { "seseh": 0, "serangan": 1, "canggu": 2, "canggu-residence-2024": 3, "uluwatu": 4 }
   const sorted = [...realisationsRaw].sort((a, b) => (SLUG_ORDER[a.slug] ?? 9) - (SLUG_ORDER[b.slug] ?? 9))
 
   const translatedText =

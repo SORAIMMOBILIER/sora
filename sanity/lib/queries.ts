@@ -146,6 +146,9 @@ export const REALISATION_BY_SLUG_QUERY = defineQuery(`
     heroImage,
     heroCtas,
     keyStats,
+    marketStatsEyebrow,
+    marketStatsTitle,
+    marketStats,
     gammesEyebrow,
     gammesTitle,
     gammes[]{

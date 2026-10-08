@@ -7,7 +7,7 @@ const AC_KEY = process.env.AC_API_KEY!
 
 export async function POST(req: NextRequest) {
   const body = await req.json()
-  const { firstName, lastName, email, phone, source, acTagId, acListId, freshsalesTag } = body
+  const { firstName, lastName, email, phone, source, acTagId, acListId, freshsalesTag, projectName } = body
 
   if (!email || !firstName) {
     return NextResponse.json({ error: "Champs requis manquants" }, { status: 400 })
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
             mobile_number: phone || "",
             lead_source_id: 202001095886,
             custom_field: {
-              cf_nom_du_projet_en_cours: "SESEH SUNSET VILLA",
+              cf_nom_du_projet_en_cours: projectName || "SESEH SUNSET VILLA",
             },
           },
           unique_identifier: { emails: email },
