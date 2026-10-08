@@ -736,9 +736,18 @@
       { "value": "43", "label": "daily flights to Lombok in 2026", "source": "Scoot" }
     ],
     "gammesEyebrow": "Signature Villa / Limited to 6 villas",
-    "gammesTitle": "One villa, uniquely yours.",
+    "gammesTitle": "A villa in your image.",
+    "gammesIntro": "Every villa begins with a story. Yours. Designed around its location, its orientation and the way you live, each project is imagined bespoke, giving rise to a villa unlike any other, with the support of our internationally recognised architectural team.",
     "gammes": [
       { "name": "Villa Signature", "price": "From €1,050,000", "surface": "400 to 600 m²", "chambres": "6 to 8 suites", "piscine": "Infinity pool" }
+    ],
+    "floorPlans": ["Ground floor", "First floor", "Second floor"],
+    "espacesTitle": "Each villa is imagined around the way you live. Every space is designed in your image.",
+    "espacesSubtitle": "100% bespoke: compose your villa from these spaces.",
+    "espacesCategories": [
+      { "title": "Wellness & Recovery", "items": ["Massage room", "Ice bath", "Sauna", "Jacuzzi", "Gym", "Yoga & meditation pavilion"] },
+      { "title": "Family & Leisure", "items": ["Children's playroom", "Library", "Billiards room", "Home office", "Private cinema"] },
+      { "title": "Reception", "items": ["Private chef's kitchen", "Outdoor kitchen", "Barbecue & plancha", "Terrace lounge"] }
     ],
     "inclusEyebrow": "The land",
     "inclus": [
