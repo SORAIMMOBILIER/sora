@@ -423,7 +423,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                   return (
                     <div key={p.label}>
                       {planUrl && (
-                        <div className="relative aspect-[3/4] rounded-sm overflow-hidden bg-background border border-border">
+                        <div className="relative aspect-[3/4]">
                           <Image
                             src={planUrl}
                             alt={p.image?.alt || p.label}
@@ -444,24 +444,25 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
             {/* Espaces sur mesure */}
             {(r.espacesTitle || r.espacesSubtitle || (r.espacesCategories && r.espacesCategories.length > 0)) && (
               <div className="mb-20 md:mb-28">
-                <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-                  {r.espacesTitle && (
-                    <p className="text-foreground/65 leading-relaxed text-lg">{r.espacesTitle}</p>
-                  )}
-                  {r.espacesSubtitle && (
-                    <p className="font-serif font-medium text-foreground text-xl md:text-2xl mt-6">{r.espacesSubtitle}</p>
-                  )}
-                </div>
+                {r.espacesTitle && (
+                  <p className="text-foreground/65 leading-relaxed text-lg text-center max-w-2xl mx-auto mb-10 md:mb-12">
+                    {r.espacesTitle}
+                  </p>
+                )}
+                {r.espacesSubtitle && (
+                  <div className="bg-primary rounded-sm py-8 md:py-10 px-6 text-center mb-12 md:mb-16">
+                    <p className="font-serif font-medium text-background text-xl md:text-2xl">{r.espacesSubtitle}</p>
+                  </div>
+                )}
                 {r.espacesCategories && r.espacesCategories.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
                     {r.espacesCategories.map((cat) => (
-                      <div key={cat.title} className="bg-background border border-border rounded-sm p-8">
-                        <p className="font-serif font-medium text-foreground text-lg mb-5">{cat.title}</p>
+                      <div key={cat.title}>
+                        <p className="metadata text-foreground/50 mb-4">{cat.title}</p>
                         {cat.items && cat.items.length > 0 && (
-                          <ul className="space-y-3">
+                          <ul className="space-y-2.5">
                             {cat.items.map((item) => (
-                              <li key={item} className="flex gap-3 text-foreground/70 text-sm leading-relaxed">
-                                <span className="text-accent mt-0.5">·</span>
+                              <li key={item} className="text-foreground/55 text-sm leading-relaxed">
                                 {item}
                               </li>
                             ))}
