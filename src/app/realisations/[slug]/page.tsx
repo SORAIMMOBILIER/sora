@@ -54,6 +54,11 @@ type Realisation = {
     pool?: string
     image?: SanityImage
   }>
+  gammesIntro?: string
+  floorPlans?: Array<{ label: string; image?: SanityImage }>
+  espacesTitle?: string
+  espacesSubtitle?: string
+  espacesCategories?: Array<{ title: string; items?: string[] }>
   inclus?: string[]
   inclusImage?: SanityImage
   projectionsEyebrow?: string
@@ -144,6 +149,8 @@ async function applySeranganEnglishOverride(r: Realisation): Promise<Realisation
   const sDossierBullets = s.raw("dossierBullets") as string[]
   const sStats = s.raw("stats") as Array<{ value: string; label: string }>
   const sMarketStats = s.raw("marketStats") as Array<{ value: string; label: string; source?: string }>
+  const sFloorPlans = s.raw("floorPlans") as string[]
+  const sEspacesCategories = s.raw("espacesCategories") as Array<{ title: string; items: string[] }>
 
   const ctaByHref: Record<string, string> = { "#dossier": s("ctaDossier"), "#gammes": s("ctaGammes") }
 
@@ -154,8 +161,8 @@ async function applySeranganEnglishOverride(r: Realisation): Promise<Realisation
     heroSubtitle: s("heroBody"),
     heroCtas: r.heroCtas?.map((cta) => ({ ...cta, label: ctaByHref[cta.href] ?? cta.label })),
     keyStats: r.keyStats?.map((stat, i) => sStats[i] ?? stat),
-    marketStatsEyebrow: s("marketStatsEyebrow"),
-    marketStatsTitle: s("marketStatsTitle"),
+    marketStatsEyebrow: r.marketStats?.length ? s("marketStatsEyebrow") : r.marketStatsEyebrow,
+    marketStatsTitle: r.marketStats?.length ? s("marketStatsTitle") : r.marketStatsTitle,
     marketStats: r.marketStats?.map((stat, i) => sMarketStats[i] ?? stat),
     gammesEyebrow: s("gammesEyebrow"),
     gammesTitle: s("gammesTitle"),
@@ -164,9 +171,17 @@ async function applySeranganEnglishOverride(r: Realisation): Promise<Realisation
       if (!match) return g
       return { ...g, price: match.price, surface: match.surface, bedrooms: match.chambres, pool: match.piscine }
     }),
-    inclus: s.raw("inclus") as string[],
-    localisationEyebrow: s("locationEyebrow"),
-    localisationTitle: s("locationTitle"),
+    gammesIntro: s.has("gammesIntro") ? s("gammesIntro") : r.gammesIntro,
+    floorPlans: r.floorPlans?.map((p, i) => (sFloorPlans[i] ? { ...p, label: sFloorPlans[i] } : p)),
+    espacesTitle: s.has("espacesTitle") ? s("espacesTitle") : r.espacesTitle,
+    espacesSubtitle: s.has("espacesSubtitle") ? s("espacesSubtitle") : r.espacesSubtitle,
+    espacesCategories: r.espacesCategories?.map((cat, i) => {
+      const match = sEspacesCategories?.[i]
+      return match ? { ...cat, title: match.title, items: match.items } : cat
+    }),
+    inclus: r.inclus && r.inclus.length > 0 ? (s.raw("inclus") as string[]) : r.inclus,
+    localisationEyebrow: r.distances?.length ? s("locationEyebrow") : r.localisationEyebrow,
+    localisationTitle: r.distances?.length ? s("locationTitle") : r.localisationTitle,
     distances: r.distances?.map((d, i) => sLocationItems[i] ?? d),
     garantiesEyebrow: s("guaranteesEyebrow"),
     garantiesTitle: s("guaranteesTitle"),
@@ -380,7 +395,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
       )}
 
       {/* Gammes */}
-      {r.gammes && r.gammes.length > 0 && (
+      {(r.gammes?.length || r.gammesIntro || r.floorPlans?.length || r.espacesCategories?.length) ? (
         <section id="gammes" className="bg-card py-24 md:py-36 px-6">
           <div className="container-page">
             <div className="text-center mb-16 md:mb-24">
@@ -393,10 +408,74 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                   {r.gammesTitle}
                 </h2>
               )}
+              {r.gammesIntro && (
+                <p className="text-foreground/65 mt-8 max-w-2xl mx-auto leading-relaxed text-lg">
+                  {r.gammesIntro}
+                </p>
+              )}
             </div>
 
-            <div className={r.gammes.length === 1 ? "grid grid-cols-1 gap-4 md:gap-6 max-w-xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"}>
-              {r.gammes.map((g) => {
+            {/* Plans par étage */}
+            {r.floorPlans && r.floorPlans.length > 0 && (
+              <div className={`grid grid-cols-1 ${r.floorPlans.length === 2 ? "md:grid-cols-2" : r.floorPlans.length >= 3 ? "md:grid-cols-3" : ""} gap-6 md:gap-8 mb-20 md:mb-28`}>
+                {r.floorPlans.map((p) => {
+                  const planUrl = p.image?.asset ? urlForImage(p.image).width(1200).url() : null
+                  return (
+                    <div key={p.label}>
+                      {planUrl && (
+                        <div className="relative aspect-[3/4] rounded-sm overflow-hidden bg-background border border-border">
+                          <Image
+                            src={planUrl}
+                            alt={p.image?.alt || p.label}
+                            fill
+                            quality={95}
+                            className="object-contain"
+                            sizes="(max-width:768px) 100vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      <p className="metadata text-foreground/55 text-center mt-4">{p.label}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Espaces sur mesure */}
+            {(r.espacesTitle || r.espacesSubtitle || (r.espacesCategories && r.espacesCategories.length > 0)) && (
+              <div className="mb-20 md:mb-28">
+                <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                  {r.espacesTitle && (
+                    <p className="text-foreground/65 leading-relaxed text-lg">{r.espacesTitle}</p>
+                  )}
+                  {r.espacesSubtitle && (
+                    <p className="font-serif font-medium text-foreground text-xl md:text-2xl mt-6">{r.espacesSubtitle}</p>
+                  )}
+                </div>
+                {r.espacesCategories && r.espacesCategories.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {r.espacesCategories.map((cat) => (
+                      <div key={cat.title} className="bg-background border border-border rounded-sm p-8">
+                        <p className="font-serif font-medium text-foreground text-lg mb-5">{cat.title}</p>
+                        {cat.items && cat.items.length > 0 && (
+                          <ul className="space-y-3">
+                            {cat.items.map((item) => (
+                              <li key={item} className="flex gap-3 text-foreground/70 text-sm leading-relaxed">
+                                <span className="text-accent mt-0.5">·</span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className={r.gammes && r.gammes.length === 1 ? "grid grid-cols-1 gap-4 md:gap-6 max-w-xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"}>
+              {(r.gammes || []).map((g) => {
                 const gammeImage = g.image?.asset ? urlForImage(g.image).width(1200).url() : null
                 const cardBody = (
                   <>
@@ -500,7 +579,7 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
             )}
           </div>
         </section>
-      )}
+      ) : null}
 
       {/* Projections */}
       {r.projections && r.projections.length > 0 && (

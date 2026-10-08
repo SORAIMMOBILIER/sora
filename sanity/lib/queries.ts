@@ -164,6 +164,19 @@ export const REALISATION_BY_SLUG_QUERY = defineQuery(`
       pool,
       image
     },
+    gammesIntro,
+    floorPlans[]{
+      _key,
+      label,
+      image
+    },
+    espacesTitle,
+    espacesSubtitle,
+    espacesCategories[]{
+      _key,
+      title,
+      items
+    },
     inclus,
     inclusImage,
     projectionsEyebrow,

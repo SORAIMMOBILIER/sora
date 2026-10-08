@@ -316,6 +316,69 @@ export const realisation = defineType({
       group: "gammes",
     }),
     defineField({
+      name: "gammesIntro",
+      title: "Texte sous le titre gammes",
+      type: "text",
+      rows: 4,
+      description: "Optionnel : paragraphe affiché juste sous le titre de la section (ex : présentation d'une villa sur-mesure)",
+      group: "gammes",
+    }),
+    defineField({
+      name: "floorPlans",
+      title: "Plans par étage",
+      type: "array",
+      description: "Optionnel : 1 à 3 plans affichés côte à côte (ex : Rez-de-chaussée, Premier étage, Deuxième étage)",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({ name: "label", title: "Légende", type: "string", validation: (r) => r.required() }),
+            defineField({
+              name: "image",
+              title: "Image du plan",
+              type: "image",
+              options: { hotspot: true },
+              fields: [{ name: "alt", type: "string", title: "Texte alternatif" }],
+              validation: (r) => r.required(),
+            }),
+          ],
+          preview: { select: { title: "label", media: "image" } },
+        }),
+      ],
+      group: "gammes",
+    }),
+    defineField({
+      name: "espacesTitle",
+      title: "Texte espaces sur-mesure",
+      type: "text",
+      rows: 2,
+      group: "gammes",
+    }),
+    defineField({
+      name: "espacesSubtitle",
+      title: "Sous-titre espaces sur-mesure",
+      type: "string",
+      description: "Ex : 100 % sur mesure : composez votre villa parmi ces espaces.",
+      group: "gammes",
+    }),
+    defineField({
+      name: "espacesCategories",
+      title: "Catégories d'espaces",
+      type: "array",
+      description: "Optionnel : blocs affichés côte à côte (ex : Bien-être & repos, Famille & loisirs, Réception)",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            defineField({ name: "title", title: "Titre de la catégorie", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "items", title: "Espaces", type: "array", of: [{ type: "string" }] }),
+          ],
+          preview: { select: { title: "title" } },
+        }),
+      ],
+      group: "gammes",
+    }),
+    defineField({
       name: "inclus",
       title: "Inclus dans chaque villa",
       type: "array",
