@@ -743,7 +743,8 @@
     ],
     "floorPlans": ["Ground floor", "First floor", "Second floor"],
     "espacesTitle": "Each villa is imagined around the way you live. Every space is designed in your image.",
-    "espacesSubtitle": "100% bespoke: compose your villa from these spaces.",
+    "espacesSubtitle": "100% bespoke",
+    "espacesSubtitleBody": "Compose your villa from these spaces.",
     "espacesCategories": [
       { "title": "Wellness & Recovery", "items": ["Massage room", "Ice bath", "Sauna", "Jacuzzi", "Gym", "Yoga & meditation pavilion"] },
       { "title": "Family & Leisure", "items": ["Children's playroom", "Library", "Billiards room", "Home office", "Private cinema"] },
