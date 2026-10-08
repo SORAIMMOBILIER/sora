@@ -172,6 +172,7 @@ export const REALISATION_BY_SLUG_QUERY = defineQuery(`
     },
     espacesTitle,
     espacesSubtitle,
+    espacesSubtitleBody,
     espacesCategories[]{
       _key,
       title,

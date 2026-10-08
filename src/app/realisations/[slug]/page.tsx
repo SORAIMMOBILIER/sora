@@ -58,6 +58,7 @@ type Realisation = {
   floorPlans?: Array<{ label: string; image?: SanityImage }>
   espacesTitle?: string
   espacesSubtitle?: string
+  espacesSubtitleBody?: string
   espacesCategories?: Array<{ title: string; items?: string[] }>
   inclus?: string[]
   inclusImage?: SanityImage
@@ -175,6 +176,7 @@ async function applySeranganEnglishOverride(r: Realisation): Promise<Realisation
     floorPlans: r.floorPlans?.map((p, i) => (sFloorPlans[i] ? { ...p, label: sFloorPlans[i] } : p)),
     espacesTitle: s.has("espacesTitle") ? s("espacesTitle") : r.espacesTitle,
     espacesSubtitle: s.has("espacesSubtitle") ? s("espacesSubtitle") : r.espacesSubtitle,
+    espacesSubtitleBody: s.has("espacesSubtitleBody") ? s("espacesSubtitleBody") : r.espacesSubtitleBody,
     espacesCategories: r.espacesCategories?.map((cat, i) => {
       const match = sEspacesCategories?.[i]
       return match ? { ...cat, title: match.title, items: match.items } : cat
@@ -459,17 +461,20 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
               <div className="container-page px-6">
                 {r.espacesSubtitle && (
                   <h2
-                    className="font-serif font-medium text-background leading-[1.0] text-center mb-12 md:mb-16"
+                    className="font-serif font-medium text-background leading-[1.0] text-center"
                     style={{ fontSize: "clamp(36px,5vw,72px)" }}
                   >
                     {r.espacesSubtitle}
                   </h2>
                 )}
+                {r.espacesSubtitleBody && (
+                  <p className="text-background/70 text-center text-lg mt-6 mb-12 md:mb-16">{r.espacesSubtitleBody}</p>
+                )}
                 {r.espacesCategories && r.espacesCategories.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+                  <div className={`grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 ${!r.espacesSubtitleBody ? "mt-12 md:mt-16" : ""}`}>
                     {r.espacesCategories.map((cat) => (
                       <div key={cat.title}>
-                        <p className="text-background/60 text-sm font-medium tracking-wide uppercase mb-4">{cat.title}</p>
+                        <p className="text-background text-sm font-medium tracking-wide uppercase mb-4">{cat.title}</p>
                         {cat.items && cat.items.length > 0 && (
                           <ul className="space-y-2.5">
                             {cat.items.map((item) => (

@@ -356,9 +356,16 @@ export const realisation = defineType({
     }),
     defineField({
       name: "espacesSubtitle",
-      title: "Sous-titre espaces sur-mesure",
+      title: "Titre bandeau espaces sur-mesure",
       type: "string",
-      description: "Ex : 100 % sur mesure : composez votre villa parmi ces espaces.",
+      description: "Ex : 100 % sur mesure",
+      group: "gammes",
+    }),
+    defineField({
+      name: "espacesSubtitleBody",
+      title: "Texte sous le titre du bandeau",
+      type: "string",
+      description: "Ex : Composez votre villa parmi ces espaces.",
       group: "gammes",
     }),
     defineField({
