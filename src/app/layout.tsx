@@ -76,6 +76,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: m.title,
     description: m.description,
     alternates: hreflangAlternates("/"),
+    // Balise de vérification Google Search Console — posée une seule
+    // fois ici, dans le layout racine, elle est donc présente dans le
+    // <head> de TOUTES les pages du site automatiquement.
+    verification: {
+      google: "XeZC83ix4I_SR8OuTOC93uxpBsobTsEHPYxk675z2HY",
+    },
     icons: {
       icon: [{ url: faviconUrl }],
       shortcut: [{ url: faviconUrl }],
