@@ -51,17 +51,12 @@ export default function HeroSection() {
       {/* Center title */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6 z-10 text-center">
         <h1 className="font-serif font-medium text-background leading-[0.92]">
-          {/* Petite ligne "SORA Immobilier" ajoutée dans le H1 (invisible
-              pour le visiteur en termes d'impact visuel — même animation
-              que le reste du titre, juste plus petite) : Google ne voyait
-              jamais "SORA" dans le titre principal de la page d'accueil. */}
-          <span className="clip-word">
-            <span
-              className="hero-word block metadata text-background/65 mb-3 md:mb-4"
-              style={{ letterSpacing: "0.25em" }}
-            >
-              {t("kicker")}
-            </span>
+          {/* Surtitre "SORA Immobilier" : même style que le "CO-FONDATEUR..."
+              au-dessus du nom de Gabriel (classe .tertiary), pas une ligne
+              géante façon titre — pour que Google voie "SORA" dans le H1
+              sans que ce soit visuellement lourd. */}
+          <span className="hero-word block tertiary text-background/70 mb-4 md:mb-5">
+            {t("kicker")}
           </span>
           <span className="clip-word"><span className="hero-word block" style={{ fontSize: "clamp(40px,6vw,104px)" }}>{t("titleLine1")}</span></span>
           <span className="clip-word"><span className="hero-word block" style={{ fontSize: "clamp(40px,6vw,104px)" }}>{t("titleLine2")}</span></span>

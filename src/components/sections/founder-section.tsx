@@ -17,6 +17,7 @@ type FounderItem = { title: string; desc: string }
 
 export default function FounderSection() {
   const t = useTranslations("Home.Founder")
+  const tf = useTranslations("FoundersPage")
   const ITEMS = t.raw("items") as FounderItem[]
   const ref = useRef<HTMLElement>(null)
   useEffect(() => {
@@ -69,6 +70,7 @@ export default function FounderSection() {
               <p>{t("cardP1")}</p>
               <p>{t("cardP2")}</p>
               <p>{t("cardP3")}</p>
+              <p>{t("cardP4")}</p>
             </div>
             <div className="mt-8 h-[70px] w-[240px] md:w-[280px]" role="img" aria-label="Signature de Gabriel Lapierre">
               <Penflow
@@ -82,6 +84,33 @@ export default function FounderSection() {
                 seed="sora"
               />
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Nitham — même carte, miroir (photo à droite) */}
+      <Card className="sage-item max-w-5xl mx-auto bg-background/5 backdrop-blur-sm border-background/10 shadow-none overflow-hidden mt-10 md:mt-12">
+        <CardContent className="p-0 grid grid-cols-1 md:grid-cols-12 items-stretch">
+          <div className="md:col-span-8 p-8 md:p-12 md:order-1">
+            <p className="tertiary text-background/60 mb-3">{tf("nithamRole")}</p>
+            <h3 className="font-serif text-3xl md:text-4xl text-background mb-4">{tf("nithamName")}</h3>
+            <div className="space-y-4 text-background/80 text-sm md:text-base leading-relaxed max-w-xl">
+              <p>{tf("nithamP1")}</p>
+              <p>{tf("nithamP2")}</p>
+              <p>{tf("nithamP3")}</p>
+            </div>
+            <div className="mt-8 h-[70px] w-[240px] md:w-[280px] relative">
+              <Image
+                src="/signature-nitham-lapierre.png"
+                alt={tf("nithamSignatureAlt")}
+                fill
+                quality={90}
+                className="object-contain object-left"
+              />
+            </div>
+          </div>
+          <div className="md:col-span-4 relative min-h-[280px] md:min-h-0 md:order-2">
+            <Image src="/nitham-lapierre.webp" alt={tf("nithamImgAlt")} fill quality={95} className="object-cover object-center" sizes="(max-width:768px) 100vw, 33vw" />
           </div>
         </CardContent>
       </Card>
