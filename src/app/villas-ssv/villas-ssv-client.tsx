@@ -1,0 +1,718 @@
+"use client"
+import { useState, useEffect, useRef, useCallback } from "react"
+import Image from "next/image"
+import Link from "@/components/localized-link"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useTranslations } from "next-intl"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { cloudinaryVideoUrl, cloudinaryVideoUrlSafeFormat } from "@/lib/cloudinary"
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void
+  }
+}
+
+const VSL_MAIN_VIDEO_URL = cloudinaryVideoUrlSafeFormat(
+  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783388037/vsl-2-compressed_lcq6wr.mp4",
+)
+const TESTIMONIAL_VIDEO_1_URL = cloudinaryVideoUrl(
+  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4",
+)
+const TESTIMONIAL_VIDEO_2_URL = cloudinaryVideoUrl(
+  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4",
+)
+const TESTIMONIAL_VIDEO_3_URL = cloudinaryVideoUrl(
+  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4",
+)
+
+gsap.registerPlugin(ScrollTrigger)
+
+const CALENDLY_URL = "https://calendly.com/contact-sora-immobilier/rdv-avec-gabriel-investir-a-bali-clone?utm_source=vsl"
+
+type FaqItem = { q: string; a: string }
+type SocialProofItem = { value: string; label: string }
+type ProblemItem = { title: string; desc: string }
+type OpportunityItem = { value: string; label: string; desc: string }
+type Gamme = { name: string; price: string; surface: string; chambres: string; revenus: string; piscine: string }
+type Guarantee = { value: string; label: string; desc: string }
+type LocationItem = { value: string; label: string }
+
+const GAMME_IMG: Record<string, string> = {
+  Élégance: "/seseh/elegance/exterior.webp",
+  Prestige: "/seseh/prestige/exterior.webp",
+  Signature: "/seseh/signature/exterior.webp",
+  Exception: "/seseh/exception/exterior.webp",
+}
+
+const INTERIOR_SRCS = [
+  "/seseh/exception/living.webp",
+  "/seseh/exception/kitchen.webp",
+  "/seseh/elegance/bedroom.webp",
+  "/seseh/signature/dining.webp",
+  "/seseh/exception/bathroom.webp",
+  "/seseh/prestige/living.webp",
+  "/seseh/exception/bedroom.webp",
+  "/seseh/elegance/bedroom2.webp",
+]
+
+function CtaButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer"
+      onClick={() => window.fbq?.("track", "Lead", { source: "calendly-cta-vsl" })}
+      className={`cta-primary font-serif font-semibold ${className}`}>
+      {children}
+    </a>
+  )
+}
+
+export default function VSLPage() {
+  const t = useTranslations("VillasSSV")
+  const ref = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [showExitPopup, setShowExitPopup] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const [videoMuted, setVideoMuted] = useState(true)
+  const [showVideoCta, setShowVideoCta] = useState(false)
+  const exitShownRef = useRef(false)
+  const [dossierForm, setDossierForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
+  const [dossierStatus, setDossierStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const SOCIAL_PROOF = t.raw("socialProof") as SocialProofItem[]
+  const PROBLEM_ITEMS = t.raw("problemItems") as ProblemItem[]
+  const OPPORTUNITY_ITEMS = t.raw("opportunityItems") as OpportunityItem[]
+  const WHO_LIST = t.raw("whoList") as string[]
+  const GAMMES = t.raw("gammes") as Gamme[]
+  const INTERIOR_ALTS = t.raw("interiorAlts") as string[]
+  const GUARANTEES = t.raw("guarantees") as Guarantee[]
+  const LOCATION_ITEMS = t.raw("locationItems") as LocationItem[]
+  const FAQ = t.raw("faq") as FaqItem[]
+
+  const handleDossierSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setDossierStatus("loading")
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...dossierForm,
+          source: "dossier-vsl",
+          acTagId: "61",
+          acListId: "7",
+          freshsalesTag: "DOSSIER-SESEH",
+        }),
+      })
+      if (res.ok) {
+        setDossierStatus("success")
+        window.fbq?.("track", "Lead", { source: "dossier-vsl" })
+      } else {
+        setDossierStatus("error")
+      }
+    } catch {
+      setDossierStatus("error")
+    }
+  }
+
+  const handleVideoClick = useCallback(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (v.muted) {
+      // Autoplay muted : premier clic = repartir du début avec le son
+      v.muted = false
+      v.currentTime = 0
+      v.play()
+      setVideoMuted(false)
+    } else if (v.paused) {
+      v.play()
+    } else {
+      v.pause()
+    }
+  }, [])
+
+  // Effet 1 : GSAP scroll reveal + exit intent
+  useEffect(() => {
+    window.fbq?.("track", "ViewContent", { content_name: "seseh-vsl" })
+    const ctx = gsap.context(() => {
+      gsap.set(".vsl-fade", { opacity: 0, y: 20 })
+      ScrollTrigger.batch(".vsl-fade", {
+        start: "top 88%",
+        once: true,
+        onEnter: (batch) => gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "expo.out" }),
+      })
+    }, ref)
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY > 5 || exitShownRef.current) return
+      if (sessionStorage.getItem("vsl-exit-shown")) return
+      exitShownRef.current = true
+      sessionStorage.setItem("vsl-exit-shown", "1")
+      setShowExitPopup(true)
+    }
+    document.addEventListener("mouseleave", handleMouseLeave)
+
+    return () => {
+      ctx.revert()
+      document.removeEventListener("mouseleave", handleMouseLeave)
+    }
+  }, [])
+
+  // Effet 2 : video listeners
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+
+    const handlePlay = () => setVideoPlaying(true)
+    const handlePause = () => setVideoPlaying(false)
+    const handleTimeUpdate = () => {
+      if (v.currentTime / v.duration >= 0.2) setShowVideoCta(true)
+    }
+    v.addEventListener("play", handlePlay)
+    v.addEventListener("pause", handlePause)
+    v.addEventListener("timeupdate", handleTimeUpdate)
+    if (!v.paused) setVideoPlaying(true)
+
+    return () => {
+      v.removeEventListener("play", handlePlay)
+      v.removeEventListener("pause", handlePause)
+      v.removeEventListener("timeupdate", handleTimeUpdate)
+    }
+  }, [])
+
+  // Effet 3 : Calendly script
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://assets.calendly.com/assets/external/widget.js"
+    script.async = true
+    document.body.appendChild(script)
+    return () => { document.body.removeChild(script) }
+  }, [])
+
+  return (
+    <main ref={ref} className="bg-background min-h-screen pb-20 md:pb-0">
+
+      {/* ─── HERO : Texte gauche + Video droite ─── */}
+      <section className="px-6 pt-16 md:pt-28 pb-16 md:pb-24">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_360px] gap-10 md:gap-16 items-center">
+          {/* Colonne gauche : texte */}
+          <div>
+            <Link href="/" className="vsl-fade font-serif font-medium text-foreground/40 text-sm tracking-wide">Sora Immobilier</Link>
+
+            <h1 className="vsl-fade font-serif font-medium text-foreground leading-[0.92] mt-8 md:mt-12" style={{ fontSize: "clamp(32px,5vw,56px)" }}>
+              {t("heroTitle")}
+            </h1>
+            <p className="vsl-fade text-foreground/60 mt-6 text-lg md:text-xl leading-relaxed">
+              {t("heroBody")}
+            </p>
+
+            <div className="vsl-fade mt-8">
+              <CtaButton>{t("cta1Label")}</CtaButton>
+              <p className="metadata text-muted-foreground/50 mt-4">{t("cta1Note")}</p>
+            </div>
+          </div>
+
+          {/* Colonne droite : vidéo verticale */}
+          <div className="vsl-fade relative w-full aspect-[9/16] max-h-[70vh] md:max-h-none bg-muted border border-border overflow-hidden rounded-sm cursor-pointer mx-auto max-w-[360px] md:max-w-none" onClick={handleVideoClick}>
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              poster="/vsl-poster.webp"
+              playsInline
+              muted
+              autoPlay
+              loop
+              preload="auto"
+            >
+              <source src={VSL_MAIN_VIDEO_URL} type="video/mp4" />
+            </video>
+            {!videoPlaying && (
+              <div className="absolute inset-0 bg-foreground/25 flex flex-col items-center justify-center gap-3">
+                <div className="w-20 h-20 rounded-full bg-background/90 flex items-center justify-center shadow-lg">
+                  <svg className="w-8 h-8 text-accent ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+                <p className="metadata text-background/80">{t("videoWatchLabel")}</p>
+              </div>
+            )}
+            {videoPlaying && videoMuted && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-foreground/70 backdrop-blur-sm text-background metadata px-6 py-3 rounded-full flex items-center gap-2 shadow-lg">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                  {t("activateSound")}
+                </div>
+              </div>
+            )}
+            {showVideoCta && videoPlaying && videoMuted && (
+              <div className="absolute bottom-4 inset-x-4 flex justify-center">
+                <button
+                  className="bg-accent text-background font-serif font-semibold text-[10px] tracking-[0.2em] uppercase px-8 py-3 rounded-full shadow-lg hover:bg-foreground transition-colors animate-in fade-in slide-in-from-bottom-4 duration-500 flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" /></svg>
+                  {t("activateSound")}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SOCIAL PROOF BAR ─── */}
+      <section className="bg-card border-y border-border py-8 px-6">
+        <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 text-center">
+          {SOCIAL_PROOF.map((s) => (
+            <div key={s.label} className="flex items-center gap-3">
+              {s.value && <span className="font-serif font-medium text-accent text-xl">{s.value}</span>}
+              <span className="metadata text-muted-foreground">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── PARTENAIRES ─── */}
+      <section className="py-8 px-6">
+        <div className="max-w-4xl mx-auto">
+          <p className="metadata text-muted-foreground/40 text-center mb-6">{t("partnersLabel")}</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 md:gap-x-14">
+            <Image src="/partners/global-luxury-properties.webp" alt="Global Luxury Properties" width={160} height={40} className="h-10 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
+            <Image src="/logos/crazyhome.png" alt="Crazy Home" width={140} height={40} className="h-8 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
+            <Image src="/logos/capsud.png" alt="Cap Sud" width={40} height={40} className="h-9 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
+            <Image src="/logos/lybox.webp" alt="Lybox" width={120} height={40} className="h-8 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
+            <Image src="/logos/wunite.png" alt="Wunite" width={140} height={40} className="h-7 w-auto opacity-50 hover:opacity-80 transition-opacity duration-500" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── LE PROBLÈME ─── */}
+      <section className="px-6 py-24 md:py-36">
+        <div className="max-w-3xl mx-auto">
+          <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("problemEyebrow")}</p>
+          <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
+            {t("problemTitle")}
+          </h2>
+          <div className="vsl-fade mt-10 space-y-6">
+            {PROBLEM_ITEMS.map((item) => (
+              <div key={item.title} className="flex gap-4 items-start">
+                <span className="text-accent/60 text-xl mt-0.5 shrink-0">+</span>
+                <div>
+                  <p className="font-serif font-medium text-foreground text-base">{item.title}</p>
+                  <p className="text-muted-foreground text-sm mt-1 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── L'OPPORTUNITÉ ─── */}
+      <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
+        <div className="max-w-3xl mx-auto">
+          <p className="vsl-fade eyebrow text-accent mb-6">{t("opportunityEyebrow")}</p>
+          <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
+            {t("opportunityTitle")}
+          </h2>
+          <div className="vsl-fade mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {OPPORTUNITY_ITEMS.map((item) => (
+              <div key={item.label} className="p-5 bg-background border border-border rounded-sm">
+                <p className="font-serif font-medium text-accent text-2xl">{item.value}</p>
+                <p className="font-serif font-medium text-foreground text-sm mt-1">{item.label}</p>
+                <p className="text-muted-foreground text-xs mt-2 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="vsl-fade text-muted-foreground text-xs mt-6 leading-relaxed">
+            {t("opportunityDisclaimer")}
+          </p>
+        </div>
+      </section>
+
+      {/* ─── SORA : PROMOTEUR (pas agence) + GABRIEL ─── */}
+      <section className="px-6 py-24 md:py-36">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("whoEyebrow")}</p>
+            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.05]" style={{ fontSize: "clamp(24px,3.5vw,44px)" }}>
+              {t("whoTitle")}
+            </h2>
+            <p className="vsl-fade text-muted-foreground mt-6 leading-relaxed">
+              {t("whoBody")}
+            </p>
+            <ul className="vsl-fade mt-8 space-y-3">
+              {WHO_LIST.map((item) => (
+                <li key={item} className="flex gap-3 text-foreground/75 text-[15px]">
+                  <span className="text-accent mt-0.5 shrink-0">·</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="vsl-fade relative aspect-[4/3] rounded-sm overflow-hidden">
+            <Image src="/gabriel-lapierre.webp" alt={t("gabrielImgAlt")} fill className="object-cover" sizes="(max-width:768px) 100vw, 500px" />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/70 to-transparent p-6">
+              <p className="font-serif font-medium text-background text-base">Gabriel Lapierre</p>
+              <p className="metadata text-background/70 mt-1">{t("gabrielCardRole")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── AUTORITÉ : EVENTS & SPEAKER (activé quand les photos seront dans public/events/) ─── */}
+      {/* <section className="px-6 py-24 md:py-36 bg-card border-t border-border">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">Sur le terrain</p>
+            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
+              Gabriel partage son expertise en live.
+            </h2>
+            <p className="vsl-fade text-muted-foreground mt-6 max-w-xl mx-auto">
+              Soirées investisseurs, conférences, rencontres privées. Un écosystème actif autour de l&apos;investissement à Bali.
+            </p>
+          </div>
+          <div className="vsl-fade grid grid-cols-2 md:grid-cols-3 gap-2">
+            {[
+              { src: "/events/speaker-1.webp", alt: "Gabriel en conférence" },
+              { src: "/events/soiree-1.webp", alt: "Soirée investisseurs mai 2026" },
+              { src: "/events/soiree-2.webp", alt: "Networking investisseurs" },
+              { src: "/events/speaker-2.webp", alt: "Gabriel sur scène" },
+              { src: "/events/soiree-3.webp", alt: "Événement Sora" },
+              { src: "/events/soiree-4.webp", alt: "Communauté Sora" },
+            ].map((photo) => (
+              <div key={photo.src} className="relative aspect-[4/3] rounded-sm overflow-hidden">
+                <Image src={photo.src} alt={photo.alt} fill quality={80} className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 33vw" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* ─── TÉMOIGNAGES ─── */}
+      <section className="px-6 py-24 md:py-36 bg-card border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="vsl-fade grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-3 md:gap-4 items-stretch">
+            {/* Vertical gauche */}
+            <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
+              <video src={TESTIMONIAL_VIDEO_1_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+            </div>
+
+            {/* Colonne centrale */}
+            <div className="flex flex-col gap-3 md:gap-4">
+              <div className="text-center py-4">
+                <p className="eyebrow text-muted-foreground mb-4">{t("testimonialsEyebrow")}</p>
+                <h2 className="font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(24px,3.5vw,44px)" }}>
+                  {t("testimonialsTitle")}
+                </h2>
+              </div>
+
+              {/* Horizontal centre */}
+              <div className="relative rounded-sm overflow-hidden aspect-video">
+                <video src={TESTIMONIAL_VIDEO_2_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              </div>
+
+              <blockquote className="text-center px-4 py-4">
+                <p className="font-serif italic text-foreground/75 text-sm md:text-base leading-relaxed">
+                  {t("testimonialsQuote")}
+                </p>
+              </blockquote>
+            </div>
+
+            {/* Vertical droite */}
+            <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
+              <video src={TESTIMONIAL_VIDEO_3_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA #2 ─── */}
+      <section className="relative bg-primary py-16 px-6 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-70 bg-cover bg-center pointer-events-none"
+          style={{ backgroundImage: "url(/pattern-fabric.webp)" }}
+        />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <p className="vsl-fade font-serif font-medium text-background text-lg md:text-xl mb-6">
+            {t("cta2Text")}
+          </p>
+          <CtaButton>{t("cta2Label")}</CtaButton>
+        </div>
+      </section>
+
+      {/* ─── GAMMES ─── */}
+      <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("gammesEyebrow")}</p>
+            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,5vw,64px)" }}>
+              {t("gammesTitle")}
+            </h2>
+            <p className="vsl-fade text-muted-foreground mt-6 max-w-xl mx-auto">
+              {t("gammesBody")}
+            </p>
+          </div>
+          <div className="vsl-fade grid grid-cols-1 md:grid-cols-2 gap-4">
+            {GAMMES.map((g) => (
+              <div key={g.name} className="group relative rounded-sm overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                <Image src={GAMME_IMG[g.name]} alt={`Villa ${g.name}`} fill quality={90} className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width:768px) 100vw, 50vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                  <div className="flex items-end justify-between gap-3">
+                    <div>
+                      <p className="tertiary text-background/60 mb-1">{g.name}</p>
+                      <p className="font-serif text-background text-xl md:text-2xl font-medium">{g.price}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="metadata text-background/55">{g.surface} / {g.chambres}</p>
+                      <p className="metadata text-accent mt-1">{g.revenus}</p>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <span className="metadata text-background/50 bg-background/10 backdrop-blur-sm px-3 py-1 rounded-full">{g.piscine}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="vsl-fade text-muted-foreground text-xs mt-6 max-w-2xl mx-auto text-center leading-relaxed">
+            {t("gammesDisclaimer")}
+          </p>
+
+          {/* Urgence inline */}
+          <div className="vsl-fade mt-8 bg-accent/10 border border-accent/20 rounded-sm p-5 md:p-6 flex flex-col md:flex-row items-center md:justify-between gap-4 text-center md:text-left">
+            <div>
+              <p className="font-serif font-medium text-foreground text-base md:text-lg">{t("urgencyTitle")}</p>
+              <p className="text-muted-foreground text-sm mt-1">{t("urgencyBody")}</p>
+            </div>
+            <CtaButton className="shrink-0">{t("urgencyCta")}</CtaButton>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── INTÉRIEURS ─── */}
+      <section className="bg-background py-24 md:py-36 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("interiorsEyebrow")}</p>
+            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,4.5vw,56px)" }}>
+              {t("interiorsTitle")}
+            </h2>
+          </div>
+          <div className="vsl-fade grid grid-cols-2 md:grid-cols-4 gap-2">
+            {INTERIOR_SRCS.map((src, i) => (
+              <div key={src} className="relative aspect-square rounded-sm overflow-hidden">
+                <Image src={src} alt={INTERIOR_ALTS[i]} fill quality={80} className="object-cover hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 50vw, 25vw" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA #3 — DOSSIER OPTIN ─── */}
+      <section id="dossier-vsl" className="py-16 md:py-24 px-6 bg-card border-t border-border">
+        <div className="max-w-lg mx-auto">
+          {dossierStatus === "success" ? (
+            <div className="bg-background border border-border rounded-sm p-10 md:p-12 text-center">
+              <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h2 className="font-serif font-medium text-foreground text-2xl mb-4">{t("dossierSuccessTitle")}</h2>
+              <p className="text-foreground/65 leading-relaxed mb-8">
+                {t("dossierSuccessBody")}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="https://drive.google.com/file/d/1lgoQa6io7SXF0E_OYqy2rwQ-12noITB6/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+                  className="cta-primary font-serif font-semibold">
+                  {t("dossierBrochureLabel")}
+                </a>
+                <a href="https://drive.google.com/file/d/1aJTLdt9WZRrYZvBw-TeZ4yqMB4rPOsOV/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+                  className="cta-outline font-serif font-semibold">
+                  {t("dossierProjectionsLabel")}
+                </a>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleDossierSubmit} className="bg-background border border-border rounded-sm p-8 md:p-12">
+              <p className="vsl-fade eyebrow text-muted-foreground mb-4">{t("dossierEyebrow")}</p>
+              <h2 className="vsl-fade font-serif font-medium text-foreground text-xl md:text-2xl mb-2">
+                {t("dossierTitle")}
+              </h2>
+              <p className="vsl-fade text-foreground/50 text-sm mb-8">
+                {t("dossierBody")}
+              </p>
+              <div className="space-y-5">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="dossier-firstName" className="form-label mb-2">{t("formFirstName")}</label>
+                    <input id="dossier-firstName" type="text" required value={dossierForm.firstName}
+                      onChange={(e) => setDossierForm({ ...dossierForm, firstName: e.target.value })}
+                      className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                  </div>
+                  <div>
+                    <label htmlFor="dossier-lastName" className="form-label mb-2">{t("formLastName")}</label>
+                    <input id="dossier-lastName" type="text" required value={dossierForm.lastName}
+                      onChange={(e) => setDossierForm({ ...dossierForm, lastName: e.target.value })}
+                      className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="dossier-email" className="form-label mb-2">{t("formEmail")}</label>
+                  <input id="dossier-email" type="email" required value={dossierForm.email}
+                    onChange={(e) => setDossierForm({ ...dossierForm, email: e.target.value })}
+                    className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                </div>
+                <div>
+                  <label htmlFor="dossier-phone" className="form-label mb-2">{t("formPhone")}</label>
+                  <input id="dossier-phone" type="tel" value={dossierForm.phone}
+                    onChange={(e) => setDossierForm({ ...dossierForm, phone: e.target.value })}
+                    className="w-full bg-card border border-border rounded-sm px-4 py-3 text-foreground text-sm focus:border-accent focus:outline-none transition-colors" />
+                </div>
+              </div>
+              <button type="submit" disabled={dossierStatus === "loading"}
+                className="cta-primary font-serif font-semibold w-full mt-8">
+                {dossierStatus === "loading" ? t("formSubmitting") : t("formSubmit")}
+              </button>
+              {dossierStatus === "error" && (
+                <p className="mt-4 text-destructive text-sm text-center">{t("formError")}</p>
+              )}
+              <p className="mt-6 metadata text-foreground/35 text-center">{t("formNote")}</p>
+            </form>
+          )}
+        </div>
+      </section>
+
+      {/* ─── GARANTIES ─── */}
+      <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="vsl-fade eyebrow text-muted-foreground mb-6">{t("guaranteesEyebrow")}</p>
+            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,56px)" }}>
+              {t("guaranteesTitle")}
+            </h2>
+          </div>
+          <div className="vsl-fade grid grid-cols-1 md:grid-cols-3 gap-5">
+            {GUARANTEES.map((g) => (
+              <div key={g.label} className="bg-background border border-border rounded-sm p-6">
+                <p className="font-serif font-medium text-accent text-2xl mb-2">{g.value}</p>
+                <p className="font-serif font-medium text-foreground text-base mb-2">{g.label}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{g.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── LOCALISATION ─── */}
+      <section className="relative bg-primary py-24 md:py-36 px-6 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-70 bg-cover bg-center pointer-events-none"
+          style={{ backgroundImage: "url(/pattern-fabric.webp)" }}
+        />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <p className="vsl-fade eyebrow-dark mx-auto mb-6">{t("locationEyebrow")}</p>
+          <h2 className="vsl-fade font-serif font-medium text-background leading-[1.0] mb-12" style={{ fontSize: "clamp(32px,5vw,64px)" }}>
+            {t("locationTitle")}
+          </h2>
+          <div className="vsl-fade grid grid-cols-2 md:grid-cols-4 gap-6">
+            {LOCATION_ITEMS.map((d) => (
+              <div key={d.label}>
+                <p className="font-serif font-medium text-background text-2xl md:text-3xl">{d.value}</p>
+                <p className="metadata text-background/45 mt-2">{d.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="bg-background px-6 py-24 md:py-36 border-t border-border">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(32px,4.5vw,56px)" }}>
+              {t("faqTitle")}
+            </h2>
+          </div>
+          <Accordion type="single" collapsible className="vsl-fade w-full">
+            {FAQ.map((item, i) => (
+              <AccordionItem key={i} value={`item-${i}`}>
+                <AccordionTrigger className="py-6 font-serif text-lg md:text-xl text-foreground font-medium hover:no-underline hover:text-muted-foreground text-left">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 pt-0 text-base font-sans text-foreground/70 leading-relaxed max-w-2xl">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* ─── CALENDLY EMBED ─── */}
+      <section className="bg-card px-6 py-24 md:py-36 border-t border-border">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="vsl-fade font-serif font-medium text-foreground leading-[1.0]" style={{ fontSize: "clamp(28px,4vw,52px)" }}>
+            {t("calendlyTitle")}
+          </h2>
+          <p className="vsl-fade text-muted-foreground mt-6 leading-relaxed">
+            {t("calendlyBody")}
+          </p>
+          <div className="vsl-fade mt-10">
+            <div
+              className="calendly-inline-widget"
+              data-url={`${CALENDLY_URL}&hide_gdpr_banner=1`}
+              style={{ minWidth: "100%", height: 1100 }}
+            />
+          </div>
+          <p className="vsl-fade metadata text-muted-foreground/40 mt-6">{t("calendlyNote")}</p>
+        </div>
+      </section>
+
+      {/* ─── MICRO-FOOTER ─── */}
+      <div className="bg-background border-t border-border py-8 px-6">
+        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-serif text-foreground/30 text-sm">Sora Immobilier</p>
+          <p className="metadata text-muted-foreground/30">{t("footerEmail")}</p>
+        </div>
+      </div>
+
+      {/* Sticky CTA mobile */}
+      <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-background/95 backdrop-blur-md border-t border-border/30 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+        <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer"
+          className="cta-primary font-serif font-semibold w-full">
+          {t("stickyCta")}
+        </a>
+      </div>
+
+      {/* Exit intent popup */}
+      {showExitPopup && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-foreground/60 backdrop-blur-sm" onClick={() => setShowExitPopup(false)} />
+          <div className="relative bg-background border border-border rounded-sm max-w-md w-full p-6 md:p-10 text-center shadow-2xl animate-in fade-in zoom-in-95 duration-300">
+            <button onClick={() => setShowExitPopup(false)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <p className="font-serif font-medium text-foreground text-xl md:text-2xl leading-tight">
+              {t("exitTitle")}
+            </p>
+            <p className="text-muted-foreground mt-4 leading-relaxed">
+              {t("exitBody")}
+            </p>
+            <div className="mt-8">
+              <CtaButton>{t("exitCta")}</CtaButton>
+            </div>
+            <button onClick={() => setShowExitPopup(false)} className="mt-4 metadata text-muted-foreground/40 hover:text-muted-foreground transition-colors">
+              {t("exitDecline")}
+            </button>
+          </div>
+        </div>
+      )}
+
+    </main>
+  )
+}
