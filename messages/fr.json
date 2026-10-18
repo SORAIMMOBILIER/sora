@@ -53,6 +53,7 @@
   },
   "Home": {
     "Hero": {
+      "kicker": "SORA Immobilier",
       "titleLine1": "Investir à Bali,",
       "titleLine2": "clé en main.",
       "subtitle": "Gabriel sélectionne les projets, cadre la structure juridique et pilote l'exploitation sur place. Vous avancez depuis l'Europe avec une lecture claire des étapes, des risques et des scénarios de sortie.",
@@ -351,6 +352,7 @@
   "VillasSSV": {
     "metaTitle": "Seseh Sunset Villas : investir à Bali clé en main | SORA Immobilier",
     "metaDescription": "Découvrez Seseh Sunset Villas, notre programme immobilier clé en main à Bali : présentation vidéo, rendement projeté et accompagnement par SORA Immobilier.",
+    "seeFullProgram": "Découvrir le programme complet Seseh Sunset Villas",
     "heroTitle": "Investissez à Bali, dans un projet clé en main.",
     "heroBody": "Plus de 100 chefs d'entreprise et cadres dirigeants européens investissent déjà avec Sora. Découvrez pourquoi en 3 minutes.",
     "cta1Label": "Échanger avec Gabriel, co-fondateur et directeur général",
@@ -817,7 +819,8 @@
   },
   "RealisationDetail": {
     "explorerVilla": "Explorer la villa",
-    "inclusEyebrow": "Inclus dans chaque villa"
+    "inclusEyebrow": "Inclus dans chaque villa",
+    "watchVideoPresentation": "Voir la présentation vidéo (3 min)"
   },
   "DossierForm": {
     "successTitle": "Dossier envoyé.",

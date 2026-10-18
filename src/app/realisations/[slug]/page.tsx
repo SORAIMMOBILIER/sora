@@ -355,6 +355,16 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
               ))}
             </div>
           )}
+          {/* Lien croisé vers la page vidéo dédiée (voir aussi villas-ssv/page.tsx
+              qui renvoie ici) — relie deux pages Seseh jusque-là non reliées. */}
+          {slug === "seseh" && (
+            <Link
+              href="/villas-ssv"
+              className="mt-6 inline-block metadata text-foreground/55 hover:text-accent transition-colors underline underline-offset-4"
+            >
+              {t("watchVideoPresentation")}
+            </Link>
+          )}
         </div>
       </section>
 

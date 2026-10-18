@@ -53,6 +53,7 @@
   },
   "Home": {
     "Hero": {
+      "kicker": "SORA Immobilier",
       "titleLine1": "Invest in Bali,",
       "titleLine2": "turnkey.",
       "subtitle": "Gabriel selects the projects, frames the legal structure and runs operations on the ground. You move forward from Europe with a clear view of the steps, the risks and the exit scenarios.",
@@ -351,6 +352,7 @@
   "VillasSSV": {
     "metaTitle": "Seseh Sunset Villas: Turnkey Investment in Bali | SORA Immobilier",
     "metaDescription": "Discover Seseh Sunset Villas, our turnkey real estate programme in Bali: video presentation, projected returns and support from SORA Immobilier.",
+    "seeFullProgram": "Discover the full Seseh Sunset Villas programme",
     "heroTitle": "Invest in Bali, in a turnkey project.",
     "heroBody": "Over 100 European business owners and executives are already investing with Sora. Find out why in 3 minutes.",
     "cta1Label": "Talk to Gabriel, co-founder and CEO",
@@ -883,7 +885,8 @@
   },
   "RealisationDetail": {
     "explorerVilla": "Explore the villa",
-    "inclusEyebrow": "Included in every villa"
+    "inclusEyebrow": "Included in every villa",
+    "watchVideoPresentation": "Watch the video presentation (3 min)"
   },
   "DossierForm": {
     "successTitle": "File sent.",

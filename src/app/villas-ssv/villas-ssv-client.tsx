@@ -215,6 +215,15 @@ export default function VSLPage() {
               <CtaButton>{t("cta1Label")}</CtaButton>
               <p className="metadata text-muted-foreground/50 mt-4">{t("cta1Note")}</p>
             </div>
+
+            {/* Lien croisé vers la fiche complète du projet (voir aussi
+                realisations/[slug]/page.tsx qui renvoie ici) */}
+            <Link
+              href="/realisations/seseh"
+              className="vsl-fade mt-6 inline-block metadata text-foreground/45 hover:text-accent transition-colors underline underline-offset-4"
+            >
+              {t("seeFullProgram")}
+            </Link>
           </div>
 
           {/* Colonne droite : vidéo verticale */}
