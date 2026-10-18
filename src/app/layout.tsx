@@ -11,6 +11,7 @@ import CookieBanner from "@/components/layout/cookie-banner"
 import { sanityFetch } from "../../sanity/lib/fetch"
 import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import { translateToEnglish } from "@/lib/translate"
+import { organizationJsonLd } from "@/lib/structured-data"
 import "./globals.css"
 
 const eightly = localFont({
@@ -35,7 +36,7 @@ const hanken = Hanken_Grotesk({
   display: "swap",
 })
 
-const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sora-five-sigma.vercel.app")
+const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.sora-immobilier.com")
 const ogImageUrl = new URL("/og-image.jpg", siteUrl)
 const faviconUrl = new URL("/favicon.ico", siteUrl)
 
@@ -155,6 +156,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={locale} className={`${eightly.variable} ${hanken.variable}`}>
       <body>
+        {/* Organization/RealEstateAgent (schema.org) : une seule fois,
+            commune à tout le site — voir src/lib/structured-data.ts */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ConditionalSmoothScroll>
             <SiteChrome realisations={navRealisations} />

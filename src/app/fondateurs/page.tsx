@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import Footer from "@/components/layout/footer"
 import GabrielSignature from "@/components/founders/gabriel-signature"
 import { hreflangAlternates } from "@/lib/hreflang"
+import { founderPersonsJsonLd } from "@/lib/structured-data"
 import type { Locale } from "@/i18n/request"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,11 +26,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function FondateursPage() {
+  const locale = (await getLocale()) as Locale
   const t = await getTranslations("FoundersPage")
   const fp1 = await getTranslations("Home.Founder")
+  const personsJsonLd = founderPersonsJsonLd(locale === "en" ? "en" : "fr")
 
   return (
     <main>
+      {personsJsonLd.map((person) => (
+        <script
+          key={person["@id"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }}
+        />
+      ))}
       <section className="bg-primary pt-32 md:pt-40 pb-16 md:pb-24 px-6">
         <div className="container-page">
           <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28">
