@@ -8,6 +8,7 @@ import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { EVENT_BY_SLUG_QUERY, EVENT_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
 import EventForm from "@/components/sections/event/event-form"
+import { hreflangAlternates } from "@/lib/hreflang"
 import type { Metadata } from "next"
 
 type EventDetail = {
@@ -119,6 +120,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: event.seo?.metaTitle || `${event.title} | SORA Immobilier`,
     description: event.seo?.metaDescription || event.summary,
+    alternates: hreflangAlternates(`/events/${slug}`),
     openGraph: ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: event.title }] } : undefined,
   }
 }

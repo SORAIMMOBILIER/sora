@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import Footer from "@/components/layout/footer"
 import DossierForm from "@/components/sections/realisation/dossier-form"
 import { translateToEnglish } from "@/lib/translate"
+import { hreflangAlternates } from "@/lib/hreflang"
 
 const AC_TAG_BY_SLUG: Record<string, string> = {
   "seseh": "61",
@@ -284,6 +285,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: r.seo?.metaTitle || `${r.title} | SORA Immobilier`,
     description: r.seo?.metaDescription || r.cardDescription,
+    alternates: hreflangAlternates(`/realisations/${slug}`),
     openGraph: ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: r.title }] } : undefined,
   }
 }
@@ -352,6 +354,16 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
                 </Button>
               ))}
             </div>
+          )}
+          {/* Lien croisé vers la page vidéo dédiée (voir aussi villas-ssv/page.tsx
+              qui renvoie ici) — relie deux pages Seseh jusque-là non reliées. */}
+          {slug === "seseh" && (
+            <Link
+              href="/villas-ssv"
+              className="mt-6 inline-block metadata text-foreground/55 hover:text-accent transition-colors underline underline-offset-4"
+            >
+              {t("watchVideoPresentation")}
+            </Link>
           )}
         </div>
       </section>

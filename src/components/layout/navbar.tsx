@@ -1,9 +1,9 @@
 "use client"
 import Link from "@/components/localized-link"
 import Image from "next/image"
-import { useState, useEffect, useRef, type MouseEvent } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronDown } from "lucide-react"
-import { useTranslations, useLocale } from "next-intl"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import LanguageSwitch from "@/components/layout/language-switch"
 
@@ -28,7 +28,6 @@ const STATUS_KEY: Record<NavRealisation["status"], "statusEnCours" | "statusLivr
 
 export default function Navbar({ realisations }: { realisations: NavRealisation[] }) {
   const t = useTranslations("Navbar")
-  const locale = useLocale()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -52,21 +51,6 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
     }
     return () => { document.body.style.overflow = "" }
   }, [menuOpen])
-
-  const goToHomeAnchor = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    setMenuOpen(false)
-
-    const homePath = locale === "en" ? "/en" : "/"
-    const href = `${homePath}#${id}`
-    if (window.location.pathname !== homePath) {
-      window.location.assign(href)
-      return
-    }
-
-    window.history.pushState(null, "", href)
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
 
   const openDropdown = () => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current)
@@ -127,7 +111,7 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
                 <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
             </div>
-            <Link href="/#fondateur" onClick={goToHomeAnchor("fondateur")} className="nav-link">{t("fondateur")}</Link>
+            <Link href="/fondateurs" className="nav-link">{t("fondateur")}</Link>
           </div>
           <Link href="/" aria-label="SORA Immobilier" className="block">
             <Image src="/sora-logo.svg" alt="SORA" width={705} height={159} priority className="no-outline block h-6 w-auto" />
@@ -278,8 +262,8 @@ export default function Navbar({ realisations }: { realisations: NavRealisation[
               )}
             </div>
             <Link
-              href="/#fondateur"
-              onClick={goToHomeAnchor("fondateur")}
+              href="/fondateurs"
+              onClick={() => setMenuOpen(false)}
               className="font-serif font-semibold text-3xl text-background hover:text-accent transition-colors duration-300"
             >
               {t("fondateur")}

@@ -5,11 +5,16 @@ import { sanityFetch } from "../../../sanity/lib/fetch"
 import { ALL_EVENTS_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
 import { translateToEnglish } from "@/lib/translate"
+import { hreflangAlternates } from "@/lib/hreflang"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Évènements | SORA Immobilier",
-  description: "Webinaires, masterclass et rendez-vous SORA autour de l'investissement immobilier à Bali.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("EventsIndex")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/events"),
+  }
 }
 
 type EventItem = {

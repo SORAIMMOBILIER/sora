@@ -10,11 +10,12 @@ import FounderSection from "@/components/sections/founder-section"
 import FaqSection from "@/components/sections/faq-section"
 import CtaSection from "@/components/sections/cta-section"
 import Footer from "@/components/layout/footer"
-import { getLocale } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import { sanityFetch } from "../../sanity/lib/fetch"
 import { ALL_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import { urlForImage } from "../../sanity/lib/image"
 import { translateToEnglish } from "@/lib/translate"
+import { faqPageJsonLd } from "@/lib/structured-data"
 
 type RealisationRaw = {
   _id: string
@@ -72,8 +73,15 @@ export default async function Home() {
   })
 
 
+  const faqT = await getTranslations("Home.Faq")
+  const faqItems = faqT.raw("items") as { q: string; a: string }[]
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(faqItems)) }}
+      />
       <HeroSection />
       <StatsSection />
       <BrochureCta />

@@ -7,6 +7,7 @@ import { sanityFetch } from "../../../../sanity/lib/fetch"
 import { POST_BY_SLUG_QUERY, POST_SLUGS_QUERY } from "../../../../sanity/lib/queries"
 import { urlForImage } from "../../../../sanity/lib/image"
 import { translateToEnglish } from "@/lib/translate"
+import { hreflangAlternates } from "@/lib/hreflang"
 import type { Metadata } from "next"
 
 type Post = {
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.seo?.metaTitle || `${post.title} | SORA Immobilier`,
     description: post.seo?.metaDescription || post.excerpt,
+    alternates: hreflangAlternates(`/blog/${slug}`),
   }
 }
 
