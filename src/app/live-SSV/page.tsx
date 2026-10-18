@@ -9,12 +9,17 @@ import { webinarLabel } from "../../../lib/webinar"
 import WebinarForm from "@/components/sections/webinar/webinar-form"
 import TestimonialsGrid from "@/components/sections/temoignages/testimonials-grid"
 import { translateToEnglish } from "@/lib/translate"
+import { hreflangAlternates } from "@/lib/hreflang"
 
 export const dynamic = "force-dynamic"
 
-export const metadata: Metadata = {
-  title: "Webinaire live | Investir à Bali — Seseh Sunset Villas",
-  description: "Webinaire gratuit en direct : découvrez le projet Seseh Sunset Villas à Bali, 26 villas clé en main à 300 m de la plage.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("LiveSSV")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/live-SSV"),
+  }
 }
 
 type WebinarContent = {

@@ -176,6 +176,8 @@
     "nithamImgAlt": "Nitham Lapierre, co-fondatrice et directrice du développement de SORA Immobilier"
   },
   "Contact": {
+    "metaTitle": "Contact | SORA Immobilier",
+    "metaDescription": "Réservez un appel offert avec Gabriel pour cadrer votre projet d'investissement à Bali.",
     "eyebrow": "Contact",
     "title": "Réservez votre appel offert.",
     "body": "30 minutes avec Gabriel pour cadrer votre projet, répondre à vos questions et vérifier si Bali correspond à votre situation.",
@@ -189,6 +191,8 @@
     "footer": "En attendant votre appel, explorez nos réalisations."
   },
   "Fonctionnement": {
+    "metaTitle": "Fonctionnement | SORA Immobilier",
+    "metaDescription": "Sora gère toutes les étapes de votre investissement à Bali : sélection du foncier, structuration juridique, conception, travaux et gestion locative.",
     "eyebrow": "Fonctionnement",
     "title": "Toutes les étapes, gérées par une seule équipe.",
     "body": "De la sélection du foncier à la gestion locative, Sora pilote l'intégralité du projet sur place. Vous avancez depuis l'Europe avec une lecture claire de chaque étape.",
@@ -208,6 +212,8 @@
     "cta": "Réserver un appel offert"
   },
   "MentionsLegales": {
+    "metaTitle": "Mentions légales | SORA Immobilier",
+    "metaDescription": "Mentions légales du site sora-immobilier.com.",
     "title": "Mentions légales",
     "editeurTitle": "Éditeur du site",
     "editeurIntro": "Le site sora-immobilier.com est édité par la société PT FIVE BLOOM INTERNATIONAL, exploitant la marque SORA IMMOBILIER.",
@@ -572,6 +578,8 @@
     }
   },
   "LiveSSV": {
+    "metaTitle": "Webinaire live | Investir à Bali — Seseh Sunset Villas",
+    "metaDescription": "Webinaire gratuit en direct : découvrez le projet Seseh Sunset Villas à Bali, 26 villas clé en main à 300 m de la plage.",
     "defaultEyebrow": "Webinaire live gratuit",
     "defaultTitle": "Investir dans l'immobilier à Bali — le projet Seseh Sunset Villas",
     "defaultSummary": "Découvrez comment investir dans une villa à Bali avec un rendement net projeté jusqu'à 13,8%. Présentation du projet Seseh Sunset Villas avec Gabriel Lapierre, co-fondateur et directeur général de Sora Immobilier.",
@@ -621,6 +629,8 @@
     "bottomCtaTitle": "Vous aussi, venez découvrir le projet Seseh Sunset Villas et poser vos questions en direct."
   },
   "AllerPlusLoin": {
+    "metaTitle": "Replay du webinaire | Seseh Sunset Villas — SORA Immobilier",
+    "metaDescription": "Revoir le webinaire sur le projet Seseh Sunset Villas à Bali, et réserver un appel avec l'équipe Sora.",
     "defaultTitle": "Seseh Sunset Villas",
     "replayEyebrow": "Replay du webinaire",
     "heroP1": "26 villas d'exception dans l'une des dernières zones encore préservées de l'île, avec des rendements locatifs parmi les plus attractifs du marché.",
@@ -746,12 +756,16 @@
     "selectRoom": "Sélectionnez une pièce"
   },
   "Blog": {
+    "metaTitle": "Blog | SORA Immobilier",
+    "metaDescription": "Analyses, retours d'expérience et données réelles du marché immobilier balinais.",
     "eyebrow": "Journal",
     "title": "Notes du terrain.",
     "body": "Analyses chiffrées, retours d'opérations, lectures du marché balinais. Sans pitch commercial.",
     "empty": "Aucun article publié pour l'instant. Le premier arrive bientôt."
   },
   "EventsIndex": {
+    "metaTitle": "Évènements | SORA Immobilier",
+    "metaDescription": "Webinaires, masterclass et rendez-vous SORA autour de l'investissement immobilier à Bali.",
     "eyebrow": "Évènements",
     "title": "Webinaires et rendez-vous terrain.",
     "body": "Sessions en ligne, masterclass et échanges autour du cadre juridique, des chiffres et des opérations suivies à Bali.",
@@ -867,6 +881,8 @@
     "playLabel": "Lancer le témoignage"
   },
   "Temoignages": {
+    "metaTitle": "Témoignages | SORA Immobilier",
+    "metaDescription": "Ce que disent les investisseurs qui ont fait confiance à SORA pour investir à Bali.",
     "eyebrow": "Témoignages",
     "title": "Ce que disent ceux qui ont investi.",
     "body": "Des retours d'investisseurs accompagnés par Sora, sur leur expérience, du premier échange à la gestion locative.",

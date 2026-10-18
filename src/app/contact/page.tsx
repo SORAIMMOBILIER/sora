@@ -1,10 +1,15 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import Footer from "@/components/layout/footer"
+import { hreflangAlternates } from "@/lib/hreflang"
 
-export const metadata: Metadata = {
-  title: "Contact | SORA Immobilier",
-  description: "Réservez un appel offert avec Gabriel pour cadrer votre projet d'investissement à Bali.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Contact")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/contact"),
+  }
 }
 
 const CALENDLY_URL =

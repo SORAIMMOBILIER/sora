@@ -12,6 +12,7 @@ import Footer from "@/components/layout/footer"
 import VillaExplorer, { type GalleryImage } from "@/components/villa/villa-explorer"
 import { loadVillaPlan } from "@/lib/villa-plans"
 import { translateToEnglish } from "@/lib/translate"
+import { hreflangAlternates } from "@/lib/hreflang"
 
 type SanityImage = { asset?: { _ref: string }; alt?: string; room?: string }
 
@@ -69,6 +70,7 @@ export async function generateMetadata({
   return {
     title: `${g.name} — ${data.realisationTitle} | SORA Immobilier`,
     description: g.description,
+    alternates: hreflangAlternates(`/realisations/${slug}/${gammeSlug}`),
   }
 }
 

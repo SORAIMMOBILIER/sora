@@ -1,10 +1,15 @@
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import Footer from "@/components/layout/footer"
+import { hreflangAlternates } from "@/lib/hreflang"
 
-export const metadata: Metadata = {
-  title: "Mentions légales | SORA Immobilier",
-  description: "Mentions légales du site sora-immobilier.com.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("MentionsLegales")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/mentions-legales"),
+  }
 }
 
 export default async function MentionsLegalesPage() {

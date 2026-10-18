@@ -4,11 +4,15 @@ import Link from "@/components/localized-link"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import Footer from "@/components/layout/footer"
+import { hreflangAlternates } from "@/lib/hreflang"
 
-export const metadata: Metadata = {
-  title: "Fonctionnement | SORA Immobilier",
-  description:
-    "Sora gère toutes les étapes de votre investissement à Bali : sélection du foncier, structuration juridique, conception, travaux et gestion locative.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Fonctionnement")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/fonctionnement"),
+  }
 }
 
 type Step = { title: string; desc: string }

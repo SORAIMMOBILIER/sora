@@ -5,11 +5,16 @@ import { sanityFetch } from "../../../sanity/lib/fetch"
 import { ALL_POSTS_QUERY } from "../../../sanity/lib/queries"
 import { urlForImage } from "../../../sanity/lib/image"
 import { translateToEnglish } from "@/lib/translate"
+import { hreflangAlternates } from "@/lib/hreflang"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Blog | SORA Immobilier",
-  description: "Analyses, retours d'expérience et données réelles du marché immobilier balinais.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Blog")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/blog"),
+  }
 }
 
 type Post = {

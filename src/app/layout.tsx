@@ -12,6 +12,7 @@ import { sanityFetch } from "../../sanity/lib/fetch"
 import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import { translateToEnglish } from "@/lib/translate"
 import { organizationJsonLd } from "@/lib/structured-data"
+import { hreflangAlternates } from "@/lib/hreflang"
 import "./globals.css"
 
 const eightly = localFont({
@@ -74,6 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: siteUrl,
     title: m.title,
     description: m.description,
+    alternates: hreflangAlternates("/"),
     icons: {
       icon: [{ url: faviconUrl }],
       shortcut: [{ url: faviconUrl }],

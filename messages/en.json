@@ -176,6 +176,8 @@
     "nithamImgAlt": "Nitham Lapierre, co-founder and Head of Development at SORA Immobilier"
   },
   "Contact": {
+    "metaTitle": "Contact | SORA Immobilier",
+    "metaDescription": "Book a free call with Gabriel to scope out your investment project in Bali.",
     "eyebrow": "Contact",
     "title": "Book your free call.",
     "body": "30 minutes with Gabriel to frame your project, answer your questions and check whether Bali fits your situation.",
@@ -189,6 +191,8 @@
     "footer": "While you wait for your call, explore our projects."
   },
   "Fonctionnement": {
+    "metaTitle": "How It Works | SORA Immobilier",
+    "metaDescription": "SORA manages every step of your investment in Bali: land selection, legal structuring, design, construction and rental management.",
     "eyebrow": "How it works",
     "title": "Every step, handled by a single team.",
     "body": "From land selection to rental management, Sora runs the entire project on the ground. You move forward from Europe with a clear view of every step.",
@@ -208,6 +212,8 @@
     "cta": "Book a free call"
   },
   "MentionsLegales": {
+    "metaTitle": "Legal Notice | SORA Immobilier",
+    "metaDescription": "Legal notice for the sora-immobilier.com website.",
     "title": "Legal notice",
     "editeurTitle": "Site publisher",
     "editeurIntro": "The site sora-immobilier.com is published by PT FIVE BLOOM INTERNATIONAL, operating under the SORA IMMOBILIER brand.",
@@ -572,6 +578,8 @@
     }
   },
   "LiveSSV": {
+    "metaTitle": "Live Webinar | Invest in Bali — Seseh Sunset Villas",
+    "metaDescription": "Free live webinar: discover the Seseh Sunset Villas project in Bali, 26 turnkey villas 300m from the beach.",
     "defaultEyebrow": "Free live webinar",
     "defaultTitle": "Investing in Bali real estate — the Seseh Sunset Villas project",
     "defaultSummary": "Find out how to invest in a villa in Bali with a projected net return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, co-founder and CEO of Sora Immobilier.",
@@ -621,6 +629,8 @@
     "bottomCtaTitle": "Come discover the Seseh Sunset Villas project too and ask your questions live."
   },
   "AllerPlusLoin": {
+    "metaTitle": "Webinar Replay | Seseh Sunset Villas — SORA Immobilier",
+    "metaDescription": "Watch the replay of the Seseh Sunset Villas webinar in Bali, and book a call with the SORA team.",
     "defaultTitle": "Seseh Sunset Villas",
     "replayEyebrow": "Webinar replay",
     "heroP1": "26 exceptional villas in one of the island's last unspoiled areas, with rental yields among the most attractive on the market.",
@@ -812,12 +822,16 @@
     "selectRoom": "Select a room"
   },
   "Blog": {
+    "metaTitle": "Blog | SORA Immobilier",
+    "metaDescription": "Analysis, real feedback and real data on the Bali real estate market.",
     "eyebrow": "Journal",
     "title": "Notes from the ground.",
     "body": "Data-backed analysis, operational feedback, readings of the Bali market. No sales pitch.",
     "empty": "No articles published yet. The first one is coming soon."
   },
   "EventsIndex": {
+    "metaTitle": "Events | SORA Immobilier",
+    "metaDescription": "Webinars, masterclasses and SORA events on real estate investment in Bali.",
     "eyebrow": "Events",
     "title": "Webinars and on-the-ground sessions.",
     "body": "Online sessions, masterclasses and conversations about the legal framework, the numbers and the operations we track in Bali.",
@@ -933,6 +947,8 @@
     "playLabel": "Play testimonial"
   },
   "Temoignages": {
+    "metaTitle": "Testimonials | SORA Immobilier",
+    "metaDescription": "What investors who trusted SORA to invest in Bali have to say.",
     "eyebrow": "Testimonials",
     "title": "What our investors say.",
     "body": "Feedback from investors supported by Sora, on their experience, from the first conversation to rental management.",

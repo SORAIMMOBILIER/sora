@@ -7,10 +7,15 @@ import { getStaticTranslatedQuote } from "@/lib/translate"
 import TestimonialCard from "@/components/sections/temoignages/testimonial-card"
 import { Button } from "@/components/ui/button"
 import Footer from "@/components/layout/footer"
+import { hreflangAlternates } from "@/lib/hreflang"
 
-export const metadata: Metadata = {
-  title: "Témoignages | SORA Immobilier",
-  description: "Ce que disent les investisseurs qui ont fait confiance à SORA pour investir à Bali.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Temoignages")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/temoignages"),
+  }
 }
 
 const WHATSAPP_URL =

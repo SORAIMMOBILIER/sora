@@ -11,12 +11,17 @@ import {
   CALENDLY_URL,
   WHATSAPP_URL,
 } from "@/components/sections/webinar/webinar-content"
+import { hreflangAlternates } from "@/lib/hreflang"
 
 export const dynamic = "force-dynamic"
 
-export const metadata: Metadata = {
-  title: "Replay du webinaire | Seseh Sunset Villas — SORA Immobilier",
-  description: "Revoir le webinaire sur le projet Seseh Sunset Villas à Bali, et réserver un appel avec l'équipe Sora.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("AllerPlusLoin")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: hreflangAlternates("/SSV/allez-plus-loin"),
+  }
 }
 
 type WebinarContent = {
