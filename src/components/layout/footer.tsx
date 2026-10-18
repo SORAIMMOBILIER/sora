@@ -1,20 +1,18 @@
 "use client"
 import Link from "@/components/localized-link"
 import Image from "next/image"
-import type { MouseEvent } from "react"
-import { useTranslations, useLocale } from "next-intl"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
 export default function Footer() {
   const t = useTranslations("Footer")
-  const locale = useLocale()
 
   const SECTIONS = [
     { href: "/", label: t("navAccueil") },
     { href: "/seseh", label: t("navSeseh") },
     { href: "/events", label: t("navEvenements") },
-    { href: "/#fondateur", label: t("navFondateur"), anchorId: "fondateur" },
+    { href: "/fondateurs", label: t("navFondateur") },
     { href: "/fonctionnement", label: t("navFonctionnement") },
     { href: "/masterclass", label: t("navReplay") },
     { href: "/contact", label: t("navAppelOffert") },
@@ -33,20 +31,6 @@ export default function Footer() {
 
   const scrollTop = () => {
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
-  const goToHomeAnchor = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-
-    const homePath = locale === "en" ? "/en" : "/"
-    const href = `${homePath}#${id}`
-    if (window.location.pathname !== homePath) {
-      window.location.assign(href)
-      return
-    }
-
-    window.history.pushState(null, "", href)
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
   return (
@@ -72,7 +56,7 @@ export default function Footer() {
           <ul className="space-y-7 text-background/65">
             {SECTIONS.map((s) => (
               <li key={s.label}>
-                <Link href={s.href} onClick={s.anchorId ? goToHomeAnchor(s.anchorId) : undefined} className="text-lg hover:text-background transition-colors duration-300">{s.label}</Link>
+                <Link href={s.href} className="text-lg hover:text-background transition-colors duration-300">{s.label}</Link>
               </li>
             ))}
           </ul>

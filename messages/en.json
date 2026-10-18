@@ -1,7 +1,7 @@
 {
   "Navbar": {
     "realisations": "Projects",
-    "fondateur": "Founder",
+    "fondateur": "Founders",
     "ressources": "Resources",
     "contact": "Contact",
     "prendreRdv": "Book a call",
@@ -37,7 +37,7 @@
     "navAccueil": "Home",
     "navSeseh": "Seseh Sunset Villas",
     "navEvenements": "Events",
-    "navFondateur": "The Founder",
+    "navFondateur": "Founders",
     "navFonctionnement": "How it works",
     "navReplay": "Conference replay",
     "navAppelOffert": "Free call",
@@ -113,12 +113,13 @@
         { "title": "On-site follow-up", "desc": "Team management, construction reporting and validation of key milestones on site." },
         { "title": "Rental management", "desc": "Setup, distribution, income tracking and scenario arbitration." }
       ],
-      "cardEyebrow": "The founder",
+      "cardEyebrow": "Co-founder and CEO",
       "cardName": "Gabriel Lapierre",
       "cardIntro": "Engineer and investor since 2019, based in Bali since 2023, I apply the same rigor in Bali as I would in France.",
       "cardP1": "Living on site, I discovered a particularly favorable framework for investing as a foreigner. I spent months studying the rules and meeting hundreds of real estate professionals, before building a solid and reliable project team.",
       "cardP2": "I'm the kind of person who reads the fine print and weighs several scenarios before deciding. In Bali, I applied the same standard.",
-      "cardP3": "Very quickly, my circle of investors wanted in. We launched a first project of 9 villas, now rented out. Since then, 19 more villas have been built. That's how Sora Immobilier was born, with the same rigor at every step."
+      "cardP3": "Very quickly, our circle of investors wanted in. We launched a first project of 9 villas, now rented out. Since then, 19 more villas have been built. That's how Sora Immobilier was born, with the same rigor at every step.",
+      "cardP4": "Today, I oversee every project from launch to delivery: construction, site follow-up and support for investors."
     },
     "Faq": {
       "eyebrow": "Frequently asked questions",
@@ -152,12 +153,27 @@
       "statusProchainement": "Coming soon",
       "statusTermine": "Completed",
       "webinarFallbackTitle": "Sora Webinar: investing in Bali",
-      "webinarBody": "Find out how to invest in a villa in Bali with a projected return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, founder of Sora Immobilier.",
+      "webinarBody": "Find out how to invest in a villa in Bali with a projected return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, co-founder and CEO of Sora Immobilier.",
       "signUp": "Sign up",
       "dateToBeAnnounced": "Date to be announced",
       "viewReplay": "Watch the replay",
       "viewSession": "View session"
     }
+  },
+  "FoundersPage": {
+    "metaTitle": "Founders of SORA Immobilier: Gabriel and Nitham Lapierre",
+    "metaDescription": "Gabriel and Nitham Lapierre, co-founders of SORA Immobilier: general management, project development and structuring of real estate projects in Bali and Lombok.",
+    "heroEyebrow": "SORA Immobilier",
+    "heroTitle": "The founders of SORA Immobilier.",
+    "gabrielRole": "Co-founder and CEO",
+    "gabrielName": "Gabriel Lapierre",
+    "nithamRole": "Co-founder and Head of Development",
+    "nithamName": "Nitham Lapierre",
+    "nithamP1": "An engineer by training, I started my career at Bouygues, in construction. I learned there that a good project is decided before the first shovel even hits the ground.",
+    "nithamP2": "At SORA, that's my role: preparing the future. I identify new opportunities, study land and markets, and build each project through its early stage, until it's ready to launch. That's how our new programme in Lombok came to be.",
+    "nithamP3": "I also manage our relationships with local partners, so that every new project stands on foundations as solid as the ones before it.",
+    "nithamSignatureAlt": "Nitham Lapierre's signature",
+    "nithamImgAlt": "Nitham Lapierre, co-founder and Head of Development at SORA Immobilier"
   },
   "Contact": {
     "eyebrow": "Contact",
@@ -223,7 +239,7 @@
     "heroBody": "Are you a wealth advisor, real estate agent, family office or influencer? Sora gives you a turnkey product that sells itself, full support, and a commission on every villa.",
     "videoCaption": "Partner program overview",
     "videoCta": "Become a partner",
-    "cta1Label": "Talk to Gabriel, founder",
+    "cta1Label": "Talk to Gabriel, co-founder and CEO",
     "cta1Note": "20 min, no commitment. He walks you through the program.",
     "socialProof": [
       { "value": "100+", "label": "investors supported" },
@@ -257,8 +273,8 @@
     "gabrielTitle": "Gabriel Lapierre, engineer and developer.",
     "gabrielP1": "An engineer trained at Arts et Métiers, formerly at Vinci. He bought 10+ properties in France then supported hundreds of investors while running a turnkey investment agency. Facing the limits of the European market, he created Sora to bring French technical rigor to Bali.",
     "gabrielP2": "He's the one who takes over with your clients for the closing, and the one you'll have on the phone to structure the partnership.",
-    "gabrielImgAlt": "Gabriel Lapierre, Sora founder",
-    "gabrielCardRole": "Sora founder. Arts et Métiers engineer, ex-Vinci.",
+    "gabrielImgAlt": "Gabriel Lapierre, co-founder and CEO of SORA Immobilier",
+    "gabrielCardRole": "Co-founder and CEO of SORA. Arts et Métiers engineer, ex-Vinci.",
     "howTitle": "How it works.",
     "howSteps": [
       { "step": "01", "title": "Book a call", "desc": "20 min with Gabriel to confirm fit and your terms." },
@@ -327,7 +343,7 @@
   "VillasSSV": {
     "heroTitle": "Invest in Bali, in a turnkey project.",
     "heroBody": "Over 100 European business owners and executives are already investing with Sora. Find out why in 3 minutes.",
-    "cta1Label": "Talk to Gabriel, founder",
+    "cta1Label": "Talk to Gabriel, co-founder and CEO",
     "cta1Note": "30 min, no commitment. He answers all your questions.",
     "videoWatchLabel": "Watch the presentation (3 min)",
     "activateSound": "Turn on sound",
@@ -362,8 +378,8 @@
       "Rental management 7 days a week, nothing for you to manage",
       "A single point of contact from start to finish"
     ],
-    "gabrielImgAlt": "Gabriel Lapierre, Sora founder",
-    "gabrielCardRole": "Sora founder. Arts et Métiers engineer, ex-Vinci.",
+    "gabrielImgAlt": "Gabriel Lapierre, co-founder and CEO of SORA Immobilier",
+    "gabrielCardRole": "Co-founder and CEO of SORA. Arts et Métiers engineer, ex-Vinci.",
     "testimonialsEyebrow": "They invest with Sora",
     "testimonialsTitle": "100+ European executives trust us.",
     "testimonialsQuote": "\"Three years ago, I never thought I'd be able to do this. You see people who do it and you think, 'Yeah, they're exceptional.' But actually no, they're normal people like me, like anyone. At some point, you just make the decision to do it.\"",
@@ -452,7 +468,7 @@
     "coverKicker": "THE REAL ESTATE ENGINEERING GUIDE",
     "coverTitle": "Diversify outside the euro zone, secure it, make it perform.",
     "coverByline": "By Gabriel Lapierre",
-    "coverRole": "Founder, SORA Immobilier",
+    "coverRole": "Co-founder and CEO, SORA Immobilier",
     "chaptersEyebrow": "What you'll learn",
     "chapters": [
       { "n": "01", "title": "The situation", "desc": "Europe is no longer where performance happens" },
@@ -550,7 +566,7 @@
   "LiveSSV": {
     "defaultEyebrow": "Free live webinar",
     "defaultTitle": "Investing in Bali real estate — the Seseh Sunset Villas project",
-    "defaultSummary": "Find out how to invest in a villa in Bali with a projected net return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, founder of Sora Immobilier.",
+    "defaultSummary": "Find out how to invest in a villa in Bali with a projected net return of up to 13.8%. Presentation of the Seseh Sunset Villas project with Gabriel Lapierre, co-founder and CEO of Sora Immobilier.",
     "nextSession": "Next session",
     "parisTime": "(Paris time)",
     "villasRemaining": "Only {n} villas left available out of 26",
@@ -576,7 +592,7 @@
       "You'd rather ask your questions live than read a brochure"
     ],
     "hostEyebrow": "Hosted by",
-    "hostP1": "An engineer by training (Arts et Métiers), founder of Sora, based in Bali since 2023 — on site for construction visits, not behind a screen.",
+    "hostP1": "An engineer by training (Arts et Métiers), co-founder and CEO of Sora, based in Bali since 2023 — on site for construction visits, not behind a screen.",
     "hostP2": "Surrounded by an ecosystem of local experts (notary, legal firm, project manager, interior architect, property manager) and a client network built over more than 15 years.",
     "hostP3": "Villas already delivered and operating, closings completed on site: a project that moves forward concretely, not a promise on paper.",
     "securityEyebrow": "Protection",

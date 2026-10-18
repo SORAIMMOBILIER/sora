@@ -12,11 +12,20 @@ import type { ComponentProps } from "react"
 // dans le layout racine.
 type Props = ComponentProps<typeof NextLink>
 
+// Quelques pages ont, volontairement, une adresse anglaise différente du
+// simple préfixe /en/... (ex : /fondateurs -> /en/founders, un mot anglais
+// plus naturel pour le référencement anglophone que "/en/fondateurs").
+// Voir la même table dans next.config.ts (rewrites) pour le mapping inverse.
+const SLUG_OVERRIDES: Record<string, string> = {
+  "/fondateurs": "/en/founders",
+}
+
 function localize(href: Props["href"], locale: string): Props["href"] {
   if (locale !== "en") return href
   if (typeof href !== "string") return href // objets Url complexes : non concernés ici
   if (href.startsWith("/en")) return href // déjà préfixé
   if (!href.startsWith("/")) return href // externe, ancre pure #xxx, mailto:, tel:
+  if (href in SLUG_OVERRIDES) return SLUG_OVERRIDES[href]
   return `/en${href}`
 }
 

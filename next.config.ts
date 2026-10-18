@@ -42,6 +42,11 @@ const nextConfig: NextConfig = {
   // n'arrive ici.
   async rewrites() {
     return [
+      // Exception explicite AVANT la règle générique /en/:path* : la page
+      // "/fondateurs" est servie en anglais sur "/en/founders" (mot plus
+      // naturel pour le référencement anglophone), pas "/en/fondateurs".
+      // Voir la même table dans src/components/localized-link.tsx.
+      { source: "/en/founders", destination: "/fondateurs" },
       { source: "/en", destination: "/" },
       { source: "/en/:path*", destination: "/:path*" },
     ];
