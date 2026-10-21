@@ -21,8 +21,6 @@ import type { VillaSesehBaliContent } from "../../../content/villa-seseh-bali/ty
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.sora-immobilier.com"
 const PAGE_NAME = "villa-seseh-bali"
-const ANCHOR_ID = "eligibilite"
-const EMBED_SOURCE = "LP-B"
 
 function getContent(locale: string): VillaSesehBaliContent | null {
   return locale === "en" ? enContent : frContent
@@ -77,6 +75,12 @@ export default async function VillaSesehBaliPage() {
   const otherHref = locale === "en" ? "/villa-seseh-bali" : "/en/villa-seseh-bali"
   const otherLabel = locale === "en" ? "FR" : content.nav.switchLabel
   const showLanguageSwitch = locale === "en" ? true : enContent !== null
+  // Ancres et tag source du formulaire : différents par langue (id en
+  // anglais, voir le texte reçu pour la page B EN).
+  const ANCHOR_ID = locale === "en" ? "eligibility" : "eligibilite"
+  const NUMBERS_ID = locale === "en" ? "numbers" : "chiffres"
+  const GUARANTEES_ID = locale === "en" ? "guarantees" : "garanties"
+  const EMBED_SOURCE = locale === "en" ? "LP-B-EN" : "LP-B"
 
   return (
     <main className="bg-background pb-24 md:pb-0">
@@ -160,7 +164,7 @@ export default async function VillaSesehBaliPage() {
       </section>
 
       {/* Section 3 — Nos chiffres (ancre #chiffres) */}
-      <section id="chiffres" className="px-6 md:px-10 py-20 md:py-28 bg-card">
+      <section id={NUMBERS_ID} className="px-6 md:px-10 py-20 md:py-28 bg-card">
         <div className="max-w-2xl mx-auto text-center mb-10">
           <Overline>{content.section3.overline}</Overline>
           <SectionTitle>{content.section3.title}</SectionTitle>
@@ -291,7 +295,7 @@ export default async function VillaSesehBaliPage() {
       </section>
 
       {/* Section 8 — Les garanties (ancre #garanties) */}
-      <section id="garanties" className="px-6 md:px-10 py-20 md:py-28">
+      <section id={GUARANTEES_ID} className="px-6 md:px-10 py-20 md:py-28">
         <div className="max-w-2xl mx-auto text-center mb-12">
           <Overline>{content.section8.overline}</Overline>
           <SectionTitle>{content.section8.title}</SectionTitle>

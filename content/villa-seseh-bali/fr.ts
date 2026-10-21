@@ -163,7 +163,7 @@ const content: VillaSesehBaliContent = {
       },
       {
         title: "Premier rendez-vous, 30 minutes en visio.",
-        body: "Votre situation, la villa adaptée, le prévisionnel sur 5 ans, vos questions. Si ce n'est pas pour vous, on vous le dit.",
+        body: "Votre situation, la villa adaptée, le prévisionnel, vos questions. Si ce n'est pas pour vous, on vous le dit.",
       },
       {
         title: "Deuxième rendez-vous.",
