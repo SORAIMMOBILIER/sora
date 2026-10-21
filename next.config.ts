@@ -37,6 +37,15 @@ const nextConfig: NextConfig = {
         source: "/en/home-seseh-bali",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // Landing page Meta "villa-seseh-bali" (page B) : même traitement.
+      {
+        source: "/villa-seseh-bali",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/en/villa-seseh-bali",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
   async redirects() {
