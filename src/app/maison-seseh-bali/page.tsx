@@ -76,6 +76,10 @@ export default async function MaisonSesehBaliPage() {
   // conditionné à enContent ; côté EN, le fait d'être sur cette page prouve
   // déjà que le contenu existe).
   const showLanguageSwitch = locale === "en" ? true : enContent !== null
+  // Ancre de la section "entretien" et tag source du formulaire GoHighLevel :
+  // différents par langue (id="consultation"/"LP-A-EN" en anglais).
+  const anchorId = locale === "en" ? "consultation" : "entretien"
+  const embedSource = locale === "en" ? "LP-A-EN" : "LP-A"
 
   return (
     <main className="bg-background pb-24 md:pb-0">
@@ -115,7 +119,7 @@ export default async function MaisonSesehBaliPage() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center mt-10">
-          <CtaLink section="hero" label={content.hero.ctaLabel} />
+          <CtaLink section="hero" label={content.hero.ctaLabel} anchor={`#${anchorId}`} />
           <p className="text-foreground/50 text-sm mt-4">{content.hero.ctaNote}</p>
         </div>
 
@@ -160,7 +164,7 @@ export default async function MaisonSesehBaliPage() {
               <figure key={img.src} className="relative aspect-[4/3] rounded-sm overflow-hidden bg-background">
                 <Image src={img.src} alt={img.alt} fill quality={90} className="object-cover" sizes="(max-width:768px) 50vw, 33vw" />
                 <figcaption className="absolute bottom-2 right-3 text-background/80 text-[10px] tracking-wide uppercase" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}>
-                  Visuels non contractuels
+                  {content.footer.disclaimer}
                 </figcaption>
               </figure>
             ))}
@@ -190,7 +194,7 @@ export default async function MaisonSesehBaliPage() {
           <p className="text-foreground/45 text-sm text-center mt-10 italic">{content.section3.confidentialNote}</p>
 
           <div className="text-center mt-10">
-            <CtaLink section="maison" label={content.section3.ctaLabel} />
+            <CtaLink section="maison" label={content.section3.ctaLabel} anchor={`#${anchorId}`} />
           </div>
         </div>
       </section>
@@ -263,7 +267,7 @@ export default async function MaisonSesehBaliPage() {
               ))}
             </div>
             <div className="text-center mt-10">
-              <CtaLink section="temoignages" label={content.section7.ctaLabel} />
+              <CtaLink section="temoignages" label={content.section7.ctaLabel} anchor={`#${anchorId}`} />
             </div>
           </div>
         </section>
@@ -318,7 +322,7 @@ export default async function MaisonSesehBaliPage() {
             ))}
           </div>
           <div className="mt-10">
-            <CtaLink section="marche" label={content.section10.ctaLabel} />
+            <CtaLink section="marche" label={content.section10.ctaLabel} anchor={`#${anchorId}`} />
           </div>
           <p className="text-foreground/35 text-xs mt-10 leading-relaxed">
             Sources : {content.section10.sources.map((s) => s.label).join(" · ")}
@@ -326,14 +330,14 @@ export default async function MaisonSesehBaliPage() {
         </div>
       </section>
 
-      {/* Section 11 — Entretien (ancre #entretien) */}
-      <section id="entretien" className="px-6 md:px-10 py-20 md:py-28 bg-card">
+      {/* Section 11 — Entretien (ancre #entretien en FR, #consultation en EN) */}
+      <section id={anchorId} className="px-6 md:px-10 py-20 md:py-28 bg-card">
         <div className="max-w-2xl mx-auto text-center mb-10">
           <Overline>{content.section11.overline}</Overline>
           <SectionTitle>{content.section11.title}</SectionTitle>
         </div>
         <div className="max-w-2xl mx-auto">
-          <EntretienEmbed embedCode={content.section11.embedCode} />
+          <EntretienEmbed embedCode={content.section11.embedCode} source={embedSource} />
         </div>
       </section>
 
@@ -353,7 +357,7 @@ export default async function MaisonSesehBaliPage() {
         </div>
       </footer>
 
-      <StickyMobileCta label={content.stickyBar.ctaLabel} />
+      <StickyMobileCta label={content.stickyBar.ctaLabel} anchorId={anchorId} />
     </main>
   )
 }
