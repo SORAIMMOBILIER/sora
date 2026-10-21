@@ -3,10 +3,16 @@ import React from "react"
 import Script from "next/script"
 
 // Injection non conditionnelle du Facebook Pixel — envoie des events même sans consentement.
+// strategy="lazyOnload" (au lieu d'afterInteractive) : le script ne se
+// charge plus en concurrence avec le rendu initial de la page (image LCP,
+// polices) — important sur les landing pages de campagne, qui ont un seul
+// visuel lourd à afficher le plus vite possible. Le PageView se déclenche
+// donc légèrement plus tard (après l'event "load"), ce qui reste largement
+// dans la fenêtre d'attribution standard de Meta.
 export default function CookieBanner() {
   return (
     <>
-      <Script id="meta-pixel" strategy="afterInteractive">{`
+      <Script id="meta-pixel" strategy="lazyOnload">{`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};

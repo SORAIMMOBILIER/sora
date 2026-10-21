@@ -14,6 +14,6 @@ export function trackCustom(eventName: string, params?: Record<string, unknown>)
   window.fbq?.("trackCustom", eventName, params)
 }
 
-export function trackCtaClick(section: string) {
-  trackCustom("LP_CTAClick", { page: "maison-seseh-bali", section })
+export function trackCtaClick(section: string, page: string = "maison-seseh-bali") {
+  trackCustom("LP_CTAClick", { page, section })
 }

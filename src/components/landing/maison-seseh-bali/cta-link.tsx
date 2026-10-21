@@ -10,15 +10,19 @@ export default function CtaLink({
   section,
   label,
   className = "",
+  anchor = "#entretien",
+  page = "maison-seseh-bali",
 }: {
   section: string
   label: string
   className?: string
+  anchor?: string
+  page?: string
 }) {
   return (
     <a
-      href="#entretien"
-      onClick={() => trackCtaClick(section)}
+      href={anchor}
+      onClick={() => trackCtaClick(section, page)}
       className={`${BASE_CLASSES} ${className}`}
     >
       {label}

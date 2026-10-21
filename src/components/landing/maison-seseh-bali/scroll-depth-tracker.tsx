@@ -6,7 +6,7 @@ const THRESHOLDS = [25, 50, 75, 100]
 
 // Envoie un event Meta trackCustom une seule fois par palier de défilement
 // (25/50/75/100 %), basé sur la hauteur totale de la page.
-export default function ScrollDepthTracker() {
+export default function ScrollDepthTracker({ page = "maison-seseh-bali" }: { page?: string }) {
   const firedRef = useRef<Set<number>>(new Set())
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function ScrollDepthTracker() {
       for (const threshold of THRESHOLDS) {
         if (percent >= threshold && !firedRef.current.has(threshold)) {
           firedRef.current.add(threshold)
-          trackCustom("LP_ScrollDepth", { page: "maison-seseh-bali", percent: threshold })
+          trackCustom("LP_ScrollDepth", { page, percent: threshold })
         }
       }
     }

@@ -27,7 +27,7 @@ const content: MaisonSesehBaliContent = {
       "Conçu par des ingénieurs",
       "Structure garantie 10 ans",
       "54 villas livrées ou en construction",
-      "93 % de clients qui réinvestissent",
+      "93 % de clients qui réinvestissent",
     ],
   },
   section2: {
@@ -56,8 +56,8 @@ const content: MaisonSesehBaliContent = {
           "153 m²",
           "Piscine",
         ],
-        priceBeforeLabel: "369 000 € jusqu'au 31 décembre 2026",
-        priceAfterLabel: "385 000 € ensuite",
+        priceBeforeLabel: "369 000 € jusqu'au 31 décembre 2026",
+        priceAfterLabel: "385 000 € ensuite",
       },
       {
         name: "Exception",
@@ -66,8 +66,8 @@ const content: MaisonSesehBaliContent = {
           "197 m²",
           "Piscine",
         ],
-        priceBeforeLabel: "469 000 € jusqu'au 31 décembre 2026",
-        priceAfterLabel: "489 000 € ensuite",
+        priceBeforeLabel: "469 000 € jusqu'au 31 décembre 2026",
+        priceAfterLabel: "489 000 € ensuite",
       },
     ],
     images: [
@@ -86,8 +86,8 @@ const content: MaisonSesehBaliContent = {
     title: "Une résidence secondaire qui rapporte, au lieu de coûter.",
     paragraphs: [
       "Vous choisissez vos dates. Le reste du temps, SORA loue votre maison à des voyageurs qui recherchent précisément une villa privée, à pied de la plage, à 8 minutes de Canggu.",
-      "Les villas que nous gérons ont dégagé 10,2 % net en 2025, avec 82 % d'occupation. C'est un historique, celui de nos clients. Pas une projection.",
-      "Les trois premières années de location, votre résultat net est garanti à 7 % par an minimum, net de gestion et de charges, avant fiscalité. En cas de résultat inférieur, SORA verse la différence. Au-delà, l'intégralité vous revient.",
+      "Les villas que nous gérons ont dégagé 10,2 % net en 2025, avec 82 % d'occupation. C'est un historique, celui de nos clients. Pas une projection.",
+      "Les trois premières années de location, votre résultat net est garanti à 7 % par an minimum, net de gestion et de charges, avant fiscalité. En cas de résultat inférieur, SORA verse la différence. Au-delà, l'intégralité vous revient.",
       "Vous n'avez rien à organiser. SORA conçoit la maison, la construit, la meuble, la met en location, fixe les prix, accueille les voyageurs, l'entretient, tient la comptabilité, et la revend le jour où vous le décidez. Votre seul rendez-vous : un bilan annuel avec votre conseiller, pour fixer vos dates et les arbitrages de l'année. Le reste du temps, vous êtes informé sans avoir à demander : un point de chantier chaque semaine pendant la construction, puis un rapport de gestion chaque mois, loyers, charges et résultat net.",
     ],
   },
@@ -95,16 +95,16 @@ const content: MaisonSesehBaliContent = {
     overline: "La transmission",
     title: "Ce que vous possédez exactement, et comment vos enfants en héritent.",
     paragraphs: [
-      "On vous le dit tel que c'est. Un étranger ne peut pas acheter le sol à Bali. Il achète un droit d'usage du terrain. Sur Seseh Sunset Villas, c'est un bail notarié de 30 ans, plus 30 ans d'extension garantis dans le contrat. Le renouvellement porte sur le seul terrain, environ 20 % du prix, et si ce prix fait débat, trois experts indépendants le fixent. La maison, elle, est à vous, détenue par une société dont vous possédez 100 % des parts. Pas de prête-nom. C'est le régime standard des propriétaires étrangers à Bali.",
+      "On vous le dit tel que c'est. Un étranger ne peut pas acheter le sol à Bali. Il achète un droit d'usage du terrain. Sur Seseh Sunset Villas, c'est un bail notarié de 30 ans, plus 30 ans d'extension garantis dans le contrat. Le renouvellement porte sur le seul terrain, environ 20 % du prix, et si ce prix fait débat, trois experts indépendants le fixent. La maison, elle, est à vous, détenue par une société dont vous possédez 100 % des parts. Pas de prête-nom. C'est le régime standard des propriétaires étrangers à Bali.",
       "Pour la transmission, nous ne jouons pas à l'avocat. Nous vous mettons en relation avec un avocat français indépendant, installé en Indonésie. Il lit votre contrat, vous explique comment la maison se transmet à vos enfants, et reste votre interlocuteur, quoi qu'il arrive. La première consultation est offerte.",
     ],
   },
   section6: {
     overline: "La confiance",
-    title: "Nous faire confiance à 12 000 kilomètres.",
+    title: "Nous faire confiance à 12 000 kilomètres.",
     paragraphs: [
       "SORA, ce sont deux ingénieurs du BTP. Gabriel Lapierre, passé par Vinci Energies. Nitham Lapierre, passée par Bouygues Construction. Installés à Bali depuis quatre ans, nous y construisons avec les méthodes et les exigences que nous appliquions sur ces chantiers-là.",
-      "Nos réalisations : 28 villas livrées, 26 en construction, 4 projets. Nous avons construit, loué, revendu, et 93 % de nos clients réinvestissent chez nous.",
+      "Nos réalisations : 28 villas livrées, 26 en construction, 4 projets. Nous avons construit, loué, revendu, et 93 % de nos clients réinvestissent chez nous.",
       "Ce que vous ne verrez pas sur les photos, et qui compte dans vingt ans : une climatisation dimensionnée par un ingénieur, une isolation réelle, des matériaux choisis pour l'humidité tropicale. Une maison qui consomme moins, s'entretient moins, et que vos enfants n'auront pas à rénover.",
     ],
     engagementsIntro: "Nos engagements, dans votre contrat :",
@@ -139,7 +139,7 @@ const content: MaisonSesehBaliContent = {
         body: "Les plans, le prévisionnel, le contrat, l'avocat si vous le souhaitez. Vous choisissez votre maison et sa parcelle sur le plan, premier arrivé, premier servi.",
       },
       {
-        title: "Vous réservez avec 1 000 €, remboursables sans condition jusqu'au 31 décembre 2026.",
+        title: "Vous réservez avec 1 000 €, remboursables sans condition jusqu'au 31 décembre 2026.",
         body: "La maison est bloquée, le prix 2026 aussi. L'acte notarié suit sous un mois, le paiement s'étale au rythme du chantier, les clés sont prévues au troisième trimestre 2028.",
       },
     ],
@@ -162,19 +162,19 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Qui s'occupe de la maison quand je n'y suis pas ?",
-        a: "SORA, sur place : location, accueil, entretien, ménage, comptabilité, et un rapport de gestion chaque mois. Rachel dirige une entreprise du bâtiment à Paris, un million de chiffre d'affaires, tout repose sur elle. Elle connaît la chaudière qui lâche et l'appel du dimanche soir, et sa conviction était faite : plus jamais d'immobilier en France. Sa première réaction sur Bali : gérer une villa à 12 000 kilomètres, non merci. Sauf qu'elle n'a rien à gérer. Villa à Canggu, 299 000 € clé en main. Elle a signé et elle est retournée à sa vie : 24 000 € nets par an, environ 8 % net, sans un check-in, sans une ampoule changée. Un an plus tard, elle est revenue d'elle-même en prendre une deuxième, à Seseh.",
+        a: "SORA, sur place : location, accueil, entretien, ménage, comptabilité, et un rapport de gestion chaque mois. Rachel dirige une entreprise du bâtiment à Paris, un million de chiffre d'affaires, tout repose sur elle. Elle connaît la chaudière qui lâche et l'appel du dimanche soir, et sa conviction était faite : plus jamais d'immobilier en France. Sa première réaction sur Bali : gérer une villa à 12 000 kilomètres, non merci. Sauf qu'elle n'a rien à gérer. Villa à Canggu, 299 000 € clé en main. Elle a signé et elle est retournée à sa vie : 24 000 € nets par an, environ 8 % net, sans un check-in, sans une ampoule changée. Un an plus tard, elle est revenue d'elle-même en prendre une deuxième, à Seseh.",
       },
       {
         q: "Comment fonctionne la garantie de revenus ?",
-        a: "Pendant les 36 premiers mois de location, SORA vous garantit un résultat net d'au moins 7 % par an du prix d'achat, soit 25 830 € par an sur une Signature et 32 830 € sur une Exception. Le résultat garanti est le résultat net d'exploitation : les loyers, moins les frais de gestion et les charges, avant fiscalité. Chaque fin d'année, nous comparons le résultat réel à ce plancher. S'il est inférieur, SORA verse la différence. S'il est supérieur, tout vous revient. La garantie s'applique avec la gestion SORA, et vos séjours sont déduits au prorata. Pourquoi 7 % quand nos villas ont fait 10,2 % en 2025 ? Parce qu'un plancher se fixe bas pour être tenu.",
+        a: "Pendant les 36 premiers mois de location, SORA vous garantit un résultat net d'au moins 7 % par an du prix d'achat, soit 25 830 € par an sur une Signature et 32 830 € sur une Exception. Le résultat garanti est le résultat net d'exploitation : les loyers, moins les frais de gestion et les charges, avant fiscalité. Chaque fin d'année, nous comparons le résultat réel à ce plancher. S'il est inférieur, SORA verse la différence. S'il est supérieur, tout vous revient. La garantie s'applique avec la gestion SORA, et vos séjours sont déduits au prorata. Pourquoi 7 % quand nos villas ont fait 10,2 % en 2025 ? Parce qu'un plancher se fixe bas pour être tenu.",
       },
       {
         q: "Que comprend exactement le prix ?",
-        a: "Tout : le terrain, la construction, le mobilier, les permis. La maison est livrée meublée et décorée. À prévoir en plus : environ 1 % de frais de mutation, l'équivalent des frais de notaire, et 800 € pour la création de votre société, la PT PMA.",
+        a: "Tout : le terrain, la construction, le mobilier, les permis. La maison est livrée meublée et décorée. À prévoir en plus : environ 1 % de frais de mutation, l'équivalent des frais de notaire, et 800 € pour la création de votre société, la PT PMA.",
       },
       {
         q: "Ai-je besoin d'une assurance ?",
-        a: "Oui, et elle est à votre charge. Une assurance multirisque couvre la maison et son mobilier : incendie, vol, vandalisme, dégâts des eaux, tempêtes, inondations, séismes, tsunamis, éruptions volcaniques. À titre de repère, l'assurance de l'une de nos villas de 160 m², assurée 261 000 €, coûte environ 725 € par an. Nous vous mettons en relation avec l'assureur à la livraison.",
+        a: "Oui, et elle est à votre charge. Une assurance multirisque couvre la maison et son mobilier : incendie, vol, vandalisme, dégâts des eaux, tempêtes, inondations, séismes, tsunamis, éruptions volcaniques. À titre de repère, l'assurance de l'une de nos villas de 160 m², assurée 261 000 €, coûte environ 725 € par an. Nous vous mettons en relation avec l'assureur à la livraison.",
       },
       {
         q: "Puis-je personnaliser l'extérieur ?",
@@ -182,7 +182,7 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Comment se passe le paiement ?",
-        a: "1 000 € à la réservation, remboursables sans condition jusqu'au 31 décembre 2026. 50 % à l'acte notarié, environ quatre semaines plus tard. Puis un appel de fonds à chaque étape du chantier, et 10 % à la remise des clés. Une remise de 5 % est accordée pour 90 % payés à la signature, sur les signatures 2026.",
+        a: "1 000 € à la réservation, remboursables sans condition jusqu'au 31 décembre 2026. 50 % à l'acte notarié, environ quatre semaines plus tard. Puis un appel de fonds à chaque étape du chantier, et 10 % à la remise des clés. Une remise de 5 % est accordée pour 90 % payés à la signature, sur les signatures 2026.",
       },
       {
         q: "Quand la maison est-elle livrée, et comment suivre le chantier ?",
@@ -198,7 +198,7 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Et si je veux revendre un jour ?",
-        a: "Oui, et nous l'avons déjà fait. Samuel avait acheté un loft sur plan à Canggu, 99 000 € clé en main : un plan, des rendus 3D, une date de livraison. Pendant le chantier, le marché a fait son travail. D'autres acheteurs voulaient un bien terminé, prêt à encaisser dès le mois suivant, et acceptaient de payer plus pour ne pas attendre dix-huit mois. À la livraison, nous lui avons posé la question : garder, ou vendre ? Il a vendu. Acheté 99 000 €, ressorti à 115 000 € en moins d'un an, sans avoir vu passer un seul voyageur. Il n'a pas rapatrié l'argent : il l'a réinvesti aussitôt à Seseh.",
+        a: "Oui, et nous l'avons déjà fait. Samuel avait acheté un loft sur plan à Canggu, 99 000 € clé en main : un plan, des rendus 3D, une date de livraison. Pendant le chantier, le marché a fait son travail. D'autres acheteurs voulaient un bien terminé, prêt à encaisser dès le mois suivant, et acceptaient de payer plus pour ne pas attendre dix-huit mois. À la livraison, nous lui avons posé la question : garder, ou vendre ? Il a vendu. Acheté 99 000 €, ressorti à 115 000 € en moins d'un an, sans avoir vu passer un seul voyageur. Il n'a pas rapatrié l'argent : il l'a réinvesti aussitôt à Seseh.",
       },
       {
         q: "Quelle fiscalité s'applique ?",
@@ -214,9 +214,9 @@ const content: MaisonSesehBaliContent = {
     overline: "Le marché",
     title: "Bali en 2027.",
     paragraphs: [
-      "L'Indonésie, quatrième pays le plus peuplé du monde, tient une croissance d'environ 5 % par an, 5,12 % au deuxième trimestre 2025, 5,04 % au troisième. Bali vient d'enregistrer près de 7 millions de visiteurs étrangers en 2025, en hausse de 9,7 % sur un an, un record pour la deuxième année consécutive. Sur l'île, les prix de l'immobilier progressent d'environ 7 % par an, et les terrains à 300 mètres de la mer ne se multiplient pas.",
-      "Nous ne vendons pas la plus-value. Dans nos calculs, elle vaut zéro. Mais la villa Pererenan, achetée 299 000 €, s'est revendue 330 000 € deux ans plus tard.",
-      "Le 1er janvier 2027, la Signature passe de 369 000 € à 385 000 € et l'Exception de 469 000 € à 489 000 €. Si vous souhaitez acquérir votre maison avant la hausse, répondez aux quelques questions ci-dessous. L'équipe vous rappelle.",
+      "L'Indonésie, quatrième pays le plus peuplé du monde, tient une croissance d'environ 5 % par an, 5,12 % au deuxième trimestre 2025, 5,04 % au troisième. Bali vient d'enregistrer près de 7 millions de visiteurs étrangers en 2025, en hausse de 9,7 % sur un an, un record pour la deuxième année consécutive. Sur l'île, les prix de l'immobilier progressent d'environ 7 % par an, et les terrains à 300 mètres de la mer ne se multiplient pas.",
+      "Nous ne vendons pas la plus-value. Dans nos calculs, elle vaut zéro. Mais la villa Pererenan, achetée 299 000 €, s'est revendue 330 000 € deux ans plus tard.",
+      "Le 1er janvier 2027, la Signature passe de 369 000 € à 385 000 € et l'Exception de 469 000 € à 489 000 €. Si vous souhaitez acquérir votre maison avant la hausse, répondez aux quelques questions ci-dessous. L'équipe vous rappelle.",
     ],
     priceChangeNote: "",
     ctaLabel: "Demander un entretien privé",

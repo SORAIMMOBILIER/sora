@@ -11,16 +11,18 @@ export default function HeroMedia({
   videoUrl,
   posterImage,
   posterAlt,
+  page = "maison-seseh-bali",
 }: {
   videoUrl?: string
   posterImage: string
   posterAlt: string
+  page?: string
 }) {
   const [playing, setPlaying] = useState(false)
 
   const handlePlay = () => {
     setPlaying(true)
-    trackCustom("LP_HeroVideoPlay", { page: "maison-seseh-bali" })
+    trackCustom("LP_HeroVideoPlay", { page })
   }
 
   if (!videoUrl || !playing) {
@@ -31,9 +33,10 @@ export default function HeroMedia({
           alt={posterAlt}
           fill
           priority
+          fetchPriority="high"
           quality={90}
           className="object-cover"
-          sizes="100vw"
+          sizes="(max-width: 896px) 100vw, 896px"
         />
         {videoUrl && (
           <button

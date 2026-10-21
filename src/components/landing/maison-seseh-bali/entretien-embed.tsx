@@ -22,7 +22,7 @@ function appendParamsToEmbedSrc(rawEmbedCode: string, params: URLSearchParams): 
   }
 }
 
-export default function EntretienEmbed({ embedCode }: { embedCode?: string }) {
+export default function EntretienEmbed({ embedCode, source = "LP-A" }: { embedCode?: string; source?: string }) {
   const [finalEmbedCode, setFinalEmbedCode] = useState<string | null>(null)
 
   useEffect(() => {
@@ -33,9 +33,9 @@ export default function EntretienEmbed({ embedCode }: { embedCode?: string }) {
       const value = search.get(key)
       if (value) forwarded.set(key, value)
     }
-    forwarded.set("source", "LP-A")
+    forwarded.set("source", source)
     setFinalEmbedCode(appendParamsToEmbedSrc(embedCode, forwarded))
-  }, [embedCode])
+  }, [embedCode, source])
 
   if (!embedCode) {
     return (
