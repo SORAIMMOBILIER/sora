@@ -170,7 +170,7 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Que comprend exactement le prix ?",
-        a: "Tout : le terrain, la construction, le mobilier, les permis. La maison est livrée meublée et décorée. À prévoir en plus : environ 1 % de frais de mutation, l'équivalent des frais de notaire, et 800 € pour la création de votre société, la PT PMA.",
+        a: "Tout : le terrain, la construction, le mobilier, les permis. La maison est livrée meublée et décorée. À prévoir en plus : 1 % de frais de mutation, l'équivalent des frais de notaire, et 800 € pour la création de votre société, la PT PMA.",
       },
       {
         q: "Ai-je besoin d'une assurance ?",

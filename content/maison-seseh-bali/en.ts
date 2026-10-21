@@ -170,7 +170,7 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "What exactly does the price include?",
-        a: "Everything: the land, the construction, the furniture, the permits. The house is delivered furnished and decorated. On top of that, plan for around 1% in transfer tax, the local equivalent of stamp duty, and €800 to set up your company, the PT PMA.",
+        a: "Everything: the land, the construction, the furniture, the permits. The house is delivered furnished and decorated. On top of that, plan for 1% in transfer tax, the local equivalent of stamp duty, and €800 to set up your company, the PT PMA.",
       },
       {
         q: "Do I need insurance?",
