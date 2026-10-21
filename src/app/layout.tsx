@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { Agentation } from "agentation"
 import { Hanken_Grotesk } from "next/font/google"
 import localFont from "next/font/local"
 import { NextIntlClientProvider } from "next-intl"
@@ -179,11 +178,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <ConditionalSmoothScroll>
             <SiteChrome realisations={navRealisations} />
             {children}
-            {process.env.NODE_ENV === "development" && (
-              <DevAgentation>
-                <Agentation />
-              </DevAgentation>
-            )}
+            <DevAgentation />
             <CookieBanner />
           </ConditionalSmoothScroll>
         </NextIntlClientProvider>

@@ -11,6 +11,11 @@ import { isCampaignPathname } from "@/lib/campaign-pages"
 // lieu d'être inclus dans le bundle commun du layout racine.
 const Navbar = dynamic(() => import("./navbar"))
 const SmoothScroll = dynamic(() => import("@/components/smooth-scroll"))
+// ssr:false ici (interdit dans un Server Component, voir layout.tsx) :
+// sans lui, Next préchargeait quand même le chunk sur CHAQUE page via un
+// hint de preload automatique, même quand le rendu ci-dessous ne l'appelle
+// jamais — 415 Ko envoyés en production pour un outil dev-only.
+const Agentation = dynamic(() => import("agentation").then((m) => m.Agentation), { ssr: false })
 
 export function useIsStudio() {
   const pathname = usePathname()
@@ -45,8 +50,8 @@ export function ConditionalSmoothScroll({ children }: { children: React.ReactNod
   return <SmoothScroll>{children}</SmoothScroll>
 }
 
-export function DevAgentation({ children }: { children: React.ReactNode }) {
+export function DevAgentation() {
   const isStudio = useIsStudio()
-  if (isStudio) return null
-  return <>{children}</>
+  if (isStudio || process.env.NODE_ENV !== "development") return null
+  return <Agentation />
 }
