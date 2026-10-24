@@ -2,9 +2,11 @@
 import { trackCtaClick } from "./track"
 
 // Bouton local, pas d'import du composant Button du site (voir brief) —
-// mêmes classes visuelles que le variant "default" actuel, copiées ici.
+// plein, fond sombre, texte blanc capitales, aucun arrondi (grammaire
+// filet-seul de la refonte visuelle) : pleine largeur mobile, largeur au
+// contenu + padding 32px sur ordinateur, 52px de haut.
 const BASE_CLASSES =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-sans font-semibold text-[11px] uppercase tracking-[0.1em] transition-all duration-500 h-14 px-8 bg-primary text-primary-foreground hover:bg-background hover:text-primary border border-transparent hover:border-primary/20"
+  "inline-flex items-center justify-center font-sans font-medium text-[12px] uppercase tracking-[0.16em] text-white bg-foreground transition-opacity hover:opacity-90 h-[52px] px-8 w-full md:w-auto"
 
 export default function CtaLink({
   section,

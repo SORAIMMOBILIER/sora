@@ -1,11 +1,10 @@
 import MediaSlot from "./media-slot"
+import { LabelValueTable } from "./primitives"
 
 export type DistanceEntry = { place: string; distance?: string; photoSrc?: string }
 
-// Liste lieu / distance, une ou deux photos. Une entrée sans distance
-// renseignée n'est pas pertinente pour ce projet et n'est pas affichée ;
-// une entrée renseignée s'affiche toujours, avec un visuel en attente si
-// sa photo n'est pas encore fournie (voir MediaSlot).
+// Tableau lieu / distance (une entrée sans distance n'est pas pertinente
+// pour ce projet) + deux images, côte à côte sur ordinateur.
 export default function DistanceList({
   entries,
   pendingLabel,
@@ -17,19 +16,12 @@ export default function DistanceList({
   if (visible.length === 0) return null
 
   return (
-    <div className="max-w-md mx-auto">
-      <ul className="divide-y divide-border">
-        {visible.map((e) => (
-          <li key={e.place} className="flex items-baseline justify-between py-3.5 text-sm">
-            <span className="text-foreground/75">{e.place}</span>
-            <span className="text-foreground/50">{e.distance}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="grid grid-cols-2 gap-4 mt-8">
+    <div>
+      <LabelValueTable rows={visible.map((e) => ({ label: e.place, value: e.distance! }))} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 max-w-[1060px]">
         {visible.slice(0, 2).map((e) => (
-          <div key={e.place} className="relative aspect-[4/3] rounded-sm overflow-hidden bg-secondary/40">
-            <MediaSlot src={e.photoSrc} alt={e.place} label={pendingLabel} sizes="(max-width:768px) 50vw, 300px" />
+          <div key={e.place} className="relative aspect-[4/3]">
+            <MediaSlot src={e.photoSrc} alt={e.place} label={pendingLabel} sizes="(max-width:768px) 100vw, 530px" />
           </div>
         ))}
       </div>

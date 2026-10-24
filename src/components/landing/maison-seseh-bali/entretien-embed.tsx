@@ -39,8 +39,8 @@ export default function EntretienEmbed({ embedCode, source = "LP-A" }: { embedCo
 
   if (!embedCode) {
     return (
-      <div className="w-full min-h-[600px] flex items-center justify-center border border-border rounded-sm bg-card">
-        <p className="text-foreground/50 text-sm">Questionnaire en cours d'intégration</p>
+      <div className="w-full min-h-[600px] flex items-center justify-center">
+        <p className="font-sans text-[12px] text-foreground/50">Questionnaire en cours d&apos;intégration</p>
       </div>
     )
   }
@@ -49,7 +49,7 @@ export default function EntretienEmbed({ embedCode, source = "LP-A" }: { embedCo
   // l'hydratation, on affiche le même cadre vide pour éviter tout décalage
   // serveur/client.
   if (!finalEmbedCode) {
-    return <div className="w-full min-h-[600px] rounded-sm bg-card" />
+    return <div className="w-full min-h-[600px]" />
   }
 
   return <div className="w-full min-h-[600px]" dangerouslySetInnerHTML={{ __html: finalEmbedCode }} />

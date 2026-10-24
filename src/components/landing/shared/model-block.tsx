@@ -2,14 +2,12 @@ import CtaLink from "@/components/landing/maison-seseh-bali/cta-link"
 import StatRow, { type Stat } from "./stat-row"
 import SwipeGallery, { type GalleryImage } from "./swipe-gallery"
 import MediaSlot from "./media-slot"
+import { LabelValueTable, Overline } from "./primitives"
+import { GRAY } from "./tokens"
 
-// Bloc modèle réutilisé pour chaque gamme (Signature/Exception,
-// Élégance/Prestige...) : galerie à glisser, plan, prix en gros avec le
-// prix de l'année suivante en dessous, trois chiffres clés, quatre
-// caractéristiques, bouton. Prend ses données d'un objet par modèle.
 export default function ModelBlock({
   name,
-  badge,
+  overline,
   specLine,
   gallery,
   planImage,
@@ -17,15 +15,17 @@ export default function ModelBlock({
   priceLabel,
   priceNote,
   stats,
-  features,
+  rows,
   ctaLabel,
   anchor,
   page,
   sectionKey,
   pendingLabel,
+  pendingPlanLabel,
+  swipeLabel,
 }: {
   name: string
-  badge?: string
+  overline: string
   specLine: string
   gallery: GalleryImage[]
   planImage?: string
@@ -33,46 +33,43 @@ export default function ModelBlock({
   priceLabel: string
   priceNote: string
   stats: Stat[]
-  features: string[]
+  rows: { label: string; value: string }[]
   ctaLabel: string
   anchor: string
   page: string
   sectionKey: string
   pendingLabel: string
+  pendingPlanLabel: string
+  swipeLabel: string
 }) {
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        {badge && <p className="metadata text-accent mb-3">{badge}</p>}
-        <p className="font-serif font-medium text-foreground text-3xl mb-2">{name}</p>
-        <p className="text-foreground/55 text-sm">{specLine}</p>
+    <div id={sectionKey} className="max-w-[1060px]">
+      <Overline>{overline}</Overline>
+      <p className="font-sans font-light text-foreground leading-[1.1] text-[32px] md:text-[44px] mb-2">{name}</p>
+      <p className="font-sans text-[14px] mb-8" style={{ color: GRAY }}>
+        {specLine}
+      </p>
+
+      <SwipeGallery images={gallery} pendingLabel={pendingLabel} swipeLabel={swipeLabel} />
+
+      <div className="relative w-full max-h-[480px] aspect-[16/10] mt-8 border border-border bg-white">
+        <MediaSlot src={planImage} alt={planAlt} label={pendingPlanLabel} fit="contain" sizes="(max-width:1060px) 100vw, 1060px" />
       </div>
 
-      <SwipeGallery images={gallery} pendingLabel={pendingLabel} />
-
-      <div className="relative aspect-[4/3] md:aspect-video rounded-sm overflow-hidden bg-secondary/40 mt-6">
-        <MediaSlot src={planImage} alt={planAlt} label={pendingLabel} sizes="(max-width:768px) 100vw, 768px" />
+      <div className="mt-8 bg-foreground p-6 w-full md:w-auto md:inline-block">
+        <p className="font-sans font-light text-white text-[28px]">{priceLabel}</p>
+        <p className="font-sans font-medium text-[12px] uppercase tracking-[0.16em] text-white/70 mt-2">{priceNote}</p>
       </div>
 
-      <div className="text-center mt-10">
-        <p className="font-serif font-medium text-foreground text-2xl md:text-3xl">{priceLabel}</p>
-        <p className="text-foreground/50 text-sm mt-1.5">{priceNote}</p>
-      </div>
-
-      <div className="mt-10">
+      <div className="mt-8">
         <StatRow stats={stats} />
       </div>
 
-      <ul className="mt-10 space-y-2.5 text-foreground/70 text-sm max-w-xs mx-auto">
-        {features.map((f) => (
-          <li key={f} className="flex gap-3">
-            <span className="text-accent mt-0.5">·</span>
-            {f}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-8">
+        <LabelValueTable rows={rows} />
+      </div>
 
-      <div className="text-center mt-10">
+      <div className="mt-8">
         <CtaLink section={sectionKey} label={ctaLabel} anchor={anchor} page={page} />
       </div>
     </div>

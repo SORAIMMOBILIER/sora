@@ -1,18 +1,21 @@
 "use client"
 import { useRef, useState } from "react"
 import MediaSlot from "./media-slot"
+import { GRAY } from "./tokens"
 
 export type GalleryImage = { src?: string; alt: string; caption?: string }
 
-// Galerie à glisser au doigt (scroll-snap natif, pas de librairie carousel)
-// avec un compteur "x / n" et une légende courte par image, sans clic
-// obligatoire pour avancer.
+// Galerie à glisser au doigt (scroll-snap natif), ratio 16:10, angles
+// droits, légende à gauche + compteur à droite, puis le libellé
+// "N PHOTOS · FAITES GLISSER" en capitales.
 export default function SwipeGallery({
   images,
   pendingLabel,
+  swipeLabel,
 }: {
   images: GalleryImage[]
   pendingLabel: string
+  swipeLabel: string
 }) {
   const [index, setIndex] = useState(0)
   const trackRef = useRef<HTMLDivElement>(null)
@@ -27,29 +30,29 @@ export default function SwipeGallery({
   if (images.length === 0) return null
 
   return (
-    <div>
+    <div className="max-w-[1060px]">
       <div
         ref={trackRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory gap-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {images.map((img, i) => (
-          <div
-            key={i}
-            className="relative shrink-0 w-[85%] md:w-[60%] aspect-[4/3] rounded-sm overflow-hidden bg-secondary/40 snap-center"
-          >
-            <MediaSlot src={img.src} alt={img.alt} label={pendingLabel} sizes="(max-width:768px) 85vw, 60vw" />
+          <div key={i} className="relative shrink-0 w-full aspect-[16/10] snap-center">
+            <MediaSlot src={img.src} alt={img.alt} label={pendingLabel} sizes="100vw" />
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-between mt-3 px-1">
-        <p className="metadata text-foreground/40">
+      <div className="flex items-center justify-between mt-3">
+        <p className="font-sans text-[13px]" style={{ color: GRAY }}>
+          {images[index]?.caption || ""}
+        </p>
+        <p className="font-sans text-[13px]" style={{ color: GRAY }}>
           {index + 1} / {images.length}
         </p>
-        {images[index]?.caption && (
-          <p className="text-foreground/50 text-xs truncate ml-4">{images[index].caption}</p>
-        )}
       </div>
+      <p className="font-sans font-medium text-[12px] uppercase tracking-[0.16em] mt-1" style={{ color: GRAY }}>
+        {swipeLabel}
+      </p>
     </div>
   )
 }

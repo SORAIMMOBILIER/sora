@@ -1,19 +1,19 @@
+import { GRAY } from "./tokens"
+
 export type Stat = { value: string; label: string }
 
-// Trois ou quatre chiffres en gros corps, une ligne (ordinateur) ou deux
-// par deux (mobile).
+// Ligne de cellules bordées, filets entre les cellules. Trois ou quatre
+// cellules ; sur mobile, quatre cellules passent en deux lignes de deux.
 export default function StatRow({ stats }: { stats: Stat[] }) {
+  const cols = stats.length === 4 ? "grid-cols-2 md:grid-cols-4" : stats.length === 3 ? "grid-cols-3" : "grid-cols-2"
   return (
-    <div className="grid grid-cols-2 md:grid-flow-col md:auto-cols-fr gap-x-6 gap-y-8 max-w-2xl mx-auto">
+    <div className={`max-w-[640px] grid ${cols} gap-px bg-border border border-border`}>
       {stats.map((s, i) => (
-        <div key={i} className="text-center">
-          <p
-            className="font-serif font-medium text-foreground leading-none"
-            style={{ fontSize: "clamp(26px,5vw,40px)" }}
-          >
-            {s.value}
+        <div key={i} className="bg-background p-5">
+          <p className="font-sans font-light text-foreground text-[24px] leading-tight">{s.value}</p>
+          <p className="font-sans text-[12px] mt-2 leading-snug" style={{ color: GRAY }}>
+            {s.label}
           </p>
-          <p className="metadata text-foreground/50 mt-2.5">{s.label}</p>
         </div>
       ))}
     </div>

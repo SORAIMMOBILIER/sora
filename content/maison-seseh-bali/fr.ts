@@ -21,6 +21,10 @@ const content: MaisonSesehBaliContent = {
       "SORA conçoit, construit et gère une collection de maisons privées à Seseh. La vôtre : dessinée avec vous, à vivre en famille, louée et entretenue par notre équipe quand vous n'y êtes pas, et transmise à vos enfants dans un cadre vérifié par un avocat français indépendant, installé en Indonésie.",
     videoUrl: undefined,
     posterImage: "/seseh/signature/exterior.webp",
+    heroImages: [
+      { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },
+      { src: "/seseh/exception/exterior.webp", alt: "Façade d'une villa Exception à Seseh" },
+    ],
     ctaLabel: "Demander un entretien privé",
     ctaNote: "Un premier entretien de 30 minutes en visio avec l'équipe SORA. Sans engagement.",
     bandItems: [
@@ -48,6 +52,7 @@ const content: MaisonSesehBaliContent = {
     overline: "La maison",
     title: "Une maison, pas un numéro de lot.",
     image: "/seseh/exception/exterior.webp",
+    imageCaption: "Seseh, à 300 mètres de l'océan.",
     screenLines: [
       "À 300 mètres de l'océan, dans une résidence privée.",
       "À 8 minutes de Canggu, entre rizières et plage.",
@@ -66,6 +71,7 @@ const content: MaisonSesehBaliContent = {
       "Matières, teintes, mobilier : la vôtre ne ressemblera à aucune autre.",
     ],
     image: undefined,
+    imageCaption: "Julie Chatelain, architecte d'intérieur.",
   },
   models: [
     {
@@ -75,7 +81,7 @@ const content: MaisonSesehBaliContent = {
         { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },
         { src: "/seseh/signature/dining.webp", alt: "Salle à manger d'une villa Signature à Seseh" },
       ],
-      planImage: "/plans/signature-rdc.svg",
+      planImage: undefined, // plan non utilisable (fond noir)
       planAlt: "Plan du rez-de-chaussée, villa Signature",
       priceLabel: "369 000 € tout compris",
       priceNote: "385 000 € au 1er janvier 2027",
@@ -90,6 +96,12 @@ const content: MaisonSesehBaliContent = {
         "Livrée meublée et décorée",
         "Chambre supplémentaire en option",
       ],
+      rows: [
+        { label: "Piscine", value: "privée" },
+        { label: "Intérieur", value: "conçu avec Julie Chatelain" },
+        { label: "Livraison", value: "meublée et décorée" },
+        { label: "Option", value: "chambre supplémentaire" },
+      ],
     },
     {
       name: "Exception",
@@ -101,7 +113,7 @@ const content: MaisonSesehBaliContent = {
         { src: "/seseh/exception/kitchen.webp", alt: "Cuisine d'une villa Exception à Seseh" },
         { src: "/seseh/exception/bathroom.webp", alt: "Salle de bain d'une villa Exception à Seseh" },
       ],
-      planImage: "/plans/exception-rdc.svg",
+      planImage: undefined, // plan non utilisable (fond noir)
       planAlt: "Plan du rez-de-chaussée, villa Exception",
       priceLabel: "469 000 € tout compris",
       priceNote: "489 000 € au 1er janvier 2027",
@@ -116,10 +128,17 @@ const content: MaisonSesehBaliContent = {
         "Livrée meublée et décorée",
         "Chambre supplémentaire en option",
       ],
+      rows: [
+        { label: "Piscine", value: "privée" },
+        { label: "Intérieur", value: "conçu avec Julie Chatelain" },
+        { label: "Livraison", value: "meublée et décorée" },
+        { label: "Option", value: "chambre supplémentaire" },
+      ],
     },
   ],
   modelsNote: "Certaines maisons, déjà livrées ou hors catalogue, ne sont présentées qu'en entretien.",
   modelsCtaLabel: "Demander un entretien privé",
+  modelsPriceNote: "Prix tout compris, jusqu'au 31 décembre 2026.",
   section4: {
     overline: "Les revenus",
     title: "Une résidence secondaire qui rapporte, au lieu de coûter.",
@@ -157,6 +176,12 @@ const content: MaisonSesehBaliContent = {
       "Transmissible à vos enfants",
       "Un avocat indépendant, première consultation offerte",
     ],
+    rows: [
+      { label: "Bail", value: "notarié, 30 ans + 30 ans garantis" },
+      { label: "Société", value: "détenue à 100 %, sans prête-nom" },
+      { label: "Transmission", value: "à vos enfants" },
+      { label: "Avocat", value: "indépendant, première consultation offerte" },
+    ],
     paragraphs: [
       "On vous le dit tel que c'est. Un étranger ne peut pas acheter le sol à Bali. Il achète un droit d'usage du terrain. Sur Seseh Sunset Villas, c'est un bail notarié de 30 ans, plus 30 ans d'extension garantis dans le contrat. Le renouvellement porte sur le seul terrain, environ 20 % du prix, et si ce prix fait débat, trois experts indépendants le fixent. La maison, elle, est à vous, détenue par une société dont vous possédez 100 % des parts. Pas de prête-nom. C'est le régime standard des propriétaires étrangers à Bali.",
       "Pour la transmission, nous ne jouons pas à l'avocat. Nous vous mettons en relation avec un avocat français indépendant, installé en Indonésie. Il lit votre contrat, vous explique comment la maison se transmet à vos enfants, et reste votre interlocuteur, quoi qu'il arrive. La première consultation est offerte.",
@@ -166,6 +191,7 @@ const content: MaisonSesehBaliContent = {
     overline: "L'équipe",
     title: "Nous faire confiance à 12 000 kilomètres.",
     photo: undefined,
+    photoCaption: "L'équipe SORA à Bali.",
     quote: "À 12 000 kilomètres, on ne vous demande pas de nous croire. On vous montre comment on travaille.",
     name: "Gabriel Lapierre",
     role: "cofondateur",
@@ -240,6 +266,11 @@ const content: MaisonSesehBaliContent = {
       "L'Indonésie tient une croissance d'environ 5 % par an.",
       "Bali : près de 7 millions de visiteurs en 2025, un record pour la deuxième année consécutive.",
       "Le 1er janvier 2027, la Signature passe à 385 000 € et l'Exception à 489 000 €.",
+    ],
+    rows: [
+      { label: "Indonésie", value: "croissance d'environ 5 % par an" },
+      { label: "Bali", value: "près de 7 millions de visiteurs en 2025, un record" },
+      { label: "1er janvier 2027", value: "Signature 385 000 €, Exception 489 000 €" },
     ],
     ctaLabel: "Demander un entretien privé",
     paragraphs: [

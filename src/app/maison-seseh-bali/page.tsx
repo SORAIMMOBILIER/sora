@@ -1,20 +1,10 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getLocale } from "next-intl/server"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import HeroMedia from "@/components/landing/maison-seseh-bali/hero-media"
-import CtaLink from "@/components/landing/maison-seseh-bali/cta-link"
-import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobile-cta"
-import ScrollDepthTracker from "@/components/landing/maison-seseh-bali/scroll-depth-tracker"
-import EntretienEmbed from "@/components/landing/maison-seseh-bali/entretien-embed"
-import LanguageSwitch from "@/components/landing/maison-seseh-bali/language-switch"
-import MediaSlot from "@/components/landing/shared/media-slot"
+import LpHeader from "@/components/landing/shared/lp-header"
+import HeroCarousel from "@/components/landing/shared/hero-carousel"
+import PriceLines from "@/components/landing/shared/price-lines"
+import { Overline, BlockTitle, BodyText, RuleLines, LabelValueTable } from "@/components/landing/shared/primitives"
 import ModelBlock from "@/components/landing/shared/model-block"
 import StatRow from "@/components/landing/shared/stat-row"
 import Timeline from "@/components/landing/shared/timeline"
@@ -22,13 +12,24 @@ import DistanceList from "@/components/landing/shared/distance-list"
 import TeamBlock from "@/components/landing/shared/team-block"
 import Disclosure from "@/components/landing/shared/disclosure"
 import TestimonialsBlock from "@/components/landing/shared/testimonials-block"
-import { UI_STRINGS } from "@/components/landing/shared/ui-strings"
+import FaqAccordion from "@/components/landing/shared/faq-accordion"
+import MediaSlot from "@/components/landing/shared/media-slot"
+import { GRAY } from "@/components/landing/shared/tokens"
+import CtaLink from "@/components/landing/maison-seseh-bali/cta-link"
+import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobile-cta"
+import ScrollDepthTracker from "@/components/landing/maison-seseh-bali/scroll-depth-tracker"
+import EntretienEmbed from "@/components/landing/maison-seseh-bali/entretien-embed"
 import frContent from "../../../content/maison-seseh-bali/fr"
 import enContent from "../../../content/maison-seseh-bali/en"
 import type { MaisonSesehBaliContent } from "../../../content/maison-seseh-bali/types"
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.sora-immobilier.com"
 const PAGE_NAME = "maison-seseh-bali"
+
+const UI = {
+  fr: { imagePending: "IMAGE EN ATTENTE", learnMore: "En savoir plus", learnLess: "Réduire", testimonialPending: "Témoignage en attente", sources: "Sources", swipe: (n: number) => `${n} PHOTOS · FAITES GLISSER` },
+  en: { imagePending: "IMAGE PENDING", learnMore: "Learn more", learnLess: "Show less", testimonialPending: "Testimonial pending", sources: "Sources", swipe: (n: number) => `${n} PHOTOS · SWIPE` },
+}
 
 function getContent(locale: string): MaisonSesehBaliContent | null {
   return locale === "en" ? enContent : frContent
@@ -60,21 +61,6 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-function Overline({ children }: { children: React.ReactNode }) {
-  return <p className="eyebrow mx-auto mb-5">{children}</p>
-}
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      className="font-serif font-medium leading-[1.05] text-foreground"
-      style={{ fontSize: "clamp(26px,4vw,42px)" }}
-    >
-      {children}
-    </h2>
-  )
-}
-
 export default async function MaisonSesehBaliPage() {
   const locale = await getLocale()
   const content = getContent(locale)
@@ -85,323 +71,299 @@ export default async function MaisonSesehBaliPage() {
   const showLanguageSwitch = locale === "en" ? true : enContent !== null
   const anchorId = locale === "en" ? "consultation" : "entretien"
   const embedSource = locale === "en" ? "LP-A-EN" : "LP-A"
-  const ui = UI_STRINGS[locale === "en" ? "en" : "fr"]
+  const ui = UI[locale === "en" ? "en" : "fr"]
 
   return (
-    <main className="bg-background pb-24 md:pb-0">
+    <main className="bg-white">
       <link rel="preconnect" href="https://connect.facebook.net" />
       <ScrollDepthTracker page={PAGE_NAME} />
 
-      {/* Header minimal : logo non cliquable, pas de nav */}
-      <header className="px-6 md:px-10 py-6 flex items-center justify-between">
-        <Image src="/sora-logo.svg" alt="SORA" width={705} height={159} className="h-6 w-auto" />
-        {showLanguageSwitch && <LanguageSwitch href={otherHref} label={otherLabel} />}
-      </header>
+      <LpHeader
+        ctaLabel={content.hero.ctaLabel}
+        anchor={`#${anchorId}`}
+        page={PAGE_NAME}
+        showLanguageSwitch={showLanguageSwitch}
+        otherHref={otherHref}
+        otherLabel={otherLabel}
+      />
 
-      {/* 1. Hero — image façade quasi pleine hauteur */}
-      <section className="px-6 md:px-10 pt-6 md:pt-10">
-        <div className="max-w-5xl mx-auto text-center mb-8">
-          <p className="eyebrow mx-auto mb-6">{content.hero.overline}</p>
-          <h1
-            className="font-serif font-medium text-foreground leading-[1.05]"
-            style={{ fontSize: "clamp(32px,5.5vw,64px)" }}
-          >
-            {content.hero.title}
-          </h1>
-          <p className="text-foreground/70 mt-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            {content.hero.subtitle}
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto relative aspect-[3/4] md:aspect-[16/8] rounded-sm overflow-hidden bg-secondary/40">
-          <HeroMedia
-            videoUrl={content.hero.videoUrl}
-            posterImage={content.hero.posterImage}
-            posterAlt={content.hero.title}
-            page={PAGE_NAME}
-          />
-        </div>
-
-        <div className="max-w-4xl mx-auto text-center mt-10">
-          <CtaLink section="hero" label={content.hero.ctaLabel} anchor={`#${anchorId}`} page={PAGE_NAME} />
-          <p className="text-foreground/50 text-sm mt-4">{content.hero.ctaNote}</p>
-        </div>
-
-        <div className="max-w-4xl mx-auto mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center pb-14 md:pb-20 border-b border-border">
-          {content.hero.bandItems.map((item) => (
-            <p key={item} className="metadata text-foreground/55">
-              {item}
-            </p>
-          ))}
-        </div>
-      </section>
-
-      {/* 2. Le bon moment */}
-      <section className="px-6 md:px-10 py-16 md:py-24">
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.section2.overline}</Overline>
-          <SectionTitle>{content.section2.title}</SectionTitle>
-          <div className="mt-7 space-y-3 text-foreground/75 text-base leading-relaxed">
-            {content.section2.screenLines.map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>
-          <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
-            {content.section2.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </Disclosure>
-        </div>
-      </section>
-
-      {/* 3. La maison */}
-      <section className="px-6 md:px-10 py-16 md:py-24 bg-card">
-        <div className="max-w-4xl mx-auto relative aspect-[4/3] md:aspect-[21/9] rounded-sm overflow-hidden bg-secondary/40 mb-10">
-          <MediaSlot src={content.section3.image} alt={content.section3.title} label={ui.imagePending} sizes="(max-width:896px) 100vw, 896px" />
-        </div>
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.section3.overline}</Overline>
-          <SectionTitle>{content.section3.title}</SectionTitle>
-          <div className="mt-7 space-y-3 text-foreground/75 text-base leading-relaxed">
-            {content.section3.screenLines.map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>
-          <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
-            {content.section3.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </Disclosure>
-        </div>
-      </section>
-
-      {/* 4. Julie */}
-      <section className="px-6 md:px-10 py-16 md:py-24">
-        <div className="max-w-2xl mx-auto relative aspect-[4/3] rounded-sm overflow-hidden bg-secondary/40 mb-10">
-          <MediaSlot src={content.julie.image} alt={content.julie.title} label={ui.imagePending} sizes="(max-width:672px) 100vw, 672px" />
-        </div>
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.julie.overline}</Overline>
-          <SectionTitle>{content.julie.title}</SectionTitle>
-          <div className="mt-7 space-y-3 text-foreground/75 text-base leading-relaxed">
-            {content.julie.screenLines.map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5 & 6. Modèles */}
-      {content.models.map((model, i) => (
-        <section key={model.name} className={`px-6 md:px-10 py-16 md:py-24 ${i % 2 === 0 ? "bg-card" : ""}`}>
-          <ModelBlock
-            name={model.name}
-            badge={model.badge}
-            specLine={model.specLine}
-            gallery={model.gallery}
-            planImage={model.planImage}
-            planAlt={model.planAlt}
-            priceLabel={model.priceLabel}
-            priceNote={model.priceNote}
-            stats={model.stats}
-            features={model.features}
-            ctaLabel={content.modelsCtaLabel}
-            anchor={`#${anchorId}`}
-            page={PAGE_NAME}
-            sectionKey={`modele-${model.name.toLowerCase()}`}
-            pendingLabel={ui.imagePending}
-          />
-          {i === content.models.length - 1 && (
-            <p className="text-foreground/45 text-sm text-center mt-10 italic max-w-xl mx-auto">{content.modelsNote}</p>
-          )}
-        </section>
-      ))}
-
-      {/* 7. Les revenus */}
-      <section className="px-6 md:px-10 py-16 md:py-24">
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.section4.overline}</Overline>
-          <SectionTitle>{content.section4.title}</SectionTitle>
-        </div>
-        <div className="mt-10">
-          <StatRow stats={content.section4.stats} />
-        </div>
-        <p className="text-foreground/75 text-base text-center mt-8 max-w-xl mx-auto">{content.section4.screenLine}</p>
-        <div className="max-w-xl mx-auto">
-          <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
-            {content.section4.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </Disclosure>
-        </div>
-      </section>
-
-      {/* 8. La gestion */}
-      <section className="px-6 md:px-10 py-16 md:py-24 bg-card">
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.gestion.overline}</Overline>
-          <SectionTitle>{content.gestion.title}</SectionTitle>
-          <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-4 text-left max-w-sm mx-auto">
-            {content.gestion.bullets.map((b) => (
-              <li key={b} className="flex gap-2.5 text-foreground/70 text-sm">
-                <span className="text-accent mt-0.5">·</span>
-                {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 9. La transmission */}
-      <section className="px-6 md:px-10 py-16 md:py-24">
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.section5.overline}</Overline>
-          <SectionTitle>{content.section5.title}</SectionTitle>
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-            {content.section5.cartouches.map((c) => (
-              <div key={c} className="border border-border rounded-sm px-5 py-4 text-foreground/75 text-sm bg-card">
-                {c}
-              </div>
-            ))}
-          </div>
-          <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
-            {content.section5.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </Disclosure>
-        </div>
-      </section>
-
-      {/* 10. L'équipe */}
-      <section className="px-6 md:px-10 py-16 md:py-24 bg-card">
-        <div className="max-w-xl mx-auto text-center mb-10">
-          <Overline>{content.team.overline}</Overline>
-        </div>
-        <TeamBlock
-          photoSrc={content.team.photo}
-          photoAlt={content.team.name}
-          quote={content.team.quote}
-          name={content.team.name}
-          role={content.team.role}
-          pendingLabel={ui.imagePending}
-        />
-        <div className="mt-10">
-          <StatRow stats={content.team.stats} />
-        </div>
-        <p className="text-foreground/75 text-base text-center mt-8 max-w-xl mx-auto">{content.team.screenLine}</p>
-        <div className="max-w-xl mx-auto">
-          <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
-            {content.team.detail.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-            <p className="font-serif font-medium text-foreground text-base pt-2">{content.team.detail.engagementsIntro}</p>
-            <ul className="space-y-2">
-              {content.team.detail.engagements.map((e, i) => (
-                <li key={i} className="flex gap-2.5">
-                  <span className="text-accent mt-0.5">·</span>
-                  {e}
-                </li>
-              ))}
-            </ul>
-          </Disclosure>
-        </div>
-      </section>
-
-      {/* 11. Témoignages (jamais masqué) */}
-      <section className="px-6 md:px-10 py-16 md:py-24">
-        <TestimonialsBlock
-          overline={<Overline>{content.section7.overline}</Overline>}
-          title={<SectionTitle>{content.section7.title}</SectionTitle>}
-          testimonials={content.section7.testimonials}
-          ctaLabel={content.section7.ctaLabel}
+      <div className="pt-[68px]">
+        {/* 1. Hero */}
+        <HeroCarousel
+          images={content.hero.heroImages}
+          overline={content.hero.overline}
+          title={content.hero.title}
+          subtitle={content.hero.subtitle}
+          ctaLabel={content.hero.ctaLabel}
           anchor={`#${anchorId}`}
           page={PAGE_NAME}
-          pendingLabel={ui.testimonialPending}
         />
-      </section>
 
-      {/* 12. L'accès */}
-      <section className="px-6 md:px-10 py-16 md:py-24 bg-card">
-        <div className="max-w-xl mx-auto text-center mb-12">
-          <Overline>{content.section8.overline}</Overline>
-          <SectionTitle>{content.section8.title}</SectionTitle>
-          <p className="text-foreground/70 mt-5 text-base leading-relaxed">{content.section8.intro}</p>
-        </div>
-        <Timeline steps={content.section8.steps} />
-      </section>
+        <div className="max-w-[1060px] mx-auto px-5 md:px-0">
+          {/* Ligne de prix */}
+          <section className="pt-20 md:pt-[120px]">
+            <PriceLines
+              items={content.models.map((m) => ({
+                name: m.name,
+                spec: m.specLine,
+                price: m.priceLabel.split(" ").slice(0, -2).join(" ") || m.priceLabel,
+                anchor: `#modele-${m.name.toLowerCase()}`,
+              }))}
+              note={content.modelsPriceNote}
+            />
+          </section>
 
-      {/* 13. Le lieu */}
-      <section className="px-6 md:px-10 py-16 md:py-24">
-        <div className="max-w-xl mx-auto text-center mb-12">
-          <Overline>{content.lieu.overline}</Overline>
-          <SectionTitle>{content.lieu.title}</SectionTitle>
-        </div>
-        <DistanceList entries={content.lieu.entries} pendingLabel={ui.imagePending} />
-      </section>
+          {/* 2. Le bon moment */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.section2.overline}</Overline>
+            <BlockTitle>{content.section2.title}</BlockTitle>
+            <div className="mt-4">
+              <BodyText>
+                {content.section2.screenLines.map((l, i) => (
+                  <p key={i}>{l}</p>
+                ))}
+              </BodyText>
+            </div>
+            <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
+              {content.section2.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Disclosure>
+          </section>
 
-      {/* 14. Bali en 2027 */}
-      <section className="px-6 md:px-10 py-16 md:py-24 bg-card">
-        <div className="max-w-xl mx-auto text-center">
-          <Overline>{content.section10.overline}</Overline>
-          <SectionTitle>{content.section10.title}</SectionTitle>
-          <div className="mt-7 space-y-3 text-foreground/75 text-base leading-relaxed">
-            {content.section10.screenLines.map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>
-          <div className="mt-8">
-            <CtaLink section="marche" label={content.section10.ctaLabel} anchor={`#${anchorId}`} page={PAGE_NAME} />
-          </div>
-          <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
-            {content.section10.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-            <p className="text-foreground/45 text-xs pt-2">
-              Sources : {content.section10.sources.map((s) => s.label).join(" · ")}
+          {/* 3. La maison */}
+          <section className="pt-20 md:pt-[120px]">
+            <div className="relative w-full aspect-[21/9] max-h-[60vh] mb-8">
+              <MediaSlot src={content.section3.image} alt={content.section3.title} label={ui.imagePending} sizes="(max-width:1060px) 100vw, 1060px" />
+            </div>
+            <p className="font-sans text-[13px] mb-8" style={{ color: GRAY }}>
+              {content.section3.imageCaption}
             </p>
-          </Disclosure>
-        </div>
-      </section>
+            <Overline>{content.section3.overline}</Overline>
+            <BlockTitle>{content.section3.title}</BlockTitle>
+            <div className="mt-4">
+              <BodyText>
+                {content.section3.screenLines.map((l, i) => (
+                  <p key={i}>{l}</p>
+                ))}
+              </BodyText>
+            </div>
+            <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
+              {content.section3.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Disclosure>
+          </section>
 
-      {/* 15. Entretien (ancre) */}
-      <section id={anchorId} className="px-6 md:px-10 py-16 md:py-24">
-        <div className="max-w-2xl mx-auto text-center mb-10">
-          <Overline>{content.section11.overline}</Overline>
-          <SectionTitle>{content.section11.title}</SectionTitle>
-        </div>
-        <div className="max-w-2xl mx-auto">
-          <EntretienEmbed embedCode={content.section11.embedCode} source={embedSource} />
-        </div>
-      </section>
+          {/* 4. Julie */}
+          <section className="pt-20 md:pt-[120px]">
+            <div className="relative w-full max-w-[420px] aspect-[4/5] max-h-[60vh] mb-8">
+              <MediaSlot src={content.julie.image} alt={content.julie.title} label={ui.imagePending} sizes="420px" />
+            </div>
+            <p className="font-sans text-[13px] mb-8" style={{ color: GRAY }}>
+              {content.julie.imageCaption}
+            </p>
+            <Overline>{content.julie.overline}</Overline>
+            <BlockTitle>{content.julie.title}</BlockTitle>
+            <div className="mt-4">
+              <BodyText>
+                {content.julie.screenLines.map((l, i) => (
+                  <p key={i}>{l}</p>
+                ))}
+              </BodyText>
+            </div>
+          </section>
 
-      {/* 16. FAQ */}
-      <section className="px-6 md:px-10 py-16 md:py-24 bg-card">
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <Overline>{content.section9.overline}</Overline>
-          <SectionTitle>{content.section9.title}</SectionTitle>
-        </div>
-        <div className="max-w-2xl mx-auto">
-          <Accordion type="single" collapsible>
-            {content.section9.items.map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left font-serif text-foreground text-base">{item.q}</AccordionTrigger>
-                <AccordionContent className="text-foreground/65 text-sm leading-relaxed">{item.a}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+          {/* 5 & 6. Modèles */}
+          {content.models.map((model, i) => (
+            <div key={model.name}>
+              <section className="pt-20 md:pt-[120px]">
+                <ModelBlock
+                  name={model.name}
+                  overline={content.section3.overline}
+                  specLine={model.specLine}
+                  gallery={model.gallery}
+                  planImage={model.planImage}
+                  planAlt={model.planAlt}
+                  priceLabel={model.priceLabel}
+                  priceNote={model.priceNote}
+                  stats={model.stats}
+                  rows={model.rows}
+                  ctaLabel={content.modelsCtaLabel}
+                  anchor={`#${anchorId}`}
+                  page={PAGE_NAME}
+                  sectionKey={`modele-${model.name.toLowerCase()}`}
+                  pendingLabel={ui.imagePending}
+                  pendingPlanLabel={ui.imagePending}
+                  swipeLabel={ui.swipe(model.gallery.length)}
+                />
+                {i === content.models.length - 1 && (
+                  <p className="font-sans text-[14px] mt-6" style={{ color: GRAY }}>
+                    {content.modelsNote}
+                  </p>
+                )}
+              </section>
+              {i < content.models.length - 1 && <div className="max-w-[1060px] mx-auto mt-20 md:mt-[120px] border-t border-border" />}
+            </div>
+          ))}
 
-      {/* Footer minimal */}
-      <footer className="px-6 md:px-10 py-10 border-t border-border">
-        <div className="max-w-2xl mx-auto text-center text-foreground/45 text-xs space-y-2">
-          <p>{content.footer.disclaimer}</p>
-          <p>
-            <a href="/mentions-legales" rel="nofollow" className="underline underline-offset-4 hover:text-foreground transition-colors">
+          {/* 7. Les revenus */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.section4.overline}</Overline>
+            <BlockTitle>{content.section4.title}</BlockTitle>
+            <div className="mt-8">
+              <StatRow stats={content.section4.stats} />
+            </div>
+            <p className="font-sans text-[16px] mt-8 max-w-[640px]" style={{ color: GRAY }}>
+              {content.section4.screenLine}
+            </p>
+            <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
+              {content.section4.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Disclosure>
+          </section>
+
+          {/* 8. La gestion */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.gestion.overline}</Overline>
+            <BlockTitle>{content.gestion.title}</BlockTitle>
+            <div className="mt-8">
+              <RuleLines items={content.gestion.bullets} />
+            </div>
+          </section>
+
+          {/* 9. La transmission */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.section5.overline}</Overline>
+            <BlockTitle>{content.section5.title}</BlockTitle>
+            <div className="mt-8">
+              <LabelValueTable rows={content.section5.rows} />
+            </div>
+            <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
+              {content.section5.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Disclosure>
+          </section>
+
+          {/* 10. L'équipe */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.team.overline}</Overline>
+            <div className="mt-4">
+              <TeamBlock
+                photoSrc={content.team.photo}
+                photoAlt={content.team.name}
+                photoCaption={content.team.photoCaption}
+                quote={content.team.quote}
+                name={content.team.name}
+                role={content.team.role}
+                pendingLabel={ui.imagePending}
+              />
+            </div>
+            <div className="mt-8">
+              <StatRow stats={content.team.stats} />
+            </div>
+            <p className="font-sans text-[16px] mt-8 max-w-[640px]" style={{ color: GRAY }}>
+              {content.team.screenLine}
+            </p>
+            <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
+              {content.team.detail.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+              <p className="font-sans text-foreground">{content.team.detail.engagementsIntro}</p>
+              {content.team.detail.engagements.map((e, i) => (
+                <p key={`e-${i}`}>{e}</p>
+              ))}
+            </Disclosure>
+          </section>
+
+          {/* 11. Témoignages */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.section7.overline}</Overline>
+            <BlockTitle>{content.section7.title}</BlockTitle>
+            <div className="mt-8">
+              <TestimonialsBlock testimonials={content.section7.testimonials} pendingLabel={ui.testimonialPending} />
+            </div>
+          </section>
+
+          {/* 12. L'accès */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.section8.overline}</Overline>
+            <BlockTitle>{content.section8.title}</BlockTitle>
+            <div className="mt-8">
+              <Timeline
+                steps={content.section8.steps.map((s, i) => ({
+                  value: String(i + 1).padStart(2, "0"),
+                  title: s.title,
+                  body: s.body,
+                }))}
+              />
+            </div>
+          </section>
+
+          {/* 13. Le lieu */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.lieu.overline}</Overline>
+            <BlockTitle>{content.lieu.title}</BlockTitle>
+            <div className="mt-8">
+              <DistanceList entries={content.lieu.entries} pendingLabel={ui.imagePending} />
+            </div>
+          </section>
+
+          {/* 14. Bali en 2027 */}
+          <section className="pt-20 md:pt-[120px]">
+            <Overline>{content.section10.overline}</Overline>
+            <BlockTitle>{content.section10.title}</BlockTitle>
+            <div className="mt-8">
+              <LabelValueTable rows={content.section10.rows} />
+            </div>
+            <div className="mt-8">
+              <CtaLink section="marche" label={content.section10.ctaLabel} anchor={`#${anchorId}`} page={PAGE_NAME} />
+            </div>
+            <Disclosure moreLabel={ui.learnMore} lessLabel={ui.learnLess}>
+              {content.section10.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+              <p className="text-foreground/50 text-[13px]">
+                {ui.sources} : {content.section10.sources.map((s) => s.label).join(" · ")}
+              </p>
+            </Disclosure>
+          </section>
+
+          {/* 15. Entretien */}
+          <section id={anchorId} className="pt-20 md:pt-[120px]">
+            <Overline>{content.section11.overline}</Overline>
+            <BlockTitle>{content.section11.title}</BlockTitle>
+            <div className="mt-8">
+              <EntretienEmbed embedCode={content.section11.embedCode} source={embedSource} />
+            </div>
+          </section>
+
+          {/* 16. FAQ */}
+          <section className="pt-20 md:pt-[120px] pb-20 md:pb-[120px]">
+            <Overline>{content.section9.overline}</Overline>
+            <BlockTitle>{content.section9.title}</BlockTitle>
+            <div className="mt-8">
+              <FaqAccordion items={content.section9.items} />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Pied de page */}
+      <footer className="border-t border-border py-20">
+        <div className="max-w-[1060px] mx-auto px-5 md:px-0 space-y-2">
+          <p className="font-sans text-[12px]" style={{ color: GRAY }}>
+            {content.footer.disclaimer}
+          </p>
+          <p className="font-sans text-[12px]" style={{ color: GRAY }}>
+            <a href="/mentions-legales" rel="nofollow" className="underline underline-offset-4">
               {content.footer.mentionsLegalesLabel}
             </a>
-            {" · "}
-            <a href={`mailto:${content.footer.contactEmail}`} className="underline underline-offset-4 hover:text-foreground transition-colors">
+          </p>
+          <p className="font-sans text-[12px]" style={{ color: GRAY }}>
+            <a href={`mailto:${content.footer.contactEmail}`} className="underline underline-offset-4">
               {content.footer.contactEmail}
             </a>
           </p>

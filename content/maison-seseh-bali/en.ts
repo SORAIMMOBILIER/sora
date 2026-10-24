@@ -21,6 +21,10 @@ const content: MaisonSesehBaliContent = {
       "SORA designs, builds and manages a collection of private homes in Seseh, Bali. Yours: designed with you, made for family life, rented and cared for by our team when you're away, and passed on to your children within a framework reviewed by an independent lawyer based in Indonesia.",
     videoUrl: undefined,
     posterImage: "/seseh/signature/exterior.webp",
+    heroImages: [
+      { src: "/seseh/signature/exterior.webp", alt: "Facade of a Signature villa in Seseh" },
+      { src: "/seseh/exception/exterior.webp", alt: "Facade of an Exception villa in Seseh" },
+    ],
     ctaLabel: "Request a private consultation",
     ctaNote: "A first 30-minute video call with the SORA team. No commitment.",
     bandItems: [
@@ -48,6 +52,7 @@ const content: MaisonSesehBaliContent = {
     overline: "The house",
     title: "A house, not a lot number.",
     image: "/seseh/exception/exterior.webp",
+    imageCaption: "Seseh, 300 metres from the ocean.",
     screenLines: [
       "300 metres from the ocean, inside a private estate.",
       "8 minutes from Canggu, between rice fields and beach.",
@@ -66,6 +71,7 @@ const content: MaisonSesehBaliContent = {
       "Materials, tones, furniture: yours will be unlike any other.",
     ],
     image: undefined,
+    imageCaption: "Julie Chatelain, interior architect.",
   },
   models: [
     {
@@ -75,7 +81,7 @@ const content: MaisonSesehBaliContent = {
         { src: "/seseh/signature/exterior.webp", alt: "Facade of a Signature villa in Seseh" },
         { src: "/seseh/signature/dining.webp", alt: "Dining room of a Signature villa in Seseh" },
       ],
-      planImage: "/plans/signature-rdc.svg",
+      planImage: undefined, // plan non utilisable (fond noir)
       planAlt: "Ground floor plan, Signature villa",
       priceLabel: "€369,000 all-inclusive",
       priceNote: "€385,000 from 1 January 2027",
@@ -90,6 +96,12 @@ const content: MaisonSesehBaliContent = {
         "Delivered furnished and decorated",
         "Optional extra bedroom",
       ],
+      rows: [
+        { label: "Pool", value: "private" },
+        { label: "Interior", value: "designed with Julie Chatelain" },
+        { label: "Delivery", value: "furnished and decorated" },
+        { label: "Option", value: "extra bedroom" },
+      ],
     },
     {
       name: "Exception",
@@ -101,7 +113,7 @@ const content: MaisonSesehBaliContent = {
         { src: "/seseh/exception/kitchen.webp", alt: "Kitchen of an Exception villa in Seseh" },
         { src: "/seseh/exception/bathroom.webp", alt: "Bathroom of an Exception villa in Seseh" },
       ],
-      planImage: "/plans/exception-rdc.svg",
+      planImage: undefined, // plan non utilisable (fond noir)
       planAlt: "Ground floor plan, Exception villa",
       priceLabel: "€469,000 all-inclusive",
       priceNote: "€489,000 from 1 January 2027",
@@ -116,10 +128,17 @@ const content: MaisonSesehBaliContent = {
         "Delivered furnished and decorated",
         "Optional extra bedroom",
       ],
+      rows: [
+        { label: "Pool", value: "private" },
+        { label: "Interior", value: "designed with Julie Chatelain" },
+        { label: "Delivery", value: "furnished and decorated" },
+        { label: "Option", value: "extra bedroom" },
+      ],
     },
   ],
   modelsNote: "Some houses, already delivered or off-catalogue, are only presented in consultation.",
   modelsCtaLabel: "Request a private consultation",
+  modelsPriceNote: "All-inclusive prices, until 31 December 2026.",
   section4: {
     overline: "The income",
     title: "A second home that earns, instead of costing.",
@@ -157,6 +176,12 @@ const content: MaisonSesehBaliContent = {
       "Passed on to your children",
       "An independent lawyer, first consultation complimentary",
     ],
+    rows: [
+      { label: "Lease", value: "notarised, 30+30 years guaranteed" },
+      { label: "Company", value: "you own 100%, no nominee" },
+      { label: "Succession", value: "passed on to your children" },
+      { label: "Lawyer", value: "independent, first consultation complimentary" },
+    ],
     paragraphs: [
       "We'll tell you how it is. A foreigner cannot own land in Bali. You buy the right to use it. At Seseh Sunset Villas, that is a notarised 30-year lease, with a further 30 years guaranteed in the contract. The renewal covers the land only, around 20% of the price, and if the price is disputed, three independent experts set it. The house itself is yours, held through a company in which you own 100% of the shares. No nominee. This is the standard framework for foreign owners in Bali.",
       "On succession, we don't play lawyer. We introduce you to an independent lawyer based in Indonesia. He reads your contract, explains how the house passes to your children, and remains your point of contact, whatever happens. The first consultation is complimentary.",
@@ -166,6 +191,7 @@ const content: MaisonSesehBaliContent = {
     overline: "The team",
     title: "Trusting a builder you've never met.",
     photo: undefined,
+    photoCaption: "The SORA team in Bali.",
     quote: "From thousands of kilometres away, we don't ask you to take our word for it. We show you how we work.",
     name: "Gabriel Lapierre",
     role: "co-founder",
@@ -240,6 +266,11 @@ const content: MaisonSesehBaliContent = {
       "Indonesia holds growth of around 5% a year.",
       "Bali: close to 7 million visitors in 2025, a record for the second consecutive year.",
       "On 1 January 2027, the Signature moves to €385,000 and the Exception to €489,000.",
+    ],
+    rows: [
+      { label: "Indonesia", value: "growth of around 5% a year" },
+      { label: "Bali", value: "close to 7 million visitors in 2025, a record" },
+      { label: "1 January 2027", value: "Signature €385,000, Exception €489,000" },
     ],
     ctaLabel: "Request a private consultation",
     paragraphs: [

@@ -7,8 +7,10 @@
 // courts sont la couche "écran" lue en premier.
 
 export type Stat = { value: string; label: string }
+export type Row = { label: string; value: string }
 export type GalleryImage = { src?: string; alt: string; caption?: string }
 export type DistanceEntry = { place: string; distance?: string; photoSrc?: string }
+export type HeroImage = { src: string; alt: string }
 
 export type IconBlock = {
   icon: "price" | "shield"
@@ -27,6 +29,7 @@ export type GammeItem = {
   priceNote: string
   stats: Stat[]
   features: string[]
+  rows: Row[]
 }
 
 export type Testimonial = {
@@ -42,6 +45,12 @@ export type FaqItem = {
 }
 
 export type Step = {
+  title: string
+  body: string
+}
+
+export type PaymentStep = {
+  value: string
   title: string
   body: string
 }
@@ -72,6 +81,7 @@ export type VillaSesehBaliContent = {
     subtitle: string
     videoUrl?: string
     posterImage: string
+    heroImages: HeroImage[]
     ctaLabel: string
     ctaNote: string
     bandItems: string[]
@@ -93,6 +103,7 @@ export type VillaSesehBaliContent = {
     title: string
     stats: Stat[]
     resaleCartouches: string[]
+    resaleRows: Row[]
     facts: string[]
   }
   // 4. Témoignages
@@ -109,6 +120,7 @@ export type VillaSesehBaliContent = {
     gammes: GammeItem[]
     priceIncludesText: string
     previsionnelText: string
+    priceNote: string
     ctaLabel: string
     offSeseh: {
       overline: string
@@ -143,7 +155,7 @@ export type VillaSesehBaliContent = {
   paiement: {
     overline: string
     title: string
-    steps: Step[]
+    steps: PaymentStep[]
     detail: {
       overline: string
       title: string
@@ -156,6 +168,7 @@ export type VillaSesehBaliContent = {
     overline: string
     title: string
     photo?: string
+    photoCaption: string
     quote: string
     name: string
     role: string
@@ -180,6 +193,7 @@ export type VillaSesehBaliContent = {
     overline: string
     title: string
     screenLines: string[]
+    rows: Row[]
     paragraphs: string[]
     ctaLabel: string
     sources: { label: string; url?: string }[]

@@ -21,6 +21,10 @@ const content: VillaSesehBaliContent = {
       "One- and two-bedroom villas in Bali, 300 metres from the beach, €149,000 and €239,000 all-inclusive. Built by engineers, rented and managed by our team, from the first night to the resale.",
     videoUrl: undefined,
     posterImage: "/seseh/prestige/exterior.webp",
+    heroImages: [
+      { src: "/seseh/prestige/exterior.webp", alt: "Facade of a Prestige villa in Seseh" },
+      { src: "/seseh/elegance/exterior.webp", alt: "Facade of an Élégance villa in Seseh" },
+    ],
     ctaLabel: "Check my eligibility",
     ctaNote: "2 minutes. If your project fits, the team calls you back with the forecast for your villa.",
     bandItems: [
@@ -70,6 +74,10 @@ const content: VillaSesehBaliContent = {
       "Canggu loft: +16% in under a year, before it was even rented.",
       "Pererenan villa: +10% capital gain in two years, rental income not included.",
     ],
+    resaleRows: [
+      { label: "Canggu loft", value: "+16% in under a year, before it was even rented" },
+      { label: "Pererenan villa", value: "+10% capital gain in two years, rental income not included" },
+    ],
     facts: [
       "4 projects, 28 villas delivered, 26 under construction in Seseh.",
       "10.2% net in 2025 on the villas we manage, at 82% occupancy. A track record, not a simulation.",
@@ -98,7 +106,7 @@ const content: VillaSesehBaliContent = {
           { src: "/seseh/elegance/bedroom1.webp", alt: "Bedroom of an Élégance villa in Seseh" },
           { src: "/seseh/elegance/bedroom2.webp", alt: "Bedroom of an Élégance villa in Seseh" },
         ],
-        planImage: "/plans/elegance-rdc.svg",
+        planImage: undefined, // plan not usable (black fill)
         planAlt: "Ground floor plan, Élégance villa",
         priceLabel: "€149,000 all-inclusive",
         priceNote: "€155,000 from 1 January 2027",
@@ -113,6 +121,12 @@ const content: VillaSesehBaliContent = {
           "7% net guaranteed for 3 years",
           "€31,290 secured over 3 years",
         ],
+        rows: [
+          { label: "Jacuzzi", value: "private" },
+          { label: "Delivery", value: "furnished, ready to rent" },
+          { label: "Guarantee", value: "7% net for 3 years" },
+          { label: "Secured", value: "€31,290 over 3 years" },
+        ],
       },
       {
         name: "Prestige",
@@ -126,7 +140,7 @@ const content: VillaSesehBaliContent = {
           { src: "/seseh/prestige/bathroom1.webp", alt: "Bathroom of a Prestige villa in Seseh" },
           { src: "/seseh/prestige/bedroom1.webp", alt: "Bedroom of a Prestige villa in Seseh" },
         ],
-        planImage: "/plans/prestige-rdc.svg",
+        planImage: undefined, // plan not usable (black fill)
         planAlt: "Ground floor plan, Prestige villa",
         priceLabel: "€239,000 all-inclusive",
         priceNote: "€249,000 from 1 January 2027",
@@ -141,10 +155,17 @@ const content: VillaSesehBaliContent = {
           "7% net guaranteed for 3 years",
           "€50,190 secured over 3 years",
         ],
+        rows: [
+          { label: "Pool", value: "private" },
+          { label: "Delivery", value: "furnished, ready to rent" },
+          { label: "Guarantee", value: "7% net for 3 years" },
+          { label: "Secured", value: "€50,190 over 3 years" },
+        ],
       },
     ],
     priceIncludesText: "The price covers the land on a notarised 30 + 30-year lease, the construction, the furniture and the permits: the villa is delivered furnished, decorated, ready to rent. Acquisition costs are known upfront: 1% transfer tax and €800 to set up your company.",
     previsionnelText: "At the consultation, you receive the forecast for your villa: rent, operating costs, management fees, Indonesian tax, net result. Line by line.",
+    priceNote: "All-inclusive prices, until 31 December 2026.",
     ctaLabel: "Check my eligibility",
     offSeseh: {
       overline: "Outside Seseh",
@@ -215,11 +236,11 @@ const content: VillaSesehBaliContent = {
     overline: "Payment",
     title: "From the first question to the keys.",
     steps: [
-      { title: "Reservation €1,000, refundable until 31 December 2026.", body: "" },
-      { title: "Notarised deed around 4 weeks later, 50%.", body: "" },
-      { title: "A payment call at each stage of construction, roughly every quarter.", body: "" },
-      { title: "Handover, 10%, third quarter of 2028.", body: "" },
-      { title: "5% discount for 90% paid at signing, on 2026 signings.", body: "" },
+      { value: "€1,000", title: "Reservation", body: "Refundable until 31 December 2026, villa and 2026 price held." },
+      { value: "50%", title: "Notarised deed", body: "Around 4 weeks later." },
+      { value: "Construction", title: "Payment calls", body: "At each stage, roughly every quarter." },
+      { value: "10%", title: "Handover", body: "Third quarter of 2028." },
+      { value: "5%", title: "Discount", body: "For 90% paid at signing, on 2026 signings." },
     ],
     detail: {
       overline: "Access",
@@ -253,6 +274,7 @@ const content: VillaSesehBaliContent = {
     overline: "The team",
     title: "Trusting a builder you've never met.",
     photo: undefined,
+    photoCaption: "The SORA team in Bali.",
     quote: "From thousands of kilometres away, we don't ask you to take our word for it. We show you how we work.",
     name: "Gabriel Lapierre",
     role: "co-founder",
@@ -298,6 +320,11 @@ const content: VillaSesehBaliContent = {
       "Indonesia holds growth of around 5% a year.",
       "Bali: close to 7 million visitors in 2025, a record for the second consecutive year.",
       "On 1 January 2027, the Élégance moves to €155,000 and the Prestige to €249,000.",
+    ],
+    rows: [
+      { label: "Indonesia", value: "growth of around 5% a year" },
+      { label: "Bali", value: "close to 7 million visitors in 2025, a record" },
+      { label: "1 January 2027", value: "Élégance €155,000, Prestige €249,000" },
     ],
     paragraphs: [
       "Indonesia, the world's fourth most populous country, holds growth of around 5% a year, 5.12% in the second quarter of 2025, 5.04% in the third. Bali has just recorded close to 7 million international visitors in 2025, up 9.7% on the year, a record for the second consecutive year. On the island, property prices rise by around 7% a year, and land 300 metres from the ocean isn't being made any more.",

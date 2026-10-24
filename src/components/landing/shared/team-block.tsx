@@ -1,10 +1,9 @@
 import MediaSlot from "./media-slot"
 
-// Photo pleine largeur, citation, nom et fonction. Jamais masqué : un
-// visuel en attente remplace la photo tant qu'elle n'est pas fournie.
 export default function TeamBlock({
   photoSrc,
   photoAlt,
+  photoCaption,
   quote,
   name,
   role,
@@ -12,24 +11,26 @@ export default function TeamBlock({
 }: {
   photoSrc?: string
   photoAlt: string
+  photoCaption?: string
   quote: string
   name: string
   role: string
   pendingLabel: string
 }) {
   return (
-    <div>
-      <div className="relative aspect-[16/10] md:aspect-[21/9] rounded-sm overflow-hidden bg-secondary/40 mb-10">
+    <div className="max-w-[1060px]">
+      <div className="relative w-full aspect-[16/10] max-h-[60vh]">
         <MediaSlot src={photoSrc} alt={photoAlt} label={pendingLabel} sizes="100vw" />
       </div>
-      <blockquote className="max-w-2xl mx-auto text-center">
-        <p className="font-serif font-medium text-foreground leading-snug" style={{ fontSize: "clamp(20px,3vw,26px)" }}>
-          &ldquo;{quote}&rdquo;
-        </p>
-        <footer className="text-foreground/50 text-sm mt-4">
-          {name}, {role}
-        </footer>
-      </blockquote>
+      {photoCaption && (
+        <p className="font-sans text-[13px] mt-2 text-foreground/50">{photoCaption}</p>
+      )}
+      <p className="font-sans font-light text-foreground text-[24px] leading-[1.3] mt-8 max-w-[640px]">
+        &ldquo;{quote}&rdquo;
+      </p>
+      <p className="font-sans font-medium text-[12px] uppercase tracking-[0.16em] text-foreground/60 mt-4">
+        {name}, {role}
+      </p>
     </div>
   )
 }

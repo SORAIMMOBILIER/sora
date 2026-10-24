@@ -11,8 +11,10 @@
 // bullets...) sont la couche "écran" lue en premier.
 
 export type Stat = { value: string; label: string }
+export type Row = { label: string; value: string }
 export type GalleryImage = { src?: string; alt: string; caption?: string }
 export type DistanceEntry = { place: string; distance?: string; photoSrc?: string }
+export type HeroImage = { src: string; alt: string }
 
 export type GammeItem = {
   name: string
@@ -25,6 +27,7 @@ export type GammeItem = {
   priceNote: string
   stats: Stat[]
   features: string[]
+  rows: Row[]
 }
 
 export type Testimonial = {
@@ -64,6 +67,7 @@ export type MaisonSesehBaliContent = {
     subtitle: string
     videoUrl?: string
     posterImage: string
+    heroImages: HeroImage[]
     ctaLabel: string
     ctaNote: string
     bandItems: string[]
@@ -80,6 +84,7 @@ export type MaisonSesehBaliContent = {
     overline: string
     title: string
     image: string
+    imageCaption: string
     screenLines: string[]
     paragraphs: string[]
   }
@@ -89,11 +94,13 @@ export type MaisonSesehBaliContent = {
     title: string
     screenLines: string[]
     image?: string
+    imageCaption: string
   }
   // 5 & 6. Modèles (ModelBlock)
   models: GammeItem[]
   modelsNote: string
   modelsCtaLabel: string
+  modelsPriceNote: string
   // 7. Les revenus
   section4: {
     overline: string
@@ -113,6 +120,7 @@ export type MaisonSesehBaliContent = {
     overline: string
     title: string
     cartouches: string[]
+    rows: Row[]
     paragraphs: string[]
   }
   // 10. L'équipe
@@ -120,6 +128,7 @@ export type MaisonSesehBaliContent = {
     overline: string
     title: string
     photo?: string
+    photoCaption: string
     quote: string
     name: string
     role: string
@@ -158,6 +167,7 @@ export type MaisonSesehBaliContent = {
     overline: string
     title: string
     screenLines: string[]
+    rows: Row[]
     ctaLabel: string
     paragraphs: string[]
     priceChangeNote: string

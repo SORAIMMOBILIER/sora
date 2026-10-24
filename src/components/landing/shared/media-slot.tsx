@@ -24,17 +24,11 @@ export default function MediaSlot({
 }) {
   if (!src) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center bg-secondary/50">
-        <span className="metadata text-foreground/35">{label}</span>
+      <div className="absolute inset-0 flex items-center justify-center bg-background border border-border">
+        <span className="font-sans font-medium text-[12px] uppercase tracking-[0.16em] text-foreground/35">
+          {label}
+        </span>
       </div>
-    )
-  }
-  // Les plans sont des SVG servis tels quels (pas d'optimiseur next/image
-  // pour du SVG, et un plan ne doit jamais être recadré : object-contain).
-  if (src.endsWith(".svg")) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-contain p-6 bg-background" />
     )
   }
   return (

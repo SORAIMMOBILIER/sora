@@ -21,6 +21,10 @@ const content: VillaSesehBaliContent = {
       "Des villas de 1 et 2 chambres à Bali, à 300 mètres de la plage, 149 000 € et 239 000 € tout compris. Construites par des ingénieurs, louées et gérées par notre équipe, de la première nuit jusqu'à la revente.",
     videoUrl: undefined,
     posterImage: "/seseh/prestige/exterior.webp",
+    heroImages: [
+      { src: "/seseh/prestige/exterior.webp", alt: "Façade d'une villa Prestige à Seseh" },
+      { src: "/seseh/elegance/exterior.webp", alt: "Façade d'une villa Élégance à Seseh" },
+    ],
     ctaLabel: "Vérifier mon éligibilité",
     ctaNote: "2 minutes. Si votre projet correspond, l'équipe vous rappelle avec le prévisionnel de votre villa.",
     bandItems: [
@@ -70,6 +74,10 @@ const content: VillaSesehBaliContent = {
       "Loft de Canggu : + 16 % en moins d'un an, avant même d'être loué.",
       "Villa Pererenan : + 10 % de plus-value en deux ans, loyers non compris.",
     ],
+    resaleRows: [
+      { label: "Loft de Canggu", value: "+ 16 % en moins d'un an, avant même d'être loué" },
+      { label: "Villa Pererenan", value: "+ 10 % de plus-value en deux ans, loyers non compris" },
+    ],
     facts: [
       "4 projets, 28 villas livrées, 26 en construction à Seseh.",
       "10,2 % net en 2025 sur les villas que nous gérons, à 82 % d'occupation. Un historique, pas une simulation.",
@@ -98,7 +106,7 @@ const content: VillaSesehBaliContent = {
           { src: "/seseh/elegance/bedroom1.webp", alt: "Chambre d'une villa Élégance à Seseh" },
           { src: "/seseh/elegance/bedroom2.webp", alt: "Chambre d'une villa Élégance à Seseh" },
         ],
-        planImage: "/plans/elegance-rdc.svg",
+        planImage: undefined, // plan non utilisable (fond noir)
         planAlt: "Plan du rez-de-chaussée, villa Élégance",
         priceLabel: "149 000 € tout compris",
         priceNote: "155 000 € au 1er janvier 2027",
@@ -113,6 +121,12 @@ const content: VillaSesehBaliContent = {
           "7 % net garantis pendant 3 ans",
           "31 290 € sécurisés sur 3 ans",
         ],
+        rows: [
+          { label: "Jacuzzi", value: "privé" },
+          { label: "Livraison", value: "meublée, prête à louer" },
+          { label: "Garantie", value: "7 % net pendant 3 ans" },
+          { label: "Sécurisés", value: "31 290 € sur 3 ans" },
+        ],
       },
       {
         name: "Prestige",
@@ -126,7 +140,7 @@ const content: VillaSesehBaliContent = {
           { src: "/seseh/prestige/bathroom1.webp", alt: "Salle de bain d'une villa Prestige à Seseh" },
           { src: "/seseh/prestige/bedroom1.webp", alt: "Chambre d'une villa Prestige à Seseh" },
         ],
-        planImage: "/plans/prestige-rdc.svg",
+        planImage: undefined, // plan non utilisable (fond noir)
         planAlt: "Plan du rez-de-chaussée, villa Prestige",
         priceLabel: "239 000 € tout compris",
         priceNote: "249 000 € au 1er janvier 2027",
@@ -141,10 +155,17 @@ const content: VillaSesehBaliContent = {
           "7 % net garantis pendant 3 ans",
           "50 190 € sécurisés sur 3 ans",
         ],
+        rows: [
+          { label: "Piscine", value: "privée" },
+          { label: "Livraison", value: "meublée, prête à louer" },
+          { label: "Garantie", value: "7 % net pendant 3 ans" },
+          { label: "Sécurisés", value: "50 190 € sur 3 ans" },
+        ],
       },
     ],
     priceIncludesText: "Le prix comprend le terrain en bail notarié de 30 ans + 30 ans, la construction, le mobilier et les permis : la villa est livrée meublée, décorée, prête à louer. Les frais d'acquisition sont connus d'avance : 1 % de frais de mutation et 800 € pour la création de votre société.",
     previsionnelText: "En rendez-vous, vous recevez le prévisionnel de votre villa : loyers, charges d'exploitation, frais de gestion, fiscalité indonésienne, résultat net. Ligne par ligne.",
+    priceNote: "Prix tout compris, jusqu'au 31 décembre 2026.",
     ctaLabel: "Vérifier mon éligibilité",
     offSeseh: {
       overline: "Hors Seseh",
@@ -215,11 +236,11 @@ const content: VillaSesehBaliContent = {
     overline: "Paiement",
     title: "De la première question aux clés.",
     steps: [
-      { title: "Réservation 1 000 €, remboursables jusqu'au 31 décembre 2026.", body: "" },
-      { title: "Acte notarié environ 4 semaines plus tard, 50 %.", body: "" },
-      { title: "Un appel de fonds à chaque étape du chantier, environ chaque trimestre.", body: "" },
-      { title: "Remise des clés, 10 %, troisième trimestre 2028.", body: "" },
-      { title: "Remise de 5 % pour 90 % payés à la signature, sur les signatures 2026.", body: "" },
+      { value: "1 000 €", title: "Réservation", body: "Remboursables jusqu'au 31 décembre 2026, villa et prix 2026 bloqués." },
+      { value: "50 %", title: "Acte notarié", body: "Environ 4 semaines plus tard." },
+      { value: "Chantier", title: "Appels de fonds", body: "À chaque étape, environ chaque trimestre." },
+      { value: "10 %", title: "Remise des clés", body: "Troisième trimestre 2028." },
+      { value: "5 %", title: "Remise", body: "Pour 90 % payés à la signature, sur les signatures 2026." },
     ],
     detail: {
       overline: "L'accès",
@@ -253,6 +274,7 @@ const content: VillaSesehBaliContent = {
     overline: "L'équipe",
     title: "Nous faire confiance à 12 000 kilomètres.",
     photo: undefined,
+    photoCaption: "L'équipe SORA à Bali.",
     quote: "À 12 000 kilomètres, on ne vous demande pas de nous croire. On vous montre comment on travaille.",
     name: "Gabriel Lapierre",
     role: "cofondateur",
@@ -298,6 +320,11 @@ const content: VillaSesehBaliContent = {
       "L'Indonésie tient une croissance d'environ 5 % par an.",
       "Bali : près de 7 millions de visiteurs en 2025, un record pour la deuxième année consécutive.",
       "Le 1er janvier 2027, l'Élégance passe à 155 000 € et la Prestige à 249 000 €.",
+    ],
+    rows: [
+      { label: "Indonésie", value: "croissance d'environ 5 % par an" },
+      { label: "Bali", value: "près de 7 millions de visiteurs en 2025, un record" },
+      { label: "1er janvier 2027", value: "Élégance 155 000 €, Prestige 249 000 €" },
     ],
     paragraphs: [
       "L'Indonésie, quatrième pays le plus peuplé du monde, tient une croissance d'environ 5 % par an, 5,12 % au deuxième trimestre 2025, 5,04 % au troisième. Bali vient d'enregistrer près de 7 millions de visiteurs étrangers en 2025, en hausse de 9,7 % sur un an, un record pour la deuxième année consécutive. Sur l'île, les prix de l'immobilier progressent d'environ 7 % par an, et les terrains à 300 mètres de la mer ne se multiplient pas.",
