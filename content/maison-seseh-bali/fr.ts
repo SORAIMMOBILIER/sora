@@ -17,8 +17,7 @@ const content: MaisonSesehBaliContent = {
   hero: {
     overline: "SESEH, BALI · UNE COLLECTION DE MAISONS PRIVÉES, ENTRE RIZIÈRES ET OCÉAN",
     title: "Votre capital dort sur un compte. Il pourrait avoir une adresse, à 300 mètres de l'océan.",
-    subtitle:
-      "SORA conçoit, construit et gère une collection de maisons privées à Seseh. La vôtre : dessinée avec vous, à vivre en famille, louée et entretenue par notre équipe quand vous n'y êtes pas, et transmise à vos enfants dans un cadre vérifié par un avocat français indépendant, installé en Indonésie.",
+    subtitle: "Dessinée avec vous. Gérée quand vous n'y êtes pas. Transmise à vos enfants.",
     videoUrl: undefined,
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
@@ -57,6 +56,12 @@ const content: MaisonSesehBaliContent = {
       "À 300 mètres de l'océan, dans une résidence privée.",
       "À 8 minutes de Canggu, entre rizières et plage.",
     ],
+    rows: [
+      { label: "Emplacement", value: "à 300 mètres de la plage de Seseh, 8 minutes de Canggu" },
+      { label: "Résidence", value: "privée, 26 villas uniques, services, sécurité, équipe sur place" },
+      { label: "Maison", value: "individuelle, piscine privée, jardin, aucun vis-à-vis" },
+      { label: "Collection", value: "Signature 2 ou 3 chambres, Exception 3 ou 4 chambres" },
+    ],
     paragraphs: [
       "Seseh est un village de la côte sud, à 8 minutes de Canggu et à l'écart de son agitation. Les rizières descendent jusqu'à la plage. Votre maison est à 300 mètres de l'océan, dans une résidence privée : sécurité, services, et une équipe sur place toute l'année.",
       "Chaque maison de la collection est individuelle. Sa piscine, sa terrasse, ses volumes ouverts sur le jardin. L'intérieur est conçu avec Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration : vous choisissez avec elle les matières, les teintes, le mobilier. Aucune autre maison n'aura le même intérieur que la vôtre.",
@@ -65,30 +70,44 @@ const content: MaisonSesehBaliContent = {
   },
   julie: {
     overline: "L'intérieur",
-    title: "Un intérieur qui n'existe qu'une fois.",
+    title: "Une maison unique, à votre image.",
     screenLines: [
       "Conçu avec Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration.",
       "Matières, teintes, mobilier : la vôtre ne ressemblera à aucune autre.",
     ],
+    screenLine: "Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration, conçoit l'intérieur de chaque maison avec son propriétaire.",
     image: undefined,
     imageCaption: "Julie Chatelain, architecte d'intérieur.",
+    gallery: [
+      { src: "/seseh/signature/dining.webp", alt: "Salle à manger d'une villa Signature à Seseh" },
+      { src: undefined, alt: "Intérieur d'une villa Signature à Seseh" },
+      { src: undefined, alt: "Intérieur d'une villa Signature à Seseh" },
+    ],
+    rows: [
+      { label: "Votre façon de vivre", value: "un entretien pour comprendre vos goûts, vos usages, et ceux qui partageront la maison" },
+      { label: "Votre ambiance", value: "des moodboards sur mesure : matières, couleurs, mobilier" },
+      { label: "Vos options", value: "selon le modèle : jacuzzi, bain froid, panneaux solaires" },
+      { label: "Prête à vivre", value: "livrée meublée et décorée, le jour de la remise des clés" },
+    ],
+    disclaimerLine: "L'extérieur reste signé par les architectes, pour préserver l'harmonie de la résidence.",
   },
   models: [
     {
       name: "Signature",
-      specLine: "2 ou 3 chambres, une chambre supplémentaire en option · 153 m² · piscine privée",
+      specLine: "2 chambres, 3e en option · 153 m² · piscine privée",
+      priceLineSpec: "2 ou 3 chambres · 153 m²",
       gallery: [
         { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },
         { src: "/seseh/signature/dining.webp", alt: "Salle à manger d'une villa Signature à Seseh" },
       ],
-      planImage: undefined, // plan non utilisable (fond noir)
+      planImage: undefined, // plan non utilisable (fond noir) — voir rapport
       planAlt: "Plan du rez-de-chaussée, villa Signature",
       priceLabel: "369 000 € tout compris",
       priceNote: "385 000 € au 1er janvier 2027",
       stats: [
         { value: "2 ou 3", label: "Chambres" },
-        { value: "153 m²", label: "Surface" },
-        { value: "25 830 €", label: "Garantis par an" },
+        { value: "153 m²", label: "Surface habitable" },
+        { value: "38 747 €", label: "Revenus nets estimés par an" },
       ],
       features: [
         "Piscine privée",
@@ -97,15 +116,16 @@ const content: MaisonSesehBaliContent = {
         "Chambre supplémentaire en option",
       ],
       rows: [
-        { label: "Piscine", value: "privée" },
+        { label: "Garantie de revenus", value: "25 830 € par an pendant 3 ans" },
         { label: "Intérieur", value: "conçu avec Julie Chatelain" },
-        { label: "Livraison", value: "meublée et décorée" },
-        { label: "Option", value: "chambre supplémentaire" },
+        { label: "Équipement", value: "2 salles de bain, bureau, terrasse, douche extérieure, parking" },
+        { label: "Livraison", value: "meublée et décorée, 3e trimestre 2028" },
       ],
     },
     {
       name: "Exception",
-      specLine: "2 ou 3 chambres, une chambre supplémentaire en option · 197 m² · piscine privée",
+      specLine: "3 chambres, 4e en option · 197 m² · piscine privée",
+      priceLineSpec: "3 ou 4 chambres · 197 m²",
       gallery: [
         { src: "/seseh/exception/exterior.webp", alt: "Façade d'une villa Exception à Seseh" },
         { src: "/seseh/exception/living.webp", alt: "Salon d'une villa Exception à Seseh" },
@@ -113,14 +133,14 @@ const content: MaisonSesehBaliContent = {
         { src: "/seseh/exception/kitchen.webp", alt: "Cuisine d'une villa Exception à Seseh" },
         { src: "/seseh/exception/bathroom.webp", alt: "Salle de bain d'une villa Exception à Seseh" },
       ],
-      planImage: undefined, // plan non utilisable (fond noir)
+      planImage: undefined, // plan non utilisable (fond noir) — voir rapport
       planAlt: "Plan du rez-de-chaussée, villa Exception",
       priceLabel: "469 000 € tout compris",
       priceNote: "489 000 € au 1er janvier 2027",
       stats: [
-        { value: "2 ou 3", label: "Chambres" },
-        { value: "197 m²", label: "Surface" },
-        { value: "32 830 €", label: "Garantis par an" },
+        { value: "3 ou 4", label: "Chambres" },
+        { value: "197 m²", label: "Surface habitable" },
+        { value: "47 515 €", label: "Revenus nets estimés par an" },
       ],
       features: [
         "Piscine privée",
@@ -129,25 +149,33 @@ const content: MaisonSesehBaliContent = {
         "Chambre supplémentaire en option",
       ],
       rows: [
-        { label: "Piscine", value: "privée" },
+        { label: "Garantie de revenus", value: "32 830 € par an pendant 3 ans" },
         { label: "Intérieur", value: "conçu avec Julie Chatelain" },
-        { label: "Livraison", value: "meublée et décorée" },
-        { label: "Option", value: "chambre supplémentaire" },
+        { label: "Équipement", value: "3 salles de bain, bureau, terrasse, espace barbecue, parking" },
+        { label: "Livraison", value: "meublée et décorée, 3e trimestre 2028" },
       ],
     },
   ],
-  modelsNote: "Certaines maisons, déjà livrées ou hors catalogue, ne sont présentées qu'en entretien.",
+  modelsOverline: "La collection",
+  modelsNote: "Revenus nets estimés : net de gestion et de charges d'exploitation, avant fiscalité, hors plus-value, scénario cible du dossier de prévisions. Certaines maisons, déjà livrées ou hors catalogue, ne sont présentées qu'en entretien.",
   modelsCtaLabel: "Demander un entretien privé",
   modelsPriceNote: "Prix tout compris, jusqu'au 31 décembre 2026.",
   section4: {
     overline: "Les revenus",
     title: "Une résidence secondaire qui rapporte, au lieu de coûter.",
     stats: [
-      { value: "10,2 %", label: "Net constaté en 2025" },
+      { value: "10,2 %", label: "Net constaté en 2025 sur nos villas gérées" },
       { value: "82 %", label: "D'occupation" },
-      { value: "7 %", label: "Net garantis 3 ans" },
+      { value: "7 %", label: "Net garantis pendant 3 ans" },
     ],
     screenLine: "Vous choisissez vos dates, SORA loue le reste de l'année.",
+    rows: [
+      { label: "Gestion", value: "SORA, sur place : location, voyageurs, entretien, comptabilité" },
+      { label: "Vos séjours", value: "quand vous le voulez, déduits de la garantie au prorata" },
+      { label: "Pendant le chantier", value: "photos et vidéos d'avancement chaque semaine, dans votre espace en ligne" },
+      { label: "Chaque mois", value: "un rapport de gestion détaillé : locataires, revenus, charges, virements" },
+      { label: "Chaque année", value: "un bilan avec votre conseiller : réinvestir ou percevoir vos revenus" },
+    ],
     paragraphs: [
       "Vous choisissez vos dates. Le reste du temps, SORA loue votre maison à des voyageurs qui recherchent précisément une villa privée, à pied de la plage, à 8 minutes de Canggu.",
       "Les villas que nous gérons ont dégagé 10,2 % net en 2025, avec 82 % d'occupation. C'est un historique, celui de nos clients. Pas une projection.",
@@ -167,6 +195,17 @@ const content: MaisonSesehBaliContent = {
       "Un bilan par an avec votre conseiller",
     ],
   },
+  garanties: {
+    overline: "Les garanties",
+    title: "Cinq garanties, écrites dans votre contrat.",
+    rows: [
+      { label: "Construction", value: "10 ans sur la structure, 5 ans sur la toiture, 1 an de garantie intégrale" },
+      { label: "Revenus", value: "7 % net par an pendant 36 mois, soit 21 % du prix sécurisés sur 3 ans" },
+      { label: "Délai", value: "livraison au 3e trimestre 2028, pénalités de retard au-delà de 3 mois de grâce" },
+      { label: "Financière", value: "les derniers 10 % ne sont versés qu'à la remise des clés" },
+      { label: "Jouissance", value: "bail de 30 ans + 30 ans d'extension garantie, au prix de la seule valeur du terrain" },
+    ],
+  },
   section5: {
     overline: "La transmission",
     title: "Ce que vous possédez.",
@@ -177,14 +216,27 @@ const content: MaisonSesehBaliContent = {
       "Un avocat indépendant, première consultation offerte",
     ],
     rows: [
-      { label: "Bail", value: "notarié, 30 ans + 30 ans garantis" },
-      { label: "Société", value: "détenue à 100 %, sans prête-nom" },
-      { label: "Transmission", value: "à vos enfants" },
-      { label: "Avocat", value: "indépendant, première consultation offerte" },
+      { label: "La maison", value: "à vous, via une société dont vous détenez 100 % des parts, sans prête-nom" },
+      { label: "Le terrain", value: "bail notarié de 30 ans + 30 ans garantis, soit 60 ans de jouissance" },
+      { label: "La transmission", value: "à vos enfants, ce sont les parts de votre société qui se transmettent" },
+      { label: "L'avocat", value: "indépendant, français, installé en Indonésie, lit votre contrat et reste votre interlocuteur, première consultation offerte" },
     ],
     paragraphs: [
       "On vous le dit tel que c'est. Un étranger ne peut pas acheter le sol à Bali. Il achète un droit d'usage du terrain. Sur Seseh Sunset Villas, c'est un bail notarié de 30 ans, plus 30 ans d'extension garantis dans le contrat. Le renouvellement porte sur le seul terrain, environ 20 % du prix, et si ce prix fait débat, trois experts indépendants le fixent. La maison, elle, est à vous, détenue par une société dont vous possédez 100 % des parts. Pas de prête-nom. C'est le régime standard des propriétaires étrangers à Bali.",
       "Pour la transmission, nous ne jouons pas à l'avocat. Nous vous mettons en relation avec un avocat français indépendant, installé en Indonésie. Il lit votre contrat, vous explique comment la maison se transmet à vos enfants, et reste votre interlocuteur, quoi qu'il arrive. La première consultation est offerte.",
+    ],
+  },
+  venirABali: {
+    overline: "Sur place",
+    title: "Le jour des clés, on vous fait venir à Bali.",
+    image: "/seseh/signature/exterior.webp",
+    imageCaption: "Seseh Sunset Villas, Bali.",
+    rows: [
+      { label: "Avant de décider", value: "visite des villas livrées et du chantier, sur rendez-vous" },
+      { label: "Pendant la construction", value: "photos et vidéos chaque semaine, dans votre espace en ligne" },
+      { label: "À la remise des clés", value: "votre déplacement est pris en charge, pour vous et la personne de votre choix" },
+      { label: "Vos premières nuits", value: "vous découvrez votre maison et vous y dormez les premiers, avant sa mise en location" },
+      { label: "Ensuite", value: "vos séjours, quand vous le voulez" },
     ],
   },
   team: {
@@ -235,16 +287,20 @@ const content: MaisonSesehBaliContent = {
         body: "Pour savoir si nous sommes faits pour travailler ensemble, et préparer l'entretien.",
       },
       {
-        title: "Un membre de l'équipe vous rappelle et fixe un premier entretien.",
-        body: "30 minutes en visio. Votre projet, votre horizon, la collection, vos questions. Si ce n'est pas pour vous, on vous le dit.",
+        title: "Un membre de l'équipe vous rappelle.",
+        body: "Et fixe un premier entretien.",
+      },
+      {
+        title: "30 minutes en visio.",
+        body: "Votre projet, votre horizon, la collection, vos questions.",
       },
       {
         title: "Deuxième entretien.",
-        body: "Les plans, le prévisionnel, le contrat, l'avocat si vous le souhaitez. Vous choisissez votre maison et sa parcelle sur le plan, premier arrivé, premier servi.",
+        body: "Plans, prévisionnel, contrat, l'avocat si vous le souhaitez.",
       },
       {
-        title: "Vous réservez avec 1 000 €, remboursables sans condition jusqu'au 31 décembre 2026.",
-        body: "La maison est bloquée, le prix 2026 aussi. L'acte notarié suit sous un mois, le paiement s'étale au rythme du chantier, les clés sont prévues au troisième trimestre 2028.",
+        title: "Réservation 1 000 €, remboursables jusqu'au 31 décembre 2026.",
+        body: "Puis 50 % à l'acte notarié, 4 appels de fonds de 10 % au rythme du chantier, 10 % à la remise des clés.",
       },
     ],
   },
@@ -252,11 +308,10 @@ const content: MaisonSesehBaliContent = {
     overline: "Le lieu",
     title: "Seseh, entre rizières et océan.",
     entries: [
-      { place: "Plage de Seseh", distance: "300 m", photoSrc: undefined },
-      { place: "Canggu", distance: "8 min", photoSrc: undefined },
-      { place: "Pererenan", distance: undefined },
-      { place: "Tanah Lot", distance: undefined },
-      { place: "Aéroport", distance: undefined },
+      { place: "Plage de Seseh", distance: "3 min, 300 m", photoSrc: undefined },
+      { place: "Restaurants, beach clubs et bien-être", distance: "3 min", photoSrc: undefined },
+      { place: "Canggu", distance: "8 min" },
+      { place: "Aéroport international de Bali", distance: "60 min" },
     ],
   },
   section10: {
@@ -324,11 +379,11 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Puis-je personnaliser l'extérieur ?",
-        a: "L'architecture et le plan de la résidence sont figés, c'est ce qui garantit la cohérence de l'ensemble. Vous choisissez votre maison et sa parcelle sur le plan, et vous concevez l'intérieur avec Julie.",
+        a: "L'extérieur reste signé par les architectes, pour préserver l'harmonie de la résidence. Vous concevez l'intérieur avec Julie : ambiance, matières, mobilier, et selon le modèle les options, jacuzzi, bain froid, panneaux solaires.",
       },
       {
         q: "Comment se passe le paiement ?",
-        a: "1 000 € à la réservation, remboursables sans condition jusqu'au 31 décembre 2026. 50 % à l'acte notarié, environ quatre semaines plus tard. Puis un appel de fonds à chaque étape du chantier, et 10 % à la remise des clés. Une remise de 5 % est accordée pour 90 % payés à la signature, sur les signatures 2026.",
+        a: "1 000 € à la réservation, remboursables sans condition jusqu'au 31 décembre 2026. 50 % à l'acte notarié, environ quatre semaines plus tard. Puis quatre appels de fonds de 10 % à chaque étape du chantier, et 10 % à la remise des clés. Une remise de 5 % est accordée pour 90 % payés à la signature, sur les signatures 2026.",
       },
       {
         q: "Quand la maison est-elle livrée, et comment suivre le chantier ?",
@@ -340,7 +395,7 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Mes enfants pourront-ils en hériter ?",
-        a: "Oui. C'est précisément le sujet que l'avocat indépendant traite avec vous. Nous préférons que vous ayez l'avis de quelqu'un qui ne dépend pas de nous, et qui répond précisément à vos questions, selon votre situation.",
+        a: "Oui. Vous détenez votre maison à travers une société dont vous possédez 100 % des parts : ce sont ces parts qui se transmettent. Il n'y a pas d'impôt sur les successions en Indonésie. L'avocat indépendant vous accompagne, selon votre situation.",
       },
       {
         q: "Et si je veux revendre un jour ?",

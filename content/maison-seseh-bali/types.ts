@@ -5,10 +5,14 @@
 // src/app/maison-seseh-bali/page.tsx.
 //
 // Refonte "une information par écran" : chaque section garde son texte
-// long d'origine (paragraphs / engagements / etc., repris tels quels
-// depuis avant la refonte) comme couche "détail", affichée derrière un
-// lien Disclosure. Les nouveaux champs courts (screenLines, cartouches,
-// bullets...) sont la couche "écran" lue en premier.
+// long d'origine (paragraphs / engagements / etc.) comme couche "détail" —
+// affichée derrière un lien Disclosure seulement sous les blocs 3
+// (Le bon moment), 8 (Les revenus), 9 (Les garanties) et 10 (La
+// transmission). Les nouveaux champs courts (rows, screenLines...) sont
+// la couche "écran" lue en premier. Certains champs (gestion.bullets,
+// section3.paragraphs, julie.screenLines...) restent dans ce fichier sans
+// plus être affichés directement — conservés tels quels, rien n'est
+// supprimé.
 
 export type Stat = { value: string; label: string }
 export type Row = { label: string; value: string }
@@ -20,6 +24,7 @@ export type GammeItem = {
   name: string
   badge?: string
   specLine: string
+  priceLineSpec?: string // repli : specLine si absent (EN pas encore mis à jour)
   gallery: GalleryImage[]
   planImage?: string
   planAlt: string
@@ -60,7 +65,7 @@ export type MaisonSesehBaliContent = {
     mentionsLegalesLabel: string
     contactEmail: string
   }
-  // 1. Hero
+  // 1. Hero (vidéo)
   hero: {
     overline: string
     title: string
@@ -72,50 +77,67 @@ export type MaisonSesehBaliContent = {
     ctaNote: string
     bandItems: string[]
   }
-  // 2. Le bon moment
+  // 3. Le bon moment
   section2: {
     overline: string
     title: string
     screenLines: string[]
     paragraphs: string[]
   }
-  // 3. La maison (intro courte — les gammes sont dans `models`)
+  // 4. La maison (pas de Disclosure). rows absent (EN) -> repli sur
+  // screenLines affichées en texte simple, comme avant cette révision.
   section3: {
     overline: string
     title: string
     image: string
     imageCaption: string
     screenLines: string[]
+    rows?: Row[]
     paragraphs: string[]
   }
-  // 4. Julie
+  // 5. L'intérieur (Julie). Champs optionnels absents (EN) -> repli sur
+  // l'ancien bloc "portrait + 2 lignes", comme avant cette révision.
   julie: {
     overline: string
     title: string
     screenLines: string[]
+    screenLine?: string
     image?: string
     imageCaption: string
+    gallery?: GalleryImage[]
+    rows?: Row[]
+    disclaimerLine?: string
   }
-  // 5 & 6. Modèles (ModelBlock)
+  // 6 & 7. Modèles (ModelBlock)
   models: GammeItem[]
+  modelsOverline?: string // repli : section3.overline si absent
   modelsNote: string
   modelsCtaLabel: string
   modelsPriceNote: string
-  // 7. Les revenus
+  // 8. Les revenus. rows absent (EN) -> repli sur screenLine, comme avant.
   section4: {
     overline: string
     title: string
     stats: Stat[]
     screenLine: string
+    rows?: Row[]
     paragraphs: string[]
   }
-  // 8. La gestion
+  // ancien bloc "La gestion" — plus affiché séparément (absorbé dans Les
+  // revenus), conservé tel quel
   gestion: {
     overline: string
     title: string
     bullets: string[]
   }
-  // 9. La transmission
+  // 9. Les garanties (nouveau bloc, absent en EN pour l'instant -> bloc
+  // non affiché tant que non renseigné)
+  garanties?: {
+    overline: string
+    title: string
+    rows: Row[]
+  }
+  // 10. La transmission
   section5: {
     overline: string
     title: string
@@ -123,7 +145,16 @@ export type MaisonSesehBaliContent = {
     rows: Row[]
     paragraphs: string[]
   }
-  // 10. L'équipe
+  // 11. Venir à Bali (nouveau bloc, absent en EN pour l'instant -> bloc
+  // non affiché tant que non renseigné)
+  venirABali?: {
+    overline: string
+    title: string
+    image?: string
+    imageCaption: string
+    rows: Row[]
+  }
+  // 12. L'équipe
   team: {
     overline: string
     title: string
@@ -142,27 +173,27 @@ export type MaisonSesehBaliContent = {
       engagements: string[]
     }
   }
-  // 11. Témoignages
+  // 13. Témoignages
   section7: {
     overline: string
     title: string
     testimonials: Testimonial[]
     ctaLabel: string
   }
-  // 12. L'accès (Timeline)
+  // 14. L'accès (Timeline)
   section8: {
     overline: string
     title: string
     intro: string
     steps: AccesStep[]
   }
-  // 13. Le lieu (DistanceList)
+  // 15. Le lieu (DistanceList)
   lieu: {
     overline: string
     title: string
     entries: DistanceEntry[]
   }
-  // 14. Bali en 2027 (le marché)
+  // 16. Bali en 2027 (le marché)
   section10: {
     overline: string
     title: string
@@ -173,13 +204,13 @@ export type MaisonSesehBaliContent = {
     priceChangeNote: string
     sources: { label: string; url?: string }[]
   }
-  // 15. Questionnaire
+  // 17. Entretien
   section11: {
     overline: string
     title: string
     embedCode?: string
   }
-  // 16. FAQ
+  // 18. FAQ
   section9: {
     overline: string
     title: string
