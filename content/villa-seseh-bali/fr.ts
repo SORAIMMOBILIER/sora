@@ -33,11 +33,10 @@ const content: VillaSesehBaliContent = {
   section2: {
     overline: "L'étape suivante",
     title: "Vous avez constitué un capital. Il est temps qu'il travaille sans vous.",
-    paragraphs: [
-      "Qu'il vienne d'une entreprise, d'une vente ou d'années de travail, vous l'avez constitué, et vous avez raison de ne pas le placer sur le premier chiffre venu. Un placement immobilier se juge sur dix ans, net de tout : loyers, charges, entretien, fiscalité, revente.",
-      "Les bonnes questions ne portent pas sur le pays. Elles portent sur celui qui construit, celui qui loue, celui qui revend, et sur les preuves qu'il apporte. Chez SORA, c'est la même équipe du premier coup de pelle à la revente.",
+    screenLines: [
+      "Un placement immobilier se juge sur dix ans, net de tout.",
+      "Les bonnes questions : qui construit, qui loue, qui revend, et avec quelles preuves.",
     ],
-    eligibilityNote: "Cette page s'adresse à vous si vous disposez d'au moins 150 000 € dans les douze prochains mois, et si vous raisonnez sur une détention de dix ans.",
     blocks: [
       {
         icon: "price",
@@ -50,11 +49,27 @@ const content: VillaSesehBaliContent = {
         body: "Une villa qui coûte moins à exploiter, qui ne demande aucun réinvestissement pour être remise en état, et qui se revend intacte.",
       },
     ],
+    screenClosingLine: "Si votre critère est le prix d'entrée le plus bas de l'île, nous ne serons pas le bon choix.",
+    eligibilityNote: "Cette page s'adresse à vous si vous disposez d'au moins 150 000 € dans les douze prochains mois, et si vous raisonnez sur une détention de dix ans.",
+    paragraphs: [
+      "Qu'il vienne d'une entreprise, d'une vente ou d'années de travail, vous l'avez constitué, et vous avez raison de ne pas le placer sur le premier chiffre venu. Un placement immobilier se juge sur dix ans, net de tout : loyers, charges, entretien, fiscalité, revente.",
+      "Les bonnes questions ne portent pas sur le pays. Elles portent sur celui qui construit, celui qui loue, celui qui revend, et sur les preuves qu'il apporte. Chez SORA, c'est la même équipe du premier coup de pelle à la revente.",
+    ],
     closingParagraph: "La seule question qui compte : dans dix ou quinze ans, laquelle vous aura rapporté le plus ? C'est sur ce calcul que nous travaillons. Si votre critère est le prix d'entrée le plus bas de l'île, nous ne serons pas le bon choix, et nous préférons vous le dire maintenant.",
   },
   section3: {
     overline: "Nos chiffres",
     title: "Avant toute promesse, ce qui est déjà fait.",
+    stats: [
+      { value: "28", label: "Villas livrées" },
+      { value: "10,2 %", label: "Net en 2025" },
+      { value: "82 %", label: "D'occupation" },
+      { value: "93 %", label: "Réinvestissent" },
+    ],
+    resaleCartouches: [
+      "Loft de Canggu : + 16 % en moins d'un an, avant même d'être loué.",
+      "Villa Pererenan : + 10 % de plus-value en deux ans, loyers non compris.",
+    ],
     facts: [
       "4 projets, 28 villas livrées, 26 en construction à Seseh.",
       "10,2 % net en 2025 sur les villas que nous gérons, à 82 % d'occupation. Un historique, pas une simulation.",
@@ -74,28 +89,62 @@ const content: VillaSesehBaliContent = {
     gammes: [
       {
         name: "Élégance",
-        specsLines: ["1 chambre", "51 m²", "Jacuzzi"],
-        priceBeforeLabel: "149 000 € jusqu'au 31 décembre 2026",
-        priceAfterLabel: "155 000 € ensuite",
+        specLine: "1 chambre · 51 m² · jacuzzi",
+        gallery: [
+          { src: "/seseh/elegance/exterior.webp", alt: "Façade d'une villa Élégance à Seseh" },
+          { src: "/seseh/elegance/terrace.webp", alt: "Terrasse d'une villa Élégance à Seseh" },
+          { src: "/seseh/elegance/living.webp", alt: "Salon d'une villa Élégance à Seseh" },
+          { src: "/seseh/elegance/bedroom.webp", alt: "Chambre d'une villa Élégance à Seseh" },
+          { src: "/seseh/elegance/bedroom1.webp", alt: "Chambre d'une villa Élégance à Seseh" },
+          { src: "/seseh/elegance/bedroom2.webp", alt: "Chambre d'une villa Élégance à Seseh" },
+        ],
+        planImage: "/plans/elegance-rdc.svg",
+        planAlt: "Plan du rez-de-chaussée, villa Élégance",
+        priceLabel: "149 000 € tout compris",
+        priceNote: "155 000 € au 1er janvier 2027",
+        stats: [
+          { value: "1", label: "Chambre" },
+          { value: "51 m²", label: "Surface" },
+          { value: "10 430 €", label: "Garantis par an" },
+        ],
+        features: [
+          "Jacuzzi",
+          "Livrée meublée, prête à louer",
+          "7 % net garantis pendant 3 ans",
+          "31 290 € sécurisés sur 3 ans",
+        ],
       },
       {
         name: "Prestige",
         badge: "La plus demandée",
-        specsLines: ["2 chambres", "80 m²", "Piscine privée"],
-        priceBeforeLabel: "239 000 € jusqu'au 31 décembre 2026",
-        priceAfterLabel: "249 000 € ensuite",
+        specLine: "2 chambres · 80 m² · piscine privée",
+        gallery: [
+          { src: "/seseh/prestige/exterior.webp", alt: "Façade d'une villa Prestige à Seseh" },
+          { src: "/seseh/prestige/living.webp", alt: "Salon d'une villa Prestige à Seseh" },
+          { src: "/seseh/prestige/dining.webp", alt: "Salle à manger d'une villa Prestige à Seseh" },
+          { src: "/seseh/prestige/kitchen.webp", alt: "Cuisine d'une villa Prestige à Seseh" },
+          { src: "/seseh/prestige/bathroom1.webp", alt: "Salle de bain d'une villa Prestige à Seseh" },
+          { src: "/seseh/prestige/bedroom1.webp", alt: "Chambre d'une villa Prestige à Seseh" },
+        ],
+        planImage: "/plans/prestige-rdc.svg",
+        planAlt: "Plan du rez-de-chaussée, villa Prestige",
+        priceLabel: "239 000 € tout compris",
+        priceNote: "249 000 € au 1er janvier 2027",
+        stats: [
+          { value: "2", label: "Chambres" },
+          { value: "80 m²", label: "Surface" },
+          { value: "16 730 €", label: "Garantis par an" },
+        ],
+        features: [
+          "Piscine privée",
+          "Livrée meublée, prête à louer",
+          "7 % net garantis pendant 3 ans",
+          "50 190 € sécurisés sur 3 ans",
+        ],
       },
     ],
     priceIncludesText: "Le prix comprend le terrain en bail notarié de 30 ans + 30 ans, la construction, le mobilier et les permis : la villa est livrée meublée, décorée, prête à louer. Les frais d'acquisition sont connus d'avance : 1 % de frais de mutation et 800 € pour la création de votre société.",
     previsionnelText: "En rendez-vous, vous recevez le prévisionnel de votre villa : loyers, charges d'exploitation, frais de gestion, fiscalité indonésienne, résultat net. Ligne par ligne.",
-    images: [
-      { src: "/seseh/elegance/exterior.webp", alt: "Façade d'une villa Élégance à Seseh" },
-      { src: "/seseh/elegance/terrace.webp", alt: "Terrasse d'une villa Élégance à Seseh" },
-      { src: "/seseh/elegance/living.webp", alt: "Salon d'une villa Élégance à Seseh" },
-      { src: "/seseh/prestige/exterior.webp", alt: "Façade d'une villa Prestige à Seseh" },
-      { src: "/seseh/prestige/living.webp", alt: "Salon d'une villa Prestige à Seseh" },
-      { src: "/seseh/prestige/dining.webp", alt: "Salle à manger d'une villa Prestige à Seseh" },
-    ],
     ctaLabel: "Vérifier mon éligibilité",
     offSeseh: {
       overline: "Hors Seseh",
@@ -106,6 +155,11 @@ const content: VillaSesehBaliContent = {
   section6: {
     overline: "Le prix",
     title: "Le vrai coût d'une villa se lit sur dix ans.",
+    screenLines: [
+      "Un prix d'achat plus bas se retrouve presque toujours ailleurs : électricité, entretien, mobilier, travaux avant revente.",
+      "Construit par des ingénieurs du BTP : consomme moins, s'entretient moins, se dégrade moins.",
+      "100 % de nos villas livrées dans les délais annoncés.",
+    ],
     paragraphs: [
       "Un prix d'achat plus bas se retrouve presque toujours ailleurs : dans l'électricité d'une climatisation mal dimensionnée, l'entretien d'une toiture qui souffre, le mobilier à racheter, les travaux avant de revendre. Sur dix ans, l'écart n'est pas un détail.",
       "Nos villas sont construites par deux ingénieurs du BTP, passés par Vinci Energies et Bouygues Construction, avec les méthodes et les exigences de ces chantiers-là : climatisation calculée, isolation réelle, matériaux choisis pour l'humidité tropicale, et un chantier maîtrisé, qui nous a permis de livrer 100 % de nos villas dans les délais annoncés. Une villa qui consomme moins, s'entretient moins, se dégrade moins. Chaque année, votre résultat net est meilleur. Et le jour de la revente, l'acheteur paie une villa intacte, pas un chantier.",
@@ -127,6 +181,7 @@ const content: VillaSesehBaliContent = {
       "Tenir la comptabilité.",
       "Remplacer un matelas.",
     ],
+    screenLine: "Votre seul rendez-vous : un bilan annuel avec votre conseiller.",
     paragraph: "Vous n'avez rien à organiser. SORA conçoit la villa, la construit, la meuble, la met en location, fixe les prix, accueille les voyageurs, l'entretient, tient la comptabilité, et la revend le jour où vous le décidez. Votre seul rendez-vous : un bilan annuel avec votre conseiller, pour fixer vos dates et les arbitrages de l'année. Le reste du temps, vous êtes informé sans avoir à demander : un point de chantier chaque semaine pendant la construction, puis un rapport de gestion chaque mois, loyers, charges et résultat net.",
   },
   section8: {
@@ -135,49 +190,131 @@ const content: VillaSesehBaliContent = {
     guarantees: [
       {
         title: "Les revenus.",
+        short: "7 % net minimum pendant 36 mois, soit 21 % du prix sécurisés.",
         body: "Pendant les 36 premiers mois de location, votre résultat net est garanti à 7 % par an minimum du prix d'achat, net de gestion et de charges, avant fiscalité : 10 430 € par an sur une Élégance, 16 730 € sur une Prestige. Soit 21 % du prix de votre villa sécurisés sur trois ans : 31 290 € sur une Élégance, 50 190 € sur une Prestige. En cas de résultat inférieur, SORA verse la différence. Au-delà, l'intégralité vous revient.",
       },
       {
         title: "La construction.",
+        short: "10 ans structure, 5 ans toiture, 1 an tout le reste, mobilier compris.",
         body: "10 ans sur la structure, 5 ans sur la toiture, 1 an sur tout le reste, mobilier compris. La loi indonésienne n'impose aucune garantie décennale. Nous la proposons quand même.",
       },
       {
         title: "Les délais.",
+        short: "Pénalités de 1,5 million de roupies par jour au-delà de 3 mois.",
         body: "Livraison au troisième trimestre 2028. Trois mois de grâce, puis des pénalités de 1,5 million de roupies par jour de retard, environ 75 €, qui vous sont versées.",
       },
       {
         title: "Le cadre juridique.",
+        short: "Bail 30 + 30 ans, société à 100 %, avocat indépendant.",
         body: "Sur Seseh Sunset Villas, un bail notarié de 30 ans, plus 30 ans d'extension garantis dans le contrat. Une société dont vous détenez 100 % des parts, sans prête-nom. Un avocat français indépendant, installé en Indonésie, qui lit votre contrat avant signature. Première consultation offerte.",
       },
     ],
     ctaLabel: "Vérifier mon éligibilité",
   },
-  section9: {
-    overline: "L'accès",
+  paiement: {
+    overline: "Paiement",
     title: "De la première question aux clés.",
-    intro: "Quelques questions filtrent l'entrée. C'est ce qui nous permet de consacrer à chaque dossier le temps qu'il mérite.",
     steps: [
-      {
-        title: "Vous vérifiez votre éligibilité, 2 minutes.",
-        body: "Si votre projet correspond, un membre de l'équipe vous rappelle rapidement.",
-      },
-      {
-        title: "Premier rendez-vous, 30 minutes en visio.",
-        body: "Votre situation, la villa adaptée, le prévisionnel, vos questions. Si ce n'est pas pour vous, on vous le dit.",
-      },
-      {
-        title: "Deuxième rendez-vous.",
-        body: "Le contrat, les garanties, le calendrier de paiement, l'avocat si vous le souhaitez.",
-      },
-      {
-        title: "Réservation à 1 000 €, remboursables sans condition jusqu'au 31 décembre 2026.",
-        body: "La villa et le prix 2026 sont bloqués.",
-      },
-      {
-        title: "Acte notarié environ 4 semaines plus tard, 50 %.",
-        body: "Puis un appel de fonds à chaque étape du chantier, environ chaque trimestre, et 10 % à la remise des clés. Remise de 5 % pour 90 % payés à la signature, sur les signatures 2026.",
-      },
+      { title: "Réservation 1 000 €, remboursables jusqu'au 31 décembre 2026.", body: "" },
+      { title: "Acte notarié environ 4 semaines plus tard, 50 %.", body: "" },
+      { title: "Un appel de fonds à chaque étape du chantier, environ chaque trimestre.", body: "" },
+      { title: "Remise des clés, 10 %, troisième trimestre 2028.", body: "" },
+      { title: "Remise de 5 % pour 90 % payés à la signature, sur les signatures 2026.", body: "" },
     ],
+    detail: {
+      overline: "L'accès",
+      title: "De la première question aux clés.",
+      intro: "Quelques questions filtrent l'entrée. C'est ce qui nous permet de consacrer à chaque dossier le temps qu'il mérite.",
+      steps: [
+        {
+          title: "Vous vérifiez votre éligibilité, 2 minutes.",
+          body: "Si votre projet correspond, un membre de l'équipe vous rappelle rapidement.",
+        },
+        {
+          title: "Premier rendez-vous, 30 minutes en visio.",
+          body: "Votre situation, la villa adaptée, le prévisionnel, vos questions. Si ce n'est pas pour vous, on vous le dit.",
+        },
+        {
+          title: "Deuxième rendez-vous.",
+          body: "Le contrat, les garanties, le calendrier de paiement, l'avocat si vous le souhaitez.",
+        },
+        {
+          title: "Réservation à 1 000 €, remboursables sans condition jusqu'au 31 décembre 2026.",
+          body: "La villa et le prix 2026 sont bloqués.",
+        },
+        {
+          title: "Acte notarié environ 4 semaines plus tard, 50 %.",
+          body: "Puis un appel de fonds à chaque étape du chantier, environ chaque trimestre, et 10 % à la remise des clés. Remise de 5 % pour 90 % payés à la signature, sur les signatures 2026.",
+        },
+      ],
+    },
+  },
+  team: {
+    overline: "L'équipe",
+    title: "Nous faire confiance à 12 000 kilomètres.",
+    photo: undefined,
+    quote: "À 12 000 kilomètres, on ne vous demande pas de nous croire. On vous montre comment on travaille.",
+    name: "Gabriel Lapierre",
+    role: "cofondateur",
+    stats: [
+      { value: "54", label: "Villas livrées ou en construction" },
+      { value: "100 %", label: "Dans les délais annoncés" },
+      { value: "10 ans", label: "Structure garantie" },
+      { value: "93 %", label: "De clients qui réinvestissent" },
+    ],
+    screenLine: "Deux ingénieurs du BTP, passés par Vinci Energies et Bouygues Construction.",
+    detail: {
+      overline: "La confiance",
+      title: "Nous faire confiance à 12 000 kilomètres.",
+      paragraphs: [
+        "SORA, ce sont deux ingénieurs du BTP. Gabriel Lapierre, passé par Vinci Energies. Nitham Lapierre, passée par Bouygues Construction. Installés à Bali depuis quatre ans, nous y construisons avec les méthodes et les exigences que nous appliquions sur ces chantiers-là.",
+        "Nos réalisations : 28 villas livrées, 26 en construction, 4 projets. Nous avons construit, loué, revendu, et 93 % de nos clients réinvestissent chez nous.",
+        "Ce que vous ne verrez pas sur les photos, et qui compte dans vingt ans : une climatisation dimensionnée par un ingénieur, une isolation réelle, des matériaux choisis pour l'humidité tropicale. Une maison qui consomme moins, s'entretient moins, et que vos enfants n'auront pas à rénover.",
+      ],
+      engagementsIntro: "Nos engagements, dans votre contrat :",
+      engagements: [
+        "10 ans de garantie sur la structure, 5 ans sur la toiture, 1 an sur tout le reste, mobilier compris.",
+        "La loi indonésienne n'impose aucune garantie décennale. Nous la proposons quand même.",
+        "Un maître d'œuvre indépendant, d'origine européenne, contrôle chaque étape du chantier.",
+        "Au-delà de trois mois après la date de livraison, des pénalités de retard vous sont versées.",
+      ],
+    },
+  },
+  lieu: {
+    overline: "Le lieu",
+    title: "Seseh, entre rizières et océan.",
+    entries: [
+      { place: "Plage de Seseh", distance: "300 m", photoSrc: undefined },
+      { place: "Canggu", distance: "8 min", photoSrc: undefined },
+      { place: "Pererenan", distance: undefined },
+      { place: "Tanah Lot", distance: undefined },
+      { place: "Aéroport", distance: undefined },
+    ],
+  },
+  section11: {
+    overline: "Le marché",
+    title: "Bali en 2027.",
+    screenLines: [
+      "L'Indonésie tient une croissance d'environ 5 % par an.",
+      "Bali : près de 7 millions de visiteurs en 2025, un record pour la deuxième année consécutive.",
+      "Le 1er janvier 2027, l'Élégance passe à 155 000 € et la Prestige à 249 000 €.",
+    ],
+    paragraphs: [
+      "L'Indonésie, quatrième pays le plus peuplé du monde, tient une croissance d'environ 5 % par an, 5,12 % au deuxième trimestre 2025, 5,04 % au troisième. Bali vient d'enregistrer près de 7 millions de visiteurs étrangers en 2025, en hausse de 9,7 % sur un an, un record pour la deuxième année consécutive. Sur l'île, les prix de l'immobilier progressent d'environ 7 % par an, et les terrains à 300 mètres de la mer ne se multiplient pas.",
+      "Nous ne vendons pas la plus-value. Dans nos calculs, elle vaut zéro.",
+      "Le 1er janvier 2027, l'Élégance passe de 149 000 € à 155 000 € et la Prestige de 239 000 € à 249 000 €. Même villa, même plage. Si vous souhaitez acquérir votre villa avant la hausse, vérifiez votre éligibilité ci-dessous. L'équipe vous rappelle avec le prévisionnel.",
+    ],
+    ctaLabel: "Vérifier mon éligibilité",
+    sources: [
+      { label: "BPS Statistics Indonesia (PIB T2 et T3 2025)" },
+      { label: "BPS Bali (arrivées 2025)" },
+      { label: "Rapport Horwath HTL / Bali Hotels Association (record 2025)" },
+    ],
+  },
+  section12: {
+    overline: "Éligibilité",
+    title: "Deux minutes pour savoir si nous pouvons travailler ensemble.",
+    embedCode: undefined,
   },
   section10: {
     overline: "Questions fréquentes",
@@ -248,26 +385,6 @@ const content: VillaSesehBaliContent = {
         a: "La fiscalité indonésienne est intégrée au prévisionnel. Pour votre situation personnelle en France, en Belgique ou en Suisse, l'avocat indépendant vous conseille.",
       },
     ],
-  },
-  section11: {
-    overline: "Le marché",
-    title: "Bali en 2027.",
-    paragraphs: [
-      "L'Indonésie, quatrième pays le plus peuplé du monde, tient une croissance d'environ 5 % par an, 5,12 % au deuxième trimestre 2025, 5,04 % au troisième. Bali vient d'enregistrer près de 7 millions de visiteurs étrangers en 2025, en hausse de 9,7 % sur un an, un record pour la deuxième année consécutive. Sur l'île, les prix de l'immobilier progressent d'environ 7 % par an, et les terrains à 300 mètres de la mer ne se multiplient pas.",
-      "Nous ne vendons pas la plus-value. Dans nos calculs, elle vaut zéro.",
-      "Le 1er janvier 2027, l'Élégance passe de 149 000 € à 155 000 € et la Prestige de 239 000 € à 249 000 €. Même villa, même plage. Si vous souhaitez acquérir votre villa avant la hausse, vérifiez votre éligibilité ci-dessous. L'équipe vous rappelle avec le prévisionnel.",
-    ],
-    ctaLabel: "Vérifier mon éligibilité",
-    sources: [
-      { label: "BPS Statistics Indonesia (PIB T2 et T3 2025)" },
-      { label: "BPS Bali (arrivées 2025)" },
-      { label: "Rapport Horwath HTL / Bali Hotels Association (record 2025)" },
-    ],
-  },
-  section12: {
-    overline: "Éligibilité",
-    title: "Deux minutes pour savoir si nous pouvons travailler ensemble.",
-    embedCode: undefined,
   },
   stickyBar: {
     ctaLabel: "Vérifier mon éligibilité",

@@ -33,11 +33,10 @@ const content: VillaSesehBaliContent = {
   section2: {
     overline: "The next step",
     title: "You've built up capital. It's time it worked without you.",
-    paragraphs: [
-      "Whether it came from a business, a sale or years of work, you built it, and you're right not to put it into the first figure that comes along. A property investment is judged over ten years, net of everything: rent, running costs, maintenance, tax, resale.",
-      "The right questions aren't about the country. They're about who builds, who rents, who resells, and the proof they bring. At SORA, it's the same team from the first dig to the resale.",
+    screenLines: [
+      "A property investment is judged over ten years, net of everything.",
+      "The right questions: who builds, who rents, who resells, and with what proof.",
     ],
-    eligibilityNote: "This page is for you if you have at least €150,000 available within the next twelve months, and if you think in terms of a ten-year hold.",
     blocks: [
       {
         icon: "price",
@@ -50,11 +49,27 @@ const content: VillaSesehBaliContent = {
         body: "A villa that costs less to run, needs no reinvestment to bring it back up to standard, and resells intact.",
       },
     ],
+    screenClosingLine: "If your criterion is the lowest entry price on the island, we won't be the right choice.",
+    eligibilityNote: "This page is for you if you have at least €150,000 available within the next twelve months, and if you think in terms of a ten-year hold.",
+    paragraphs: [
+      "Whether it came from a business, a sale or years of work, you built it, and you're right not to put it into the first figure that comes along. A property investment is judged over ten years, net of everything: rent, running costs, maintenance, tax, resale.",
+      "The right questions aren't about the country. They're about who builds, who rents, who resells, and the proof they bring. At SORA, it's the same team from the first dig to the resale.",
+    ],
     closingParagraph: "The only question that matters: in ten or fifteen years, which one will have earned you more? That is the calculation we work on. If your criterion is the lowest entry price on the island, we won't be the right choice, and we'd rather tell you now.",
   },
   section3: {
     overline: "Our numbers",
     title: "Before any promise, what's already done.",
+    stats: [
+      { value: "28", label: "Villas delivered" },
+      { value: "10.2%", label: "Net in 2025" },
+      { value: "82%", label: "Occupancy" },
+      { value: "93%", label: "Reinvest" },
+    ],
+    resaleCartouches: [
+      "Canggu loft: +16% in under a year, before it was even rented.",
+      "Pererenan villa: +10% capital gain in two years, rental income not included.",
+    ],
     facts: [
       "4 projects, 28 villas delivered, 26 under construction in Seseh.",
       "10.2% net in 2025 on the villas we manage, at 82% occupancy. A track record, not a simulation.",
@@ -74,28 +89,62 @@ const content: VillaSesehBaliContent = {
     gammes: [
       {
         name: "Élégance",
-        specsLines: ["1 bedroom", "51 m²", "Jacuzzi"],
-        priceBeforeLabel: "€149,000 until 31 December 2026",
-        priceAfterLabel: "€155,000 thereafter",
+        specLine: "1 bedroom · 51 m² · jacuzzi",
+        gallery: [
+          { src: "/seseh/elegance/exterior.webp", alt: "Facade of an Élégance villa in Seseh" },
+          { src: "/seseh/elegance/terrace.webp", alt: "Terrace of an Élégance villa in Seseh" },
+          { src: "/seseh/elegance/living.webp", alt: "Living room of an Élégance villa in Seseh" },
+          { src: "/seseh/elegance/bedroom.webp", alt: "Bedroom of an Élégance villa in Seseh" },
+          { src: "/seseh/elegance/bedroom1.webp", alt: "Bedroom of an Élégance villa in Seseh" },
+          { src: "/seseh/elegance/bedroom2.webp", alt: "Bedroom of an Élégance villa in Seseh" },
+        ],
+        planImage: "/plans/elegance-rdc.svg",
+        planAlt: "Ground floor plan, Élégance villa",
+        priceLabel: "€149,000 all-inclusive",
+        priceNote: "€155,000 from 1 January 2027",
+        stats: [
+          { value: "1", label: "Bedroom" },
+          { value: "51 m²", label: "Floor area" },
+          { value: "€10,430", label: "Guaranteed per year" },
+        ],
+        features: [
+          "Jacuzzi",
+          "Delivered furnished, ready to rent",
+          "7% net guaranteed for 3 years",
+          "€31,290 secured over 3 years",
+        ],
       },
       {
         name: "Prestige",
         badge: "Most in demand",
-        specsLines: ["2 bedrooms", "80 m²", "Private pool"],
-        priceBeforeLabel: "€239,000 until 31 December 2026",
-        priceAfterLabel: "€249,000 thereafter",
+        specLine: "2 bedrooms · 80 m² · private pool",
+        gallery: [
+          { src: "/seseh/prestige/exterior.webp", alt: "Facade of a Prestige villa in Seseh" },
+          { src: "/seseh/prestige/living.webp", alt: "Living room of a Prestige villa in Seseh" },
+          { src: "/seseh/prestige/dining.webp", alt: "Dining room of a Prestige villa in Seseh" },
+          { src: "/seseh/prestige/kitchen.webp", alt: "Kitchen of a Prestige villa in Seseh" },
+          { src: "/seseh/prestige/bathroom1.webp", alt: "Bathroom of a Prestige villa in Seseh" },
+          { src: "/seseh/prestige/bedroom1.webp", alt: "Bedroom of a Prestige villa in Seseh" },
+        ],
+        planImage: "/plans/prestige-rdc.svg",
+        planAlt: "Ground floor plan, Prestige villa",
+        priceLabel: "€239,000 all-inclusive",
+        priceNote: "€249,000 from 1 January 2027",
+        stats: [
+          { value: "2", label: "Bedrooms" },
+          { value: "80 m²", label: "Floor area" },
+          { value: "€16,730", label: "Guaranteed per year" },
+        ],
+        features: [
+          "Private pool",
+          "Delivered furnished, ready to rent",
+          "7% net guaranteed for 3 years",
+          "€50,190 secured over 3 years",
+        ],
       },
     ],
     priceIncludesText: "The price covers the land on a notarised 30 + 30-year lease, the construction, the furniture and the permits: the villa is delivered furnished, decorated, ready to rent. Acquisition costs are known upfront: 1% transfer tax and €800 to set up your company.",
     previsionnelText: "At the consultation, you receive the forecast for your villa: rent, operating costs, management fees, Indonesian tax, net result. Line by line.",
-    images: [
-      { src: "/seseh/elegance/exterior.webp", alt: "Facade of an Élégance villa in Seseh" },
-      { src: "/seseh/elegance/terrace.webp", alt: "Terrace of an Élégance villa in Seseh" },
-      { src: "/seseh/elegance/living.webp", alt: "Living room of an Élégance villa in Seseh" },
-      { src: "/seseh/prestige/exterior.webp", alt: "Facade of a Prestige villa in Seseh" },
-      { src: "/seseh/prestige/living.webp", alt: "Living room of a Prestige villa in Seseh" },
-      { src: "/seseh/prestige/dining.webp", alt: "Dining room of a Prestige villa in Seseh" },
-    ],
     ctaLabel: "Check my eligibility",
     offSeseh: {
       overline: "Outside Seseh",
@@ -106,6 +155,11 @@ const content: VillaSesehBaliContent = {
   section6: {
     overline: "The price",
     title: "The real cost of a villa shows over ten years.",
+    screenLines: [
+      "A lower purchase price almost always turns up elsewhere: electricity, upkeep, furniture, work before resale.",
+      "Built by construction engineers: uses less, needs less upkeep, degrades less.",
+      "100% of our villas delivered on the dates announced.",
+    ],
     paragraphs: [
       "A lower purchase price almost always turns up elsewhere: in the electricity of an undersized air-conditioning system, the upkeep of a roof that suffers, furniture to replace, work to do before resale. Over ten years, the gap is no detail.",
       "Our villas are built by two construction engineers, formerly of Vinci Energies and Bouygues Construction, with the methods and standards of those sites: calculated air conditioning, real insulation, materials chosen for tropical humidity, and a controlled build that has allowed us to deliver 100% of our villas on the dates announced. A villa that uses less, needs less upkeep, degrades less. Every year, your net result is better. And on resale day, the buyer pays for an intact villa, not a renovation project.",
@@ -127,6 +181,7 @@ const content: VillaSesehBaliContent = {
       "Keep the books.",
       "Replace a mattress.",
     ],
+    screenLine: "Your one appointment: an annual review with your advisor.",
     paragraph: "There's nothing for you to organise. SORA designs the villa, builds it, furnishes it, lists it, sets the rates, welcomes the guests, maintains it, keeps the books, and sells it the day you decide to. Your one appointment: an annual review with your advisor, to set your dates and the year's decisions. The rest of the time, you're kept informed without having to ask: a weekly site update during construction, then a monthly management report with rent, costs and net result.",
   },
   section8: {
@@ -135,49 +190,131 @@ const content: VillaSesehBaliContent = {
     guarantees: [
       {
         title: "Income.",
+        short: "7% net minimum for 36 months, 21% of the price secured.",
         body: "For the first 36 months of rental, your net result is guaranteed at a minimum of 7% a year of the purchase price, net of management and operating costs, before tax: €10,430 a year on an Élégance, €16,730 on a Prestige. That's 21% of your villa's price secured over three years: €31,290 on an Élégance, €50,190 on a Prestige. If the result falls short, SORA pays the difference. Anything above it is yours.",
       },
       {
         title: "Construction.",
+        short: "10 years structure, 5 years roof, 1 year everything else, furniture included.",
         body: "10 years on the structure, 5 years on the roof, 1 year on everything else, furniture included. Indonesian law requires no 10-year structural warranty. We give one anyway.",
       },
       {
         title: "Deadlines.",
+        short: "Penalties of 1.5 million rupiah per day beyond 3 months.",
         body: "Delivery in the third quarter of 2028. Three months' grace, then penalties of 1.5 million rupiah per day of delay, around €75, paid to you.",
       },
       {
         title: "Legal framework.",
+        short: "30+30-year lease, 100% owned company, independent lawyer.",
         body: "At Seseh Sunset Villas, a notarised 30-year lease, plus a further 30 years guaranteed in the contract. A company in which you hold 100% of the shares, no nominee. An independent lawyer based in Indonesia, who reads your contract before you sign. First consultation complimentary.",
       },
     ],
     ctaLabel: "Check my eligibility",
   },
-  section9: {
-    overline: "Access",
+  paiement: {
+    overline: "Payment",
     title: "From the first question to the keys.",
-    intro: "A few questions filter the way in. It's how we give every file the time it deserves.",
     steps: [
-      {
-        title: "You check your eligibility, 2 minutes.",
-        body: "If your project fits, a member of the SORA team calls you back promptly.",
-      },
-      {
-        title: "First consultation, 30 minutes on video.",
-        body: "Your situation, the right villa for you, the forecast, your questions. If it's not for you, we'll say so.",
-      },
-      {
-        title: "Second consultation.",
-        body: "The contract, the guarantees, the payment schedule, the lawyer if you wish.",
-      },
-      {
-        title: "Reservation at €1,000, refundable unconditionally until 31 December 2026.",
-        body: "The villa and the 2026 price are held.",
-      },
-      {
-        title: "Notarised deed around 4 weeks later, 50%.",
-        body: "Then a payment call at each stage of construction, roughly every quarter, and 10% at handover. 5% discount for 90% paid at signing, on 2026 signings.",
-      },
+      { title: "Reservation €1,000, refundable until 31 December 2026.", body: "" },
+      { title: "Notarised deed around 4 weeks later, 50%.", body: "" },
+      { title: "A payment call at each stage of construction, roughly every quarter.", body: "" },
+      { title: "Handover, 10%, third quarter of 2028.", body: "" },
+      { title: "5% discount for 90% paid at signing, on 2026 signings.", body: "" },
     ],
+    detail: {
+      overline: "Access",
+      title: "From the first question to the keys.",
+      intro: "A few questions filter the way in. It's how we give every file the time it deserves.",
+      steps: [
+        {
+          title: "You check your eligibility, 2 minutes.",
+          body: "If your project fits, a member of the SORA team calls you back promptly.",
+        },
+        {
+          title: "First consultation, 30 minutes on video.",
+          body: "Your situation, the right villa for you, the forecast, your questions. If it's not for you, we'll say so.",
+        },
+        {
+          title: "Second consultation.",
+          body: "The contract, the guarantees, the payment schedule, the lawyer if you wish.",
+        },
+        {
+          title: "Reservation at €1,000, refundable unconditionally until 31 December 2026.",
+          body: "The villa and the 2026 price are held.",
+        },
+        {
+          title: "Notarised deed around 4 weeks later, 50%.",
+          body: "Then a payment call at each stage of construction, roughly every quarter, and 10% at handover. 5% discount for 90% paid at signing, on 2026 signings.",
+        },
+      ],
+    },
+  },
+  team: {
+    overline: "The team",
+    title: "Trusting a builder you've never met.",
+    photo: undefined,
+    quote: "From thousands of kilometres away, we don't ask you to take our word for it. We show you how we work.",
+    name: "Gabriel Lapierre",
+    role: "co-founder",
+    stats: [
+      { value: "54", label: "Villas delivered or under construction" },
+      { value: "100%", label: "On schedule" },
+      { value: "10 years", label: "Structural warranty" },
+      { value: "93%", label: "Of clients reinvest" },
+    ],
+    screenLine: "Two construction engineers, formerly of Vinci Energies and Bouygues Construction.",
+    detail: {
+      overline: "Trust",
+      title: "Trusting a builder you've never met.",
+      paragraphs: [
+        "SORA is two construction engineers. Gabriel Lapierre, formerly of Vinci Energies. Nitham Lapierre, formerly of Bouygues Construction. Based in Bali for four years, we build here with the methods and standards we applied on those sites.",
+        "Our track record: 28 villas delivered, 26 under construction, 4 projects. We have built, rented and resold, and 93% of our clients reinvest with us.",
+        "What you won't see in the photos, and what matters in twenty years: air conditioning sized by an engineer, real insulation, materials chosen for tropical humidity. A house that uses less energy, needs less upkeep, and that your children won't have to renovate.",
+      ],
+      engagementsIntro: "Our commitments, in your contract:",
+      engagements: [
+        "10-year warranty on the structure, 5 years on the roof, 1 year on everything else, furniture included.",
+        "Indonesian law requires no 10-year structural warranty. We give one anyway.",
+        "An independent European project manager inspects every stage of construction.",
+        "Beyond three months past the delivery date, late penalties are paid to you.",
+      ],
+    },
+  },
+  lieu: {
+    overline: "The location",
+    title: "Seseh, between rice fields and ocean.",
+    entries: [
+      { place: "Seseh beach", distance: "300 m", photoSrc: undefined },
+      { place: "Canggu", distance: "8 min", photoSrc: undefined },
+      { place: "Pererenan", distance: undefined },
+      { place: "Tanah Lot", distance: undefined },
+      { place: "Airport", distance: undefined },
+    ],
+  },
+  section11: {
+    overline: "The market",
+    title: "Bali in 2027.",
+    screenLines: [
+      "Indonesia holds growth of around 5% a year.",
+      "Bali: close to 7 million visitors in 2025, a record for the second consecutive year.",
+      "On 1 January 2027, the Élégance moves to €155,000 and the Prestige to €249,000.",
+    ],
+    paragraphs: [
+      "Indonesia, the world's fourth most populous country, holds growth of around 5% a year, 5.12% in the second quarter of 2025, 5.04% in the third. Bali has just recorded close to 7 million international visitors in 2025, up 9.7% on the year, a record for the second consecutive year. On the island, property prices rise by around 7% a year, and land 300 metres from the ocean isn't being made any more.",
+      "We don't sell capital gains. In our calculations, they're worth zero.",
+      "On 1 January 2027, the Élégance moves from €149,000 to €155,000 and the Prestige from €239,000 to €249,000. Same villa, same beach. If you'd like to secure your villa before the increase, check your eligibility below. The team calls you back with the forecast.",
+    ],
+    ctaLabel: "Check my eligibility",
+    sources: [
+      { label: "BPS Statistics Indonesia (GDP, Q2 & Q3 2025)" },
+      { label: "BPS Bali (2025 arrivals)" },
+      { label: "Horwath HTL / Bali Hotels Association report (2025 record)" },
+    ],
+  },
+  section12: {
+    overline: "Eligibility",
+    title: "Two minutes to find out whether we can work together.",
+    embedCode: undefined,
   },
   section10: {
     overline: "Frequently asked questions",
@@ -248,26 +385,6 @@ const content: VillaSesehBaliContent = {
         a: "Indonesian tax is built into the forecast. For your personal situation in your country of residence, the independent lawyer advises you.",
       },
     ],
-  },
-  section11: {
-    overline: "The market",
-    title: "Bali in 2027.",
-    paragraphs: [
-      "Indonesia, the world's fourth most populous country, holds growth of around 5% a year, 5.12% in the second quarter of 2025, 5.04% in the third. Bali has just recorded close to 7 million international visitors in 2025, up 9.7% on the year, a record for the second consecutive year. On the island, property prices rise by around 7% a year, and land 300 metres from the ocean isn't being made any more.",
-      "We don't sell capital gains. In our calculations, they're worth zero.",
-      "On 1 January 2027, the Élégance moves from €149,000 to €155,000 and the Prestige from €239,000 to €249,000. Same villa, same beach. If you'd like to secure your villa before the increase, check your eligibility below. The team calls you back with the forecast.",
-    ],
-    ctaLabel: "Check my eligibility",
-    sources: [
-      { label: "BPS Statistics Indonesia (GDP, Q2 & Q3 2025)" },
-      { label: "BPS Bali (2025 arrivals)" },
-      { label: "Horwath HTL / Bali Hotels Association report (2025 record)" },
-    ],
-  },
-  section12: {
-    overline: "Eligibility",
-    title: "Two minutes to find out whether we can work together.",
-    embedCode: undefined,
   },
   stickyBar: {
     ctaLabel: "Check my eligibility",
