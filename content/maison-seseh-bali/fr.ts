@@ -1,0 +1,508 @@
+import type { MaisonSesehBaliContent } from "./types"
+
+const content: MaisonSesehBaliContent = {
+  meta: {
+    title: "Une maison à Seseh, Bali | SORA Immobilier",
+    description:
+      "Une maison privée à 300 m de l'océan, dessinée avec vous, gérée quand vous n'y êtes pas, transmise à vos enfants. Entretien privé sur demande.",
+  },
+  nav: {
+    switchLabel: "EN",
+  },
+  footer: {
+    disclaimer: "Visuels non contractuels.",
+    mentionsLegalesLabel: "Mentions légales",
+    contactEmail: "contact@sora-immobilier.com",
+  },
+  hero: {
+    overline: "SESEH, BALI · UNE COLLECTION DE MAISONS PRIVÉES, ENTRE RIZIÈRES ET OCÉAN",
+    title: "Donnez une adresse à votre capital, à 300 mètres de l'océan.",
+    subtitle: "Dessinée avec vous. Gérée quand vous n'y êtes pas. Transmise à vos enfants.",
+    videoUrl: undefined,
+    posterImage: "/seseh/signature/exterior.webp",
+    heroImages: [
+      { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },
+      { src: "/seseh/exception/exterior.webp", alt: "Façade d'une villa Exception à Seseh" },
+    ],
+    ctaLabel: "Demander un entretien privé",
+    ctaNote: "Un premier entretien de 30 minutes en visio avec l'équipe SORA. Sans engagement.",
+    bandItems: [
+      "Conçu par des ingénieurs",
+      "Structure garantie 10 ans",
+      "54 villas livrées ou en construction",
+      "93 % de clients qui réinvestissent",
+    ],
+  },
+  section2: {
+    overline: "Le bon moment",
+    title: "Le moment où l'on peut enfin choisir.",
+    screenLines: [
+      "S'offrir quelque chose de rare : un lieu à soi, que personne d'autre n'aura à l'identique.",
+      "Diversifier à l'international, dans un projet réel, qui se visite et qui se transmet.",
+      "Plus qu'un investissement, une maison que l'on habite.",
+    ],
+    paragraphs: [
+      "Après une cession, une vente ou une très belle année, l'envie est légitime : s'offrir quelque chose de rare. Un lieu à soi, dessiné pour soi, que personne d'autre n'aura à l'identique. Une maison au soleil, où la famille se retrouve et où les amis restent une semaine.",
+      "Vous avez déjà investi en France. Vous voulez maintenant diversifier à l'international, dans un projet réel, qui se visite et qui se transmet.",
+      "Et plus qu'un investissement, une maison que l'on habite. Vous y passez vos vacances, vos enfants y prennent leurs habitudes, et le reste de l'année, elle rapporte sans vous demander de temps. C'est exactement ce que nous construisons à Seseh.",
+    ],
+  },
+  section3: {
+    overline: "La maison",
+    title: "Une maison, pas un numéro de lot.",
+    image: "/seseh/complexe/aerial.webp",
+    imageCaption: "Seseh Sunset Villas, vue d'ensemble.",
+    screenLines: [
+      "À 300 mètres de l'océan, dans une résidence privée.",
+      "À 8 minutes de Canggu, entre rizières et plage.",
+    ],
+    rows: [
+      { label: "Emplacement", value: "à 300 mètres de la plage de Seseh, 8 minutes de Canggu" },
+      { label: "Résidence", value: "privée, 26 villas uniques, services, sécurité, équipe sur place" },
+      { label: "Maison", value: "individuelle, piscine privée, jardin, aucun vis-à-vis" },
+      { label: "Collection", value: "Signature 2 ou 3 chambres, Exception 3 ou 4 chambres" },
+    ],
+    paragraphs: [
+      "Seseh est un village de la côte sud, à 8 minutes de Canggu et à l'écart de son agitation. Les rizières descendent jusqu'à la plage. Votre maison est à 300 mètres de l'océan, dans une résidence privée : sécurité, services, et une équipe sur place toute l'année.",
+      "Chaque maison de la collection est individuelle. Sa piscine, sa terrasse, ses volumes ouverts sur le jardin. L'intérieur est conçu avec Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration : vous choisissez avec elle les matières, les teintes, le mobilier. Aucune autre maison n'aura le même intérieur que la vôtre.",
+      "Une maison pensée pour recevoir : des chambres pour la famille, de l'espace pour les amis, une terrasse pour les soirées qui durent. Une adresse que l'on garde, et où l'on revient.",
+    ],
+  },
+  julie: {
+    overline: "L'intérieur",
+    title: "Une maison unique, à votre image.",
+    screenLines: [
+      "Conçu avec Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration.",
+      "Matières, teintes, mobilier : la vôtre ne ressemblera à aucune autre.",
+    ],
+    screenLine: "Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration, conçoit l'intérieur de chaque maison avec son propriétaire.",
+    image: "/seseh/julie/portrait-hd.webp",
+
+    imageCaption: "Julie Chatelain, architecte d'intérieur.",
+    gallery: [
+      { src: "/seseh/signature/dining.webp", alt: "Salle à manger d'une villa Signature à Seseh" },
+      { src: undefined, alt: "Intérieur d'une villa Signature à Seseh" },
+      { src: undefined, alt: "Intérieur d'une villa Signature à Seseh" },
+    ],
+    rows: [
+      { label: "Votre façon de vivre", value: "un entretien pour comprendre vos goûts, vos usages, et ceux qui partageront la maison" },
+      { label: "Votre ambiance", value: "des moodboards sur mesure : matières, couleurs, mobilier" },
+      { label: "Vos options", value: "selon le modèle : jacuzzi, bain froid, panneaux solaires" },
+      { label: "Prête à vivre", value: "livrée meublée et décorée, le jour de la remise des clés" },
+    ],
+    disclaimerLine: "L'extérieur reste signé par les architectes, pour préserver l'harmonie de la résidence.",
+  },
+  models: [
+    {
+      name: "Signature",
+      specLine: "2 chambres, 3e en option · 153 m² · piscine privée",
+      priceLineSpec: "2 ou 3 chambres · 153 m²",
+      gallery: [
+        { src: "/seseh/signature-ia/sejour.webp", alt: "Séjour d'une villa Signature à Seseh", caption: "Séjour" },
+        { src: "/seseh/signature-ia/cuisine.webp", alt: "Cuisine d'une villa Signature à Seseh", caption: "Cuisine" },
+        { src: "/seseh/signature-ia/salle-a-manger.webp", alt: "Salle à manger d'une villa Signature à Seseh", caption: "Salle à manger" },
+      ],
+      planRdc: "/seseh/plans/signature/rdc-crop.webp",
+      planEtage: "/seseh/plans/signature/etage-crop.webp",
+      planAlt: "Plan de la villa Signature",
+      priceLabel: "369 000 € tout compris",
+      priceNote: "385 000 € au 1er janvier 2027",
+      stats: [
+        { value: "2 ou 3", label: "Chambres" },
+        { value: "153 m²", label: "Surface habitable" },
+        { value: "38 747 €", label: "Revenus nets estimés par an" },
+        { value: "10,5 %", label: "Rendement net estimé" },
+      ],
+      features: [
+        "Piscine privée",
+        "Intérieur conçu avec Julie Chatelain",
+        "Livrée meublée et décorée",
+        "Chambre supplémentaire en option",
+      ],
+      rows: [
+        { label: "Garantie de revenus", value: "25 830 € par an pendant 3 ans" },
+        { label: "Intérieur", value: "conçu avec Julie Chatelain" },
+        { label: "Équipement", value: "2 salles de bain, WC invités, bureau, terrasse, douche extérieure, parking" },
+        { label: "Piscine", value: "privée, 4,7 × 2,1 m" },
+        { label: "Terrain", value: "118 à 127 m² selon la parcelle" },
+        { label: "Parking", value: "voiture et moto" },
+        { label: "Livraison", value: "meublée et décorée, 3e trimestre 2028" },
+      ],
+    },
+    {
+      name: "Exception",
+      specLine: "3 chambres, 4e en option · 197 m² · piscine privée",
+      priceLineSpec: "3 ou 4 chambres · 197 m²",
+      gallery: [
+        { src: "/seseh/exception-ia/salon.webp", alt: "Salon d'une villa Exception à Seseh", caption: "Salon" },
+        { src: "/seseh/exception-ia/sejour.webp", alt: "Séjour d'une villa Exception à Seseh", caption: "Séjour" },
+        { src: "/seseh/exception-ia/salle-a-manger.webp", alt: "Salle à manger d'une villa Exception à Seseh", caption: "Salle à manger" },
+        { src: "/seseh/exception-ia/cuisine.webp", alt: "Cuisine d'une villa Exception à Seseh", caption: "Cuisine" },
+        { src: "/seseh/exception-ia/chambre-1.webp", alt: "Chambre d'une villa Exception à Seseh", caption: "Chambre" },
+        { src: "/seseh/exception-ia/chambre-2.webp", alt: "Chambre d'une villa Exception à Seseh", caption: "Chambre" },
+        { src: "/seseh/exception-ia/salle-de-bain.webp", alt: "Salle de bain d'une villa Exception à Seseh", caption: "Salle de bain" },
+        { src: "/seseh/exception-ia/terrasse.webp", alt: "Terrasse d'une villa Exception à Seseh", caption: "Terrasse" },
+      ],
+      planRdc: "/seseh/plans/exception/rdc-crop.webp",
+      planEtage: "/seseh/plans/exception/etage-crop.webp",
+      planAlt: "Plan de la villa Exception",
+      priceLabel: "469 000 € tout compris",
+      priceNote: "489 000 € au 1er janvier 2027",
+      stats: [
+        { value: "3 ou 4", label: "Chambres" },
+        { value: "197 m²", label: "Surface habitable" },
+        { value: "47 515 €", label: "Revenus nets estimés par an" },
+        { value: "10,1 %", label: "Rendement net estimé" },
+      ],
+      features: [
+        "Piscine privée",
+        "Intérieur conçu avec Julie Chatelain",
+        "Livrée meublée et décorée",
+        "Chambre supplémentaire en option",
+      ],
+      rows: [
+        { label: "Garantie de revenus", value: "32 830 € par an pendant 3 ans" },
+        { label: "Intérieur", value: "conçu avec Julie Chatelain" },
+        { label: "Équipement", value: "3 salles de bain, WC invités, bureau, balcon, terrasse, rangement, jardin" },
+        { label: "Piscine", value: "privée, 6,1 × 4 m" },
+        { label: "Terrain", value: "189 m²" },
+        { label: "Parking", value: "voiture et moto" },
+        { label: "Livraison", value: "meublée et décorée, 3e trimestre 2028" },
+      ],
+    },
+  ],
+  modelsExtra: [
+    {
+      name: "Prestige",
+      specLine: "2 chambres · 80 m² · piscine privée",
+      priceLineSpec: "2 chambres · 80 m²",
+      gallery: [
+        { src: "/seseh/prestige-ia/sejour.webp", alt: "Séjour d'une villa Prestige à Seseh", caption: "Séjour" },
+        { src: "/seseh/prestige-ia/salon.webp", alt: "Salon d'une villa Prestige à Seseh", caption: "Salon" },
+        { src: "/seseh/prestige-ia/salle-a-manger.webp", alt: "Salle à manger d'une villa Prestige à Seseh", caption: "Salle à manger" },
+        { src: "/seseh/prestige-ia/cuisine.webp", alt: "Cuisine d'une villa Prestige à Seseh", caption: "Cuisine" },
+        { src: "/seseh/prestige-ia/salle-de-bain.webp", alt: "Salle de bain d'une villa Prestige à Seseh", caption: "Salle de bain" },
+        { src: "/seseh/prestige-ia/wc.webp", alt: "WC d'une villa Prestige à Seseh", caption: "WC" },
+        { src: "/seseh/prestige-ia/terrasse.webp", alt: "Terrasse d'une villa Prestige à Seseh", caption: "Terrasse" },
+      ],
+      planRdc: "/seseh/plans/prestige/rdc-crop.webp",
+      planEtage: "/seseh/plans/prestige/etage-crop.webp",
+      planAlt: "Plan de la villa Prestige",
+      priceLabel: "239 000 € tout compris",
+      priceNote: "249 000 € au 1er janvier 2027",
+      stats: [
+        { value: "2", label: "Chambres" },
+        { value: "80 m²", label: "Surface habitable" },
+        { value: "25 866 €", label: "Revenus nets estimés par an" },
+        { value: "10,8 %", label: "Rendement net estimé" },
+      ],
+      features: ["Piscine privée", "Intérieur conçu avec Julie Chatelain", "Livrée meublée et décorée"],
+      rows: [
+        { label: "Garantie de revenus", value: "16 730 € par an pendant 3 ans" },
+        { label: "Intérieur", value: "conçu avec Julie Chatelain" },
+        { label: "Équipement", value: "2 salles de bain, WC invités, bureau, balcon, pool deck, jardin" },
+        { label: "Piscine", value: "privée, 5,1 × 2,4 m" },
+        { label: "Terrain", value: "70 m²" },
+        { label: "Parking", value: "moto" },
+        { label: "Livraison", value: "meublée et décorée, 3e trimestre 2028" },
+      ],
+    },    {
+      name: "Élégance",
+      specLine: "1 chambre · 51 m² · jacuzzi",
+      priceLineSpec: "1 chambre · 51 m²",
+      gallery: [
+        { src: "/seseh/elegance-ia/salon.webp", alt: "Salon d'une villa Élégance à Seseh", caption: "Salon" },
+        { src: "/seseh/elegance-ia/chambre.webp", alt: "Chambre d'une villa Élégance à Seseh", caption: "Chambre" },
+        { src: "/seseh/elegance-ia/salle-de-bain.webp", alt: "Salle de bain d'une villa Élégance à Seseh", caption: "Salle de bain" },
+        { src: "/seseh/elegance-ia/cuisine.webp", alt: "Cuisine d'une villa Élégance à Seseh", caption: "Cuisine" },
+        { src: "/seseh/elegance-ia/bureau.webp", alt: "Bureau d'une villa Élégance à Seseh", caption: "Bureau" },
+        { src: "/seseh/elegance-ia/jacuzzi.webp", alt: "Jacuzzi d'une villa Élégance à Seseh", caption: "Jacuzzi" },
+        { src: "/seseh/elegance-ia/terrasse.webp", alt: "Terrasse d'une villa Élégance à Seseh", caption: "Terrasse" },
+      ],
+      planRdc: "/seseh/plans/elegance/rdc-crop.webp",
+      planEtage: "/seseh/plans/elegance/etage-crop.webp",
+      planAlt: "Plan de la villa Élégance",
+      priceLabel: "149 000 € tout compris",
+      priceNote: "155 000 € au 1er janvier 2027",
+      stats: [
+        { value: "1", label: "Chambre" },
+        { value: "51 m²", label: "Surface habitable" },
+        { value: "15 576 €", label: "Revenus nets estimés par an" },
+        { value: "10,5 %", label: "Rendement net estimé" },
+      ],
+      features: ["Jacuzzi privé", "Intérieur conçu avec Julie Chatelain", "Livrée meublée et décorée"],
+      rows: [
+        { label: "Garantie de revenus", value: "10 430 € par an pendant 3 ans" },
+        { label: "Intérieur", value: "conçu avec Julie Chatelain" },
+        { label: "Équipement", value: "1 salle de bain, bureau, terrasse, douche extérieure, jardin" },
+        { label: "Jacuzzi", value: "privé" },
+        { label: "Terrain", value: "40 m²" },
+        { label: "Parking", value: "moto" },
+        { label: "Livraison", value: "meublée et décorée, 3e trimestre 2028" },
+      ],
+    },
+
+  ],
+  modelsOverline: "La collection",
+  modelsNote: "Revenus nets estimés : net de gestion et de charges d'exploitation, avant fiscalité, hors plus-value, scénario cible du dossier de prévisions financières. Certaines maisons, déjà livrées ou hors catalogue, ne sont présentées qu'en entretien.",
+  modelsCtaLabel: "Demander un entretien privé",
+  modelsExtraCtaLabel: "Voir les autres gammes du projet",
+  modelsPriceNote: "Prix tout compris, jusqu'au 31 décembre 2026.",
+  modelsPriceToggleLabel: "Voir les autres gammes du projet",
+  modelsPlanNote: "Plan type, variantes selon la parcelle.",
+  section4: {
+    overline: "Les revenus",
+    title: "Une résidence secondaire qui rapporte, au lieu de coûter.",
+    stats: [
+      { value: "10,2 %", label: "Net constaté en 2025 sur nos villas gérées" },
+      { value: "82 %", label: "D'occupation" },
+      { value: "7 %", label: "Net garantis pendant 3 ans" },
+    ],
+    screenLine: "Vous choisissez vos dates, SORA loue le reste de l'année.",
+    rows: [
+      { label: "Gestion", value: "SORA, sur place : location, voyageurs, entretien, comptabilité" },
+      { label: "Vos séjours", value: "quand vous le voulez, déduits de la garantie au prorata" },
+      { label: "Pendant le chantier", value: "photos et vidéos d'avancement chaque semaine, dans votre espace en ligne" },
+      { label: "Chaque mois", value: "un rapport de gestion détaillé : locataires, revenus, charges, virements" },
+      { label: "Chaque année", value: "un bilan avec votre conseiller : réinvestir ou percevoir vos revenus" },
+    ],
+    paragraphs: [
+      "Vous choisissez vos dates. Le reste du temps, SORA loue votre maison à des voyageurs qui recherchent précisément une villa privée, à pied de la plage, à 8 minutes de Canggu.",
+      "Les villas que nous gérons ont dégagé 10,2 % net en 2025, avec 82 % d'occupation. C'est un historique, celui de nos clients. Pas une projection.",
+      "Les trois premières années de location, votre résultat net est garanti à 7 % par an minimum, net de gestion et de charges, avant fiscalité. En cas de résultat inférieur, SORA verse la différence. Au-delà, l'intégralité vous revient.",
+      "Vous n'avez rien à organiser. SORA conçoit la maison, la construit, la meuble, la met en location, fixe les prix, accueille les voyageurs, l'entretient, tient la comptabilité, et la revend le jour où vous le décidez. Votre seul rendez-vous : un bilan annuel avec votre conseiller, pour fixer vos dates et les arbitrages de l'année. Le reste du temps, vous êtes informé sans avoir à demander : un point de chantier chaque semaine pendant la construction, puis un rapport de gestion chaque mois, loyers, charges et résultat net.",
+    ],
+  },
+  gestion: {
+    overline: "La gestion",
+    title: "Rien à organiser.",
+    bullets: [
+      "Mise en location",
+      "Accueil des voyageurs",
+      "Entretien",
+      "Comptabilité",
+      "Rapport de gestion chaque mois",
+      "Un bilan par an avec votre conseiller",
+    ],
+  },
+  garanties: {
+    overline: "Vos garanties",
+    title: "Vos garanties, écrites au contrat.",
+    rows: [
+      { label: "Garantie construction", value: "10 ans sur la structure, 5 ans sur la toiture, 1 an de garantie intégrale. La décennale n'existe pas en Indonésie : c'est notre engagement" },
+      { label: "Garantie de revenus", value: "7 % net de frais de gestion par an pendant 36 mois, soit 21 % du prix sécurisés sur 3 ans" },
+      { label: "Garantie de délai", value: "livraison au 3e trimestre 2028. Au-delà de 3 mois de grâce, pénalités de 1,5 million de roupies par jour de retard, soit environ 2 250 € par mois et 27 000 € par an, versées à vous" },
+      { label: "Garantie financière", value: "le terrain est payé via le compte séquestre du notaire, les travaux sont débloqués à l'avancement, les derniers 10 % à la remise des clés" },
+      { label: "Garantie de jouissance", value: "bail de 30 ans + 30 ans d'extension garantie, au prix de la seule valeur du terrain : 60 ans" },
+    ],
+  },
+  section5: {
+    overline: "La transmission",
+    title: "Ce que vous possédez.",
+    cartouches: [
+      "Bail notarié 30 ans + 30 ans garantis",
+      "Société détenue à 100 %, sans prête-nom",
+      "Transmissible à vos enfants",
+      "Un avocat indépendant, première consultation offerte",
+    ],
+    rows: [
+      { label: "La maison", value: "à vous, via une société dont vous détenez 100 % des parts, sans prête-nom" },
+      { label: "Le terrain", value: "bail notarié de 30 ans + 30 ans garantis, soit 60 ans de jouissance" },
+      { label: "La transmission", value: "à vos enfants, ce sont les parts de votre société qui se transmettent, sans impôt sur les successions en Indonésie" },
+      { label: "L'avocat", value: "indépendant, français, installé en Indonésie, lit votre contrat et reste votre interlocuteur, première consultation offerte" },
+    ],
+    paragraphs: [
+      "On vous le dit tel que c'est. Un étranger ne peut pas acheter le sol à Bali. Il achète un droit d'usage du terrain. Sur Seseh Sunset Villas, c'est un bail notarié de 30 ans, plus 30 ans d'extension garantis dans le contrat. Le renouvellement porte sur le seul terrain, environ 20 % du prix, et si ce prix fait débat, trois experts indépendants le fixent. La maison, elle, est à vous, détenue par une société dont vous possédez 100 % des parts. Pas de prête-nom. C'est le régime standard des propriétaires étrangers à Bali.",
+      "Pour la transmission, nous ne jouons pas à l'avocat. Nous vous mettons en relation avec un avocat français indépendant, installé en Indonésie. Il lit votre contrat, vous explique comment la maison se transmet à vos enfants, et reste votre interlocuteur, quoi qu'il arrive. La première consultation est offerte.",
+    ],
+  },
+  venirABali: {
+    overline: "Sur place",
+    title: "Le jour de la remise des clés, on vous fait venir à Bali.",
+    image: undefined, // photo de la plage de Seseh non disponible dans le repo — voir rapport
+    imageCaption: "La plage de Seseh.",
+    rows: [
+      { label: "Avant de décider", value: "visite des villas livrées et du chantier, sur rendez-vous" },
+      { label: "À la remise des clés", value: "votre déplacement est pris en charge, pour vous et la personne de votre choix" },
+      { label: "Vos premières nuits", value: "vous découvrez votre maison et vous y dormez les premiers, avant sa mise en location" },
+      { label: "Ensuite", value: "votre maison, à votre rythme. Vous y séjournez quand vous le souhaitez, et le reste du temps, nous la louons et l'entretenons pour vous." },
+    ],
+  },
+  team: {
+    overline: "L'équipe",
+    title: "Nous faire confiance à 12 000 kilomètres.",
+    photo: "/seseh/team/team-photo.webp",
+    photoCaption: "L'équipe SORA à Bali.",
+    quote: "À 12 000 kilomètres, on ne vous demande pas de nous croire. On vous montre comment on travaille.",
+    name: "Gabriel Lapierre",
+    role: "cofondateur",
+    stats: [
+      { value: "28", label: "Villas livrées" },
+      { value: "26", label: "En construction" },
+      { value: "10 ans", label: "Structure garantie" },
+      { value: "93 %", label: "De clients qui réinvestissent" },
+    ],
+    screenLine: "Deux ingénieurs du BTP, passés par Vinci Energies et Bouygues Construction.",
+    detail: {
+      overline: "La confiance",
+      title: "Nous faire confiance à 12 000 kilomètres.",
+      paragraphs: [
+        "SORA, ce sont deux ingénieurs du BTP. Gabriel Lapierre, passé par Vinci Energies. Nitham Lapierre, passée par Bouygues Construction. Installés à Bali depuis quatre ans, nous y construisons avec les méthodes et les exigences que nous appliquions sur ces chantiers-là.",
+        "Nos réalisations : 28 villas livrées, 26 en construction, 4 projets. Nous avons construit, loué, revendu, et 93 % de nos clients réinvestissent chez nous.",
+        "Ce que vous ne verrez pas sur les photos, et qui compte dans vingt ans : une climatisation dimensionnée par un ingénieur, une isolation réelle, des matériaux choisis pour l'humidité tropicale. Une maison qui consomme moins, s'entretient moins, et que vos enfants n'auront pas à rénover.",
+      ],
+      engagementsIntro: "Nos engagements, dans votre contrat :",
+      engagements: [
+        "10 ans de garantie sur la structure, 5 ans sur la toiture, 1 an sur tout le reste, mobilier compris.",
+        "La loi indonésienne n'impose aucune garantie décennale. Nous la proposons quand même.",
+        "Un maître d'œuvre indépendant, d'origine européenne, contrôle chaque étape du chantier.",
+        "Au-delà de trois mois après la date de livraison, des pénalités de retard vous sont versées.",
+      ],
+    },
+  },
+  section7: {
+    overline: "Témoignages",
+    title: "Ils se posaient les mêmes questions que vous.",
+    testimonials: [],
+    ctaLabel: "Demander un entretien privé",
+  },
+  section8: {
+    overline: "L'accès",
+    title: "Comment on travaille ensemble.",
+    intro: "L'accès à l'équipe passe par quelques questions. C'est ce qui nous permet de consacrer à chaque projet le temps qu'il mérite.",
+    steps: [
+      {
+        title: "Quelques questions, 2 minutes.",
+        body: "Pour savoir si nous sommes faits pour travailler ensemble, et préparer l'entretien.",
+      },
+      {
+        title: "Un membre de l'équipe vous rappelle.",
+        body: "Et fixe un premier entretien.",
+      },
+      {
+        title: "30 minutes en visio.",
+        body: "Votre projet, votre horizon, la collection, vos questions.",
+      },
+      {
+        title: "Deuxième entretien.",
+        body: "Plans, prévisionnel, contrat, l'avocat si vous le souhaitez.",
+      },
+      {
+        title: "Réservation 1 000 €, remboursables jusqu'au 31 décembre 2026.",
+        body: "Puis 50 % à l'acte notarié, 4 appels de fonds de 10 % au rythme du chantier, 10 % à la remise des clés.",
+      },
+    ],
+  },
+  lieu: {
+    overline: "Le lieu",
+    title: "Seseh, entre rizières et océan.",
+    entries: [
+      { place: "Plage de Seseh", distance: "3 min, 300 m", photoSrc: undefined },
+      { place: "Restaurants, beach clubs et bien-être", distance: "3 min", photoSrc: undefined },
+      { place: "Canggu", distance: "8 min" },
+      { place: "Aéroport international de Bali", distance: "60 min" },
+    ],
+  },
+  section10: {
+    overline: "Le marché",
+    title: "Bali en 2027.",
+    screenLines: [
+      "L'Indonésie tient une croissance d'environ 5 % par an.",
+      "Bali : près de 7 millions de visiteurs en 2025, un record pour la deuxième année consécutive.",
+      "Le 1er janvier 2027, la Signature passe à 385 000 € et l'Exception à 489 000 €.",
+    ],
+    rows: [
+      { label: "Indonésie", value: "croissance d'environ 5 % par an" },
+      { label: "Bali", value: "près de 7 millions de visiteurs en 2025, un record" },
+      { label: "1er janvier 2027", value: "Signature 385 000 €, Exception 489 000 €" },
+    ],
+    ctaLabel: "Demander un entretien privé",
+    paragraphs: [
+      "L'Indonésie, quatrième pays le plus peuplé du monde, tient une croissance d'environ 5 % par an, 5,12 % au deuxième trimestre 2025, 5,04 % au troisième. Bali vient d'enregistrer près de 7 millions de visiteurs étrangers en 2025, en hausse de 9,7 % sur un an, un record pour la deuxième année consécutive. Sur l'île, les prix de l'immobilier progressent d'environ 7 % par an, et les terrains à 300 mètres de la mer ne se multiplient pas.",
+      "Nous ne vendons pas la plus-value. Dans nos calculs, elle vaut zéro. Mais la villa Pererenan, achetée 299 000 €, s'est revendue 330 000 € deux ans plus tard.",
+      "Le 1er janvier 2027, la Signature passe de 369 000 € à 385 000 € et l'Exception de 469 000 € à 489 000 €. Si vous souhaitez acquérir votre maison avant la hausse, répondez aux quelques questions ci-dessous. L'équipe vous rappelle.",
+    ],
+    priceChangeNote: "",
+    sources: [
+      { label: "BPS Statistics Indonesia (PIB T2 et T3 2025)" },
+      { label: "BPS Bali (arrivées 2025)" },
+      { label: "Rapport Horwath HTL / Bali Hotels Association (record 2025)" },
+    ],
+  },
+  section11: {
+    overline: "Entretien privé",
+    title: "Quelques questions avant de nous appeler.",
+    embedCode: undefined,
+  },
+  section9: {
+    overline: "Questions fréquentes",
+    title: "Ce que vous voulez savoir avant l'entretien.",
+    items: [
+      {
+        q: "Je ne suis jamais allé à Bali. Dois-je y aller avant d'acheter ?",
+        a: "Non. Beaucoup de nos clients ont acheté sans venir, sur plans, rendus, suivi de chantier en ligne et échanges avec l'équipe. Si vous préférez voir, nous organisons une visite des villas livrées et du chantier.",
+      },
+      {
+        q: "Combien de temps puis-je séjourner dans ma maison ?",
+        a: "Autant que vous le souhaitez, c'est la vôtre. Vos séjours sont simplement déduits du plancher de revenus, au prorata des semaines occupées.",
+      },
+      {
+        q: "Et si je préfère ne pas la louer du tout ?",
+        a: "C'est possible. Le plancher de revenus s'applique uniquement lorsque la maison est louée et gérée par SORA.",
+      },
+      {
+        q: "Qui s'occupe de la maison quand je n'y suis pas ?",
+        a: "SORA, sur place : location, accueil, entretien, ménage, comptabilité, et un rapport de gestion chaque mois. Rachel dirige une entreprise du bâtiment à Paris, un million de chiffre d'affaires, tout repose sur elle. Elle connaît la chaudière qui lâche et l'appel du dimanche soir, et elle ne voulait plus rien avoir à gérer. Sa première réaction sur Bali : gérer une villa à 12 000 kilomètres, non merci. Sauf qu'elle n'a rien à gérer. Villa à Canggu, 299 000 € clé en main. Elle a signé et elle est retournée à sa vie : 24 000 € nets par an, environ 8 % net, sans un check-in, sans une ampoule changée. Un an plus tard, elle est revenue d'elle-même en prendre une deuxième, à Seseh.",
+      },
+      {
+        q: "Comment fonctionne la garantie de revenus ?",
+        a: "Pendant les 36 premiers mois de location, SORA vous garantit un résultat net d'au moins 7 % par an du prix d'achat, soit 25 830 € par an sur une Signature et 32 830 € sur une Exception. Le résultat garanti est le résultat net d'exploitation : les loyers, moins les frais de gestion et les charges, avant fiscalité. Chaque fin d'année, nous comparons le résultat réel à ce plancher. S'il est inférieur, SORA verse la différence. S'il est supérieur, tout vous revient. La garantie s'applique avec la gestion SORA, et vos séjours sont déduits au prorata. Pourquoi 7 % quand nos villas ont fait 10,2 % en 2025 ? Parce qu'un plancher se fixe bas pour être tenu.",
+      },
+      {
+        q: "Que comprend exactement le prix ?",
+        a: "Tout : le terrain, la construction, le mobilier, les permis. La maison est livrée meublée et décorée. À prévoir en plus : 1 % de frais de mutation, l'équivalent des frais de notaire, et 800 € pour la création de votre société, la PT PMA.",
+      },
+      {
+        q: "Ai-je besoin d'une assurance ?",
+        a: "Oui, et elle est à votre charge. Une assurance multirisque couvre la maison et son mobilier : incendie, vol, vandalisme, dégâts des eaux, tempêtes, inondations, séismes, tsunamis, éruptions volcaniques. À titre de repère, l'assurance de l'une de nos villas de 160 m², assurée 261 000 €, coûte environ 725 € par an. Nous vous mettons en relation avec l'assureur à la livraison.",
+      },
+      {
+        q: "Puis-je personnaliser l'extérieur ?",
+        a: "L'extérieur reste signé par les architectes, pour préserver l'harmonie de la résidence. Vous concevez l'intérieur avec Julie : ambiance, matières, mobilier, et selon le modèle les options, jacuzzi, bain froid, panneaux solaires.",
+      },
+      {
+        q: "Comment se passe le paiement ?",
+        a: "1 000 € à la réservation, remboursables sans condition jusqu'au 31 décembre 2026. 50 % à l'acte notarié, environ quatre semaines plus tard. Puis quatre appels de fonds de 10 % à chaque étape du chantier, et 10 % à la remise des clés. Une remise de 5 % est accordée pour 90 % payés à la signature, sur les signatures 2026.",
+      },
+      {
+        q: "Quand la maison est-elle livrée, et comment suivre le chantier ?",
+        a: "Livraison prévue au troisième trimestre 2028. Vous recevez un point d'avancement chaque semaine, en ligne, sur votre espace personnel dédié.",
+      },
+      {
+        q: "Et si le chantier prend du retard ?",
+        a: "Trois mois de grâce après la date prévue, puis des pénalités de 1,5 million de roupies par jour de retard, environ 2 250 € par mois, 27 000 € par an, qui vous sont versées. Vous suivez l'avancement chaque semaine.",
+      },
+      {
+        q: "Mes enfants pourront-ils en hériter ?",
+        a: "Oui. Vous détenez votre maison à travers une société dont vous possédez 100 % des parts : ce sont ces parts qui se transmettent. Il n'y a pas d'impôt sur les successions en Indonésie. L'avocat indépendant vous accompagne, selon votre situation.",
+      },
+      {
+        q: "Et si je veux revendre un jour ?",
+        a: "Oui, et nous l'avons déjà fait. Samuel avait acheté un loft sur plan à Canggu, 99 000 € clé en main : un plan, des rendus 3D, une date de livraison. Pendant le chantier, le marché a fait son travail. D'autres acheteurs voulaient un bien terminé, prêt à encaisser dès le mois suivant, et acceptaient de payer plus pour ne pas attendre dix-huit mois. À la livraison, nous lui avons posé la question : garder, ou vendre ? Il a vendu. Acheté 99 000 €, ressorti à 115 000 € en moins d'un an, sans avoir vu passer un seul voyageur. Il n'a pas rapatrié l'argent : il l'a réinvesti aussitôt à Seseh.",
+      },
+      {
+        q: "Quelle fiscalité s'applique ?",
+        a: "La fiscalité indonésienne est intégrée au prévisionnel que vous recevez en entretien. Pour votre situation personnelle en France, en Belgique ou en Suisse, l'avocat indépendant vous conseille.",
+      },
+      {
+        q: "Puis-je venir accompagné de mon expert-comptable ou de mon avocat ?",
+        a: "Oui, et nous vous y encourageons.",
+      },
+    ],
+  },
+  stickyBar: {
+    ctaLabel: "Demander un entretien privé",
+  },
+}
+
+export default content

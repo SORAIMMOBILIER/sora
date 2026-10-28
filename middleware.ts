@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { isCampaignPathname } from "@/lib/campaign-pages"
 
 // Détecte le préfixe /en dans l'URL demandée AVANT que next.config.ts ne
 // réécrive silencieusement /en/xxx vers /xxx (même page, même fichier —
@@ -25,6 +26,10 @@ export function middleware(request: NextRequest) {
 
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set("x-locale", locale)
+  // Permet aux Server Components (pas de usePathname côté serveur) de
+  // savoir qu'on est sur une page de campagne Meta, pour alléger ce qui
+  // est chargé (voir src/i18n/request.ts et src/app/layout.tsx).
+  requestHeaders.set("x-campaign-page", isCampaignPathname(pathname) ? "1" : "0")
 
   const response = NextResponse.next({ request: { headers: requestHeaders } })
   response.cookies.set("NEXT_LOCALE", locale, {

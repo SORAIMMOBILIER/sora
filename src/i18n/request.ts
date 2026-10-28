@@ -17,6 +17,14 @@ export default getRequestConfig(async () => {
   const raw = headerStore.get("x-locale")
   const locale: Locale = raw === "en" ? "en" : DEFAULT_LOCALE
 
+  // Les pages de campagne Meta (voir src/lib/campaign-pages.ts) n'utilisent
+  // jamais useTranslations : leur texte vient de content/*.ts, pas des
+  // fichiers de traduction du site. On évite de charger et d'envoyer au
+  // client les ~60 Ko de messages/{locale}.json pour rien.
+  if (headerStore.get("x-campaign-page") === "1") {
+    return { locale, messages: {} }
+  }
+
   return {
     locale,
     messages: (await import(`../../messages/${locale}.json`)).default,
