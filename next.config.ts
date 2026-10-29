@@ -24,6 +24,28 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         ],
       },
+      // Landing page Meta "maison-seseh-bali" : cachée, campagnes payantes
+      // uniquement. En-tête en plus de la balise <meta robots> posée par
+      // generateMetadata (robots: {index:false, follow:false}) — ceinture
+      // et bretelles pour qu'aucun moteur ne l'indexe. Ne jamais lister ces
+      // deux adresses dans robots.txt (ça reviendrait à les rendre publiques).
+      {
+        source: "/maison-seseh-bali",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/en/home-seseh-bali",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      // Landing page Meta "villa-seseh-bali" (page B) : même traitement.
+      {
+        source: "/villa-seseh-bali",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/en/villa-seseh-bali",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
   async redirects() {
@@ -47,6 +69,8 @@ const nextConfig: NextConfig = {
       // naturel pour le référencement anglophone), pas "/en/fondateurs".
       // Voir la même table dans src/components/localized-link.tsx.
       { source: "/en/founders", destination: "/fondateurs" },
+      // Landing page Meta : même logique, slug anglais distinct.
+      { source: "/en/home-seseh-bali", destination: "/maison-seseh-bali" },
       { source: "/en", destination: "/" },
       { source: "/en/:path*", destination: "/:path*" },
     ];

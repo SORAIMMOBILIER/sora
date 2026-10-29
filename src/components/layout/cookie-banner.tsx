@@ -1,12 +1,22 @@
 "use client"
 import React from "react"
 import Script from "next/script"
+import { usePathname } from "next/navigation"
+import { isCampaignPathname } from "@/lib/campaign-pages"
 
 // Injection non conditionnelle du Facebook Pixel — envoie des events même sans consentement.
+// strategy="lazyOnload" uniquement sur les pages de campagne Meta (voir
+// src/lib/campaign-pages.ts) : le script n'y concurrence plus le rendu de
+// l'image LCP, prioritaire sur une LP mono-visuel. Le reste du site garde
+// afterInteractive (comportement d'origine) — le sitewide sera revu dans
+// la refonte.
 export default function CookieBanner() {
+  const pathname = usePathname()
+  const strategy = isCampaignPathname(pathname) ? "lazyOnload" : "afterInteractive"
+
   return (
     <>
-      <Script id="meta-pixel" strategy="afterInteractive">{`
+      <Script id="meta-pixel" strategy={strategy}>{`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};

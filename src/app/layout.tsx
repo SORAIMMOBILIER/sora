@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { Agentation } from "agentation"
 import { Hanken_Grotesk } from "next/font/google"
 import localFont from "next/font/local"
 import { NextIntlClientProvider } from "next-intl"
@@ -13,6 +12,7 @@ import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import { translateToEnglish } from "@/lib/translate"
 import { organizationJsonLd } from "@/lib/structured-data"
 import { hreflangAlternates } from "@/lib/hreflang"
+import { headers } from "next/headers"
 import "./globals.css"
 
 const eightly = localFont({
@@ -130,33 +130,37 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   // Le layout racine wrappe aussi /studio (Sanity Studio, page "force-static").
   // Ce fetch + cette traduction ne servent qu'au menu Réalisations de la
-  // navbar (masquée sur /studio) — jamais essentiels au rendu de la page.
+  // navbar (masquée sur /studio, et sur les pages de campagne Meta — voir
+  // src/lib/campaign-pages.ts) — jamais essentiels au rendu de la page.
   // Protégés par un try/catch pour ne jamais faire planter une route qui
   // n'a même pas besoin de cette donnée.
+  const isCampaignPage = (await headers()).get("x-campaign-page") === "1"
   let navRealisations: NavRealisation[] = []
-  try {
-    const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
+  if (!isCampaignPage) {
+    try {
+      const raw = await sanityFetch<NavRealisationRaw[]>({ query: NAV_REALISATIONS_QUERY, tags: ["realisation"] })
 
-    const translatedText =
-      locale === "en"
-        ? await translateToEnglish(
-            raw.map((r) => ({ slug: r.slug, location: r.location || "", title: r.cardTitle || r.heroTitle || "" })),
-            "home-carousel-realisations",
-          )
-        : null
-    const navTextBySlug = new Map((translatedText || []).map((r) => [r.slug, r]))
+      const translatedText =
+        locale === "en"
+          ? await translateToEnglish(
+              raw.map((r) => ({ slug: r.slug, location: r.location || "", title: r.cardTitle || r.heroTitle || "" })),
+              "home-carousel-realisations",
+            )
+          : null
+      const navTextBySlug = new Map((translatedText || []).map((r) => [r.slug, r]))
 
-    navRealisations = raw.map((r) => {
-      const en = navTextBySlug.get(r.slug)
-      return {
-        slug: r.slug,
-        status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
-        location: en?.location || r.location || "",
-        title: en?.title || r.cardTitle || r.heroTitle || "",
-      }
-    })
-  } catch {
-    navRealisations = []
+      navRealisations = raw.map((r) => {
+        const en = navTextBySlug.get(r.slug)
+        return {
+          slug: r.slug,
+          status: STATUS_LABEL[r.status || "en-cours"] || "En cours",
+          location: en?.location || r.location || "",
+          title: en?.title || r.cardTitle || r.heroTitle || "",
+        }
+      })
+    } catch {
+      navRealisations = []
+    }
   }
 
   const messages = await getMessages()
@@ -174,11 +178,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <ConditionalSmoothScroll>
             <SiteChrome realisations={navRealisations} />
             {children}
-            {process.env.NODE_ENV === "development" && (
-              <DevAgentation>
-                <Agentation />
-              </DevAgentation>
-            )}
+            <DevAgentation />
             <CookieBanner />
           </ConditionalSmoothScroll>
         </NextIntlClientProvider>
