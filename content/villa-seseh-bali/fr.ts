@@ -4,7 +4,7 @@ const content: VillaSesehBaliContent = {
   meta: {
     title: "Une villa à Seseh, Bali | SORA Immobilier",
     description:
-      "Villas de 1 et 2 chambres à 300 m de la plage, 149 000 € et 239 000 € tout compris. 10,2 % net constaté en 2025, gestion complète, revente prouvée.",
+      "Villas de 1 à 4 chambres à 300 m de la plage, dès 149 000 € tout compris. 10,2 % net constaté en 2025, gestion complète, revente prouvée.",
   },
   nav: {
     switchLabel: "EN",

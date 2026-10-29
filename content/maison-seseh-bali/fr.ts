@@ -19,11 +19,10 @@ const content: MaisonSesehBaliContent = {
     title: "Donnez une adresse à votre capital, à 300 mètres de l'océan.",
     subtitle: "Dessinée avec vous. Gérée quand vous n'y êtes pas. Transmise à vos enfants.",
     videoUrl: undefined,
-    // Vidéo de fond du hero (rizières, <2 Mo) : aucun fichier conforme
-    // disponible (le seul asset Bali existant montre des vues aériennes
-    // interdites sur ces pages) — affichage sur l'image d'accueil en
-    // attendant un fichier dédié.
-    bgVideoUrl: undefined,
+    // Vidéo de fond du hero : vidéo des rizières du hero du site principal,
+    // transformation Cloudinary q_auto:eco,w_1280 (~1,27 Mo). La règle
+    // "pas de vue aérienne" concerne le complexe, pas le paysage.
+    bgVideoUrl: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto:eco,w_1280/v1783086460/Header_site_u1i0j9.mp4",
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
       { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },
@@ -103,9 +102,13 @@ const content: MaisonSesehBaliContent = {
       specLine: "2 chambres, 3e en option · 153 m² · piscine privée",
       priceLineSpec: "2 ou 3 chambres · 153 m²",
       gallery: [
-        { src: "/seseh/signature-ia/sejour.webp", alt: "Séjour d'une villa Signature à Seseh", caption: "Séjour" },
-        { src: "/seseh/signature-ia/cuisine.webp", alt: "Cuisine d'une villa Signature à Seseh", caption: "Cuisine" },
-        { src: "/seseh/signature-ia/salle-a-manger.webp", alt: "Salle à manger d'une villa Signature à Seseh", caption: "Salle à manger" },
+        { src: "/seseh/signature-real/salon.webp", alt: "Salon d'une villa Signature à Seseh", caption: "Salon" },
+        { src: "/seseh/signature-real/cuisine.webp", alt: "Cuisine d'une villa Signature à Seseh", caption: "Cuisine" },
+        { src: "/seseh/signature-real/salle-a-manger.webp", alt: "Salle à manger d'une villa Signature à Seseh", caption: "Salle à manger" },
+        { src: "/seseh/signature-real/chambre-1.webp", alt: "Chambre d'une villa Signature à Seseh", caption: "Chambre" },
+        { src: "/seseh/signature-real/chambre-2.webp", alt: "Chambre d'une villa Signature à Seseh", caption: "Chambre" },
+        { src: "/seseh/signature-real/salle-de-bain.webp", alt: "Salle de bain d'une villa Signature à Seseh", caption: "Salle de bain" },
+        { src: "/seseh/signature-real/terrasse.webp", alt: "Terrasse d'une villa Signature à Seseh", caption: "Terrasse" },
       ],
       planRdc: "/seseh/plans/signature/rdc-crop.webp",
       planEtage: "/seseh/plans/signature/etage-crop.webp",
@@ -345,7 +348,7 @@ const content: MaisonSesehBaliContent = {
       { value: "28", label: "Villas livrées" },
       { value: "26", label: "En construction" },
       { value: "10 ans", label: "Structure garantie" },
-      { value: "93 %", label: "De clients qui réinvestissent" },
+      { value: "100 %", label: "Dans les délais annoncés" },
     ],
     screenLine: "Deux ingénieurs du BTP, passés par Vinci Energies et Bouygues Construction.",
     detail: {
