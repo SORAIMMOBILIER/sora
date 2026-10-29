@@ -17,3 +17,10 @@ export function trackCustom(eventName: string, params?: Record<string, unknown>)
 export function trackCtaClick(section: string, page: string = "maison-seseh-bali") {
   trackCustom("LP_CTAClick", { page, section })
 }
+
+// Event standard Meta "Lead" (pas trackCustom) — uniquement sur les leads
+// qualifiés ("qualifie" / "qualifie-2027"), jamais sur "nurture".
+export function trackLead(contentName: "LP-A" | "LP-B", contentCategory: string | null) {
+  if (typeof window === "undefined") return
+  window.fbq?.("track", "Lead", { content_name: contentName, content_category: contentCategory })
+}

@@ -1,26 +1,26 @@
 import { DISPLAY, C } from "./tokens"
 import { H2 } from "./primitives"
-import EntretienEmbed from "@/components/landing/maison-seseh-bali/entretien-embed"
+import Questionnaire from "./questionnaire/questionnaire"
+import type { QuestionnaireConfig } from "./questionnaire/types"
 
 // `.contact` : fond sombre + photo, texte blanc à gauche, formulaire (fond
-// papier) à droite. Pas de code d'intégration GoHighLevel disponible ici
-// (voir docs/tasvan-tokens.md) — on garde EntretienEmbed dans la carte.
+// papier) à droite — questionnaire natif en étapes.
 export default function ContactSection({
   title,
   intro,
   photoSrc,
   formTitle,
   formHint,
-  embedCode,
-  embedSource,
+  questionnaire,
+  anchorId,
 }: {
   title: string
   intro: string
   photoSrc?: string
   formTitle: string
   formHint: string
-  embedCode?: string
-  embedSource: string
+  questionnaire: QuestionnaireConfig
+  anchorId: string
 }) {
   return (
     <div className="relative text-white" style={{ background: "#1d2a2c" }}>
@@ -42,7 +42,7 @@ export default function ContactSection({
             {formHint}
           </p>
           <div className="mt-5">
-            <EntretienEmbed embedCode={embedCode} source={embedSource} />
+            <Questionnaire config={questionnaire} anchorId={anchorId} />
           </div>
         </div>
       </div>
