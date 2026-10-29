@@ -9,7 +9,7 @@ import type { QuestionnaireConfig } from "../src/components/landing/tasvan/quest
 
 const horizonOptions = ["Dans les 3 mois", "Dans 3 à 6 mois", "Dans 6 à 12 mois", "Dans plus d'un an"]
 const fondsOptions = ["Oui, disponible", "Dans les 6 mois, vente ou cession en cours", "Dans plus d'un an", "Je prévois un financement"]
-const experienceOptions = ["Oui, en France", "Oui, à l'étranger", "Non, ce serait mon premier investissement"]
+const experienceOptions = ["Oui, en France", "Oui, à l'étranger", "Oui, en France et à l'étranger", "Non, ce serait mon premier investissement"]
 const projetOptions = ["Une résidence secondaire, à vivre en famille", "Un investissement locatif", "Les deux"]
 
 export const questionnaireA: QuestionnaireConfig = {
@@ -21,7 +21,7 @@ export const questionnaireA: QuestionnaireConfig = {
     id: "modele",
     kind: "choice",
     question: "Quelle maison vous intéresse ?",
-    options: ["Signature", "Exception", "Je ne sais pas encore"],
+    options: ["Exception", "Signature", "Prestige", "Élégance", "Je ne sais pas encore"],
   },
   questions: [
     { id: "projet", kind: "choice", question: "Qu'est-ce qui vous attire dans une maison à Bali ?", options: projetOptions },
@@ -47,7 +47,7 @@ export const questionnaireB: QuestionnaireConfig = {
     id: "modele",
     kind: "choice",
     question: "Quelle villa vous intéresse ?",
-    options: ["Élégance", "Prestige", "Je ne sais pas encore"],
+    options: ["Élégance", "Prestige", "Signature", "Exception", "Je ne sais pas encore"],
   },
   questions: [
     { id: "projet", kind: "choice", question: "Que cherchez-vous ?", options: projetOptions },

@@ -56,13 +56,23 @@ export default function VillaBlock({
   roiNote: string
 }) {
   return (
-    <div id={sectionKey} className="grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-[clamp(28px,5vw,64px)] items-start">
-      <div className="grid gap-[14px] min-w-0">
+    <div id={sectionKey} className="villa-block-grid grid gap-[clamp(28px,5vw,64px)] items-start">
+      {/* Mobile : galerie + plans d'abord, texte/infos ensuite (demande
+          explicite). Ordinateur inchangé (1.25fr/1fr) — grid-template-areas
+          nommées pour que l'ordre mobile soit explicite, indépendant de
+          l'ordre du DOM. */}
+      <style>{`
+        .villa-block-grid { grid-template-columns: 1fr; grid-template-areas: "gallery" "info"; }
+        @media (min-width: 768px) {
+          .villa-block-grid { grid-template-columns: 1.25fr 1fr; grid-template-areas: "gallery info"; }
+        }
+      `}</style>
+      <div style={{ gridArea: "gallery" }} className="grid gap-[14px] min-w-0">
         <VillaGallery images={gallery} pendingLabel={pendingLabel} swipeLabel={swipeLabel} />
         <PlanFrame rdc={planRdc} etage={planEtage} rdcLabel={planRdcLabel} etageLabel={planEtageLabel} alt={planAlt} pendingLabel={pendingLabel} note={planNote} />
       </div>
 
-      <div>
+      <div style={{ gridArea: "info" }}>
         <div className="mb-6">
           <h3 className="text-[clamp(34px,4.4vw,50px)] font-light leading-[1.08] tracking-[-.01em]" style={{ fontFamily: DISPLAY, color: C.ink }}>
             {name}

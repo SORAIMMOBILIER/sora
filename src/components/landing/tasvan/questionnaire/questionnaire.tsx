@@ -5,7 +5,7 @@ import { C, DISPLAY } from "../tokens"
 import type { QuestionnaireConfig } from "./types"
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const
-const CALL_TIME_OPTIONS = ["Dès que possible", "Ce soir", "Demain matin"]
+const CALL_TIME_OPTIONS = ["En matinée", "À l'heure du déjeuner", "En fin de journée", "Le week-end"]
 // Les 4 gammes existent toutes sur les deux pages (fiches visibles + repliées) :
 // un ?modele= venant d'une fiche repliée (ex. Prestige sur la page A) doit
 // pouvoir pré-remplir/sauter la question même si "Prestige" n'est pas l'une
