@@ -9,6 +9,8 @@ export type QuestionnaireConfig = {
   page: "LP-A" | "LP-B"
   pageSlug: "maison-seseh-bali" | "villa-seseh-bali"
   itemLabel: string // "maison" | "villa" — pour les textes génériques
+  introLine: string
   modelStep: ChoiceStep
   questions: ChoiceStep[]
+  ctaLabel: string // libellé du bouton d'envoi de l'étape contact
 }

@@ -6,6 +6,11 @@ import type { QuestionnaireConfig } from "./types"
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const
 const CALL_TIME_OPTIONS = ["Dès que possible", "Ce soir", "Demain matin"]
+// Les 4 gammes existent toutes sur les deux pages (fiches visibles + repliées) :
+// un ?modele= venant d'une fiche repliée (ex. Prestige sur la page A) doit
+// pouvoir pré-remplir/sauter la question même si "Prestige" n'est pas l'une
+// des options affichées par cette page (voir modelStep.options, limité à 3).
+const ALL_MODEL_NAMES = ["Signature", "Exception", "Prestige", "Élégance"]
 
 type Phase = "steps" | "contact" | "submitting" | "done" | "error"
 
@@ -23,7 +28,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
   useEffect(() => {
     const search = new URLSearchParams(window.location.search)
     const modele = search.get("modele")
-    const match = modele ? config.modelStep.options.find((o) => o.toLowerCase() === modele.toLowerCase()) : null
+    const match = modele ? ALL_MODEL_NAMES.find((o) => o.toLowerCase() === modele.toLowerCase()) : null
     setPresetModel(match || null)
     const utm: Partial<Record<(typeof UTM_KEYS)[number], string>> = {}
     for (const k of UTM_KEYS) {
@@ -62,6 +67,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
   const totalSteps = steps.length + 1 // + étape contact
   const currentStepNum = phase === "contact" ? steps.length + 1 : stepIndex + 1
   const progressPct = Math.round((currentStepNum / totalSteps) * 100)
+  const isFirstScreen = phase === "steps" && stepIndex === 0
 
   const selectOption = (id: string, value: string) => {
     setAnswers({ ...answers, [id]: value })
@@ -151,9 +157,20 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
 
   return (
     <div data-testid="questionnaire">
+      <div className="flex items-center justify-between mb-2">
+        <p className="text-[12px] uppercase tracking-[0.12em]" style={{ color: C.muted }}>
+          {currentStepNum} sur {totalSteps}
+        </p>
+      </div>
       <div className="h-[3px] w-full bg-black/10 rounded-full overflow-hidden mb-6">
         <div className="h-full transition-all" style={{ width: `${progressPct}%`, background: C.ink }} />
       </div>
+
+      {isFirstScreen && (
+        <p className="text-[14px] mb-5" style={{ color: C.muted }}>
+          {config.introLine}
+        </p>
+      )}
 
       {phase === "steps" && activeQuestion && (
         <div>
@@ -280,7 +297,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             className="mt-6 h-[52px] w-full flex items-center justify-center text-[12px] font-medium uppercase tracking-[0.16em] text-white disabled:opacity-50"
             style={{ background: C.ink }}
           >
-            {phase === "submitting" ? "Envoi..." : "Envoyer"}
+            {phase === "submitting" ? "Envoi..." : config.ctaLabel}
           </button>
           <p className="text-[13px] mt-3" style={{ color: C.muted }}>
             En envoyant ce formulaire, j&apos;accepte d&apos;être rappelé par SORA.
