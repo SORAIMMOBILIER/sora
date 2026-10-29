@@ -53,20 +53,24 @@ const tasvanExtra = {
     ],
   },
 
-  // "Ce que vous possédez" : trois cartes sur le leasehold (plus la carte
-  // 7 %, déjà présentée dans les garanties).
+  // "Ce que vous possédez" : trois cartes sur le leasehold.
   acquisition: {
     overline: "La propriété",
     title: "Ce que vous possédez",
     cards: [
-      { value: "30 ans", text: "Un bail notarié, signé devant notaire." },
-      { value: "+30 ans", text: "L'extension garantie au contrat, au prix de la seule valeur du terrain." },
       {
         value: "60 ans",
-        text: "De jouissance. Votre maison vous appartient, via une société dont vous détenez 100 % des parts, sans prête-nom, et les parts se transmettent à vos enfants.",
+        text: "Un bail notarié de 30 ans, plus 30 ans d'extension garantis au contrat, au prix de la seule valeur du terrain.",
+      },
+      {
+        value: "PT PMA",
+        text: "Votre société indonésienne, dont vous détenez 100 % des parts, sans prête-nom. C'est elle qui porte la villa et le bail.",
+      },
+      {
+        value: "Transmission",
+        text: "Ce sont les parts de votre société qui se transmettent à vos enfants, sans impôt sur les successions en Indonésie. Un avocat français indépendant vous accompagne, première consultation offerte.",
       },
     ],
-    bottomLine: "Un avocat français indépendant, installé en Indonésie, relit votre contrat. Première consultation offerte.",
   },
 
   gestion: {
@@ -107,7 +111,21 @@ const tasvanExtra = {
   },
 
   equipe: {
-    intro: "Deux ingénieurs du BTP, Vinci Energies et Bouygues Construction, installés à Bali.",
+    intro: "Deux ingénieurs du BTP, Vinci Energies et Bouygues Construction, installés à Bali depuis 4 ans.",
+    founders: [
+      {
+        name: "Gabriel Lapierre",
+        role: "cofondateur et directeur général",
+        portrait: "/gabriel-lapierre.webp",
+        bio: "Ingénieur, investisseur depuis 2019, installé à Bali depuis 2023. J'ai passé des mois à étudier les règles et à rencontrer des centaines d'acteurs avant de constituer l'équipe. Un premier projet de 9 villas avec notre cercle d'investisseurs, aujourd'hui louées, puis 19 autres. Je pilote chaque projet du lancement à la livraison : construction, suivi de chantier, accompagnement des investisseurs.",
+      },
+      {
+        name: "Nitham Lapierre",
+        role: "cofondatrice et directrice du développement",
+        portrait: "/nitham-lapierre.webp",
+        bio: "Ingénieure, formée chez Bouygues Construction. Un bon projet se joue avant le premier coup de pelle : j'étudie les terrains et les marchés, je monte chaque projet en avant-projet jusqu'à son lancement, et je gère nos relations avec les partenaires locaux.",
+      },
+    ],
   },
 
   // Les 11 témoignages vidéo de https://www.sora-immobilier.com/temoignages

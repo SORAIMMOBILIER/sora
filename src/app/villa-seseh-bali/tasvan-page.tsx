@@ -13,6 +13,7 @@ import FiletRows from "@/components/landing/tasvan/filet-rows"
 import FaqAccordion from "@/components/landing/tasvan/faq-accordion"
 import RoiCells from "@/components/landing/tasvan/roi-cells"
 import TeamSection from "@/components/landing/tasvan/team-section"
+import FounderCards from "@/components/landing/tasvan/founder-cards"
 import LeLieuVideo from "@/components/landing/tasvan/le-lieu-video"
 import VideoTestimonials from "@/components/landing/tasvan/video-testimonials"
 import ContactSection from "@/components/landing/tasvan/contact-section"
@@ -246,7 +247,7 @@ export default function VillaTasvanPage() {
         <div className="mt-4">
           <H2>{tasvanExtra.acquisition.title}</H2>
         </div>
-        <LeaseholdCards cards={tasvanExtra.acquisition.cards} bottomLine={tasvanExtra.acquisition.bottomLine} />
+        <LeaseholdCards cards={tasvanExtra.acquisition.cards} />
       </Section>
 
       {/* 11. Le lieu — vidéo du hero du site principal en fond */}
@@ -265,7 +266,8 @@ export default function VillaTasvanPage() {
           role={content.team.role}
           pendingLabel={tasvanExtra.pending.team}
         />
-        <div className="mt-10">
+        <FounderCards founders={tasvanExtra.equipe.founders} />
+        <div className="mt-12">
           <RoiCells stats={maisonContent.team.stats} />
         </div>
       </Section>
