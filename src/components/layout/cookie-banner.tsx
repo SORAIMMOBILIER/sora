@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Script from "next/script"
 import { usePathname } from "next/navigation"
 import { isCampaignPathname } from "@/lib/campaign-pages"
@@ -10,9 +10,25 @@ import { isCampaignPathname } from "@/lib/campaign-pages"
 // l'image LCP, prioritaire sur une LP mono-visuel. Le reste du site garde
 // afterInteractive (comportement d'origine) — le sitewide sera revu dans
 // la refonte.
+//
+// Chargé uniquement sur le domaine de production (www.sora-immobilier.com
+// ou sora-immobilier.com) : les previews Vercel (sora-xxxx-sora-
+// immobilier.vercel.app) et localhost ne doivent jamais appeler le pixel,
+// pour ne pas polluer les données Meta avec des visites internes. Vérifié
+// côté client (window.location.hostname) — absent côté serveur, donc le
+// <Script> n'est ajouté qu'après hydratation, jamais pendant le SSR.
+const PRODUCTION_HOSTNAMES = ["www.sora-immobilier.com", "sora-immobilier.com"]
+
 export default function CookieBanner() {
   const pathname = usePathname()
   const strategy = isCampaignPathname(pathname) ? "lazyOnload" : "afterInteractive"
+  const [isProductionHost, setIsProductionHost] = useState(false)
+
+  useEffect(() => {
+    setIsProductionHost(PRODUCTION_HOSTNAMES.includes(window.location.hostname))
+  }, [])
+
+  if (!isProductionHost) return null
 
   return (
     <>
