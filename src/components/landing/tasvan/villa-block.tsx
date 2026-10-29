@@ -56,23 +56,31 @@ export default function VillaBlock({
   roiNote: string
 }) {
   return (
-    <div id={sectionKey} className="villa-block-grid grid gap-[clamp(28px,5vw,64px)] items-start">
-      {/* Mobile : galerie + plans d'abord, texte/infos ensuite (demande
-          explicite). Ordinateur inchangé (1.25fr/1fr) — grid-template-areas
-          nommées pour que l'ordre mobile soit explicite, indépendant de
-          l'ordre du DOM. */}
+    <div id={sectionKey} className="villa-block-grid grid items-start">
+      {/* Mobile : texte (nom, descriptif, prix, chiffres clés, détails,
+          note de rendement) d'abord, puis galerie + plans, puis le bouton
+          tout en bas (demande explicite). Ordinateur inchangé (1.25fr/1fr,
+          galerie/plans à gauche sur toute la hauteur) — grid-template-areas
+          nommées, indépendant de l'ordre du DOM. Row-gap à 0 sur ordinateur
+          + marge fixe (mt-7) reconstituée sur le bouton pour ne rien changer
+          à l'espacement d'origine entre la note de rendement et le bouton. */}
       <style>{`
-        .villa-block-grid { grid-template-columns: 1fr; grid-template-areas: "gallery" "info"; }
+        .villa-block-grid {
+          grid-template-columns: 1fr;
+          grid-template-areas: "infoTop" "media" "cta";
+          row-gap: clamp(28px,5vw,64px);
+        }
         @media (min-width: 768px) {
-          .villa-block-grid { grid-template-columns: 1.25fr 1fr; grid-template-areas: "gallery info"; }
+          .villa-block-grid {
+            grid-template-columns: 1.25fr 1fr;
+            grid-template-areas: "media infoTop" "media cta";
+            column-gap: clamp(28px,5vw,64px);
+            row-gap: 0;
+          }
         }
       `}</style>
-      <div style={{ gridArea: "gallery" }} className="grid gap-[14px] min-w-0">
-        <VillaGallery images={gallery} pendingLabel={pendingLabel} swipeLabel={swipeLabel} />
-        <PlanFrame rdc={planRdc} etage={planEtage} rdcLabel={planRdcLabel} etageLabel={planEtageLabel} alt={planAlt} pendingLabel={pendingLabel} note={planNote} />
-      </div>
 
-      <div style={{ gridArea: "info" }}>
+      <div style={{ gridArea: "infoTop" }}>
         <div className="mb-6">
           <h3 className="text-[clamp(34px,4.4vw,50px)] font-light leading-[1.08] tracking-[-.01em]" style={{ fontFamily: DISPLAY, color: C.ink }}>
             {name}
@@ -100,16 +108,21 @@ export default function VillaBlock({
         <p className="text-[12.5px] mt-5 leading-[1.5]" style={{ color: C.muted }}>
           {roiNote}
         </p>
+      </div>
 
-        <div className="mt-7">
-          <CtaLink
-            section={sectionKey}
-            label={ctaLabel}
-            anchor={anchor}
-            page={page}
-            className="!w-full !rounded-none !bg-[#1f1f1e] !border !border-[#1f1f1e] !text-[12.5px] !tracking-[.18em] hover:!bg-transparent hover:!text-[#1f1f1e]"
-          />
-        </div>
+      <div style={{ gridArea: "media" }} className="grid gap-[14px] min-w-0">
+        <VillaGallery images={gallery} pendingLabel={pendingLabel} swipeLabel={swipeLabel} />
+        <PlanFrame rdc={planRdc} etage={planEtage} rdcLabel={planRdcLabel} etageLabel={planEtageLabel} alt={planAlt} pendingLabel={pendingLabel} note={planNote} />
+      </div>
+
+      <div style={{ gridArea: "cta" }} className="md:mt-7">
+        <CtaLink
+          section={sectionKey}
+          label={ctaLabel}
+          anchor={anchor}
+          page={page}
+          className="!w-full !rounded-none !bg-[#1f1f1e] !border !border-[#1f1f1e] !text-[12.5px] !tracking-[.18em] hover:!bg-transparent hover:!text-[#1f1f1e]"
+        />
       </div>
     </div>
   )
