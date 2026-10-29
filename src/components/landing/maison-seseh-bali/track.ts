@@ -18,8 +18,10 @@ export function trackCtaClick(section: string, page: string = "maison-seseh-bali
   trackCustom("LP_CTAClick", { page, section })
 }
 
-// Event standard Meta "Lead" (pas trackCustom) — uniquement sur les leads
-// qualifiés ("qualifie" / "qualifie-2027"), jamais sur "nurture".
+// Event standard Meta "Lead" (pas trackCustom), déclenché à chaque envoi
+// réussi du questionnaire. window.fbq est absent hors production (voir
+// cookie-banner.tsx) : l'appel optionnel (?.) ne fait alors rien, sans
+// erreur — le questionnaire continue normalement (webhook compris).
 export function trackLead(contentName: "LP-A" | "LP-B", contentCategory: string | null) {
   if (typeof window === "undefined") return
   window.fbq?.("track", "Lead", { content_name: contentName, content_category: contentCategory })
