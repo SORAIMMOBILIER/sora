@@ -16,9 +16,9 @@ const content: VillaSesehBaliContent = {
   },
   hero: {
     overline: "SESEH SUNSET VILLAS · BALI · 26 VILLAS À 300 M DE LA PLAGE · LIVRAISON T3 2028",
-    title: "10,2 % net en 2025. Zéro gestion.",
+    title: "Vous investissez. On s'occupe du reste.",
     subtitle:
-      "Revente déjà prouvée. Des villas de 1 à 4 chambres à Bali, à 300 mètres de la plage, dès 149 000 € tout compris. Construites par des ingénieurs, louées et gérées par notre équipe, de la première nuit jusqu'à la revente.",
+      "Villas à Seseh, à 300 m de la plage, dès 149 000 € tout compris. 10,2 % net en 2025, gestion et revente assurées par notre équipe.",
     videoUrl: undefined,
     posterImage: "/seseh/prestige/exterior.webp",
     heroImages: [
@@ -37,20 +37,26 @@ const content: VillaSesehBaliContent = {
   section2: {
     overline: "L'étape suivante",
     title: "Vous avez constitué un capital. Il est temps qu'il travaille sans vous.",
+    subhead: "Ce qui fait vraiment le rendement d'une villa",
     screenLines: [
-      "Un placement immobilier se juge sur dix ans, net de tout.",
-      "Les bonnes questions : qui construit, qui loue, qui revend, et avec quelles preuves.",
+      "Sur dix ans, ce n'est pas le prix d'achat qui fait la différence. C'est ce que la villa coûte à faire tourner, et ce qu'elle vaut le jour où vous la revendez.",
     ],
     blocks: [
       {
-        icon: "price",
-        title: "Acheter moins cher.",
-        body: "Un rendement net plus élevé sur le papier. Dans les faits, des charges d'exploitation plus lourdes, une usure prématurée, des travaux de rénovation avant la revente. C'est la rentabilité qui les paie.",
+        title: "Moins de frais, plus de revenus nets",
+        body: "Une villa bien construite demande moins de réparations et moins d'entretien. Chaque euro économisé sur les charges reste dans votre poche, tous les ans.",
       },
       {
-        icon: "shield",
-        title: "Acheter bien construit.",
-        body: "Une villa qui coûte moins à exploiter, qui ne demande aucun réinvestissement pour être remise en état, et qui se revend intacte.",
+        title: "Elle se loue mieux, plus longtemps",
+        body: "Une villa en bon état garde ses notes, ses avis et son prix à la nuit. Le taux d'occupation tient dans la durée.",
+      },
+      {
+        title: "Elle se revend au bon prix",
+        body: "Pas de rénovation à prévoir avant la vente : l'acheteur paie une villa prête à louer, et la plus-value vous revient en entier.",
+      },
+      {
+        title: "À Bali, l'écart se creuse vite",
+        body: "Chaleur, humidité, saison des pluies : le climat use rapidement une construction faite à l'économie. Une villa construite par des ingénieurs traverse les années sans perdre de valeur.",
       },
     ],
     screenClosingLine: "Si votre critère est le prix d'entrée le plus bas de l'île, nous ne serons pas le bon choix.",
@@ -62,13 +68,14 @@ const content: VillaSesehBaliContent = {
     closingParagraph: "La seule question qui compte : dans dix ou quinze ans, laquelle vous aura rapporté le plus ? C'est sur ce calcul que nous travaillons. Si votre critère est le prix d'entrée le plus bas de l'île, nous ne serons pas le bon choix, et nous préférons vous le dire maintenant.",
   },
   section3: {
-    overline: "Nos chiffres",
-    title: "Avant toute promesse, ce qui est déjà fait.",
+    overline: "Déjà livrées, déjà louées.",
+    title: "Ce que nos villas ont rapporté l'année dernière.",
     stats: [
       { value: "28", label: "Villas livrées" },
       { value: "10,2 %", label: "Net en 2025" },
       { value: "82 %", label: "D'occupation" },
       { value: "93 %", label: "Réinvestissent" },
+      { value: "93 %", label: "de nos investisseurs réinvestissent chez SORA" },
     ],
     resaleCartouches: [
       "Loft de Canggu : + 16 % en moins d'un an, avant même d'être loué.",

@@ -13,7 +13,7 @@ export type DistanceEntry = { place: string; distance?: string; photoSrc?: strin
 export type HeroImage = { src: string; alt: string }
 
 export type IconBlock = {
-  icon: "price" | "shield"
+  icon?: "price" | "shield"
   title: string
   body: string
 }
@@ -90,6 +90,7 @@ export type VillaSesehBaliContent = {
   section2: {
     overline: string
     title: string
+    subhead: string
     screenLines: string[]
     blocks: IconBlock[]
     screenClosingLine: string
