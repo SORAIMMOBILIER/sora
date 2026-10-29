@@ -74,7 +74,7 @@ const content: MaisonSesehBaliContent = {
   },
   julie: {
     overline: "L'intérieur",
-    title: "Une maison unique, à votre image.",
+    title: "L'intérieur, une maison unique à votre image",
     screenLines: [
       "Conçu avec Julie Chatelain, architecte d'intérieur publiée dans Art et Décoration.",
       "Matières, teintes, mobilier : la vôtre ne ressemblera à aucune autre.",

@@ -196,9 +196,6 @@ export default function VillaTasvanPage() {
             </div>
           ))}
         </div>
-        <p className="text-[16px] mt-8 max-w-[60ch]" style={{ color: C.muted }}>
-          {content.section2.screenClosingLine}
-        </p>
       </Section>
 
       {/* 6. Plan de paiement */}
