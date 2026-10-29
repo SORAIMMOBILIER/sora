@@ -1,5 +1,5 @@
 import { FONT_VARS } from "@/components/landing/tasvan/fonts"
-import { C } from "@/components/landing/tasvan/tokens"
+import { C, DISPLAY } from "@/components/landing/tasvan/tokens"
 import { Section, Wrap, Kicker, H2 } from "@/components/landing/tasvan/primitives"
 import TasvanHeader from "@/components/landing/tasvan/header"
 import TasvanHero from "@/components/landing/tasvan/hero"
@@ -19,7 +19,6 @@ import VideoTestimonials from "@/components/landing/tasvan/video-testimonials"
 import ContactSection from "@/components/landing/tasvan/contact-section"
 import TasvanFooter from "@/components/landing/tasvan/footer"
 import DarkTile from "@/components/landing/shared/dark-tile"
-import { PriceTagIcon, ShieldIcon } from "@/components/landing/villa-seseh-bali/icons"
 import ScrollDepthTracker from "@/components/landing/maison-seseh-bali/scroll-depth-tracker"
 import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobile-cta"
 import maisonContent from "../../../content/maison-seseh-bali/fr"
@@ -165,7 +164,29 @@ export default function VillaTasvanPage() {
           <H2>{content.section3.title}</H2>
         </div>
         <div className="mt-10">
-          <RoiCells stats={content.section3.stats} />
+          {/* 5 chiffres : grille à part de RoiCells (partagée avec d'autres
+              sections/la page A, non touchée) — 2 colonnes sur mobile (le
+              5e occupe seul sa ligne, pleine largeur), 5 colonnes sur
+              ordinateur comme avant. Même style (bordure, arrondi 18px). */}
+          <div className="grid grid-cols-2 md:grid-cols-5 border rounded-[18px] overflow-hidden" style={{ borderColor: C.line }}>
+            {content.section3.stats.map((s, i) => {
+              const isLast = i === content.section3.stats.length - 1
+              return (
+                <div
+                  key={i}
+                  className={`px-3 py-4 ${isLast ? "col-span-2 md:col-span-1" : i % 2 === 0 ? "border-r border-b md:border-b-0" : "border-b md:border-b-0 md:border-r"}`}
+                  style={{ borderColor: C.line }}
+                >
+                  <p className="text-[clamp(22px,6vw,30px)] leading-[1.05] font-light whitespace-nowrap" style={{ fontFamily: DISPLAY, color: C.ink }}>
+                    {s.value}
+                  </p>
+                  <span className="text-[12px] leading-[1.35] block mt-[6px]" style={{ color: C.muted }}>
+                    {s.label}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
         </div>
         <div className="mt-8">
           <FiletRows rows={content.section3.resaleRows} />
@@ -178,15 +199,21 @@ export default function VillaTasvanPage() {
         <div className="mt-4">
           <H2>{content.section2.title}</H2>
         </div>
-        <div className="mt-[18px] max-w-[60ch] space-y-3 text-[16px]" style={{ color: C.muted }}>
+        <p className="mt-10 text-[20px]" style={{ fontFamily: DISPLAY, color: C.ink }}>
+          {content.section2.subhead}
+        </p>
+        <div className="mt-[14px] max-w-[60ch] space-y-3 text-[16px]" style={{ color: C.muted }}>
           {content.section2.screenLines.map((l) => (
             <p key={l}>{l}</p>
           ))}
         </div>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 border-t" style={{ borderColor: C.line }}>
           {content.section2.blocks.map((block, i) => (
-            <div key={block.title} className={`py-8 md:py-10 ${i === 0 ? "md:pr-10 md:border-r" : "md:pl-10"} border-b md:border-b-0`} style={{ borderColor: C.line }}>
-              {block.icon === "price" ? <PriceTagIcon className="w-6 h-6 mb-4" /> : <ShieldIcon className="w-6 h-6 mb-4" />}
+            <div
+              key={block.title}
+              className={`py-8 md:py-10 border-b ${i % 2 === 0 ? "md:pr-10 md:border-r" : "md:pl-10"} ${i >= content.section2.blocks.length - 2 ? "md:border-b-0" : ""}`}
+              style={{ borderColor: C.line }}
+            >
               <p className="text-[18px] mb-2" style={{ color: C.ink }}>
                 {block.title}
               </p>

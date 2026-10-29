@@ -37,6 +37,7 @@ const content: VillaSesehBaliContent = {
   section2: {
     overline: "The next step",
     title: "You've built up capital. It's time it worked without you.",
+    subhead: "What actually drives a villa's return",
     screenLines: [
       "A property investment is judged over ten years, net of everything.",
       "The right questions: who builds, who rents, who resells, and with what proof.",
