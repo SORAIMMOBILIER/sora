@@ -36,6 +36,7 @@ import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 const PAGE_NAME = "villa-seseh-bali"
 const ANCHOR = "#eligibilite"
 const MODELS_CTA_LABEL = "Recevoir le dossier de cette villa"
+const CONTACT_FORM_TITLE = "Vérifier mon éligibilité"
 
 function splitPrice(raw: string): { amount: string; label: string } {
   const m = raw.match(/^(.+?€)\s*(.*)$/)
@@ -212,14 +213,16 @@ export default function VillaTasvanPage() {
         <PaymentFrieze steps={tasvanExtra.payment.steps} />
       </Section>
 
-      {/* 7. Vos garanties, écrites au contrat */}
-      <Section>
-        <Kicker>{content.section8.overline}</Kicker>
-        <div className="mt-4">
-          <H2>{content.section8.title}</H2>
-        </div>
-        <FiletRows rows={content.section8.guarantees.map((g) => ({ label: g.title.replace(/\.$/, ""), value: g.short }))} />
-      </Section>
+      {/* 7. Vos garanties, écrites au contrat — même bloc que la page A */}
+      {maisonContent.garanties && (
+        <Section>
+          <Kicker>{maisonContent.garanties.overline}</Kicker>
+          <div className="mt-4">
+            <H2>{maisonContent.garanties.title}</H2>
+          </div>
+          <FiletRows rows={maisonContent.garanties.rows} />
+        </Section>
+      )}
 
       {/* 8. Gestion locative avec SORA */}
       <Section alt>
@@ -263,7 +266,7 @@ export default function VillaTasvanPage() {
           pendingLabel={tasvanExtra.pending.team}
         />
         <div className="mt-10">
-          <RoiCells stats={content.team.stats} />
+          <RoiCells stats={maisonContent.team.stats} />
         </div>
       </Section>
 
@@ -291,7 +294,7 @@ export default function VillaTasvanPage() {
           title={content.section12.title}
           intro={tasvanExtra.contact.intro}
           photoSrc={tasvanExtra.contact.photoSrc}
-          formTitle={tasvanExtra.contact.formTitle}
+          formTitle={CONTACT_FORM_TITLE}
           formHint={tasvanExtra.contact.formHint}
           embedCode={content.section12.embedCode}
           embedSource="LP-B"

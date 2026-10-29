@@ -3,6 +3,7 @@ import { C } from "@/components/landing/tasvan/tokens"
 import { Section, Kicker, H2, Btn } from "@/components/landing/tasvan/primitives"
 import TasvanHeader from "@/components/landing/tasvan/header"
 import TasvanHero from "@/components/landing/tasvan/hero-fullbleed"
+import GammesBand, { type GammeCell } from "@/components/landing/tasvan/gammes-band"
 import VideoCard from "@/components/landing/tasvan/video-card"
 import VillaBlock from "@/components/landing/tasvan/villa-block"
 import ShowMore from "@/components/landing/tasvan/show-more"
@@ -24,9 +25,9 @@ import frContent from "../../../content/maison-seseh-bali/fr"
 import tasvanExtra from "../../../content/maison-seseh-bali/tasvan-extra-fr"
 import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
-// Page A : pas de bande noire des 4 prix, pas de cellule "Rendement net
-// estimé" dans les fiches (trois cellules seulement — le rendement reste
-// dans la note de bas de fiche).
+// Page A : bande noire des 4 gammes, de la plus chère à la moins chère,
+// sans rendement (uniquement dans la note de bas de fiche — trois
+// cellules dans les fiches).
 
 const PAGE_NAME = "maison-seseh-bali"
 const ANCHOR = "#entretien"
@@ -71,10 +72,18 @@ export default function TasvanPage() {
   const allModels = [...content.models, ...(content.modelsExtra || [])]
   const byName = (n: string) => allModels.find((m) => m.name === n)!
 
-  // Fiches villa : Signature puis Exception visibles ; Élégance et
-  // Prestige derrière "Voir les autres gammes du projet".
-  const visibleModels = [byName("Signature"), byName("Exception")]
-  const extraModels = [byName("Élégance"), byName("Prestige")]
+  // Fiches villa : Exception puis Signature visibles ; Prestige et
+  // Élégance derrière "Voir les autres gammes du projet".
+  const visibleModels = [byName("Exception"), byName("Signature")]
+  const extraModels = [byName("Prestige"), byName("Élégance")]
+
+  // Bande des 4 gammes : de la plus chère à la moins chère, pas de
+  // rendement sur cette page.
+  const gammesOrder = ["Exception", "Signature", "Prestige", "Élégance"].map(byName)
+  const gammeCells: GammeCell[] = gammesOrder.map((m) => {
+    const p1 = splitPrice(m.priceLabel)
+    return { name: m.name, spec: m.priceLineSpec || m.specLine, price: p1.amount, anchor: `#modele-${m.name.toLowerCase()}` }
+  })
 
   return (
     <main className={`${FONT_VARS} bg-white`} style={{ color: C.ink }}>
@@ -96,7 +105,12 @@ export default function TasvanPage() {
         anchor={ANCHOR}
       />
 
-      {/* 3. La maison, pas un numéro de lot — deux colonnes, vidéo de
+      {/* 3. Bande noire des 4 gammes */}
+      <section className="pt-16 md:pt-24">
+        <GammesBand items={gammeCells} note={tasvanExtra.priceNote} />
+      </section>
+
+      {/* 4. La maison, pas un numéro de lot — deux colonnes, vidéo de
           présentation à droite (déplacée depuis l'ancien hero). Ordre
           mobile distinct de l'ordre desktop : titre, vidéo, texte, points
           forts, bouton — via grid-template-areas nommées. */}
@@ -145,22 +159,8 @@ export default function TasvanPage() {
         </div>
       </Section>
 
-      {/* 5. Une maison unique, à votre image (Julie) */}
+      {/* 5. La collection — Exception puis Signature visibles */}
       <Section alt>
-        <JulieBlock
-          overline={content.julie.overline}
-          title={content.julie.title}
-          line={content.julie.screenLine || content.julie.screenLines[0]}
-          portraitSrc={content.julie.image}
-          portraitCaption={content.julie.imageCaption}
-          rows={content.julie.rows || []}
-          disclaimerLine={content.julie.disclaimerLine}
-          pendingLabel={tasvanExtra.pending.julie}
-        />
-      </Section>
-
-      {/* 6. La collection — Signature puis Exception visibles, pas de bande noire, 3 cellules */}
-      <Section>
         <div className="space-y-16 md:space-y-24">
           {visibleModels.map((model, i) => (
             <div key={model.name} className={i > 0 ? "pt-16 md:pt-24 border-t" : ""} style={i > 0 ? { borderColor: C.line } : undefined}>
@@ -180,6 +180,20 @@ export default function TasvanPage() {
             </div>
           </ShowMore>
         </div>
+      </Section>
+
+      {/* 6. Une maison unique, à votre image (Julie) */}
+      <Section>
+        <JulieBlock
+          overline={content.julie.overline}
+          title={content.julie.title}
+          line={content.julie.screenLine || content.julie.screenLines[0]}
+          portraitSrc={content.julie.image}
+          portraitCaption={content.julie.imageCaption}
+          rows={content.julie.rows || []}
+          disclaimerLine={content.julie.disclaimerLine}
+          pendingLabel={tasvanExtra.pending.julie}
+        />
       </Section>
 
       {/* 7. Le jour de la remise des clés, on vous fait venir à Bali */}
