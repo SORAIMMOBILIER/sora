@@ -4,7 +4,7 @@ export type LeaseholdCard = { value: string; text: string }
 
 // "Ce que vous possédez" : trois cartes sur le leasehold (30 ans / +30 ans
 // / 60 ans), dans le style des cartes de la brochure — bordées, arrondies.
-export default function LeaseholdCards({ cards, bottomLine }: { cards: LeaseholdCard[]; bottomLine: string }) {
+export default function LeaseholdCards({ cards, bottomLine }: { cards: LeaseholdCard[]; bottomLine?: string }) {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
@@ -19,9 +19,11 @@ export default function LeaseholdCards({ cards, bottomLine }: { cards: Leasehold
           </article>
         ))}
       </div>
-      <p className="text-[14.5px] mt-8" style={{ color: C.muted }}>
-        {bottomLine}
-      </p>
+      {bottomLine && (
+        <p className="text-[14.5px] mt-8" style={{ color: C.muted }}>
+          {bottomLine}
+        </p>
+      )}
     </div>
   )
 }
