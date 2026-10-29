@@ -16,9 +16,9 @@ const content: VillaSesehBaliContent = {
   },
   hero: {
     overline: "SESEH SUNSET VILLAS · BALI · 26 VILLAS À 300 M DE LA PLAGE · LIVRAISON T3 2028",
-    title: "10,2 % net constaté en 2025. Zéro gestion. Revente déjà prouvée.",
+    title: "10,2 % net en 2025. Zéro gestion.",
     subtitle:
-      "Des villas de 1 et 2 chambres à Bali, à 300 mètres de la plage, 149 000 € et 239 000 € tout compris. Construites par des ingénieurs, louées et gérées par notre équipe, de la première nuit jusqu'à la revente.",
+      "Revente déjà prouvée. Des villas de 1 à 4 chambres à Bali, à 300 mètres de la plage, dès 149 000 € tout compris. Construites par des ingénieurs, louées et gérées par notre équipe, de la première nuit jusqu'à la revente.",
     videoUrl: undefined,
     posterImage: "/seseh/prestige/exterior.webp",
     heroImages: [
@@ -306,11 +306,10 @@ const content: VillaSesehBaliContent = {
     overline: "Le lieu",
     title: "Seseh, entre rizières et océan.",
     entries: [
-      { place: "Plage de Seseh", distance: "300 m", photoSrc: undefined },
-      { place: "Canggu", distance: "8 min", photoSrc: undefined },
-      { place: "Pererenan", distance: undefined },
-      { place: "Tanah Lot", distance: undefined },
-      { place: "Aéroport", distance: undefined },
+      { place: "Plage de Seseh", distance: "3 min, 300 m", photoSrc: undefined },
+      { place: "Restaurants, beach clubs et bien-être", distance: "3 min", photoSrc: undefined },
+      { place: "Canggu", distance: "8 min" },
+      { place: "Aéroport international de Bali", distance: "60 min" },
     ],
   },
   section11: {

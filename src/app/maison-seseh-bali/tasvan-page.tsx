@@ -1,9 +1,9 @@
 import { FONT_VARS } from "@/components/landing/tasvan/fonts"
 import { C } from "@/components/landing/tasvan/tokens"
-import { Section, Wrap, Kicker, H2, Btn } from "@/components/landing/tasvan/primitives"
+import { Section, Kicker, H2, Btn } from "@/components/landing/tasvan/primitives"
 import TasvanHeader from "@/components/landing/tasvan/header"
-import TasvanHero from "@/components/landing/tasvan/hero"
-import LeLieuVideo from "@/components/landing/tasvan/le-lieu-video"
+import TasvanHero from "@/components/landing/tasvan/hero-fullbleed"
+import VideoCard from "@/components/landing/tasvan/video-card"
 import VillaBlock from "@/components/landing/tasvan/villa-block"
 import ShowMore from "@/components/landing/tasvan/show-more"
 import LeaseholdCards from "@/components/landing/tasvan/leasehold-cards"
@@ -11,7 +11,6 @@ import PaymentFrieze from "@/components/landing/tasvan/payment-frieze"
 import GestionBlock from "@/components/landing/tasvan/gestion-block"
 import FiletRows from "@/components/landing/tasvan/filet-rows"
 import FaqAccordion from "@/components/landing/tasvan/faq-accordion"
-import IntroGrid from "@/components/landing/tasvan/intro-grid"
 import { PlainLines } from "@/components/landing/tasvan/filet-rows"
 import JulieBlock from "@/components/landing/tasvan/julie-block"
 import TeamSection from "@/components/landing/tasvan/team-section"
@@ -77,8 +76,6 @@ export default function TasvanPage() {
   const visibleModels = [byName("Signature"), byName("Exception")]
   const extraModels = [byName("Élégance"), byName("Prestige")]
 
-  const lieuRows = content.lieu.entries.filter((e) => e.distance).map((e) => ({ label: e.place, value: e.distance! }))
-
   return (
     <main className={`${FONT_VARS} bg-white`} style={{ color: C.ink }}>
       <link rel="preconnect" href="https://connect.facebook.net" />
@@ -87,54 +84,65 @@ export default function TasvanPage() {
       {/* 1. En-tête noir */}
       <TasvanHeader ctaLabel={tasvanExtra.headerCtaLabel} anchor={ANCHOR} page={PAGE_NAME} />
 
-      {/* 2. Hero */}
-      <Wrap className="pt-10 md:pt-16">
-        <TasvanHero
-          overline={content.hero.overline}
-          title={content.hero.title}
-          subtitle={content.hero.subtitle}
-          videoUrl={content.hero.videoUrl}
-          posterUrl={content.hero.posterImage}
-          posterAlt={content.hero.title}
-          ctaLabel={content.hero.ctaLabel}
-          anchor={ANCHOR}
-          page={PAGE_NAME}
-          videoPendingLabel={tasvanExtra.pending.video}
-        />
-      </Wrap>
+      {/* 2. Hero — vidéo des rizières en fond, plein écran */}
+      <TasvanHero
+        overline={content.hero.overline}
+        title={content.hero.title}
+        subtitle={content.hero.subtitle}
+        bgVideoUrl={content.hero.bgVideoUrl}
+        posterUrl={content.hero.posterImage}
+        posterAlt={content.hero.title}
+        ctaLabel={content.hero.ctaLabel}
+        anchor={ANCHOR}
+      />
 
-      {/* 3. Le lieu — vidéo du hero du site principal en fond, collé sous le hero */}
-      <LeLieuVideo overline={content.lieu.overline} title={content.lieu.title} videoSrc={tasvanExtra.lelieu.videoSrc} posterSrc={tasvanExtra.lelieu.posterSrc} rows={lieuRows} />
-
-      {/* 4. Une maison, pas un numéro de lot */}
+      {/* 3. La maison, pas un numéro de lot — deux colonnes, vidéo de
+          présentation à droite (déplacée depuis l'ancien hero). Ordre
+          mobile distinct de l'ordre desktop : titre, vidéo, texte, points
+          forts, bouton — via grid-template-areas nommées. */}
       <Section>
-        <IntroGrid
-          overline={tasvanExtra.maison.overline}
-          title={tasvanExtra.maison.title}
-          left={
-            <>
-              <p className="text-[17px] max-w-[60ch]" style={{ color: C.ink }}>
-                {tasvanExtra.maison.paragraph1}
-              </p>
-              <p className="mt-[18px] max-w-[60ch]" style={{ color: C.muted }}>
-                {tasvanExtra.maison.paragraph2}
-              </p>
-              <div className="mt-10">
-                <Btn href={ANCHOR} ghost>
-                  {tasvanExtra.maison.ctaLabel}
-                </Btn>
-              </div>
-            </>
-          }
-          right={
-            <>
-              <Kicker>{tasvanExtra.maison.pointsFortsLabel}</Kicker>
-              <div className="mt-4">
-                <PlainLines items={tasvanExtra.maison.pointsForts} />
-              </div>
-            </>
-          }
-        />
+        <div className="maison-grid grid gap-x-10 md:items-start">
+          <style>{`
+            .maison-grid { grid-template-columns: 1fr; grid-template-areas: "kicker" "title" "video" "text" "line" "points" "button"; }
+            .maison-grid > * + * { margin-top: 18px; }
+            @media (min-width: 768px) {
+              .maison-grid { grid-template-columns: 5fr 7fr; grid-template-areas: "kicker video" "title video" "text video" "line video" "points video" "button video"; }
+            }
+          `}</style>
+          <div style={{ gridArea: "kicker" }}>
+            <Kicker>{tasvanExtra.maison.overline}</Kicker>
+          </div>
+          <div style={{ gridArea: "title" }}>
+            <H2>{tasvanExtra.maison.title}</H2>
+          </div>
+          <div style={{ gridArea: "video" }}>
+            <VideoCard
+              videoUrl={content.hero.videoUrl}
+              posterUrl={content.hero.posterImage}
+              posterAlt={content.hero.title}
+              label={tasvanExtra.pending.video}
+              page={PAGE_NAME}
+            />
+          </div>
+          <div style={{ gridArea: "text" }}>
+            <p className="text-[17px] max-w-[60ch]" style={{ color: C.ink }}>
+              {tasvanExtra.maison.paragraph1}
+            </p>
+          </div>
+          <div style={{ gridArea: "line" }}>
+            <p className="max-w-[60ch]" style={{ color: C.muted }}>
+              {tasvanExtra.maison.paragraph2}
+            </p>
+          </div>
+          <div style={{ gridArea: "points" }}>
+            <PlainLines items={tasvanExtra.maison.pointsForts} />
+          </div>
+          <div style={{ gridArea: "button" }}>
+            <Btn href={ANCHOR} ghost>
+              {tasvanExtra.maison.ctaLabel}
+            </Btn>
+          </div>
+        </div>
       </Section>
 
       {/* 5. Une maison unique, à votre image (Julie) */}

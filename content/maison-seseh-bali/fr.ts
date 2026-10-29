@@ -19,6 +19,11 @@ const content: MaisonSesehBaliContent = {
     title: "Donnez une adresse à votre capital, à 300 mètres de l'océan.",
     subtitle: "Dessinée avec vous. Gérée quand vous n'y êtes pas. Transmise à vos enfants.",
     videoUrl: undefined,
+    // Vidéo de fond du hero (rizières, <2 Mo) : aucun fichier conforme
+    // disponible (le seul asset Bali existant montre des vues aériennes
+    // interdites sur ces pages) — affichage sur l'image d'accueil en
+    // attendant un fichier dédié.
+    bgVideoUrl: undefined,
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
       { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },

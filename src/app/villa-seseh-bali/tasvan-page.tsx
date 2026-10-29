@@ -96,6 +96,15 @@ export default function VillaTasvanPage() {
 
   const lieuRows = content.lieu.entries.filter((e) => e.distance).map((e) => ({ label: e.place, value: e.distance! }))
 
+  // Témoignages : ordre propre à la page B (Clémentine, Jessica, Youness,
+  // Samuel en tête, puis les autres dans l'ordre de la page /temoignages
+  // du site — ne modifie pas l'ordre partagé utilisé par la page A).
+  const temoignagesOrderB = ["Clémentine M.", "Jessica P.B.", "Youness S.", "Samuel D."]
+  const temoignagesItemsB = [
+    ...temoignagesOrderB.map((n) => tasvanExtra.temoignages.items.find((t) => t.firstName === n)!),
+    ...tasvanExtra.temoignages.items.filter((t) => !temoignagesOrderB.includes(t.firstName)),
+  ]
+
   return (
     <main className={`${FONT_VARS} bg-white`} style={{ color: C.ink }}>
       <link rel="preconnect" href="https://connect.facebook.net" />
@@ -264,7 +273,7 @@ export default function VillaTasvanPage() {
         <div className="mt-4">
           <H2>{content.section4.title}</H2>
         </div>
-        <VideoTestimonials items={tasvanExtra.temoignages.items} listenLabel={tasvanExtra.temoignages.listenLabel} />
+        <VideoTestimonials items={temoignagesItemsB} listenLabel={tasvanExtra.temoignages.listenLabel} />
       </Section>
 
       {/* 14. FAQ de la B */}

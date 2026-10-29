@@ -6,7 +6,7 @@ export function Kicker({ children, light }: { children: React.ReactNode; light?:
 
 export function H2({ children, light }: { children: React.ReactNode; light?: boolean }) {
   return (
-    <h2 className={CLS.h2} style={{ fontFamily: DISPLAY, color: light ? "#fff" : C.ink }}>
+    <h2 className={CLS.h2} style={{ fontFamily: DISPLAY, color: light ? "#fff" : C.ink, textWrap: "balance" }}>
       {children}
     </h2>
   )

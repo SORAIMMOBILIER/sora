@@ -69,7 +69,7 @@ export default function TasvanHero({
         */}
         <h1
           className="text-[clamp(34px,4.6vw,58px)] max-w-[14ch] leading-[1.05] font-extralight"
-          style={{ fontFamily: DISPLAY, fontWeight: 200, color: C.ink }}
+          style={{ fontFamily: DISPLAY, fontWeight: 200, color: C.ink, textWrap: "balance" }}
         >
           {title}
         </h1>

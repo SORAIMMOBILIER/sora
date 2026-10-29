@@ -75,6 +75,7 @@ export type MaisonSesehBaliContent = {
     title: string
     subtitle: string
     videoUrl?: string
+    bgVideoUrl?: string
     posterImage: string
     heroImages: HeroImage[]
     ctaLabel: string
