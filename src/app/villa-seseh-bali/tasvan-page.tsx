@@ -164,29 +164,7 @@ export default function VillaTasvanPage() {
           <H2>{content.section3.title}</H2>
         </div>
         <div className="mt-10">
-          {/* 5 chiffres : grille à part de RoiCells (partagée avec d'autres
-              sections/la page A, non touchée) — 2 colonnes sur mobile (le
-              5e occupe seul sa ligne, pleine largeur), 5 colonnes sur
-              ordinateur comme avant. Même style (bordure, arrondi 18px). */}
-          <div className="grid grid-cols-2 md:grid-cols-5 border rounded-[18px] overflow-hidden" style={{ borderColor: C.line }}>
-            {content.section3.stats.map((s, i) => {
-              const isLast = i === content.section3.stats.length - 1
-              return (
-                <div
-                  key={i}
-                  className={`px-3 py-4 ${isLast ? "col-span-2 md:col-span-1" : i % 2 === 0 ? "border-r border-b md:border-b-0" : "border-b md:border-b-0 md:border-r"}`}
-                  style={{ borderColor: C.line }}
-                >
-                  <p className="text-[clamp(22px,6vw,30px)] leading-[1.05] font-light whitespace-nowrap" style={{ fontFamily: DISPLAY, color: C.ink }}>
-                    {s.value}
-                  </p>
-                  <span className="text-[12px] leading-[1.35] block mt-[6px]" style={{ color: C.muted }}>
-                    {s.label}
-                  </span>
-                </div>
-              )
-            })}
-          </div>
+          <RoiCells stats={content.section3.stats} />
         </div>
         <div className="mt-8">
           <FiletRows rows={content.section3.resaleRows} />
@@ -261,10 +239,10 @@ export default function VillaTasvanPage() {
         />
       </Section>
 
-      {/* 9. Hors Seseh — tuile sombre du loft */}
-      <Section>
-        <DarkTile overline={content.section5.offSeseh.overline} title={content.section5.offSeseh.title} text={content.section5.offSeseh.text} />
-      </Section>
+      {/* 9. Hors Seseh — tuile sombre du loft. Pas de <Section> : DarkTile
+          porte lui-même tout son rythme vertical en noir pleine largeur,
+          sinon le padding blanc de <Section> réapparaît au-dessus/dessous. */}
+      <DarkTile overline={content.section5.offSeseh.overline} title={content.section5.offSeseh.title} text={content.section5.offSeseh.text} />
 
       {/* 10. Ce que vous possédez */}
       <Section alt>
