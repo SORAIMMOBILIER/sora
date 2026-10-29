@@ -74,8 +74,7 @@ const content: VillaSesehBaliContent = {
       { value: "28", label: "Villas livrées" },
       { value: "10,2 %", label: "Net en 2025" },
       { value: "82 %", label: "D'occupation" },
-      { value: "93 %", label: "Réinvestissent" },
-      { value: "93 %", label: "de nos investisseurs réinvestissent chez SORA" },
+      { value: "93 %", label: "Réinvestissent chez SORA" },
     ],
     resaleCartouches: [
       "Loft de Canggu : + 16 % en moins d'un an, avant même d'être loué.",
