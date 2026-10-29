@@ -24,6 +24,7 @@ import ScrollDepthTracker from "@/components/landing/maison-seseh-bali/scroll-de
 import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobile-cta"
 import frContent from "../../../content/maison-seseh-bali/fr"
 import tasvanExtra from "../../../content/maison-seseh-bali/tasvan-extra-fr"
+import { questionnaireA } from "../../../content/questionnaire-fr"
 import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
 // Page A : bande noire des 4 gammes, de la plus chère à la moins chère,
@@ -59,7 +60,7 @@ function VillaFromModel({ model }: { model: GammeItem }) {
       rows={model.rows}
       roiNote={tasvanExtra.roiNote}
       ctaLabel={tasvanExtra.modelsCtaLabel}
-      anchor={ANCHOR}
+      anchor={`?modele=${encodeURIComponent(model.name.toLowerCase())}${ANCHOR}`}
       page={PAGE_NAME}
       sectionKey={`modele-${model.name.toLowerCase()}`}
       pendingLabel={tasvanExtra.pending.photo}
@@ -291,8 +292,8 @@ export default function TasvanPage() {
           photoSrc={tasvanExtra.contact.photoSrc}
           formTitle={tasvanExtra.contact.formTitle}
           formHint={tasvanExtra.contact.formHint}
-          embedCode={content.section11.embedCode}
-          embedSource="LP-A"
+          questionnaire={questionnaireA}
+          anchorId="entretien"
         />
       </div>
 

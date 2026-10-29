@@ -25,6 +25,7 @@ import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobil
 import maisonContent from "../../../content/maison-seseh-bali/fr"
 import tasvanExtra from "../../../content/maison-seseh-bali/tasvan-extra-fr"
 import content from "../../../content/villa-seseh-bali/fr"
+import { questionnaireB } from "../../../content/questionnaire-fr"
 import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
 // Page B : mêmes composants que la page A (branche design-tasvan), contenu
@@ -64,7 +65,7 @@ function VillaFromModel({ model }: { model: GammeItem }) {
       rows={model.rows}
       roiNote={tasvanExtra.roiNote}
       ctaLabel={MODELS_CTA_LABEL}
-      anchor={ANCHOR}
+      anchor={`?modele=${encodeURIComponent(model.name.toLowerCase())}${ANCHOR}`}
       page={PAGE_NAME}
       sectionKey={`villa-${model.name.toLowerCase()}`}
       pendingLabel={tasvanExtra.pending.photo}
@@ -298,8 +299,8 @@ export default function VillaTasvanPage() {
           photoSrc={tasvanExtra.contact.photoSrc}
           formTitle={CONTACT_FORM_TITLE}
           formHint={tasvanExtra.contact.formHint}
-          embedCode={content.section12.embedCode}
-          embedSource="LP-B"
+          questionnaire={questionnaireB}
+          anchorId="eligibilite"
         />
       </div>
 
