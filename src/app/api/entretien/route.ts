@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "Requête invalide." }, { status: 400 })
   }
 
-  const { firstName, lastName, email, phone, callTime, model, answers, honeypot, page, utm, fbclid, pageUrl } = body as {
+  const { firstName, lastName, email, phone, callTime, model, answers, honeypot, page, langue, utm, fbclid, pageUrl } = body as {
     firstName?: string
     lastName?: string
     email?: string
@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
     answers?: Record<string, string>
     honeypot?: string
     page?: "LP-A" | "LP-B"
+    langue?: "fr" | "en"
     utm?: Partial<Record<(typeof UTM_KEYS)[number], string>>
     fbclid?: string
     pageUrl?: string
@@ -62,6 +63,7 @@ export async function POST(req: NextRequest) {
     phone: normalizedPhone,
     icp,
     page,
+    langue: langue || "fr",
     page_url: pageUrl || null,
     modele: model || null,
     projet: answers?.projet || null,

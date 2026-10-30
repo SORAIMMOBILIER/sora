@@ -15,12 +15,14 @@ export default function VideoCard({
   posterAlt,
   label,
   page,
+  playLabel = "Lire la vidéo",
 }: {
   videoUrl?: string
   posterUrl: string
   posterAlt: string
   label: string
   page: string
+  playLabel?: string
 }) {
   const [playing, setPlaying] = useState(false)
 
@@ -35,7 +37,7 @@ export default function VideoCard({
       {!playing ? (
         <>
           <Image src={posterUrl} alt={posterAlt} fill sizes="(max-width:768px) 100vw, 58vw" className="object-cover" />
-          <button type="button" onClick={handlePlay} aria-label="Lire la vidéo" aria-disabled={!videoUrl} className="absolute inset-0 flex items-center justify-center group">
+          <button type="button" onClick={handlePlay} aria-label={playLabel} aria-disabled={!videoUrl} className="absolute inset-0 flex items-center justify-center group">
             <span className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20" />
             <span className="relative flex flex-col items-center gap-3">
               <span className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm transition-transform group-hover:scale-105">

@@ -1,4 +1,4 @@
-import type { QuestionnaireConfig } from "../src/components/landing/tasvan/questionnaire/types"
+import type { QuestionnaireConfig, QuestionnaireUi } from "../src/components/landing/tasvan/questionnaire/types"
 
 // Textes définitifs du questionnaire natif. Les ids de champs (modele,
 // projet, horizon, budget, fonds, experience) sont ceux déjà mémorisés
@@ -12,10 +12,36 @@ const fondsOptions = ["Oui, disponible", "Dans les 6 mois, vente ou cession en c
 const experienceOptions = ["Oui, en France", "Oui, à l'étranger", "Oui, en France et à l'étranger", "Non, ce serait mon premier investissement"]
 const projetOptions = ["Une résidence secondaire, à vivre en famille", "Un investissement locatif", "Les deux"]
 
+// Textes d'interface communs aux deux pages FR — voir QuestionnaireUi.
+const uiFr: QuestionnaireUi = {
+  callTimeOptions: ["En matinée", "À l'heure du déjeuner", "En fin de journée", "Le week-end"],
+  // Les 4 gammes existent toutes sur les deux pages (fiches visibles +
+  // repliées) : un ?modele= venant d'une fiche repliée (ex. Prestige sur
+  // la page A) doit pouvoir pré-remplir/sauter la question même si
+  // "Prestige" n'est pas l'une des options affichées par cette page.
+  modelNames: ["Signature", "Exception", "Prestige", "Élégance"],
+  contactTitle: "Vos coordonnées",
+  firstNamePlaceholder: "Prénom",
+  lastNamePlaceholder: "Nom",
+  emailPlaceholder: "Email",
+  phonePlaceholder: "Téléphone",
+  callTimeLabel: "Le meilleur moment pour vous appeler",
+  continueLabel: "Continuer",
+  backLabel: "Retour",
+  submittingLabel: "Envoi...",
+  consentText: "En envoyant ce formulaire, j'accepte d'être rappelé par SORA.",
+  errorMessage: "Envoi impossible, réessayez dans un instant.",
+  stepCounterTemplate: "{current} sur {total}",
+  doneMessageTemplate:
+    "Merci {firstName}. Un membre de l'équipe SORA vous appelle sous peu au {phone}. Si vous préférez un autre moment, répondez simplement au SMS que vous allez recevoir.",
+}
+
 export const questionnaireA: QuestionnaireConfig = {
   page: "LP-A",
   pageSlug: "maison-seseh-bali",
   itemLabel: "maison",
+  langue: "fr",
+  ui: uiFr,
   introLine: "Quelques questions pour préparer l'entretien. Deux minutes.",
   modelStep: {
     id: "modele",
@@ -42,6 +68,8 @@ export const questionnaireB: QuestionnaireConfig = {
   page: "LP-B",
   pageSlug: "villa-seseh-bali",
   itemLabel: "villa",
+  langue: "fr",
+  ui: uiFr,
   introLine: "Quelques questions pour préparer le rendez-vous. Deux minutes.",
   modelStep: {
     id: "modele",
