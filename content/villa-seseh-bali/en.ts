@@ -4,7 +4,7 @@ const content: VillaSesehBaliContent = {
   meta: {
     title: "A villa in Seseh, Bali | SORA Immobilier",
     description:
-      "One- and two-bedroom villas 300 m from the beach, €149,000 and €239,000 all-inclusive. 10.2% net in 2025, full management, proven resale.",
+      "Villas with 1 to 4 bedrooms, 300 m from the beach, from €149,000 all-inclusive. 10.2% net recorded in 2025, full management, proven resale.",
   },
   nav: {
     switchLabel: "FR",
@@ -16,9 +16,9 @@ const content: VillaSesehBaliContent = {
   },
   hero: {
     overline: "SESEH SUNSET VILLAS · BALI · 26 VILLAS 300 M FROM THE BEACH · DELIVERY Q3 2028",
-    title: "10.2% net in 2025. Zero management. Resale already proven.",
+    title: "You invest. We take care of the rest.",
     subtitle:
-      "One- and two-bedroom villas in Bali, 300 metres from the beach, €149,000 and €239,000 all-inclusive. Built by engineers, rented and managed by our team, from the first night to the resale.",
+      "Villas in Seseh, 300 m from the beach, from €149,000 all-inclusive. 10.2% net in 2025, management and resale handled by our team.",
     videoUrl: undefined,
     posterImage: "/seseh/prestige/exterior.webp",
     heroImages: [
@@ -39,19 +39,24 @@ const content: VillaSesehBaliContent = {
     title: "You've built up capital. It's time it worked without you.",
     subhead: "What actually drives a villa's return",
     screenLines: [
-      "A property investment is judged over ten years, net of everything.",
-      "The right questions: who builds, who rents, who resells, and with what proof.",
+      "Over ten years, it isn't the purchase price that makes the difference. It's what the villa costs to run, and what it's worth the day you sell it.",
     ],
     blocks: [
       {
-        icon: "price",
-        title: "Buying cheaper.",
-        body: "A higher net yield on paper. In practice, heavier running costs, premature wear, renovation work before resale. And it's your return that pays for them.",
+        title: "Lower costs, higher net income",
+        body: "A well-built villa needs fewer repairs and less upkeep. Every euro saved on running costs stays in your pocket, year after year.",
       },
       {
-        icon: "shield",
-        title: "Buying well built.",
-        body: "A villa that costs less to run, needs no reinvestment to bring it back up to standard, and resells intact.",
+        title: "It rents better, for longer",
+        body: "A villa in good condition keeps its ratings, its reviews and its nightly rate. Occupancy holds up over time.",
+      },
+      {
+        title: "It resells at the right price",
+        body: "No renovation needed before the sale: the buyer pays for a villa that's ready to rent, and the capital gain is yours in full.",
+      },
+      {
+        title: "In Bali, the gap widens fast",
+        body: "Heat, humidity, the rainy season: the climate wears down a budget build fast. A villa built by engineers goes through the years without losing value.",
       },
     ],
     screenClosingLine: "If your criterion is the lowest entry price on the island, we won't be the right choice.",
@@ -63,13 +68,13 @@ const content: VillaSesehBaliContent = {
     closingParagraph: "The only question that matters: in ten or fifteen years, which one will have earned you more? That is the calculation we work on. If your criterion is the lowest entry price on the island, we won't be the right choice, and we'd rather tell you now.",
   },
   section3: {
-    overline: "Our numbers",
-    title: "Before any promise, what's already done.",
+    overline: "Already delivered, already rented.",
+    title: "What our villas earned last year.",
     stats: [
       { value: "28", label: "Villas delivered" },
       { value: "10.2%", label: "Net in 2025" },
       { value: "82%", label: "Occupancy" },
-      { value: "93%", label: "Reinvest" },
+      { value: "93%", label: "Reinvest with SORA" },
     ],
     resaleCartouches: [
       "Canggu loft: +16% in under a year, before it was even rented.",
@@ -274,7 +279,7 @@ const content: VillaSesehBaliContent = {
   team: {
     overline: "The team",
     title: "Trusting a builder you've never met.",
-    photo: undefined,
+    photo: "/seseh/team/team-photo.webp",
     photoCaption: "The SORA team in Bali.",
     quote: "From thousands of kilometres away, we don't ask you to take our word for it. We show you how we work.",
     name: "Gabriel Lapierre",
@@ -307,11 +312,10 @@ const content: VillaSesehBaliContent = {
     overline: "The location",
     title: "Seseh, between rice fields and ocean.",
     entries: [
-      { place: "Seseh beach", distance: "300 m", photoSrc: undefined },
-      { place: "Canggu", distance: "8 min", photoSrc: undefined },
-      { place: "Pererenan", distance: undefined },
-      { place: "Tanah Lot", distance: undefined },
-      { place: "Airport", distance: undefined },
+      { place: "Seseh beach", distance: "3 min, 300 m", photoSrc: undefined },
+      { place: "Restaurants, beach clubs and wellness", distance: "3 min" },
+      { place: "Canggu", distance: "8 min" },
+      { place: "Bali international airport", distance: "60 min" },
     ],
   },
   section11: {
@@ -362,7 +366,7 @@ const content: VillaSesehBaliContent = {
       },
       {
         q: "Who looks after the villa when I'm not there?",
-        a: "SORA, on site: rental, guest welcome, maintenance, housekeeping, accounting, and a monthly management report. Rachel runs a construction company in Paris, a million in revenue, and everything rests on her. She knows the boiler that fails and the Sunday-evening phone call, and her mind was made up: no more property at home. Her first reaction to Bali: managing a villa from thousands of kilometres away, no thanks. Except there's nothing to manage. A villa in Canggu, €299,000 turnkey. She signed and went back to her life: €24,000 net a year, around 8% net, without a single check-in, without changing a single light bulb. A year later, she came back on her own to take a second one, in Seseh.",
+        a: "SORA, on site: rental, guest welcome, maintenance, housekeeping, accounting, and a monthly management report. Rachel runs a construction company in Paris, a €1M-turnover business, and everything rests on her. She knows all about broken boilers and Sunday-evening phone calls, and her mind was made up: no more property at home. Her first reaction to Bali: managing a villa from thousands of kilometres away, no thanks. Except there's nothing to manage. A villa in Canggu, €299,000 turnkey. She signed and went back to her life: €24,000 net a year, around 8% net, without a single check-in, without changing a single light bulb. A year later, she came back on her own to take a second one, in Seseh.",
       },
       {
         q: "What exactly does the price include?",
@@ -386,7 +390,7 @@ const content: VillaSesehBaliContent = {
       },
       {
         q: "What if construction runs late?",
-        a: "Three months' grace after the planned date, then penalties of 1.5 million rupiah per day of delay, around €75, paid to you. You follow progress every week.",
+        a: "Three months' grace after the planned date, then penalties of 1.5 million rupiah per day of delay, around €75 a day, paid to you. You follow progress every week.",
       },
       {
         q: "I don't have all the funds yet.",

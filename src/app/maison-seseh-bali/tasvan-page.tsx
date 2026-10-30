@@ -1,3 +1,4 @@
+import { getLocale } from "next-intl/server"
 import { FONT_VARS } from "@/components/landing/tasvan/fonts"
 import { C } from "@/components/landing/tasvan/tokens"
 import { Section, Kicker, H2, Btn } from "@/components/landing/tasvan/primitives"
@@ -23,8 +24,11 @@ import TasvanFooter from "@/components/landing/tasvan/footer"
 import ScrollDepthTracker from "@/components/landing/maison-seseh-bali/scroll-depth-tracker"
 import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobile-cta"
 import frContent from "../../../content/maison-seseh-bali/fr"
-import tasvanExtra from "../../../content/maison-seseh-bali/tasvan-extra-fr"
+import enContent from "../../../content/maison-seseh-bali/en"
+import tasvanExtraFr from "../../../content/maison-seseh-bali/tasvan-extra-fr"
+import tasvanExtraEn from "../../../content/maison-seseh-bali/tasvan-extra-en"
 import { questionnaireA } from "../../../content/questionnaire-fr"
+import { questionnaireAEn } from "../../../content/questionnaire-en"
 import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
 // Page A : bande noire des 4 gammes, de la plus chère à la moins chère,
@@ -41,7 +45,7 @@ function splitPrice(raw: string): { amount: string; label: string } {
   return { amount: m[1], label: m[2].toUpperCase() }
 }
 
-function VillaFromModel({ model }: { model: GammeItem }) {
+function VillaFromModel({ model, tasvanExtra }: { model: GammeItem; tasvanExtra: typeof tasvanExtraFr }) {
   const p1 = splitPrice(model.priceLabel)
   return (
     <VillaBlock
@@ -69,8 +73,13 @@ function VillaFromModel({ model }: { model: GammeItem }) {
   )
 }
 
-export default function TasvanPage() {
-  const content = frContent
+export default async function TasvanPage() {
+  const locale = await getLocale()
+  const content = locale === "en" ? enContent : frContent
+  const tasvanExtra = locale === "en" ? tasvanExtraEn : tasvanExtraFr
+  const questionnaire = locale === "en" ? questionnaireAEn : questionnaireA
+  const otherHref = locale === "en" ? "/maison-seseh-bali" : "/en/home-seseh-bali"
+  const otherLabel = locale === "en" ? "FR" : "EN"
   const allModels = [...content.models, ...(content.modelsExtra || [])]
   const byName = (n: string) => allModels.find((m) => m.name === n)!
 
@@ -93,7 +102,7 @@ export default function TasvanPage() {
       <ScrollDepthTracker page={PAGE_NAME} />
 
       {/* 1. En-tête noir */}
-      <TasvanHeader ctaLabel={tasvanExtra.headerCtaLabel} anchor={ANCHOR} page={PAGE_NAME} />
+      <TasvanHeader ctaLabel={tasvanExtra.headerCtaLabel} anchor={ANCHOR} page={PAGE_NAME} otherHref={otherHref} otherLabel={otherLabel} />
 
       {/* 2. Hero — vidéo des rizières en fond, plein écran */}
       <TasvanHero
@@ -136,6 +145,7 @@ export default function TasvanPage() {
               posterAlt={content.hero.title}
               label={tasvanExtra.pending.video}
               page={PAGE_NAME}
+              playLabel={locale === "en" ? "Play the video" : "Lire la vidéo"}
             />
           </div>
           <div style={{ gridArea: "text" }}>
@@ -159,7 +169,7 @@ export default function TasvanPage() {
         <div className="space-y-16 md:space-y-24">
           {visibleModels.map((model, i) => (
             <div key={model.name} className={i > 0 ? "pt-16 md:pt-24 border-t" : ""} style={i > 0 ? { borderColor: C.line } : undefined}>
-              <VillaFromModel model={model} />
+              <VillaFromModel model={model} tasvanExtra={tasvanExtra} />
             </div>
           ))}
         </div>
@@ -169,7 +179,7 @@ export default function TasvanPage() {
             <div className="space-y-16 md:space-y-24">
               {extraModels.map((model, i) => (
                 <div key={model.name} className={i > 0 ? "pt-16 md:pt-24 border-t" : ""} style={i > 0 ? { borderColor: C.line } : undefined}>
-                  <VillaFromModel model={model} />
+                  <VillaFromModel model={model} tasvanExtra={tasvanExtra} />
                 </div>
               ))}
             </div>
@@ -292,7 +302,7 @@ export default function TasvanPage() {
           photoSrc={tasvanExtra.contact.photoSrc}
           formTitle={tasvanExtra.contact.formTitle}
           formHint={tasvanExtra.contact.formHint}
-          questionnaire={questionnaireA}
+          questionnaire={questionnaire}
           anchorId="entretien"
         />
       </div>

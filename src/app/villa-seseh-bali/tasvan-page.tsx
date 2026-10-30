@@ -1,3 +1,4 @@
+import { getLocale } from "next-intl/server"
 import { FONT_VARS } from "@/components/landing/tasvan/fonts"
 import { C, DISPLAY } from "@/components/landing/tasvan/tokens"
 import { Section, Wrap, Kicker, H2 } from "@/components/landing/tasvan/primitives"
@@ -21,10 +22,14 @@ import TasvanFooter from "@/components/landing/tasvan/footer"
 import DarkTile from "@/components/landing/shared/dark-tile"
 import ScrollDepthTracker from "@/components/landing/maison-seseh-bali/scroll-depth-tracker"
 import StickyMobileCta from "@/components/landing/maison-seseh-bali/sticky-mobile-cta"
-import maisonContent from "../../../content/maison-seseh-bali/fr"
-import tasvanExtra from "../../../content/maison-seseh-bali/tasvan-extra-fr"
-import content from "../../../content/villa-seseh-bali/fr"
+import maisonContentFr from "../../../content/maison-seseh-bali/fr"
+import maisonContentEn from "../../../content/maison-seseh-bali/en"
+import tasvanExtraFr from "../../../content/maison-seseh-bali/tasvan-extra-fr"
+import tasvanExtraEn from "../../../content/maison-seseh-bali/tasvan-extra-en"
+import contentFr from "../../../content/villa-seseh-bali/fr"
+import contentEn from "../../../content/villa-seseh-bali/en"
 import { questionnaireB } from "../../../content/questionnaire-fr"
+import { questionnaireBEn } from "../../../content/questionnaire-en"
 import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
 // Page B : mêmes composants que la page A (branche design-tasvan), contenu
@@ -36,8 +41,9 @@ import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
 const PAGE_NAME = "villa-seseh-bali"
 const ANCHOR = "#eligibilite"
-const MODELS_CTA_LABEL = "Recevoir le dossier de cette villa"
-const CONTACT_FORM_TITLE = "Vérifier mon éligibilité"
+const MODELS_CTA_LABEL = { fr: "Recevoir le dossier de cette villa", en: "Get the full brochure for this villa" }
+const CONTACT_FORM_TITLE = { fr: "Vérifier mon éligibilité", en: "Check my eligibility" }
+const RENDEMENT_LABEL = { fr: "Rendement net estimé", en: "Estimated net yield" }
 
 function splitPrice(raw: string): { amount: string; label: string } {
   const m = raw.match(/^(.+?€)\s*(.*)$/)
@@ -45,7 +51,7 @@ function splitPrice(raw: string): { amount: string; label: string } {
   return { amount: m[1], label: m[2].toUpperCase() }
 }
 
-function VillaFromModel({ model }: { model: GammeItem }) {
+function VillaFromModel({ model, tasvanExtra, ctaLabel }: { model: GammeItem; tasvanExtra: typeof tasvanExtraFr; ctaLabel: string }) {
   const p1 = splitPrice(model.priceLabel)
   return (
     <VillaBlock
@@ -63,7 +69,7 @@ function VillaFromModel({ model }: { model: GammeItem }) {
       stats={model.stats}
       rows={model.rows}
       roiNote={tasvanExtra.roiNote}
-      ctaLabel={MODELS_CTA_LABEL}
+      ctaLabel={ctaLabel}
       anchor={`?modele=${encodeURIComponent(model.name.toLowerCase())}${ANCHOR}`}
       page={PAGE_NAME}
       sectionKey={`villa-${model.name.toLowerCase()}`}
@@ -73,7 +79,18 @@ function VillaFromModel({ model }: { model: GammeItem }) {
   )
 }
 
-export default function VillaTasvanPage() {
+export default async function VillaTasvanPage() {
+  const locale = await getLocale()
+  const content = locale === "en" ? contentEn : contentFr
+  const maisonContent = locale === "en" ? maisonContentEn : maisonContentFr
+  const tasvanExtra = locale === "en" ? tasvanExtraEn : tasvanExtraFr
+  const questionnaire = locale === "en" ? questionnaireBEn : questionnaireB
+  const otherHref = locale === "en" ? "/villa-seseh-bali" : "/en/villa-seseh-bali"
+  const otherLabel = locale === "en" ? "FR" : "EN"
+  const modelsCtaLabel = locale === "en" ? MODELS_CTA_LABEL.en : MODELS_CTA_LABEL.fr
+  const contactFormTitle = locale === "en" ? CONTACT_FORM_TITLE.en : CONTACT_FORM_TITLE.fr
+  const rendementLabel = locale === "en" ? RENDEMENT_LABEL.en : RENDEMENT_LABEL.fr
+
   const allModels = [...maisonContent.models, ...(maisonContent.modelsExtra || [])]
   const byName = (n: string) => allModels.find((m) => m.name === n)!
 
@@ -81,7 +98,7 @@ export default function VillaTasvanPage() {
   const gammesOrder = ["Élégance", "Prestige", "Signature", "Exception"].map(byName)
   const gammeCells: GammeCell[] = gammesOrder.map((m) => {
     const p1 = splitPrice(m.priceLabel)
-    const rendementStat = m.stats.find((s) => s.label === "Rendement net estimé")
+    const rendementStat = m.stats.find((s) => s.label === rendementLabel)
     return {
       name: m.name,
       spec: m.priceLineSpec || m.specLine,
@@ -113,7 +130,7 @@ export default function VillaTasvanPage() {
       <ScrollDepthTracker page={PAGE_NAME} />
 
       {/* 1. En-tête + hero, texte à gauche / vidéo à droite */}
-      <TasvanHeader ctaLabel={content.hero.ctaLabel} anchor={ANCHOR} page={PAGE_NAME} />
+      <TasvanHeader ctaLabel={content.hero.ctaLabel} anchor={ANCHOR} page={PAGE_NAME} otherHref={otherHref} otherLabel={otherLabel} />
       <Wrap className="pt-10 md:pt-16">
         <TasvanHero
           overline={content.hero.overline}
@@ -126,6 +143,7 @@ export default function VillaTasvanPage() {
           anchor={ANCHOR}
           page={PAGE_NAME}
           videoPendingLabel={tasvanExtra.pending.video}
+          playLabel={locale === "en" ? "Play the video" : "Lire la vidéo"}
         />
       </Wrap>
 
@@ -139,7 +157,7 @@ export default function VillaTasvanPage() {
         <div className="space-y-16 md:space-y-24">
           {visibleModels.map((model, i) => (
             <div key={model.name} className={i > 0 ? "pt-16 md:pt-24 border-t" : ""} style={i > 0 ? { borderColor: C.line } : undefined}>
-              <VillaFromModel model={model} />
+              <VillaFromModel model={model} tasvanExtra={tasvanExtra} ctaLabel={modelsCtaLabel} />
             </div>
           ))}
         </div>
@@ -149,7 +167,7 @@ export default function VillaTasvanPage() {
             <div className="space-y-16 md:space-y-24">
               {extraModels.map((model, i) => (
                 <div key={model.name} className={i > 0 ? "pt-16 md:pt-24 border-t" : ""} style={i > 0 ? { borderColor: C.line } : undefined}>
-                  <VillaFromModel model={model} />
+                  <VillaFromModel model={model} tasvanExtra={tasvanExtra} ctaLabel={modelsCtaLabel} />
                 </div>
               ))}
             </div>
@@ -299,9 +317,9 @@ export default function VillaTasvanPage() {
           title={content.section12.title}
           intro={tasvanExtra.contact.intro}
           photoSrc={tasvanExtra.contact.photoSrc}
-          formTitle={CONTACT_FORM_TITLE}
+          formTitle={contactFormTitle}
           formHint={tasvanExtra.contact.formHint}
-          questionnaire={questionnaireB}
+          questionnaire={questionnaire}
           anchorId="eligibilite"
         />
       </div>

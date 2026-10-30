@@ -5,12 +5,6 @@ import { C, DISPLAY } from "../tokens"
 import type { QuestionnaireConfig } from "./types"
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const
-const CALL_TIME_OPTIONS = ["En matinée", "À l'heure du déjeuner", "En fin de journée", "Le week-end"]
-// Les 4 gammes existent toutes sur les deux pages (fiches visibles + repliées) :
-// un ?modele= venant d'une fiche repliée (ex. Prestige sur la page A) doit
-// pouvoir pré-remplir/sauter la question même si "Prestige" n'est pas l'une
-// des options affichées par cette page (voir modelStep.options, limité à 3).
-const ALL_MODEL_NAMES = ["Signature", "Exception", "Prestige", "Élégance"]
 
 type Phase = "steps" | "contact" | "submitting" | "done" | "error"
 
@@ -28,7 +22,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
   useEffect(() => {
     const search = new URLSearchParams(window.location.search)
     const modele = search.get("modele")
-    const match = modele ? ALL_MODEL_NAMES.find((o) => o.toLowerCase() === modele.toLowerCase()) : null
+    const match = modele ? config.ui.modelNames.find((o) => o.toLowerCase() === modele.toLowerCase()) : null
     setPresetModel(match || null)
     const utm: Partial<Record<(typeof UTM_KEYS)[number], string>> = {}
     for (const k of UTM_KEYS) {
@@ -119,6 +113,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
           answers: restAnswers,
           honeypot,
           page: config.page,
+          langue: config.langue,
           utm: tracking.utm,
           fbclid: tracking.fbclid,
           pageUrl: tracking.pageUrl,
@@ -126,7 +121,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
       })
       const data = await res.json()
       if (!res.ok || !data.ok) {
-        setErrorMessage(data.error || "Envoi impossible, réessayez dans un instant.")
+        setErrorMessage(data.error || config.ui.errorMessage)
         setPhase("error")
         return
       }
@@ -137,7 +132,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
       setDoneInfo({ firstName: data.firstName || firstName, phone: data.phone || phone })
       setPhase("done")
     } catch {
-      setErrorMessage("Envoi impossible, réessayez dans un instant.")
+      setErrorMessage(config.ui.errorMessage)
       setPhase("error")
     }
   }
@@ -146,8 +141,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
     return (
       <div data-testid="questionnaire" className="py-4">
         <p className="text-[16px] leading-[1.5]" style={{ color: C.ink }}>
-          Merci {doneInfo.firstName}. Un membre de l&apos;équipe SORA vous appelle sous peu au {doneInfo.phone}. Si
-          vous préférez un autre moment, répondez simplement au SMS que vous allez recevoir.
+          {config.ui.doneMessageTemplate.replace("{firstName}", doneInfo.firstName).replace("{phone}", doneInfo.phone)}
         </p>
       </div>
     )
@@ -159,7 +153,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
     <div data-testid="questionnaire">
       <div className="flex items-center justify-between mb-2">
         <p className="text-[12px] uppercase tracking-[0.12em]" style={{ color: C.muted }}>
-          {currentStepNum} sur {totalSteps}
+          {config.ui.stepCounterTemplate.replace("{current}", String(currentStepNum)).replace("{total}", String(totalSteps))}
         </p>
       </div>
       <div className="h-[3px] w-full bg-black/10 rounded-full overflow-hidden mb-6">
@@ -204,7 +198,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             className="mt-6 h-[52px] w-full flex items-center justify-center text-[12px] font-medium uppercase tracking-[0.16em] text-white disabled:opacity-50"
             style={{ background: C.ink }}
           >
-            Continuer
+            {config.ui.continueLabel}
           </button>
         </div>
       )}
@@ -212,7 +206,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
       {(phase === "contact" || phase === "submitting" || phase === "error") && (
         <form onSubmit={handleSubmit}>
           <p className="text-[18px] font-light mb-5" style={{ fontFamily: DISPLAY, color: C.ink }}>
-            Vos coordonnées
+            {config.ui.contactTitle}
           </p>
           <input
             type="text"
@@ -227,7 +221,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
           <div className="grid grid-cols-1 gap-3">
             <input
               type="text"
-              placeholder="Prénom"
+              placeholder={config.ui.firstNamePlaceholder}
               required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
@@ -236,7 +230,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             />
             <input
               type="text"
-              placeholder="Nom"
+              placeholder={config.ui.lastNamePlaceholder}
               required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
@@ -245,7 +239,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             />
             <input
               type="email"
-              placeholder="Email"
+              placeholder={config.ui.emailPlaceholder}
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -254,7 +248,7 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             />
             <input
               type="tel"
-              placeholder="Téléphone"
+              placeholder={config.ui.phonePlaceholder}
               required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -263,10 +257,10 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             />
             <div>
               <p className="text-[13px] mb-2" style={{ color: C.muted }}>
-                Le meilleur moment pour vous appeler
+                {config.ui.callTimeLabel}
               </p>
               <div className="flex flex-col gap-3">
-                {CALL_TIME_OPTIONS.map((opt) => (
+                {config.ui.callTimeOptions.map((opt) => (
                   <button
                     key={opt}
                     type="button"
@@ -297,17 +291,17 @@ export default function Questionnaire({ config, anchorId }: { config: Questionna
             className="mt-6 h-[52px] w-full flex items-center justify-center text-[12px] font-medium uppercase tracking-[0.16em] text-white disabled:opacity-50"
             style={{ background: C.ink }}
           >
-            {phase === "submitting" ? "Envoi..." : config.ctaLabel}
+            {phase === "submitting" ? config.ui.submittingLabel : config.ctaLabel}
           </button>
           <p className="text-[13px] mt-3" style={{ color: C.muted }}>
-            En envoyant ce formulaire, j&apos;accepte d&apos;être rappelé par SORA.
+            {config.ui.consentText}
           </p>
         </form>
       )}
 
       {canGoBack && (
         <button type="button" onClick={goBack} className="mt-5 text-[13px] underline underline-offset-4" style={{ color: C.muted }}>
-          Retour
+          {config.ui.backLabel}
         </button>
       )}
     </div>
