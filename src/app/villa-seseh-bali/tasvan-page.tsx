@@ -41,7 +41,7 @@ import type { GammeItem } from "../../../content/maison-seseh-bali/types"
 
 const PAGE_NAME = "villa-seseh-bali"
 const ANCHOR = "#eligibilite"
-const MODELS_CTA_LABEL = { fr: "Recevoir le dossier de cette villa", en: "Receive this villa's file" }
+const MODELS_CTA_LABEL = { fr: "Recevoir le dossier de cette villa", en: "Get the full brochure for this villa" }
 const CONTACT_FORM_TITLE = { fr: "Vérifier mon éligibilité", en: "Check my eligibility" }
 const RENDEMENT_LABEL = { fr: "Rendement net estimé", en: "Estimated net yield" }
 

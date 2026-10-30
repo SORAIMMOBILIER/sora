@@ -71,7 +71,7 @@ const content: MaisonSesehBaliContent = {
   },
   julie: {
     overline: "The interior",
-    title: "The interior, a house unlike any other, in your image",
+    title: "The interior: a home that's uniquely yours",
     screenLines: [
       "Designed with Julie Chatelain, an interior architect featured in Art et Décoration.",
       "Materials, tones, furniture: yours will be unlike any other.",
@@ -86,7 +86,7 @@ const content: MaisonSesehBaliContent = {
     ],
     rows: [
       { label: "Your way of living", value: "a conversation to understand your tastes, your habits, and who else will share the house" },
-      { label: "Your mood", value: "bespoke moodboards: materials, colours, furniture" },
+      { label: "Your style", value: "bespoke moodboards: materials, colours, furniture" },
       { label: "Your options", value: "depending on the model: jacuzzi, cold bath, solar panels" },
       { label: "Ready to live in", value: "delivered furnished and decorated, the day you get the keys" },
     ],
@@ -126,7 +126,7 @@ const content: MaisonSesehBaliContent = {
       rows: [
         { label: "Income guarantee", value: "€25,830 a year for 3 years" },
         { label: "Interior", value: "designed with Julie Chatelain" },
-        { label: "Fittings", value: "2 bathrooms, guest WC, office, terrace, outdoor shower, parking" },
+        { label: "Features", value: "2 bathrooms, guest WC, office, terrace, outdoor shower, parking" },
         { label: "Pool", value: "private, 4.7 × 2.1 m" },
         { label: "Plot", value: "118 to 127 m² depending on the lot" },
         { label: "Parking", value: "car and scooter" },
@@ -167,7 +167,7 @@ const content: MaisonSesehBaliContent = {
       rows: [
         { label: "Income guarantee", value: "€32,830 a year for 3 years" },
         { label: "Interior", value: "designed with Julie Chatelain" },
-        { label: "Fittings", value: "3 bathrooms, guest WC, office, balcony, terrace, storage, garden" },
+        { label: "Features", value: "3 bathrooms, guest WC, office, balcony, terrace, storage, garden" },
         { label: "Pool", value: "private, 6.1 × 4 m" },
         { label: "Plot", value: "189 m²" },
         { label: "Parking", value: "car and scooter" },
@@ -204,7 +204,7 @@ const content: MaisonSesehBaliContent = {
       rows: [
         { label: "Income guarantee", value: "€16,730 a year for 3 years" },
         { label: "Interior", value: "designed with Julie Chatelain" },
-        { label: "Fittings", value: "2 bathrooms, guest WC, office, balcony, pool deck, garden" },
+        { label: "Features", value: "2 bathrooms, guest WC, office, balcony, pool deck, garden" },
         { label: "Pool", value: "private, 5.1 × 2.4 m" },
         { label: "Plot", value: "70 m²" },
         { label: "Parking", value: "scooter" },
@@ -239,7 +239,7 @@ const content: MaisonSesehBaliContent = {
       rows: [
         { label: "Income guarantee", value: "€10,430 a year for 3 years" },
         { label: "Interior", value: "designed with Julie Chatelain" },
-        { label: "Fittings", value: "1 bathroom, office, terrace, outdoor shower, garden" },
+        { label: "Features", value: "1 bathroom, office, terrace, outdoor shower, garden" },
         { label: "Jacuzzi", value: "private" },
         { label: "Plot", value: "40 m²" },
         { label: "Parking", value: "scooter" },
@@ -248,7 +248,7 @@ const content: MaisonSesehBaliContent = {
     },
   ],
   modelsOverline: "The collection",
-  modelsNote: "Estimated net income: net of management and operating costs, before tax, excluding capital gains, target scenario from the financial forecast. Some houses, already delivered or off-catalogue, are only presented in consultation.",
+  modelsNote: "Estimated net income: net of management and operating costs, before tax, excluding capital gains, target scenario from the financial forecast. Some houses, already delivered or off-market, are only presented in consultation.",
   modelsCtaLabel: "Request a private consultation",
   modelsExtraCtaLabel: "See the other models in the project",
   modelsPriceNote: "All-inclusive prices, until 31 December 2026.",
@@ -295,9 +295,9 @@ const content: MaisonSesehBaliContent = {
     rows: [
       { label: "Construction guarantee", value: "10 years on the structure, 5 years on the roof, 1 year full coverage. There is no 10-year structural warranty in Indonesia: this is our own commitment" },
       { label: "Income guarantee", value: "7% net of management fees per year for 36 months, 21% of the price secured over 3 years" },
-      { label: "Deadline guarantee", value: "delivery in Q3 2028. Beyond 3 months' grace, penalties of 1.5 million rupiah per day of delay, around €2,250 a month and €27,000 a year, paid to you" },
+      { label: "Delivery guarantee", value: "delivery in Q3 2028. Beyond 3 months' grace, penalties of 1.5 million rupiah per day of delay, around €2,250 a month and €27,000 a year, paid to you" },
       { label: "Financial guarantee", value: "the land is paid through the notary's escrow account, construction funds are released as work progresses, the final 10% at handover" },
-      { label: "Tenure guarantee", value: "a 30-year lease plus a further 30 years guaranteed, at the price of the land alone: 60 years" },
+      { label: "Lease guarantee", value: "a 30-year lease plus a further 30 years guaranteed, at the price of the land alone: 60 years" },
     ],
   },
   section5: {
@@ -456,7 +456,7 @@ const content: MaisonSesehBaliContent = {
       },
       {
         q: "Who looks after the house when I'm not there?",
-        a: "SORA, on site: rental, guest welcome, maintenance, housekeeping, accounting, and a monthly management report. Rachel runs a construction company in Paris, a million in revenue, and everything rests on her. She knows the boiler that fails and the Sunday-evening phone call, and she didn't want anything else to manage. Her first reaction to Bali: managing a villa from thousands of kilometres away, no thanks. Except there's nothing to manage. A villa in Canggu, €299,000 turnkey. She signed and went back to her life: €24,000 net a year, around 8% net, without a single check-in, without changing a single light bulb. A year later, she came back on her own to take a second one, in Seseh.",
+        a: "SORA, on site: rental, guest welcome, maintenance, housekeeping, accounting, and a monthly management report. Rachel runs a construction company in Paris, a €1M-turnover business, and everything rests on her. She knows all about broken boilers and Sunday-evening phone calls, and she didn't want anything else to manage. Her first reaction to Bali: managing a villa from thousands of kilometres away, no thanks. Except there's nothing to manage. A villa in Canggu, €299,000 turnkey. She signed and went back to her life: €24,000 net a year, around 8% net, without a single check-in, without changing a single light bulb. A year later, she came back on her own to take a second one, in Seseh.",
       },
       {
         q: "How does the income guarantee work?",

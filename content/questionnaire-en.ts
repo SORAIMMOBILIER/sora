@@ -6,7 +6,7 @@ import type { QuestionnaireConfig, QuestionnaireUi } from "../src/components/lan
 
 const horizonOptions = ["Within 3 months", "In 3 to 6 months", "In 6 to 12 months", "In more than a year"]
 const fondsOptions = ["Yes, available", "Within 6 months, a sale or transfer in progress", "In more than a year", "I'm planning financing"]
-const experienceOptions = ["Yes, at home", "Yes, abroad", "Yes, both at home and abroad", "No, this would be my first investment"]
+const experienceOptions = ["Yes, in my home country", "Yes, abroad", "Yes, both in my home country and abroad", "No, this would be my first investment"]
 const projetOptions = ["A second home, to live in as a family", "A rental investment", "Both"]
 
 const uiEn: QuestionnaireUi = {
@@ -25,7 +25,7 @@ const uiEn: QuestionnaireUi = {
   errorMessage: "Something went wrong, please try again in a moment.",
   stepCounterTemplate: "{current} of {total}",
   doneMessageTemplate:
-    "Thank you, {firstName}. A member of the SORA team will call you shortly at {phone}. If you'd prefer another time, just reply to the text message you're about to receive.",
+    "Thank you, {firstName}. A member of the SORA team will call you shortly at {phone}. If you'd prefer another time, just reply to the message you're about to receive.",
 }
 
 export const questionnaireAEn: QuestionnaireConfig = {

@@ -366,7 +366,7 @@ const content: VillaSesehBaliContent = {
       },
       {
         q: "Who looks after the villa when I'm not there?",
-        a: "SORA, on site: rental, guest welcome, maintenance, housekeeping, accounting, and a monthly management report. Rachel runs a construction company in Paris, a million in revenue, and everything rests on her. She knows the boiler that fails and the Sunday-evening phone call, and her mind was made up: no more property at home. Her first reaction to Bali: managing a villa from thousands of kilometres away, no thanks. Except there's nothing to manage. A villa in Canggu, €299,000 turnkey. She signed and went back to her life: €24,000 net a year, around 8% net, without a single check-in, without changing a single light bulb. A year later, she came back on her own to take a second one, in Seseh.",
+        a: "SORA, on site: rental, guest welcome, maintenance, housekeeping, accounting, and a monthly management report. Rachel runs a construction company in Paris, a €1M-turnover business, and everything rests on her. She knows all about broken boilers and Sunday-evening phone calls, and her mind was made up: no more property at home. Her first reaction to Bali: managing a villa from thousands of kilometres away, no thanks. Except there's nothing to manage. A villa in Canggu, €299,000 turnkey. She signed and went back to her life: €24,000 net a year, around 8% net, without a single check-in, without changing a single light bulb. A year later, she came back on her own to take a second one, in Seseh.",
       },
       {
         q: "What exactly does the price include?",
@@ -390,7 +390,7 @@ const content: VillaSesehBaliContent = {
       },
       {
         q: "What if construction runs late?",
-        a: "Three months' grace after the planned date, then penalties of 1.5 million rupiah per day of delay, around €75, paid to you. You follow progress every week.",
+        a: "Three months' grace after the planned date, then penalties of 1.5 million rupiah per day of delay, around €75 a day, paid to you. You follow progress every week.",
       },
       {
         q: "I don't have all the funds yet.",

@@ -11,7 +11,7 @@ const tasvanExtra = {
   planEtageLabel: "1st floor",
   planNote: "Standard plan, variations depending on the plot.",
   swipeLabel: (n: number) => `${n} PHOTOS · SWIPE`,
-  modelsCtaLabel: "Receive this house's file",
+  modelsCtaLabel: "Get the full brochure for this home",
   modelsExtraCtaLabel: "See the other models in the project",
   roiNote: "Estimated net income: net of management and operating costs, before tax, excluding capital gains, target scenario from the financial forecast.",
 
@@ -103,7 +103,7 @@ const tasvanExtra = {
   },
 
   equipe: {
-    intro: "Two construction engineers, Vinci Energies and Bouygues Construction, based in Bali for 4 years.",
+    intro: "Two construction engineers, Vinci Energies and Bouygues Construction, based in Bali since 2023.",
     founders: [
       {
         name: "Gabriel Lapierre",
