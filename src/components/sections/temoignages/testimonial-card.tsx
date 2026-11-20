@@ -3,6 +3,7 @@ import { useRef, useState } from "react"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { cloudinaryOptimizedTestimonialVideoUrl, cloudinaryPosterUrl } from "@/lib/cloudinary"
+import { safePoster, useVideoFallback } from "@/lib/video-fallback"
 
 export type TestimonialCardProps = {
   quote: string
@@ -29,15 +30,19 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
   const desktopRef = useRef<HTMLVideoElement>(null)
   const mobileRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
+  const desktopVideo = useVideoFallback()
+  const mobileVideo = useVideoFallback()
 
   const rawDesktopSrc = videoUrlDesktop || videoUrlMobile
   const rawMobileSrc = videoUrlMobile || videoUrlDesktop
   const desktopSrc = rawDesktopSrc ? cloudinaryOptimizedTestimonialVideoUrl(rawDesktopSrc) : undefined
   const mobileSrc = rawMobileSrc ? cloudinaryOptimizedTestimonialVideoUrl(rawMobileSrc) : undefined
   // Le poster se dérive de l'URL vidéo d'origine (pas de la version déjà
-  // transformée) : deriveCloudinaryPoster attend un chemin brut.
-  const desktopPoster = posterUrl || (rawDesktopSrc ? deriveCloudinaryPoster(rawDesktopSrc) : undefined)
-  const mobilePoster = posterUrl || (rawMobileSrc ? deriveCloudinaryPoster(rawMobileSrc) : undefined)
+  // transformée) : deriveCloudinaryPoster attend un chemin brut. safePoster
+  // bascule sur une image locale si le poster (fourni ou dérivé) est une
+  // URL Cloudinary — le compte est désactivé (voir lib/video-fallback.ts).
+  const desktopPoster = safePoster(posterUrl || (rawDesktopSrc ? deriveCloudinaryPoster(rawDesktopSrc) : undefined))
+  const mobilePoster = safePoster(posterUrl || (rawMobileSrc ? deriveCloudinaryPoster(rawMobileSrc) : undefined))
 
   const handlePlay = () => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches
@@ -52,7 +57,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
 
   return (
     <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-ink">
-      {desktopSrc ? (
+      {desktopSrc && !desktopVideo.failed ? (
         <video
           ref={desktopRef}
           src={desktopSrc}
@@ -60,6 +65,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
           controls={playing}
           playsInline
           preload="metadata"
+          onError={desktopVideo.onError}
           className="absolute inset-0 hidden h-full w-full object-cover md:block"
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
@@ -70,7 +76,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
         <img src={desktopPoster} alt={author || ""} loading="lazy" className="absolute inset-0 hidden h-full w-full object-cover md:block" />
       ) : null}
 
-      {mobileSrc ? (
+      {mobileSrc && !mobileVideo.failed ? (
         <video
           ref={mobileRef}
           src={mobileSrc}
@@ -78,6 +84,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
           controls={playing}
           playsInline
           preload="metadata"
+          onError={mobileVideo.onError}
           className="absolute inset-0 block h-full w-full object-cover md:hidden"
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
@@ -88,7 +95,7 @@ export default function TestimonialCard({ quote, author, role, videoUrlDesktop, 
         <img src={mobilePoster} alt={author || ""} loading="lazy" className="absolute inset-0 block h-full w-full object-cover md:hidden" />
       ) : null}
 
-      {(desktopSrc || mobileSrc) && !playing && (
+      {((desktopSrc && !desktopVideo.failed) || (mobileSrc && !mobileVideo.failed)) && !playing && (
         <>
           {/* Desktop : gros bouton centré */}
           <button

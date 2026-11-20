@@ -1,4 +1,6 @@
+"use client"
 import { cloudinaryVideoUrl } from "@/lib/cloudinary"
+import { useVideoFallback } from "@/lib/video-fallback"
 import { Btn } from "./primitives"
 import { DISPLAY } from "./tokens"
 
@@ -27,6 +29,7 @@ export default function TasvanHeroFullBleed({
   ctaLabel: string
   anchor: string
 }) {
+  const { failed, onError } = useVideoFallback()
   return (
     <div className="tasvan-hero-fullbleed relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden">
       <style>{`
@@ -39,8 +42,8 @@ export default function TasvanHeroFullBleed({
           .tasvan-hero-fullbleed, .tasvan-hero-fullbleed .hero-fill { height: calc(100vh - 68px - 290px); }
         }
       `}</style>
-      {bgVideoUrl ? (
-        <video autoPlay muted loop playsInline preload="metadata" poster={posterUrl} className="absolute inset-0 w-full h-full object-cover">
+      {bgVideoUrl && !failed ? (
+        <video autoPlay muted loop playsInline preload="metadata" poster={posterUrl} onError={onError} className="absolute inset-0 w-full h-full object-cover">
           <source src={cloudinaryVideoUrl(bgVideoUrl)} type="video/mp4" />
         </video>
       ) : (

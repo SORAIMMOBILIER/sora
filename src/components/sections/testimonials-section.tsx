@@ -4,6 +4,7 @@ import { gsap } from "gsap"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { cloudinaryVideoUrl, cloudinaryPosterUrl } from "@/lib/cloudinary"
+import { safePoster, useVideoFallback } from "@/lib/video-fallback"
 
 export type Testimonial = {
   quote: string
@@ -35,11 +36,21 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
   const t = useTranslations("Home.Testimonials")
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
+  const { failed, onError } = useVideoFallback()
 
   const handlePlay = () => {
     const v = videoRef.current
     if (!v) return
     v.play()
+  }
+
+  if (failed) {
+    return (
+      <div className={`relative rounded-sm overflow-hidden ${aspect}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={safePoster(poster)} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    )
   }
 
   return (
@@ -50,7 +61,8 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
         controls={playing}
         playsInline
         preload="metadata"
-        poster={poster}
+        poster={safePoster(poster)}
+        onError={onError}
         className="absolute inset-0 w-full h-full object-cover"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
@@ -72,6 +84,31 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
         </button>
       )}
     </div>
+  )
+}
+
+// Version mobile de la vidéo centrale (VIDEOS[1]) : lecteur natif avec
+// contrôles toujours visibles (pas de bouton play superposé), contexte
+// plus étroit que les cartes desktop. Même bascule poster-only en cas
+// d'échec de chargement.
+function MobileHeroVideo({ src, poster }: { src: string; poster: string }) {
+  const { failed, onError } = useVideoFallback()
+
+  if (failed) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={safePoster(poster)} alt="" className="absolute inset-0 w-full h-full object-cover" />
+  }
+
+  return (
+    <video
+      src={src}
+      poster={safePoster(poster)}
+      onError={onError}
+      controls
+      playsInline
+      preload="metadata"
+      className="absolute inset-0 w-full h-full object-cover"
+    />
   )
 }
 
@@ -97,14 +134,7 @@ export default function TestimonialsSection() {
             </h2>
           </div>
           <div className="tm-item relative rounded-sm overflow-hidden aspect-video">
-            <video
-              src={VIDEOS[1].src}
-              poster={VIDEOS[1].poster}
-              controls
-              playsInline
-              preload="metadata"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+            <MobileHeroVideo src={VIDEOS[1].src} poster={VIDEOS[1].poster} />
           </div>
           <blockquote className="tm-item text-center font-serif italic text-background text-lg leading-snug px-4 py-5">
             {t("quote")}
