@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/request"
 import { type NavRealisation } from "@/components/layout/navbar"
 import { SiteChrome, ConditionalSmoothScroll, DevAgentation } from "@/components/layout/site-chrome"
 import CookieBanner from "@/components/layout/cookie-banner"
+import GoogleTagManager from "@/components/layout/google-tag-manager"
 import { sanityFetch } from "../../sanity/lib/fetch"
 import { NAV_REALISATIONS_QUERY } from "../../sanity/lib/queries"
 import { translateToEnglish } from "@/lib/translate"
@@ -180,6 +181,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
             <DevAgentation />
             <CookieBanner />
+            <GoogleTagManager />
           </ConditionalSmoothScroll>
         </NextIntlClientProvider>
       </body>
