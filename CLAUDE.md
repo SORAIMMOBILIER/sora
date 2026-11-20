@@ -13,7 +13,7 @@ partagée ne doit JAMAIS empêcher de savoir qui a réellement demandé ou fait 
    (si ce n'est pas déjà clair dans la conversation).
 2. Utiliser son vrai nom (et son vrai email si elle le donne) comme auteur du commit,
    par exemple :
-   - `git commit --author="Steven <steven@ultra-mastermind.com>"`
+   - `git commit --author="Steven <steven@sora-immobilier.com>"`
    - `git commit --author="Gabriel <email-de-gabriel>"`
 3. Ne jamais attribuer un commit à un nom générique (ex : `SORAIMMOBILIER`, `contact@...`,
    `admin`, etc.). Chaque commit doit refléter la vraie personne humaine à l'origine de la
