@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.seo?.metaTitle || `${post.title} | SORA Immobilier`,
     description: post.seo?.metaDescription || post.excerpt,
-    alternates: hreflangAlternates(`/blog/${slug}`),
+    alternates: await hreflangAlternates(`/blog/${slug}`),
   }
 }
 

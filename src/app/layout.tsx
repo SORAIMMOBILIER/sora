@@ -75,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: siteUrl,
     title: m.title,
     description: m.description,
-    alternates: hreflangAlternates("/"),
+    alternates: await hreflangAlternates("/"),
     // Balise de vérification Google Search Console — posée une seule
     // fois ici, dans le layout racine, elle est donc présente dans le
     // <head> de TOUTES les pages du site automatiquement.

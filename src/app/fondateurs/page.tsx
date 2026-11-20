@@ -9,14 +9,12 @@ import { founderPersonsJsonLd } from "@/lib/structured-data"
 import type { Locale } from "@/i18n/request"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = (await getLocale()) as Locale
   const t = await getTranslations("FoundersPage")
-  const canonical = locale === "en" ? "/en/founders" : "/fondateurs"
 
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { ...hreflangAlternates("/fondateurs", "/en/founders"), canonical },
+    alternates: await hreflangAlternates("/fondateurs", "/en/founders"),
     openGraph: {
       title: t("metaTitle"),
       description: t("metaDescription"),

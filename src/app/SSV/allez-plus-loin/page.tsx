@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: hreflangAlternates("/SSV/allez-plus-loin"),
+    alternates: await hreflangAlternates("/SSV/allez-plus-loin"),
   }
 }
 
