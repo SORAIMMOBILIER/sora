@@ -2,7 +2,7 @@
 import { useSyncExternalStore } from "react"
 import Script from "next/script"
 
-// Google Tag Manager (conteneur GTM-NWPQ9ZFT) — sert à charger Google
+// Google Tag Manager (conteneur GTM-5MZPP8B5) — sert à charger Google
 // Analytics 4 et les autres balises marketing, gérées depuis
 // tagmanager.google.com sans toucher au code.
 //
@@ -13,7 +13,7 @@ import Script from "next/script"
 //
 // ⚠️ Pas encore de bannière de consentement réelle sur le site : à ajouter
 // (Consent Mode v2) avant de compter sur ces données pour les visiteurs UE.
-const GTM_ID = "GTM-NWPQ9ZFT"
+const GTM_ID = "GTM-5MZPP8B5"
 const PRODUCTION_HOSTNAMES = ["www.sora-immobilier.com", "sora-immobilier.com"]
 
 const noopSubscribe = () => () => {}
