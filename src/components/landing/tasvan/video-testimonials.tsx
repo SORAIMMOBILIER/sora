@@ -1,6 +1,7 @@
 "use client"
 import { useRef, useState } from "react"
 import { Play } from "lucide-react"
+import { safePoster, useVideoFallback } from "@/lib/video-fallback"
 import { C } from "./tokens"
 
 export type TestimonialItem = { firstName: string; quote: string; videoSrc: string; poster: string }
@@ -12,6 +13,16 @@ export type TestimonialItem = { firstName: string; quote: string; videoSrc: stri
 function VideoCard({ src, poster, listenLabel }: { src: string; poster: string; listenLabel: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
+  const { failed, onError } = useVideoFallback()
+
+  if (failed) {
+    return (
+      <div className="relative aspect-[3/4] overflow-hidden bg-black/10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={safePoster(poster)} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    )
+  }
 
   return (
     <div className="relative aspect-[3/4] overflow-hidden bg-black/10">
@@ -21,7 +32,8 @@ function VideoCard({ src, poster, listenLabel }: { src: string; poster: string; 
         controls={playing}
         playsInline
         preload="metadata"
-        poster={poster}
+        poster={safePoster(poster)}
+        onError={onError}
         className="absolute inset-0 w-full h-full object-cover"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}

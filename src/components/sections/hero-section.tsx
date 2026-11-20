@@ -5,15 +5,18 @@ import { gsap } from "gsap"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { cloudinaryVideoUrlSafeFormat } from "@/lib/cloudinary"
+import { useVideoFallback } from "@/lib/video-fallback"
 
 const HERO_VIDEO_URL = cloudinaryVideoUrlSafeFormat(
   "https://res.cloudinary.com/dfpaw573r/video/upload/v1783086460/Header_site_u1i0j9.mp4",
 )
+const HERO_POSTER = "/villa-exterior.webp"
 
 export default function HeroSection() {
   const t = useTranslations("Home.Hero")
   const ref = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const { failed, onError } = useVideoFallback()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -33,18 +36,24 @@ export default function HeroSection() {
     <section ref={ref} className="relative h-screen min-h-[720px] w-full overflow-hidden bg-background">
       {/* Video background */}
       <div className="hero-video absolute inset-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/villa-exterior.webp"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={HERO_VIDEO_URL} type="video/mp4" />
-        </video>
+        {failed ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={HERO_POSTER} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        ) : (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={HERO_POSTER}
+            onError={onError}
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={HERO_VIDEO_URL} type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-primary/55" />
       </div>
 

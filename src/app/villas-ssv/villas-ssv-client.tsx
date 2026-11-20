@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { cloudinaryVideoUrl, cloudinaryVideoUrlSafeFormat } from "@/lib/cloudinary"
+import { safePoster, useVideoFallback } from "@/lib/video-fallback"
 
 declare global {
   interface Window {
@@ -81,6 +82,10 @@ export default function VSLPage() {
   const [videoMuted, setVideoMuted] = useState(true)
   const [showVideoCta, setShowVideoCta] = useState(false)
   const exitShownRef = useRef(false)
+  const heroVideo = useVideoFallback()
+  const testimonial1Video = useVideoFallback()
+  const testimonial2Video = useVideoFallback()
+  const testimonial3Video = useVideoFallback()
   const [dossierForm, setDossierForm] = useState({ firstName: "", lastName: "", email: "", phone: "" })
   const [dossierStatus, setDossierStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
@@ -227,20 +232,29 @@ export default function VSLPage() {
           </div>
 
           {/* Colonne droite : vidéo verticale */}
-          <div className="vsl-fade relative w-full aspect-[9/16] max-h-[70vh] md:max-h-none bg-muted border border-border overflow-hidden rounded-sm cursor-pointer mx-auto max-w-[360px] md:max-w-none" onClick={handleVideoClick}>
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              poster="/vsl-poster.webp"
-              playsInline
-              muted
-              autoPlay
-              loop
-              preload="auto"
-            >
-              <source src={VSL_MAIN_VIDEO_URL} type="video/mp4" />
-            </video>
-            {!videoPlaying && (
+          <div
+            className={`vsl-fade relative w-full aspect-[9/16] max-h-[70vh] md:max-h-none bg-muted border border-border overflow-hidden rounded-sm mx-auto max-w-[360px] md:max-w-none ${heroVideo.failed ? "" : "cursor-pointer"}`}
+            onClick={heroVideo.failed ? undefined : handleVideoClick}
+          >
+            {heroVideo.failed ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src="/vsl-poster.webp" alt="" className="w-full h-full object-cover" />
+            ) : (
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                poster="/vsl-poster.webp"
+                playsInline
+                muted
+                autoPlay
+                loop
+                preload="auto"
+                onError={heroVideo.onError}
+              >
+                <source src={VSL_MAIN_VIDEO_URL} type="video/mp4" />
+              </video>
+            )}
+            {!heroVideo.failed && !videoPlaying && (
               <div className="absolute inset-0 bg-foreground/25 flex flex-col items-center justify-center gap-3">
                 <div className="w-20 h-20 rounded-full bg-background/90 flex items-center justify-center shadow-lg">
                   <svg className="w-8 h-8 text-accent ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
@@ -404,7 +418,12 @@ export default function VSLPage() {
           <div className="vsl-fade grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-3 md:gap-4 items-stretch">
             {/* Vertical gauche */}
             <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
-              <video src={TESTIMONIAL_VIDEO_1_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              {testimonial1Video.failed ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={safePoster(undefined)} alt="" className="absolute inset-0 w-full h-full object-cover" />
+              ) : (
+                <video src={TESTIMONIAL_VIDEO_1_URL} onError={testimonial1Video.onError} poster={safePoster(undefined)} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              )}
             </div>
 
             {/* Colonne centrale */}
@@ -418,7 +437,12 @@ export default function VSLPage() {
 
               {/* Horizontal centre */}
               <div className="relative rounded-sm overflow-hidden aspect-video">
-                <video src={TESTIMONIAL_VIDEO_2_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+                {testimonial2Video.failed ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={safePoster(undefined)} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                ) : (
+                  <video src={TESTIMONIAL_VIDEO_2_URL} onError={testimonial2Video.onError} poster={safePoster(undefined)} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+                )}
               </div>
 
               <blockquote className="text-center px-4 py-4">
@@ -430,7 +454,12 @@ export default function VSLPage() {
 
             {/* Vertical droite */}
             <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
-              <video src={TESTIMONIAL_VIDEO_3_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              {testimonial3Video.failed ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={safePoster(undefined)} alt="" className="absolute inset-0 w-full h-full object-cover" />
+              ) : (
+                <video src={TESTIMONIAL_VIDEO_3_URL} onError={testimonial3Video.onError} poster={safePoster(undefined)} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              )}
             </div>
           </div>
         </div>
