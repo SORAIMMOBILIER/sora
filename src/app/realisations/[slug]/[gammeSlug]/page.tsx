@@ -70,7 +70,7 @@ export async function generateMetadata({
   return {
     title: `${g.name} — ${data.realisationTitle} | SORA Immobilier`,
     description: g.description,
-    alternates: hreflangAlternates(`/realisations/${slug}/${gammeSlug}`),
+    alternates: await hreflangAlternates(`/realisations/${slug}/${gammeSlug}`),
   }
 }
 

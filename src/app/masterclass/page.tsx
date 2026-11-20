@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: hreflangAlternates("/masterclass"),
+    alternates: await hreflangAlternates("/masterclass"),
     openGraph: { title: t("metaTitle"), description: t("metaDescription") },
     twitter: { title: t("metaTitle"), description: t("metaDescription") },
   }

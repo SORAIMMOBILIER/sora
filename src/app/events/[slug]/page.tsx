@@ -120,7 +120,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: event.seo?.metaTitle || `${event.title} | SORA Immobilier`,
     description: event.seo?.metaDescription || event.summary,
-    alternates: hreflangAlternates(`/events/${slug}`),
+    alternates: await hreflangAlternates(`/events/${slug}`),
     openGraph: ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: event.title }] } : undefined,
   }
 }

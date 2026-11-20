@@ -285,7 +285,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: r.seo?.metaTitle || `${r.title} | SORA Immobilier`,
     description: r.seo?.metaDescription || r.cardDescription,
-    alternates: hreflangAlternates(`/realisations/${slug}`),
+    alternates: await hreflangAlternates(`/realisations/${slug}`),
     openGraph: ogImage ? { images: [{ url: ogImage, width: 1200, height: 630, alt: r.title }] } : undefined,
   }
 }
