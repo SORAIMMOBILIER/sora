@@ -10,7 +10,7 @@ export async function GET() {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": 'attachment; filename="SESEH_SUNSET_VILLAS_Brochure_FR.pdf"',
-      "Cache-Control": "public, max-age=31536000, immutable",
+      "Cache-Control": "no-store",
     },
   })
 }
