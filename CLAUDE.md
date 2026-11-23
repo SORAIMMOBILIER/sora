@@ -24,3 +24,27 @@ partagée ne doit JAMAIS empêcher de savoir qui a réellement demandé ou fait 
 
 But : garder une trace fiable de qui a fait quoi dans l'historique git, même quand l'accès
 technique (GitHub, Vercel, Claude) est partagé entre plusieurs personnes.
+
+## Travail à plusieurs sur le code — règles obligatoires
+
+Gabriel, Steven et leurs sessions Claude travaillent en parallèle sur ce dépôt. Pour ne
+jamais écraser le travail de l'autre ni casser le site en ligne :
+
+1. **Ne jamais pousser directement sur `main`.** `main` = le site en ligne.
+2. **Toujours partir de la dernière version de `main`** (`git fetch` puis branche depuis
+   `origin/main`) avant de commencer un changement.
+3. **Une branche par sujet**, nommée `<prénom>/<sujet>` (ex. `steven/securite-formulaires`),
+   fusionnée vite (dans la journée ou les deux jours).
+4. **Publier = pull request** → aperçu Vercel testé → accord explicite de Gabriel → fusion.
+   Une seule pull request fusionnée à la fois ; vérifier le site en ligne avant la suivante.
+5. **Conflit à la fusion** : ne jamais forcer (`git push --force` interdit sur `main`),
+   ne jamais écraser la version de l'autre ; résoudre en gardant les deux changements
+   et le signaler à la personne concernée.
+6. **Avant toute publication, Claude rappelle ces règles** et vérifie : branche à jour avec
+   `main`, aperçu testé, accord de Gabriel obtenu, aucune autre pull request en cours de fusion.
+
+### Réglages hors code (pas d'historique, le dernier qui enregistre gagne)
+
+Variables d'environnement et domaines Vercel, réglages GoHighLevel, Meta, Google Drive :
+un seul responsable par outil (Steven pendant la mission sécurité). Toute personne qui doit
+y toucher prévient d'abord dans le groupe WhatsApp, et annonce chaque changement fait.
