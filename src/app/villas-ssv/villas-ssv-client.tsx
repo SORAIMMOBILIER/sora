@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { cloudinaryVideoUrl, cloudinaryVideoUrlSafeFormat } from "@/lib/cloudinary"
+const BLOB_BASE = "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages"
 
 declare global {
   interface Window {
@@ -19,18 +19,10 @@ declare global {
   }
 }
 
-const VSL_MAIN_VIDEO_URL = cloudinaryVideoUrlSafeFormat(
-  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783388037/vsl-2-compressed_lcq6wr.mp4",
-)
-const TESTIMONIAL_VIDEO_1_URL = cloudinaryVideoUrl(
-  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4",
-)
-const TESTIMONIAL_VIDEO_2_URL = cloudinaryVideoUrl(
-  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4",
-)
-const TESTIMONIAL_VIDEO_3_URL = cloudinaryVideoUrl(
-  "https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4",
-)
+const VSL_MAIN_VIDEO_URL = `${BLOB_BASE}/vsl-hero.mp4`
+const TESTIMONIAL_VIDEO_1_URL = `${BLOB_BASE}/il-investit.mp4`
+const TESTIMONIAL_VIDEO_2_URL = `${BLOB_BASE}/clementine.mp4`
+const TESTIMONIAL_VIDEO_3_URL = `${BLOB_BASE}/bali-marches.mp4`
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -404,7 +396,7 @@ export default function VSLPage() {
           <div className="vsl-fade grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-3 md:gap-4 items-stretch">
             {/* Vertical gauche */}
             <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
-              <video src={TESTIMONIAL_VIDEO_1_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              <video src={TESTIMONIAL_VIDEO_1_URL} controls playsInline preload="none" poster="/media/temoignages/il-investit.webp" className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
             {/* Colonne centrale */}
@@ -418,7 +410,7 @@ export default function VSLPage() {
 
               {/* Horizontal centre */}
               <div className="relative rounded-sm overflow-hidden aspect-video">
-                <video src={TESTIMONIAL_VIDEO_2_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+                <video src={TESTIMONIAL_VIDEO_2_URL} controls playsInline preload="none" poster="/media/temoignages/clementine.webp" className="absolute inset-0 w-full h-full object-cover" />
               </div>
 
               <blockquote className="text-center px-4 py-4">
@@ -430,7 +422,7 @@ export default function VSLPage() {
 
             {/* Vertical droite */}
             <div className="relative rounded-sm overflow-hidden aspect-[9/16] md:aspect-auto">
-              <video src={TESTIMONIAL_VIDEO_3_URL} controls playsInline preload="metadata" className="absolute inset-0 w-full h-full object-cover" />
+              <video src={TESTIMONIAL_VIDEO_3_URL} controls playsInline preload="none" poster="/media/temoignages/bali-marches.webp" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
         </div>

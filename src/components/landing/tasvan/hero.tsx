@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import Image from "next/image"
-import { cloudinaryVideoUrl } from "@/lib/cloudinary"
 import { trackCustom } from "@/components/landing/maison-seseh-bali/track"
 import { Btn } from "./primitives"
 import { DISPLAY, C } from "./tokens"
@@ -98,7 +97,7 @@ export default function TasvanHero({
             </>
           ) : (
             <video className="absolute inset-0 w-full h-full object-cover" controls playsInline autoPlay poster={posterUrl}>
-              <source src={cloudinaryVideoUrl(videoUrl!)} type="video/mp4" />
+              <source src={videoUrl!} type="video/mp4" />
             </video>
           )}
         </div>
