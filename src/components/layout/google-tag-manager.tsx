@@ -1,15 +1,26 @@
 "use client"
 import { useSyncExternalStore } from "react"
+import { usePathname } from "next/navigation"
 import Script from "next/script"
+import { isCampaignPathname } from "@/lib/campaign-pages"
+import { useDeferredScriptTrigger } from "@/lib/defer-third-party"
 
 // Google Tag Manager (conteneur GTM-5MZPP8B5) — sert à charger Google
-// Analytics 4 et les autres balises marketing, gérées depuis
+// Analytics 4, DoubleClick et les autres balises marketing, gérées depuis
 // tagmanager.google.com sans toucher au code.
 //
 // Même règle que le Meta Pixel (voir cookie-banner.tsx) : chargé
 // uniquement sur le domaine de production, jamais sur les previews Vercel
 // ni en localhost, pour ne pas polluer les statistiques avec des visites
 // internes. Vérifié côté client, donc ajouté après hydratation.
+//
+// Sur les 2 VSL (pages de campagne, voir campaign-pages.ts) : le conteneur
+// est différé jusqu'au premier scroll/clic/toucher ou, au plus tard,
+// après l'affichage complet de la page — il ne concurrence plus le rendu
+// initial. Rien d'autre dans le code ne pousse dans dataLayer avant que le
+// conteneur lui-même ne le fasse, donc aucun événement à mettre en file
+// ici (contrairement au Pixel, voir cookie-banner.tsx). Reste du site :
+// comportement d'origine inchangé (chargement immédiat après hydratation).
 //
 // ⚠️ Pas encore de bannière de consentement réelle sur le site : à ajouter
 // (Consent Mode v2) avant de compter sur ces données pour les visiteurs UE.
@@ -25,8 +36,10 @@ export default function GoogleTagManager() {
     () => PRODUCTION_HOSTNAMES.includes(window.location.hostname),
     () => false,
   )
+  const pathname = usePathname()
+  const shouldLoad = useDeferredScriptTrigger(isCampaignPathname(pathname) && isProductionHost)
 
-  if (!isProductionHost) return null
+  if (!isProductionHost || !shouldLoad) return null
 
   return (
     <Script id="google-tag-manager" strategy="afterInteractive">{`
