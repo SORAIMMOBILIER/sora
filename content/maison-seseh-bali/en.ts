@@ -19,7 +19,7 @@ const content: MaisonSesehBaliContent = {
     title: "Give your capital an address, 300 metres from the ocean.",
     subtitle: "Designed with you. Managed while you're away. Passed on to your children.",
     videoUrl: undefined,
-    bgVideoUrl: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto:eco,w_1280/v1783086460/Header_site_u1i0j9.mp4",
+    bgVideoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site.mp4",
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
       { src: "/seseh/signature/exterior.webp", alt: "Facade of a Signature villa in Seseh" },

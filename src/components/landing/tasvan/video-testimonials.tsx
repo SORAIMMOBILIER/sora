@@ -20,7 +20,7 @@ function VideoCard({ src, poster, listenLabel }: { src: string; poster: string; 
         src={src}
         controls={playing}
         playsInline
-        preload="metadata"
+        preload="none"
         poster={poster}
         className="absolute inset-0 w-full h-full object-cover"
         onPlay={() => setPlaying(true)}

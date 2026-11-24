@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { cloudinaryVideoUrl, cloudinaryPosterUrl } from "@/lib/cloudinary"
 
 export type Testimonial = {
   quote: string
@@ -13,22 +12,15 @@ export type Testimonial = {
   role?: string
 }
 
+const BLOB_BASE = "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages"
+
 // Posters dimensionnés pour ~1024px de conteneur (max-w-5xl) : VIDEOS[1] sert
 // en pleine largeur sur mobile et en colonne centrale sur desktop (le contexte
 // le plus large), VIDEOS[0]/[2] ne servent qu'en colonnes latérales étroites.
 const VIDEOS = [
-  {
-    src: cloudinaryVideoUrl("https://res.cloudinary.com/dfpaw573r/video/upload/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4"),
-    poster: cloudinaryPosterUrl("https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.jpg", 600),
-  },
-  {
-    src: cloudinaryVideoUrl("https://res.cloudinary.com/dfpaw573r/video/upload/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4"),
-    poster: cloudinaryPosterUrl("https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.jpg", 1000),
-  },
-  {
-    src: cloudinaryVideoUrl("https://res.cloudinary.com/dfpaw573r/video/upload/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4"),
-    poster: cloudinaryPosterUrl("https://res.cloudinary.com/dfpaw573r/video/upload/so_0/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.jpg", 600),
-  },
+  { src: `${BLOB_BASE}/il-investit.mp4`, poster: "/media/temoignages/il-investit.webp" },
+  { src: `${BLOB_BASE}/clementine.mp4`, poster: "/media/temoignages/clementine.webp" },
+  { src: `${BLOB_BASE}/bali-marches.mp4`, poster: "/media/temoignages/bali-marches.webp" },
 ]
 
 function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspect: string }) {
@@ -49,7 +41,7 @@ function VideoCard({ src, poster, aspect }: { src: string; poster: string; aspec
         src={src}
         controls={playing}
         playsInline
-        preload="metadata"
+        preload="none"
         poster={poster}
         className="absolute inset-0 w-full h-full object-cover"
         onPlay={() => setPlaying(true)}
@@ -102,7 +94,7 @@ export default function TestimonialsSection() {
               poster={VIDEOS[1].poster}
               controls
               playsInline
-              preload="metadata"
+              preload="none"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>

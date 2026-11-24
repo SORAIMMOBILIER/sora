@@ -31,7 +31,7 @@ const tasvanExtra = {
   // Bande "Le lieu" : vidéo du hero du site principal en fond, lecture
   // automatique, en boucle, sans son, voile sombre par-dessus.
   lelieu: {
-    videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/v1783086460/Header_site_u1i0j9.mp4",
+    videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site.mp4",
     posterSrc: "/villa-exterior.webp",
   },
 
@@ -129,77 +129,77 @@ const tasvanExtra = {
   },
 
   // Les 11 témoignages vidéo de https://www.sora-immobilier.com/temoignages
-  // (mêmes vidéos Cloudinary, mêmes citations), dans l'ordre demandé.
+  // (mêmes vidéos, mêmes citations), dans l'ordre demandé.
   temoignages: {
     listenLabel: "Écouter le témoignage",
     items: [
       {
         firstName: "Jérôme C.",
         quote: "Il a été très clair sur les sujets fiscaux, juridiques, économiques ...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785077238/Je%CC%81ro%CC%82me_Paysage_V2_jefksr.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785077238/Je%CC%81ro%CC%82me_Paysage_V2_jefksr.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/jerome.mp4",
+        poster: "/media/temoignages/jerome.webp",
       },
       {
         firstName: "Daniel G.",
         quote: "Ici, on n'est pas dans un projet immo, on est dans un projet de confiance...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785165750/Daniel_Garault_Paysage_xjkpxb.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785165750/Daniel_Garault_Paysage_xjkpxb.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/danielgarault.mp4",
+        poster: "/media/temoignages/danielgarault.webp",
       },
       {
         firstName: "Clémentine M.",
         quote: "Il y a 3 ans, je n'aurais jamais pensé pouvoir faire ça...",
         videoSrc:
-          "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1783822922/Investir_a%CC%80_Bali_Cle%CC%81mentine_raconte_son_expe%CC%81rience_dans_l_immobilier_a%CC%80_Canggu._vycims.mp4",
+          "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/clementine.mp4",
         poster: "https://cdn.sanity.io/images/tskrd6ze/production/ff9721a2840e4dce097f9878c80d7438e480146e-1918x981.png?rect=589,0,736,981&w=800&h=1067&fit=max&auto=format",
       },
       {
         firstName: "Grégory S.",
         quote: "Si on ne se sert pas de l'expérience d'experts, on passe à côté d'opportunités...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785077239/Gregory_Paysage_V2_ktskzq.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785077239/Gregory_Paysage_V2_ktskzq.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/gregory.mp4",
+        poster: "/media/temoignages/gregory.webp",
       },
       {
         firstName: "Jessica P.B.",
         quote: "C'est ta transparence qui a fait que je préfère investir à 12 000km que à coté de chez moi...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785316200/videoplayback_ijdofp.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785316200/videoplayback_ijdofp.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/videoplayback.mp4",
+        poster: "/media/temoignages/videoplayback.webp",
       },
       {
         firstName: "Samuel D.",
         quote: "C'est simple, on signe le contrat, on verse l'argent, et on récupère son argent...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785165754/Samuel_d3nbnt.mp4",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/samuel.mp4",
         poster: "https://cdn.sanity.io/images/tskrd6ze/production/1ae13705ca8fe83bc1f8d9cddeddc9a8c86cf3f2-358x623.png?rect=0,74,358,477&w=800&h=1067&fit=max&auto=format",
       },
       {
         firstName: "Karl-Henry M.",
         quote: "Je suis en train de réfléchir pour investir à nouveau...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785077242/Karl-Henry_Paysage_V2_rvevya.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785077242/Karl-Henry_Paysage_V2_rvevya.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/karlhenry.mp4",
+        poster: "/media/temoignages/karlhenry.webp",
       },
       {
         firstName: "Youness S.",
         quote: "Soit on réfléchit à l'opportunité, soit  on la saisit...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1783822918/Il_investit_en_3_e%CC%81tapes_cinbuf.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/il-investit.mp4",
+        poster: "/media/temoignages/il-investit.webp",
       },
       {
         firstName: "Hicham A.",
         quote: "Faire de l'investissement immo sans être accompagné, c'est une erreur...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785077238/Hicham_Paysage_tq9icm.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785077238/Hicham_Paysage_tq9icm.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/hicham.mp4",
+        poster: "/media/temoignages/hicham.webp",
       },
       {
         firstName: "Alexandra G.",
         quote: "Même ceux qui ne sont pas intéressés se sont dit...",
         videoSrc:
-          "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1783822919/Bali_a%CC%80_la_hauteur_des_meilleurs_marche%CC%81s_jdkzln.mp4",
+          "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/bali-marches.mp4",
         poster: "https://cdn.sanity.io/images/tskrd6ze/production/8bf8857d12a904072c70bcaa0aca07d68cb7f29b-3372x5058.jpg?rect=422,785,2528,3372&w=800&h=1067&fit=max&auto=format",
       },
       {
         firstName: "Sébastien R.",
         quote: "Il y a de réelles opportunités de business pour les personnes ici...",
-        videoSrc: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto,vc_auto,w_720,h_1280,c_limit/v1785165750/SEBASTIEN_CLIP_txnyov.mp4",
-        poster: "https://res.cloudinary.com/dfpaw573r/video/upload/so_0,f_auto,q_auto,w_720/v1785165750/SEBASTIEN_CLIP_txnyov.jpg",
+        videoSrc: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/sebastien.mp4",
+        poster: "/media/temoignages/sebastien.webp",
       },
     ],
   },

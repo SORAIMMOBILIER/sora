@@ -22,7 +22,7 @@ const content: MaisonSesehBaliContent = {
     // Vidéo de fond du hero : vidéo des rizières du hero du site principal,
     // transformation Cloudinary q_auto:eco,w_1280 (~1,27 Mo). La règle
     // "pas de vue aérienne" concerne le complexe, pas le paysage.
-    bgVideoUrl: "https://res.cloudinary.com/dfpaw573r/video/upload/q_auto:eco,w_1280/v1783086460/Header_site_u1i0j9.mp4",
+    bgVideoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site.mp4",
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
       { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },

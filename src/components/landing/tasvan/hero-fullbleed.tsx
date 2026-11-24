@@ -1,4 +1,3 @@
-import { cloudinaryVideoUrl } from "@/lib/cloudinary"
 import { Btn } from "./primitives"
 import { DISPLAY } from "./tokens"
 
@@ -41,7 +40,7 @@ export default function TasvanHeroFullBleed({
       `}</style>
       {bgVideoUrl ? (
         <video autoPlay muted loop playsInline preload="metadata" poster={posterUrl} className="absolute inset-0 w-full h-full object-cover">
-          <source src={cloudinaryVideoUrl(bgVideoUrl)} type="video/mp4" />
+          <source src={bgVideoUrl} type="video/mp4" />
         </video>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
