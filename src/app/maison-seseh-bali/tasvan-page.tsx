@@ -110,6 +110,7 @@ export default async function TasvanPage() {
         title={content.hero.title}
         subtitle={content.hero.subtitle}
         bgVideoUrl={content.hero.bgVideoUrl}
+        bgVideoUrlMobile={content.hero.bgVideoUrlMobile}
         posterUrl={content.hero.posterImage}
         posterAlt={content.hero.title}
         ctaLabel={content.hero.ctaLabel}
