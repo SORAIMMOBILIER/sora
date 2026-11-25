@@ -20,6 +20,7 @@ const content: MaisonSesehBaliContent = {
     subtitle: "Designed with you. Managed while you're away. Passed on to your children.",
     videoUrl: undefined,
     bgVideoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site.mp4",
+    bgVideoUrlMobile: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site-mobile-HbmLJeWWfpXUdxuU7AoqqHC6WeoB4v.mp4",
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
       { src: "/seseh/signature/exterior.webp", alt: "Facade of a Signature villa in Seseh" },

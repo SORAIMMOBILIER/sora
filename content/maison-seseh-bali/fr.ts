@@ -23,6 +23,8 @@ const content: MaisonSesehBaliContent = {
     // transformation Cloudinary q_auto:eco,w_1280 (~1,27 Mo). La règle
     // "pas de vue aérienne" concerne le complexe, pas le paysage.
     bgVideoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site.mp4",
+    // Version mobile allégée (720p max, bitrate réduit) — vitesse LCP mobile.
+    bgVideoUrlMobile: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/temoignages/header-site-mobile-HbmLJeWWfpXUdxuU7AoqqHC6WeoB4v.mp4",
     posterImage: "/seseh/signature/exterior.webp",
     heroImages: [
       { src: "/seseh/signature/exterior.webp", alt: "Façade d'une villa Signature à Seseh" },
