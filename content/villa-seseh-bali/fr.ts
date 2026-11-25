@@ -19,7 +19,9 @@ const content: VillaSesehBaliContent = {
     title: "Vous investissez. On s'occupe du reste.",
     subtitle:
       "Villas à Seseh, à 300 m de la plage, dès 149 000 € tout compris. 10,2 % net en 2025, gestion et revente assurées par notre équipe.",
-    videoUrl: undefined,
+    // Vidéo de présentation du hero, verticale 9:16.
+    videoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/vsl/vsl-b-OK8Dgbukkavrsn8xrwD2hd18pmZcts.mp4",
+    vslPosterImage: "/media/vsl/vsl-b-poster.webp",
     posterImage: "/seseh/prestige/exterior.webp",
     heroImages: [
       { src: "/seseh/prestige/exterior.webp", alt: "Façade d'une villa Prestige à Seseh" },

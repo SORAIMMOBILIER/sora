@@ -142,7 +142,7 @@ export default async function TasvanPage() {
           <div style={{ gridArea: "video" }} className="mb-8 md:mb-12">
             <VideoCard
               videoUrl={content.hero.videoUrl}
-              posterUrl={content.hero.posterImage}
+              posterUrl={content.hero.vslPosterImage ?? content.hero.posterImage}
               posterAlt={content.hero.title}
               label={tasvanExtra.pending.video}
               page={PAGE_NAME}
