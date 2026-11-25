@@ -18,7 +18,9 @@ const content: MaisonSesehBaliContent = {
     overline: "SESEH, BALI · UNE COLLECTION DE MAISONS PRIVÉES, ENTRE RIZIÈRES ET OCÉAN",
     title: "Donnez une adresse à votre capital, à 300 mètres de l'océan.",
     subtitle: "Dessinée avec vous. Gérée quand vous n'y êtes pas. Transmise à vos enfants.",
-    videoUrl: undefined,
+    // Vidéo de présentation (section "La maison"), verticale 9:16.
+    videoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/vsl/vsl-a-GlX2FxZxzxBjb4WNzK9hi4EIUuRGwR.mp4",
+    vslPosterImage: "/media/vsl/vsl-a-poster.webp",
     // Vidéo de fond du hero : vidéo des rizières du hero du site principal,
     // transformation Cloudinary q_auto:eco,w_1280 (~1,27 Mo). La règle
     // "pas de vue aérienne" concerne le complexe, pas le paysage.

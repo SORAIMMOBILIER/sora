@@ -80,6 +80,7 @@ export type VillaSesehBaliContent = {
     title: string
     subtitle: string
     videoUrl?: string
+    vslPosterImage?: string
     posterImage: string
     heroImages: HeroImage[]
     ctaLabel: string

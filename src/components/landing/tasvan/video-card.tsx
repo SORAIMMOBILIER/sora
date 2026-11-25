@@ -32,10 +32,10 @@ export default function VideoCard({
   }
 
   return (
-    <div className="relative w-full aspect-video bg-black/10">
+    <div className="relative w-full max-w-[360px] mx-auto aspect-[9/16] bg-black/10">
       {!playing ? (
         <>
-          <Image src={posterUrl} alt={posterAlt} fill sizes="(max-width:768px) 100vw, 58vw" className="object-cover" />
+          <Image src={posterUrl} alt={posterAlt} fill sizes="360px" className="object-cover" />
           <button type="button" onClick={handlePlay} aria-label={playLabel} aria-disabled={!videoUrl} className="absolute inset-0 flex items-center justify-center group">
             <span className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20" />
             <span className="relative flex flex-col items-center gap-3">
@@ -49,7 +49,7 @@ export default function VideoCard({
           </button>
         </>
       ) : (
-        <video className="absolute inset-0 w-full h-full object-cover" controls playsInline autoPlay poster={posterUrl}>
+        <video className="absolute inset-0 w-full h-full object-cover" controls playsInline preload="metadata" autoPlay poster={posterUrl}>
           <source src={videoUrl!} type="video/mp4" />
         </video>
       )}

@@ -75,6 +75,7 @@ export type MaisonSesehBaliContent = {
     title: string
     subtitle: string
     videoUrl?: string
+    vslPosterImage?: string
     bgVideoUrl?: string
     bgVideoUrlMobile?: string
     posterImage: string

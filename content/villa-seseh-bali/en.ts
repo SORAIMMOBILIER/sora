@@ -19,7 +19,8 @@ const content: VillaSesehBaliContent = {
     title: "You invest. We take care of the rest.",
     subtitle:
       "Villas in Seseh, 300 m from the beach, from €149,000 all-inclusive. 10.2% net in 2025, management and resale handled by our team.",
-    videoUrl: undefined,
+    videoUrl: "https://op0brcoce22t6d5s.public.blob.vercel-storage.com/vsl/vsl-b-OK8Dgbukkavrsn8xrwD2hd18pmZcts.mp4",
+    vslPosterImage: "/media/vsl/vsl-b-poster.webp",
     posterImage: "/seseh/prestige/exterior.webp",
     heroImages: [
       { src: "/seseh/prestige/exterior.webp", alt: "Facade of a Prestige villa in Seseh" },

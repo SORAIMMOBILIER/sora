@@ -137,7 +137,7 @@ export default async function VillaTasvanPage() {
           title={content.hero.title}
           subtitle={content.hero.subtitle}
           videoUrl={content.hero.videoUrl}
-          posterUrl={content.hero.posterImage}
+          posterUrl={content.hero.vslPosterImage ?? content.hero.posterImage}
           posterAlt={content.hero.title}
           ctaLabel={content.hero.ctaLabel}
           anchor={ANCHOR}
