@@ -33,6 +33,19 @@ export default function VideoCard({
 
   return (
     <div className="relative w-full max-w-[360px] mx-auto aspect-[9/16] bg-black/10">
+      {/* Plein écran (bouton des contrôles natifs) : par défaut le navigateur
+          applique le object-fit de l'élément <video>, donc le "object-cover"
+          ci-dessous agrandirait et rognerait une vidéo verticale sur un écran
+          large. On force "contain" + fond noir uniquement en plein écran. */}
+      <style>{`
+        video.vsl-video:fullscreen, video.vsl-video:-webkit-full-screen {
+          object-fit: contain;
+          background: #000;
+        }
+        video.vsl-video:fullscreen::backdrop {
+          background: #000;
+        }
+      `}</style>
       {!playing ? (
         <>
           <Image src={posterUrl} alt={posterAlt} fill sizes="360px" className="object-cover" />
@@ -49,7 +62,7 @@ export default function VideoCard({
           </button>
         </>
       ) : (
-        <video className="absolute inset-0 w-full h-full object-cover" controls playsInline preload="metadata" autoPlay poster={posterUrl}>
+        <video className="vsl-video absolute inset-0 w-full h-full object-cover" controls playsInline preload="metadata" autoPlay poster={posterUrl}>
           <source src={videoUrl!} type="video/mp4" />
         </video>
       )}

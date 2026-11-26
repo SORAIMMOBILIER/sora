@@ -51,6 +51,16 @@ export default function TasvanHero({
         @media (min-width: 768px) {
           .tasvan-hero-grid { grid-template-columns: 5fr 7fr; grid-template-areas: "top video" "bottom video"; }
         }
+        /* Plein écran (bouton des contrôles natifs) : on force "contain" +
+           fond noir pour garder la vidéo verticale entière, sans quoi le
+           object-cover ci-dessous l'agrandit et la rogne sur grand écran. */
+        video.vsl-video:fullscreen, video.vsl-video:-webkit-full-screen {
+          object-fit: contain;
+          background: #000;
+        }
+        video.vsl-video:fullscreen::backdrop {
+          background: #000;
+        }
       `}</style>
       <div style={{ gridArea: "top" }}>
         {/* Surtitre un peu plus visible que le kicker standard (13px,
@@ -96,7 +106,7 @@ export default function TasvanHero({
               </button>
             </>
           ) : (
-            <video className="absolute inset-0 w-full h-full object-cover" controls playsInline preload="metadata" autoPlay poster={posterUrl}>
+            <video className="vsl-video absolute inset-0 w-full h-full object-cover" controls playsInline preload="metadata" autoPlay poster={posterUrl}>
               <source src={videoUrl!} type="video/mp4" />
             </video>
           )}
